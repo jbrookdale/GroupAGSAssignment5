@@ -32,7 +32,7 @@ public class GroupPWGapplication extends GUI{
 	private JFrame m_Frame;
 
 	/**< This is for storing the m_Image to be displayed */
-	private ImageIcon m_Image;
+	 ImageIcon m_Image;
 
 	/**< This is panel for the m_Image to be added onto */
 	JPanel m_Panel1;
