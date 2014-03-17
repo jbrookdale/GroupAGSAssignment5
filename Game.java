@@ -80,7 +80,11 @@ public abstract class Game<C> {
     public Game(String playerOneName, String playerOneType, 
         C playerOneColour, String playerTwoName, 
         String playerTwoType, C playerTwoColour) {
-        
+        // Jon's fix idea. Pass in 2 player objects, instead of 6 parameters.
+        // then set humanPlayer[0] and HumanPlayer[1] to those.
+        // Only 2 parameters needed.
+        // Player Objects can be made in MenuGUI, where there player decides what colour
+        // They want and things liek that. - Jon
         m_player = new HumanPlayer[2];
 
         if (playerOneType.equalsIgnoreCase(HUMAN)) {
