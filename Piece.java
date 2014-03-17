@@ -17,6 +17,7 @@ public abstract class Piece<P> {
 	
     /**< variable storing the colour of a piece */ 
 	protected P m_PieceColour;
+	private boolean m_IsSet = false;
 	
 	/** 
 	* This is the enum of ConnectFourPieceColour, it defines all the colours 
@@ -53,14 +54,14 @@ public abstract class Piece<P> {
 	*			     was set or false if it was not.
 	*/
 	public boolean setPieceColour(P pieceColour) {
-		boolean isSet = false;
+		m_IsSet = false;
 		if (pieceColour != OthelloPieceColour.NONE || 
 			pieceColour != ConnectFourPieceColour.NONE) {
 			
 			m_PieceColour = pieceColour;
-			isSet = true;
+			m_IsSet = true;
 		}
-		return isSet;
+		return m_IsSet;
 	}
 
 	/** 
