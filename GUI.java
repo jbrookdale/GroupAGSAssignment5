@@ -18,25 +18,25 @@ import javax.swing.JFrame;
 public abstract class GUI extends JFrame {
 
 	/**< variable storing the title of the display window */ 
-	protected String m_Title;
+	protected String m_Title; // These are protected, so child classes can access them. - Jon
 	
 	/**< variable storing the width of the display window */ 
-	protected int m_Width;
+	protected int m_Width; // These are protected, so child classes can access them. - Jon
 	
 	/**< variable storing the height of the display window */ 
-	protected int m_Height;
+	protected int m_Height; // These are protected, so child classes can access them. - Jon
 
 	/**< constant for checkig the maximum width of the display window */ 
-	protected final int MAX_WIDTH = 800;
+	private final int MAX_WIDTH = 800;
 
 	/**< constant for checkig the maximum width of the display window */ 
-	protected final int MIN_WIDTH = 365;
+	private final int MIN_WIDTH = 365;
 
 	/**<constant for checkig the maximum height of the display window */ 
-	protected final int MAX_HEIGHT = 600;
+	private final int MAX_HEIGHT = 600;
 
 	/**< constant for checkig the minimum height of the display window */ 
-	protected final int MIN_HEIGHT = 295;
+	private final int MIN_HEIGHT = 295;
 
 	/** 
 	* This is the constructor for the OthelloGameGui class.
