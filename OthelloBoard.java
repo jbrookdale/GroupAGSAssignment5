@@ -1,8 +1,6 @@
 
 import java.util.Arrays;
 
-import Piece.OthelloPieceColour;
-
 /**
 *
 * @file OthelloBoard.java

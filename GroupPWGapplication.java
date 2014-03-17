@@ -27,53 +27,54 @@ import javax.swing.JProgressBar;
 import javax.swing.SwingUtilities;
 
 public class GroupPWGapplication extends GUI{
+	private static final long serialVersionUID = 1L;
 
 	/**< This is the m_Frame to which the other components are added */
 	private JFrame m_Frame;
 
 	/**< This is for storing the m_Image to be displayed */
-	 ImageIcon m_Image;
+	private ImageIcon m_Image;
 
 	/**< This is panel for the m_Image to be added onto */
-	JPanel m_Panel1;
+	private JPanel m_Panel1;
 
 	/**< This is panel for the progress bar to be added onto */
-	JPanel m_Panel2;
+	private JPanel m_Panel2;
 
 	/**< This is JLabel to which the ImageIcon is to be added onto, 
 		so the m_Image can be displayed */
-	JLabel m_Icon;
+	private JLabel m_Icon;
 
 	/**< This is progress bar to display the load completion */
-	JProgressBar m_ProgressBar;
+	private JProgressBar m_ProgressBar;
 
 	/**< This is constant used to store the progress bar's maximum  */
-	private final int MAX_RUN_LENGTH = 100;
+	public final int MAX_RUN_LENGTH = 100;
 
 	/**< This is constant used to store the progress bar's minimum  */
-	private final int MIN_RUN_LENGTH = 0;
+	public final int MIN_RUN_LENGTH = 0;
 
 	/**< This is constant used to store the Menu m_Frame width */
-	private final int MENU_WIDTH = 370;		
+	public final int MENU_WIDTH = 370;		
 
 	/**< This is constant used to store the Menu m_Frame width */
-	private final int MENU_HIEGHT = 300;
+	public final int MENU_HIEGHT = 300;
 
 	/**< This is constant used to store the sleep time of the thread so to 
-		increment the progress bar's competion by a constant rate of time*/
-	private final int SLEEP_TIME = 20;//40;
+		increment the progress bar's completion by a constant rate of time*/
+	public final int SLEEP_TIME = 10;
 
-	/**< constant for checkig the maximum width of the display window */ 
-	private final int MAX_WIDTH = 550;
+	/**< constant for checking the maximum width of the display window */ 
+	public final int MAX_WIDTH = 550;
 
-	/**< constant for checkig the maximum width of the display window */ 
-	private final int MIN_WIDTH = 450;
+	/**< constant for checking the maximum width of the display window */ 
+	public final int MIN_WIDTH = 450;
 
-	/**<constant for checkig the maximum height of the display window */ 
-	private final int MAX_HEIGHT = 550;
+	/**<constant for checking the maximum height of the display window */ 
+	public final int MAX_HEIGHT = 550;
 
-	/**< constant for checkig the minimum height of the display window */ 
-	private final int MIN_HEIGHT = 450;
+	/**< constant for checking the minimum height of the display window */ 
+	public final int MIN_HEIGHT = 450;
 
 	/**< constant for the frame separation between components in the x axis */
 	private int SEPARATION_X_AXIS = 1;
@@ -81,13 +82,13 @@ public class GroupPWGapplication extends GUI{
 	/**< constant for the frame separation between components in the x axis */
 	private int SEPARATION_Y_AXIS = 1;
 
-	/**< constant for the frame postion on the x axis */
+	/**< constant for the frame position on the x axis */
 	private int COLUMN_ONE = 0;
 	
-	/**< constant for the frame postion on the y axis */
+	/**< constant for the frame position on the y axis */
 	private int  ROW_ONE = 0;
 	
-	/**< constant for the frame postion on the y axis */
+	/**< constant for the frame position on the y axis */
 	private int  ROW_TWO = 1;
 	
 	/**< constant for progress bar's minimum and initial value */
@@ -165,8 +166,7 @@ public class GroupPWGapplication extends GUI{
 	          		public void run() {
 	          			m_ProgressBar.setValue(PERCENT);
 	          			if (PERCENT == MAX_RUN_LENGTH) {
-							MenuGUI menu = 
-								new MenuGUI("Main Menu",MENU_WIDTH,MENU_HIEGHT);
+							new MenuGUI("Main Menu",MENU_WIDTH,MENU_HIEGHT);
 							m_Frame.dispose();
 	          			}
 	          		}
@@ -181,19 +181,17 @@ public class GroupPWGapplication extends GUI{
 
 	/** 
 	* This is the main method of the GroupPWGapplication class, it is used to increment 
-	* the progress bar's competion rate and then display the Menu window and 
+	* the progress bar's completion rate and then display the Menu window and 
 	* close the GroupPWGapplication window.
 	*
 	*/
 	public static void main(String[] args) {
-
 		/**< This is constant used to store the Start Screen m_Frame width */
 		final int START_SCREEN_WIDTH = 500;
 			
 		/**< This is constant used to store the Start Screen m_Frame height */
 		final int START_SCREEN_HEIGHT = 500;
 
-		GroupPWGapplication start =  
 		new GroupPWGapplication("Start Screen",START_SCREEN_WIDTH,START_SCREEN_HEIGHT);
 	}
 
