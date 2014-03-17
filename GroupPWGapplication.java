@@ -29,7 +29,7 @@ import javax.swing.SwingUtilities;
 public class GroupPWGapplication extends GUI{
 
 	/**< This is the m_Frame to which the other components are added */
-	JFrame m_Frame;
+	private JFrame m_Frame;
 
 	/**< This is for storing the m_Image to be displayed */
 	ImageIcon m_Image;
