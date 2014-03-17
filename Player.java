@@ -21,12 +21,12 @@
 
 
 abstract class Player <C> {
-    String name;
+    String m_Score;
     C connectFourPlayerColour;
-    int score =0;
+    private int m_Score =0;
 
     public Player (String newName, C newPlayerColour){
-        name = newName;
+        m_Name = newName;
         connectFourPlayerColour = newPlayerColour;
 
     }
@@ -36,17 +36,17 @@ abstract class Player <C> {
 	}
 
     public String getName () {
-        return name;
+        return m_Name;
     }
     
     public int getScore() {
-        return score;
+        return m_Score;
     }
 
     public C getColour () {
             return connectFourPlayerColour;
     }
     public void setScore(int points) {
-        score+=points;
+        m_Score+=points;
     }
 }

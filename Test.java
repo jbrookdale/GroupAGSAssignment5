@@ -8,31 +8,26 @@ public class Test{
 
 	/**< create an object of Piece with colour RED so to give the colour to the 
 	RED_PIECE constant*/ 
-	private ConnectFourPiece m_RedPiece = new
-							ConnectFourPiece(Piece.ConnectFourPieceColour.RED);
+	private ConnectFourPiece m_RedPiece = new ConnectFourPiece(Piece.ConnectFourPieceColour.RED);
 
 	/**< constant for storing the red piece colour for comparing with other
 	pieces,	for setting a piece and checking for win scenario*/  							
-	private final Piece.ConnectFourPieceColour	RED_PIECE = 
-													m_RedPiece.getPieceColour();
+	private final Piece.ConnectFourPieceColour RED_PIECE = m_RedPiece.getPieceColour();
 
 	/**< create an object of Piece with colour YELLOW so to give the colour to 
 	the YELLOW_PIECE constant*/  
-	private ConnectFourPiece m_YellowPiece = new
-						ConnectFourPiece(Piece.ConnectFourPieceColour.YELLOW);
+	private ConnectFourPiece m_YellowPiece = new ConnectFourPiece(Piece.ConnectFourPieceColour.YELLOW);
 
 	/**< constant for storing the yellow piece colour for comparing with other 
 	pieces,	for setting a piece and checking for win scenario*/ 					
-	private final Piece.ConnectFourPieceColour	YELLOW_PIECE = 
-												m_YellowPiece.getPieceColour();
+	private final Piece.ConnectFourPieceColour YELLOW_PIECE = m_YellowPiece.getPieceColour();
 	public static final int WIDTH = 10; 
 	
 	/**< constant for the size of the board in y direction */ 
 	public static final int HEIGHT = 7; 
 	
 	/**< array of piece variables storing all pieces on the board */ 
-	private ConnectFourPiece[][] m_Pieces = 
-		new ConnectFourPiece[WIDTH][HEIGHT]; 
+	private ConnectFourPiece[][] m_Pieces = new ConnectFourPiece[WIDTH][HEIGHT]; 
 
 	/**< constant for column one on the board */ 					
 	private final int COLUMN_ONE = 0;
@@ -92,28 +87,35 @@ public class Test{
 
 
 	private static void testOthelloGame(){
+		
+		final int SCORE_TWO = 2;
+		final int SCORE_TEN = 10;
+		final int TEST_PLAYER_NAME_0 = 0;
+		final int TEST_PLAYER_NAME_100 = 100;
+		
+		
 		OthelloPiece testPiece = new OthelloPiece(OthelloPiece.OthelloPieceColour.WHITE);
 
-        OthelloGame testGame = new OthelloGame("Tom","Human",OthelloPiece.OthelloPieceColour.BLACK,
+                OthelloGame testGame = new OthelloGame("Tom","Human",OthelloPiece.OthelloPieceColour.BLACK,
                                             "Harry","Human",OthelloPiece.OthelloPieceColour.WHITE);
         testGame.board.setBoard();
         System.out.println("testing implemented methods:");
         System.out.println("testing placing a piece in a valid square (5,3) WHITE");
         System.out.println("expected output: true");
-        System.out.println(testGame.move(5,3,testPiece));
+        System.out.println(testGame.move(COLUMN_SIX,ROW_FOUR,testPiece));
         System.out.println();
         System.out.println("testing placing a piece in an invalid square (0,3) WHITE");
         System.out.println("expected output: false");
-        System.out.println(testGame.move(0,3,testPiece));
+        System.out.println(testGame.move(COLUMN_ONE,ROW_FOUR,testPiece));
         System.out.println();
         System.out.println("testing updating player1 score by 2");
         System.out.println("expected output: player score 4");
-        testGame.setPlayer1Score(2);
+        testGame.setPlayer1Score(SCORE_TWO);
         System.out.println("player score: "+testGame.getPlayer1Score());
         System.out.println();
         System.out.println("testing updating player2 score by 10");
         System.out.println("expected output: player score 12");
-        testGame.setPlayer2Score(10);
+        testGame.setPlayer2Score(SCORE_TEN);
         System.out.println("player score: "+testGame.getPlayer2Score());
         System.out.println();
         System.out.println("testing inherited methods:");
@@ -124,16 +126,15 @@ public class Test{
         System.out.println();
         System.out.println("testing getPlayerName(0)");
         System.out.println("expected output: Tom");
-        System.out.println(testGame.getPlayerName(0));
+        System.out.println(testGame.getPlayerName(TEST_PLAYER_NAME_0));
         System.out.println();
         System.out.println("testing getPlayerName(100)");
         System.out.println("expected output: Harry");
-        System.out.println(testGame.getPlayerName(100));
+        System.out.println(testGame.getPlayerName(TEST_PLAYER_NAME_100));
     }
 
     private static void testOthelloPiece(){
-    	OthelloPiece piece = 
-			new OthelloPiece(Piece.OthelloPieceColour.BLACK);
+    	OthelloPiece piece = new OthelloPiece(Piece.OthelloPieceColour.BLACK);
 		
 		System.out.println("Valid inputs");
 		System.out.println("OthelloPiece.getPieceColour() - Begin");
@@ -146,7 +147,7 @@ public class Test{
 		System.out.println("Expected output: true");
 		System.out.println("");
 		System.out.println("Actual output: " + 
-			piece.setPieceColour(Piece.OthelloPieceColour.WHITE));
+		piece.setPieceColour(Piece.OthelloPieceColour.WHITE));
 		System.out.println("OthelloPiece.setPieceColour() - End");
 		System.out.println("");
 		System.out.println("OthelloPiece.getPieceColour() - Begin");
@@ -193,7 +194,7 @@ public class Test{
 		System.out.println("Expected output: true");
 		System.out.println("");
 		System.out.println("Actual output: " + 
-			piece.setPieceColour(Piece.ConnectFourPieceColour.YELLOW));
+		piece.setPieceColour(Piece.ConnectFourPieceColour.YELLOW));
 		System.out.println("OthelloPiece.setPieceColour() - End");
 		System.out.println("");
 		System.out.println("OthelloPiece.getPieceColour() - Begin");
@@ -208,7 +209,7 @@ public class Test{
 		System.out.println("Expected output: false");
 		System.out.println("");
 		System.out.println("Actual output: " + 
-			piece.setPieceColour(Piece.ConnectFourPieceColour.NONE));
+		piece.setPieceColour(Piece.ConnectFourPieceColour.NONE));
 		System.out.println("OthelloPiece.setPieceColour() - End");
 		System.out.println("");
 		System.out.println("OthelloPiece.getPieceColour() - Begin");
@@ -229,18 +230,19 @@ public class Test{
 		s[1]="Harry";
 		OthelloGameGUI displayExample = new OthelloGameGUI("Othello",WIDTH,HEIGHT);
 		displayExample.setPlayers(s);
-
 		displayExample.creatingGui();
 	}
 
 	private static void testHumanPlayer(){
-		ConnectFourPiece player1Piece;
+		
+	final int TEST_SCORE = 2;
+	ConnectFourPiece player1Piece;
         player1Piece = new ConnectFourPiece(ConnectFourPiece.ConnectFourPieceColour.YELLOW);
         HumanPlayer player1 = new HumanPlayer("Tom",player1Piece.getPieceColour());
         System.out.println("Player1: " +player1.getName());
         System.out.println("Colour: " +player1.getColour());
         System.out.println("score: " +player1.getScore());
-        player1.setScore(2);
+        player1.setScore(TEST_SCORE);
         System.out.println("Change score: " +player1.getScore());
         OthelloPiece player2Piece;
         player2Piece = new OthelloPiece(OthelloPiece.OthelloPieceColour.BLACK);
@@ -248,16 +250,17 @@ public class Test{
         System.out.println("Player1: " +player2.getName());
         System.out.println("Colour: " +player2.getColour());
         System.out.println("score: " +player2.getScore());
-        player1.setScore(2);
+        player1.setScore(TEST_SCORE);
         System.out.println("Change score: " +player2.getScore());
 	}
 	public static void test2() {
-       	OthelloBoard Board = new OthelloBoard(8,8);
+	final int WIDTH = 8, HEIGHT = 8;
+       	OthelloBoard Board = new OthelloBoard(WIDTH,HEIGHT);
        	Board.setBoard();
        	Board.incPieceCount();
        	System.out.println(Board.getPieceCount());
-       	System.out.println(Board.move(0, 3, WHITE_PIECE));
-       	Board.m_Pieces[5][3]=WHITE_PIECE;
+       	System.out.println(Board.move(COLUMN_ONE,ROW_FOUR, WHITE_PIECE));
+       	Board.m_Pieces[COLUMN_SIX][ROW_FOUR]=WHITE_PIECE;
        	System.out.println("");
        	System.out.println("");
 		Board.checkWin();
@@ -274,12 +277,13 @@ public class Test{
 * This is a test for decPiececount and CheckWin
 */	
 	public static void test3() {
-	       OthelloBoard Board = new OthelloBoard(8,8);
+	       final int WIDTH = 8, HEIGHT = 8;
+	       OthelloBoard Board = new OthelloBoard(WIDTH,HEIGHT);
 	       Board.setBoard();
 	       Board.decPieceCount();
 	       System.out.println(Board.getPieceCount());
-	       System.out.println(Board.move(2, 3, WHITE_PIECE));
-	       Board.m_Pieces[5][3]=WHITE_PIECE;
+	       System.out.println(Board.move(COLUMN_THREE,ROW_FOUR, WHITE_PIECE));
+	       Board.m_Pieces[COLUMN_SIX][ROW_FOUR]=WHITE_PIECE;
 	       System.out.println("");
 	       System.out.println("");
 		Board.checkWin();
@@ -297,12 +301,13 @@ public class Test{
 */	
 
 	public static void test4() {
-		OthelloBoard Board = new OthelloBoard(8,8);
+		final int WIDTH = 8, HEIGHT = 8;
+	        OthelloBoard Board = new OthelloBoard(WIDTH,HEIGHT);
 		Board.setBoard();
 		Board.decPieceCount();
 		System.out.println(Board.getPieceCount());
-		System.out.println(Board.move(2, 3, WHITE_PIECE));
-		Board.m_Pieces[5][3]=WHITE_PIECE;
+		System.out.println(Board.move(COLUMN_THREE,ROW_FOUR, WHITE_PIECE));
+		Board.m_Pieces[COLUMN_SIX][ROW_FOUR]=WHITE_PIECE;
 		System.out.println("");
 		System.out.println("");
 		Board.checkWin();
@@ -310,7 +315,7 @@ public class Test{
 		System.out.println("OthelloBoard.setPiece() - Begin");
 		System.out.println("Expected output: true");
 		System.out.println("");
-		System.out.println("Actual output: " + Board.setPiece(3,5,BLACK_PIECE));
+		System.out.println("Actual output: " + Board.setPiece(COLUMN_FOUR,ROW_SIX,BLACK_PIECE));
 		System.out.println("");
 	}
 	
@@ -320,12 +325,13 @@ public class Test{
 */
 	
 	public static void test5() {
-		OthelloBoard Board = new OthelloBoard(8,8);
+	       final int WIDTH = 8, HEIGHT = 8;
+	       OthelloBoard Board = new OthelloBoard(WIDTH,HEIGHT);
 	       Board.setBoard();
 	       Board.decPieceCount();
 	       System.out.println(Board.getPieceCount());
-	       System.out.println(Board.move(2, 3, WHITE_PIECE));
-	       Board.m_Pieces[5][3]=WHITE_PIECE;
+	       System.out.println(Board.move(COLUMN_THREE,ROW_FOUR, WHITE_PIECE));
+	       Board.m_Pieces[COLUMN_SIX][ROW_FOUR]=WHITE_PIECE;
 	       System.out.println("");
 	       System.out.println("");
 		Board.checkWin();
@@ -333,7 +339,7 @@ public class Test{
 		System.out.println("OthelloBoard.move() - Begin");
 		System.out.println("Expected output: false");
 		System.out.println("");
-		System.out.println("Actual output: " + Board.move(1,2,BLACK_PIECE));
+		System.out.println("Actual output: " + Board.move(COLUMN_TWO,ROW_THREE,BLACK_PIECE));
 	       System.out.println("");
 	}
 	
@@ -342,12 +348,13 @@ public class Test{
 * This is a test for getPieces
 */		
 	public static void test7() {
-			OthelloBoard Board = new OthelloBoard(8,8);
+			final int WIDTH = 8, HEIGHT = 8;
+	                OthelloBoard Board = new OthelloBoard(WIDTH,HEIGHT);
 		      	Board.setBoard();
 			Board.decPieceCount();
 		      	System.out.println(Board.getPieceCount());	
-			System.out.println(Board.move(2, 3, WHITE_PIECE));
-			Board.m_Pieces[5][3]=WHITE_PIECE;
+			System.out.println(Board.move(COLUMN_THREE,ROW_FOUR, WHITE_PIECE));
+			Board.m_Pieces[COLUMN_SIX][ROW_FOUR]=WHITE_PIECE;
 			System.out.println("");
 			System.out.println("");
 			Board.checkWin();
@@ -366,12 +373,13 @@ public class Test{
 */
 	
 	public static void test8() {
-				OthelloBoard Board = new OthelloBoard(8,8);
+				final int WIDTH = 8, HEIGHT = 8;
+	                	OthelloBoard Board = new OthelloBoard(WIDTH,HEIGHT);
 			      	Board.setBoard();
 				Board.decPieceCount();
 			      	System.out.println(Board.getPieceCount());	
-				System.out.println(Board.move(2, 3, WHITE_PIECE));
-				Board.m_Pieces[5][3]=WHITE_PIECE;
+				System.out.println(Board.move(COLUMN_THREE,ROW_FOUR, WHITE_PIECE));
+				Board.m_Pieces[COLUMN_SIX][ROW_FOUR]=WHITE_PIECE;
 				System.out.println("");
 				System.out.println("");
 				Board.checkWin();

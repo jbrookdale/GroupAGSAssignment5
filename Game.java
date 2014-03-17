@@ -37,6 +37,34 @@ public abstract class Game<C> {
     public static final int PLAYER_TWO = 1;
 
     /**
+     * This method returns the name of one of the players, either player one or 
+     * two depending on the input parameter.
+     *
+     * @param x -This variable passed in stores which player, one or two,
+     *           the name needed to be returned.
+     * @return String -The name of the player, either player one or two.
+     */
+     public String getPlayerName(int x) {
+         if (x < 0) {
+             x = 0;
+         }
+         if (x > 1) {
+             x = 1;
+         }
+         return m_player[x].getName();
+     }
+     
+     /**
+      * This method returns the name of both players playing the game.
+      *
+      * @return playersNames -The array which contains the name of both players.
+      */
+      public String[] getPlayerNames() {
+          String[] playersNames = {m_player[0].getName(), m_player[1].getName()};
+          return playersNames;
+      }
+
+    /**
     * Constructor for Game this is used to create a new game
     * @param playerOneName -This variable passed in stores the player one's name
     * @param playerOneType -This variable passed in stores the type of the 
@@ -78,32 +106,14 @@ public abstract class Game<C> {
     * @return boolean -If the method is successfully executed.
     */  
     abstract boolean move(int x, int y, C colour);
-
+    
     /**
-    * This method returns the name of both players playing the game.
-    *
-    * @return playersNames -The array which contains the name of both players.
-    */
-    public String[] getPlayerNames() {
-        String[] playersNames = {m_player[0].getName(), m_player[1].getName()};
-        return playersNames;
-    }
-
+     * This method handles the saving of the game.
+     */
+    abstract void saveGame();
+    
     /**
-    * This method returns the name of one of the players, either player one or 
-    * two depending on the input parameter.
-    *
-    * @param x -This variable passed in stores which player, one or two,
-    *           the name needed to be returned.
-    * @return String -The name of the player, either player one or two.
-    */
-    public String getPlayerName(int x) {
-        if (x < 0) {
-            x = 0;
-        }
-        if (x > 1) {
-            x = 1;
-        }
-        return m_player[x].getName();
-    }
+     * This method handles the loading of the game.
+     */
+    abstract void loadGame();
 }
