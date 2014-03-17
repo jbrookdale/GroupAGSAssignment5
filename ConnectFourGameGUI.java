@@ -15,9 +15,11 @@
 * It uses ConnectFourPanel for drawing the board image and pieces.
 */
 
+import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
@@ -26,6 +28,10 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
+import javax.swing.Timer;
+import javax.swing.border.EmptyBorder;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowListener;
@@ -62,6 +68,11 @@ public class ConnectFourGameGUI extends GameGUI {
     /**< Stores an instance of ConnectFourGame */
     private ConnectFourGame game;
 
+    private Timer m_Timer;
+    private static int m_Time;
+    private JLabel m_TimerLabel;
+    
+    
     /**
     * Constructor for ConnectFourGameGUI
     * @param playerOneName - String representation of player one's name
@@ -76,12 +87,16 @@ public class ConnectFourGameGUI extends GameGUI {
         game = new ConnectFourGame(playerOneName, Game.HUMAN, 
             Piece.ConnectFourPieceColour.YELLOW, playerTwoName, Game.HUMAN, 
             Piece.ConnectFourPieceColour.RED);
-
+        
         panel = new ConnectFourPanel(game.getPieces());
         panel.updatePieces(game.getPieces());
         panel.setCurrentPiece(new ConnectFourPiece(Piece.ConnectFourPieceColour.
             YELLOW));
-
+        
+        setTimerLabel();
+        panel.add(getTimerLabel());
+        
+        
         //Add menu bar
         JMenu menu = new JMenu("Menu");
         add(menu);
@@ -122,6 +137,8 @@ public class ConnectFourGameGUI extends GameGUI {
             }
         });
 
+        startTimer();
+        
         //Initialize and display the the GUI
         add(panel);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -136,6 +153,35 @@ public class ConnectFourGameGUI extends GameGUI {
             + game.getPlayerName(Game.PLAYER_TWO) +"\"");
     }
 
+    public int getTime(){
+    	return m_Time;
+    }
+    
+    public void setTime(int time){
+    	m_Time = time;
+    }
+    
+    private void setTimerLabel(){
+    	m_TimerLabel = new JLabel("Time elapsed: " + getTime() + "s");
+    	m_TimerLabel.setBorder(new EmptyBorder(0,0,0,WINDOW_WIDTH - 125));
+    }
+    
+    public JLabel getTimerLabel(){
+    	return m_TimerLabel;
+    }
+    
+    private void startTimer(){
+    	ActionListener actListener = new ActionListener(){
+    		public void actionPerformed(ActionEvent event){
+    			setTime(getTime() + 1);
+    			getTimerLabel().setText("Time elapsed: " + getTime() + "s");
+    		}
+    	};
+    	m_Timer = new Timer(1000, actListener);
+    	System.out.println("Timer started");
+    	m_Timer.start();
+    }
+    
     /**< private class for handling mouse clicks */
     private class ClickListener implements MouseListener {
 
