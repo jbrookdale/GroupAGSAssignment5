@@ -1,6 +1,6 @@
 /**
 * @file ConnectFourBoard.java
-* @author Daniel Kelleher
+* @author Daniel Kelleher & Ieuan Skinner
 * @date 30 Jan 2014
 * @see 'JAVA for everyone' - Cay Horstmann, Second edition, page 420 for 
 *	   implementing subclasses.
