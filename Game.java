@@ -45,11 +45,11 @@ public abstract class Game<C> {
      * @return String -The name of the player, either player one or two.
      */
      public String getPlayerName(int x) {
-         if (x < 0) {
-             x = 0;
+         if (x < PLAYER_ONE) {
+             x = PLAYER_ONE;
          }
-         if (x > 1) {
-             x = 1;
+         if (x > PLAYER_TWO) {
+             x = PLAYER_TWO;
          }
          return m_player[x].getName();
      }
@@ -60,7 +60,7 @@ public abstract class Game<C> {
       * @return playersNames -The array which contains the name of both players.
       */
       public String[] getPlayerNames() {
-          String[] playersNames = {m_player[0].getName(), m_player[1].getName()};
+          String[] playersNames = {m_player[PLAYER_ONE].getName(), m_player[PLAYER_TWO].getName()};
           return playersNames;
       }
 
