@@ -6,8 +6,7 @@
 * @date 05 Feb 2014
 * @see 'Game.java for inherited methods.
 *
-* @brief This class will display the menu for the game allowing a user to select
-*		 a game type
+* @brief This class controls the Othello game
 *		
  * OthelloGame implements the abstract methods of Game.
  * It inherits all responsibilities of Game, as it is 
