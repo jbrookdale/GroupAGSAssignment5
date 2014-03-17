@@ -77,23 +77,16 @@ public class OthelloGame extends Game <Piece.OthelloPieceColour>{
      *Constructor for OthelloGame. This is used to instantiate 
      * integers if we want it to.
      * 
-     * @param playerOneName  -Name of player one
-     * @param playerOneType  -Type of game player one is playing
-     * @param playerOneColour -Colour of player one piece
-     * @param playerTwoName  -Name of player two
-     * @param playerTwoType  -Type of game player two is playing
-     * @param playerTwoColour -Colour of player two piece
+     * @param playerOne  -The player object containing player one
+     * @param playerTwo  -The player object containing player two
     */ 
-    public OthelloGame(String playerOneName, String playerOneType, 
-            Piece.OthelloPieceColour playerOneColour, String playerTwoName, 
-            String playerTwoType, Piece.OthelloPieceColour playerTwoColour) {
+    public OthelloGame(Player playerOne, Player playerTwo) {
         
-        super(playerOneName, playerOneType, playerOneColour, 
-                playerTwoName, playerTwoType, playerTwoColour);
+        super(playerOne, playerTwo);
 
         board.setBoard();
-        m_player[0].setScore(START_SCORE);
-        m_player[1].setScore(START_SCORE);
+        m_player[PLAYER_ONE].setScore(START_SCORE);
+        m_player[PLAYER_TWO].setScore(START_SCORE);
     }
        
     /**
@@ -150,9 +143,18 @@ public class OthelloGame extends Game <Piece.OthelloPieceColour>{
     */
     public static void main (String[] args){
         OthelloPiece testPiece = new OthelloPiece(OthelloPiece.OthelloPieceColour.WHITE);
-
-        OthelloGame testGame = new OthelloGame("Tom","Human",OthelloPiece.OthelloPieceColour.BLACK,
-                                            "Harry","Human",OthelloPiece.OthelloPieceColour.WHITE);
+        // Old test
+        //OthelloGame testGame = new OthelloGame("Tom","Human",OthelloPiece.OthelloPieceColour.BLACK,
+                                            //"Harry","Human",OthelloPiece.OthelloPieceColour.WHITE);
+        
+        OthelloGame testGame = new OthelloGame(
+                               new HumanPlayer("Tom", 
+                                               OthelloPiece.
+                                               OthelloPieceColour.BLACK),
+                               new HumanPlayer("Harry",
+                                               OthelloPiece.
+                                               OthelloPieceColour.BLACK));
+        
         testGame.board.setBoard();
         System.out.println("testing implemented methods:");
         System.out.println("testing placing a piece in a valid square (5,3) WHITE");

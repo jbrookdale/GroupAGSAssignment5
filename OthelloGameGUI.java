@@ -209,8 +209,15 @@ public class OthelloGameGUI extends GameGUI {
         int reply = JOptionPane.showConfirmDialog(null, message , message, JOptionPane.YES_NO_OPTION);
         if (reply == JOptionPane.YES_OPTION) {
         	window.dispose();
-        	gameCheck = new OthelloGame(m_player1Name,m_player1Type,m_player1Colour.getPieceColour(),
-				m_player2Name,m_player2Type,m_player2Colour.getPieceColour());
+            // Old constructor call
+        	//gameCheck = new OthelloGame(m_player1Name,m_player1Type,m_player1Colour.getPieceColour(),
+			//	m_player2Name,m_player2Type,m_player2Colour.getPieceColour());
+            gameCheck = new OthelloGame(new HumanPlayer(m_player1Name,
+                                                        m_player1Colour.
+                                                            getPieceColour()),
+                                        new HumanPlayer(m_player2Name,
+                                                        m_player2Colour.
+                                                            getPieceColour()));
         	String[] s = gameCheck.getPlayerNames();
             creatingGui();
             
@@ -295,9 +302,14 @@ public class OthelloGameGUI extends GameGUI {
 	private final int BOARDHEIGHT = 85;
 	
 	OthelloBoard board = new OthelloBoard(TOTALHEIGHT,TOTALWIDTH);
-	OthelloGame gameCheck = new OthelloGame(m_player1Name,m_player1Type,m_player1Colour.getPieceColour(),
-				m_player2Name,m_player2Type,m_player2Colour.getPieceColour());
-
+	//OthelloGame gameCheck = new OthelloGame(m_player1Name,m_player1Type,m_player1Colour.getPieceColour(),
+				//m_player2Name,m_player2Type,m_player2Colour.getPieceColour());
+    OthelloGame gameCheck = new OthelloGame(new HumanPlayer(m_player1Name,
+                                                m_player1Colour.
+                                                    getPieceColour()),
+                                new HumanPlayer(m_player2Name,
+                                                m_player2Colour.
+                                                    getPieceColour()));
 	//Pieces and Board
 	static JButton[][] gridButtons;
 	private ImageIcon blackPiece;

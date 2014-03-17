@@ -21,9 +21,9 @@
 
 
 abstract class Player <C> {
-    String m_Score;
+    String m_Name;
     C connectFourPlayerColour;
-    private int m_Score =0;
+    private int m_Score = 0;
 
     public Player (String newName, C newPlayerColour){
         m_Name = newName;

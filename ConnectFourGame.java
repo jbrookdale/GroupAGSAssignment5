@@ -39,16 +39,9 @@ public class ConnectFourGame extends Game<Piece.ConnectFourPieceColour> {
 	* @param n1 -an integer
 	* @return TRUE if successful
 	*/
-	public ConnectFourGame(String playerOneName, String playerOneType, 
-        Piece.ConnectFourPieceColour m_player1Colour, String playerTwoName, 
-        String playerTwoType, Piece.ConnectFourPieceColour m_player2Colour) { // This needs to be changed to only take 5 parameters or less - Jon
+	public ConnectFourGame(Player playerOne, Player playerTwo) { // This needs to be changed to only take 5 parameters or less - Jon
 	
-        super(playerOneName,playerOneType,m_player1Colour, playerTwoName, 
-            playerTwoType, m_player2Colour);
-	
-        m_player[PLAYER_ONE] = new HumanPlayer(playerOneName, m_player1Colour);
-        m_player[PLAYER_TWO] = new HumanPlayer(playerTwoName, m_player2Colour);
-        //turn = PLAYER_ONE;
+        super(playerOne, playerTwo);
 
         m_board = new ConnectFourBoard(ConnectFourBoard.WIDTH, 
         	ConnectFourBoard.HEIGHT);

@@ -11,9 +11,6 @@
 
 class HumanPlayer <C> extends Player{
 	
-	
-	final int TEST_PLAYER_SCORE = 2;
-	
 /**
 * This is the constructor for HumanPlayer.
 *
@@ -32,6 +29,8 @@ class HumanPlayer <C> extends Player{
 */
 
     private static void test1 (){
+        final int TEST_PLAYER_SCORE = 2;
+        
         OthelloPiece player1Piece;
         player1Piece = new OthelloPiece(OthelloPiece.OthelloPieceColour.BLACK);
         HumanPlayer player1 = new HumanPlayer("Tom",player1Piece.getPieceColour());
@@ -50,6 +49,8 @@ class HumanPlayer <C> extends Player{
 
 
     private static void test2(){
+        final int TEST_PLAYER_SCORE = 2;
+        
         ConnectFourPiece player1Piece;
         player1Piece = new ConnectFourPiece(ConnectFourPiece.ConnectFourPieceColour.YELLOW);
         HumanPlayer player1 = new HumanPlayer("Tom",player1Piece.getPieceColour());

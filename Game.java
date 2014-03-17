@@ -22,7 +22,7 @@ public abstract class Game<C> {
     protected Board m_Board;
 
     /**< This is an array of the players in the game of player objects */
-    protected HumanPlayer[] m_player;
+    protected Player[] m_player;
     
     /**< This actual board that is visible to the players */
     protected GameGUI m_GameGUI;
@@ -77,16 +77,17 @@ public abstract class Game<C> {
     * @param playerTwoColour -This variable passed in stores the player two's 
     *                         piece colour
     */
-    public Game(String playerOneName, String playerOneType, 
-        C playerOneColour, String playerTwoName, 
-        String playerTwoType, C playerTwoColour) {
+    public Game(Player playerOne, Player playerTwo) {
         // Jon's fix idea. Pass in 2 player objects, instead of 6 parameters.
         // then set humanPlayer[0] and HumanPlayer[1] to those.
         // Only 2 parameters needed.
         // Player Objects can be made in MenuGUI, where there player decides what colour
         // They want and things liek that. - Jon
-        m_player = new HumanPlayer[2];
-
+        m_player = new Player[2];
+        
+        m_player[PLAYER_ONE] = playerOne;
+        m_player[PLAYER_TWO] = playerTwo;
+        /* Old code
         if (playerOneType.equalsIgnoreCase(HUMAN)) {
         	m_player[0] = new HumanPlayer(playerOneName, playerOneColour);
         }
@@ -94,6 +95,7 @@ public abstract class Game<C> {
         if (playerTwoType.equalsIgnoreCase(HUMAN)) {
         	m_player[1] = new HumanPlayer(playerTwoName, playerTwoColour);
         }
+        */
     }
 
     /**
