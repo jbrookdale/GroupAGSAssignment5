@@ -17,8 +17,6 @@
 * can return all the piece positions on the board.
 */
 
-import java.util.Arrays;
-
 public class ConnectFourBoard extends Board<Piece.ConnectFourPieceColour,
 															ConnectFourPiece> {
 	
@@ -207,20 +205,20 @@ public class ConnectFourBoard extends Board<Piece.ConnectFourPieceColour,
 	*/
 	public boolean checkWin() {
 		boolean gameWon = false;
-		boolean gameWonDownDiagonal = false;
-		boolean gameWonUp = false;
+		boolean gameWonBackDiagonal = false;
+		boolean gameWonVertical = false;
 		boolean gameWonForwardDiagonal = false;
-		boolean gameWonForward = false;
+		boolean gameWonHorizontal = false;
 		for (int j=0; j<WIDTH ; j++) {
 			for (int i=0; i<HEIGHT ; i++) {
 				if (m_Pieces[j][i].getPieceColour() != EMPTY_PIECE) {
-					gameWonDownDiagonal = checkDownDiagonal(j,i,m_Pieces);
-					if (gameWonDownDiagonal) {
+					gameWonBackDiagonal = checkBackDiagonal(j,i,m_Pieces);
+					if (gameWonBackDiagonal) {
 						gameWon = true;
 						return gameWon;
 					}
-					gameWonUp = checkUp(j,i,m_Pieces);
-					if (gameWonUp) {
+					gameWonVertical = checkVertical(j,i,m_Pieces);
+					if (gameWonVertical) {
 						gameWon = true;
 						return gameWon;
 					}
@@ -229,8 +227,8 @@ public class ConnectFourBoard extends Board<Piece.ConnectFourPieceColour,
 						gameWon = true;
 						return gameWon;
 					}
-					gameWonForward = checkForward(j,i,m_Pieces);
-					if (gameWonForward) {
+					gameWonHorizontal = checkHorizontal(j,i,m_Pieces);
+					if (gameWonHorizontal) {
 						gameWon = true;
 						return gameWon;
 					}
@@ -251,7 +249,7 @@ public class ConnectFourBoard extends Board<Piece.ConnectFourPieceColour,
 	*				   a set of four identical pieces in a downward diagonal
 	*				   row or false if it has not. 
 	*/
-	private boolean checkDownDiagonal(int j, int i, 
+	private boolean checkBackDiagonal(int j, int i, 
 										ConnectFourPiece[][] m_Pieces) {
 		boolean gameWon = false;
 		int secondPieceDDiagonalColoumn = i-1;
@@ -327,7 +325,7 @@ public class ConnectFourBoard extends Board<Piece.ConnectFourPieceColour,
 	*				   a set of four identical pieces in a vertical row 
 	*				   or false if it has not. 
 	*/
-	private boolean checkUp(int j, int i, ConnectFourPiece[][] m_Pieces) {	
+	private boolean checkVertical(int j, int i, ConnectFourPiece[][] m_Pieces) {	
 		boolean gameWon = false;
 		int secondPieceUp = i+1;
 		int thirdPieceUp = i+2;
@@ -463,7 +461,7 @@ public class ConnectFourBoard extends Board<Piece.ConnectFourPieceColour,
 	*				   a set of four identical pieces in a horizontal row 
 	*				   or false if it has not. 
 	*/
-	private boolean checkForward(int j, int i, ConnectFourPiece[][] m_Pieces) {	
+	private boolean checkHorizontal(int j, int i, ConnectFourPiece[][] m_Pieces) {	
 		boolean gameWon = false;
 		int secondPieceForwardRow = j+1;
 		int thirdPieceForwardRow = j+2;
@@ -551,12 +549,12 @@ public class ConnectFourBoard extends Board<Piece.ConnectFourPieceColour,
 	
 	/** 
 	* This method is for testing purposes to check the methods of the class 
-	* ConnectFourBoard, it sets a number of pieces to postions on the board, 
-	* this board set up will give a full board with a non-win senerio, and not
+	* ConnectFourBoard, it sets a number of pieces to positions on the board, 
+	* this board set up will give a full board with a non-win scenario, and not
 	* allow a piece to be set.
 	*
 	* @param c4Board -the object of the class.
-	* @return boardSet -a boolean variable returned as true if the peices  
+	* @return boardSet -a boolean variable returned as true if the pieces  
 	*					 are all set or false if they are not not.
 	*/
 	private boolean testSetPiecesTwo(ConnectFourBoard c4Board) {
@@ -671,8 +669,8 @@ public class ConnectFourBoard extends Board<Piece.ConnectFourPieceColour,
 			}
 		}
 
-		int x = 4;
-		int y = 1;
+		int columnValue = 4;
+		int rowValue = 1;
 
 		if (c4Board1.testSetPiecesOne(c4Board1)) {
 			System.out.println("Valid inputs");
@@ -680,7 +678,7 @@ public class ConnectFourBoard extends Board<Piece.ConnectFourPieceColour,
 			System.out.println("Expected output: true");
 			System.out.println("");
 			System.out.println("Actual output: " + 
-								c4Board1.setPiece(x,y,c4Board1.RED_PIECE));
+								c4Board1.setPiece(columnValue,rowValue,c4Board1.RED_PIECE));
 			System.out.println("ConnectFourBoard.setPiece() - End"); 
 			System.out.println("");
 			System.out.println("ConnectFourBoard.getPieceCount() - Begin");
@@ -726,7 +724,7 @@ public class ConnectFourBoard extends Board<Piece.ConnectFourPieceColour,
 			System.out.println("Expected output: false");
 			System.out.println("");
 			System.out.println("Actual output: " + 
-								c4Board2.setPiece(x,y,c4Board2.YELLOW_PIECE));
+								c4Board2.setPiece(columnValue,rowValue,c4Board2.YELLOW_PIECE));
 			System.out.println("ConnectFourBoard.setPiece() - End"); 
 			System.out.println("");
 			System.out.println("ConnectFourBoard.getPieceCount() - Begin");
