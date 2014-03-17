@@ -174,6 +174,12 @@ public class ConnectFourGameGUI extends GameGUI {
     	return m_TimerLabel;
     }
     
+    private void resetTimer(){
+    	setTime(0);
+    	getTimerLabel().setText("Time elapsed: " + getTime() + "s");
+    	startTimer();
+    }
+    
     private void startTimer(){
     	ActionListener actListener = new ActionListener(){
     		public void actionPerformed(ActionEvent event){
@@ -299,7 +305,7 @@ public class ConnectFourGameGUI extends GameGUI {
     */
     private boolean displayDraw() { 
         JOptionPane.showMessageDialog(null, "It's a draw!");
-        displayPlayAgain("Play agian?");
+        displayPlayAgain("Play again?");
         return true;
     }
 
@@ -311,6 +317,7 @@ public class ConnectFourGameGUI extends GameGUI {
         int reply = JOptionPane.showConfirmDialog(null, message , message, 
             JOptionPane.YES_NO_OPTION);
         if (reply == JOptionPane.YES_OPTION) {
+        	resetTimer();
             game = new ConnectFourGame(game.getPlayerName(Game.PLAYER_ONE), 
                 Game.HUMAN, Piece.ConnectFourPieceColour.YELLOW, 
                 game.getPlayerName(Game.PLAYER_TWO), Game.HUMAN, 
@@ -318,7 +325,7 @@ public class ConnectFourGameGUI extends GameGUI {
 
             panel.updatePieces(game.getPieces());
             panel.setCurrentPiece(new ConnectFourPiece(
-                Piece.ConnectFourPieceColour.YELLOW));
+            						Piece.ConnectFourPieceColour.YELLOW));
             panel.refreshDisplay();
         }
         return reply == JOptionPane.YES_OPTION;
