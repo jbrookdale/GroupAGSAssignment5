@@ -37,8 +37,43 @@ public class OthelloGame extends Game <Piece.OthelloPieceColour>{
     //the board its self
     public OthelloBoard board = new OthelloBoard(MAX_LENGTH,MAX_HEIGHT);
 
+	/**
+     * get player one score 
+     * @param -Nothing 
+     * @return int - player one score
+     */
+     public int getPlayer1Score(){
+         return m_player[0].getScore();
+     }
 
-    /** 
+     /**
+     * get player two score 
+     * @param -Nothing
+     * @return int - player two score
+     */
+     int getPlayer2Score(){
+         return m_player[1].getScore();
+     }
+
+     /**
+     * set player one score
+     * @param score -the score of player one
+     * @return -Nothing
+     */
+     public void setPlayer1Score(int score){
+          m_player[0].setScore(score);
+     }
+
+     /**
+     * set player two score
+     * @param score -the score of player two
+     * @return -Nothing
+     */
+     public void setPlayer2Score(int score){
+         m_player[1].setScore(score);
+     }
+
+     /** 
      *Constructor for OthelloGame. This is used to instantiate 
      * integers if we want it to.
      * 
@@ -66,7 +101,6 @@ public class OthelloGame extends Game <Piece.OthelloPieceColour>{
     *however it ended up being easier to implement this in the GUI
     *@see OthelloGameGUI
     */
-    @Override
     public boolean gameLoop() {
         boolean turn = true; //true = player1, false = player2
         while(turn){
@@ -76,22 +110,14 @@ public class OthelloGame extends Game <Piece.OthelloPieceColour>{
                 return false;
             }
         }
-        
         return false;
     }
 
  
-   
-    // abstract method in Game Class
-	public void loadGame() {}
-    //not done in this assignment
-    public void load(String filename) {}
-	//not done in this assignement
-    public void pause() {}
-    //not done in this assignment
-    public void save(String filename) {}
-	//abstract method from Game class
-	public void saveGame() {}
+	public void loadGame(String fileName) {}
+
+	
+	public void saveGame(String fileName) {}
     
 
     /**
@@ -116,51 +142,7 @@ public class OthelloGame extends Game <Piece.OthelloPieceColour>{
     public boolean move(int x, int y, Piece.OthelloPieceColour colour) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
-    //not done in this assignement
-    public void timeStart(){}
-
-    //not done in this assignement
-    public long timeElapsed(){
-		return 0;
-	}
     
-	/**
-    * get player one score 
-    * @param -Nothing 
-    * @return int - player one score
-    */
-    public int getPlayer1Score(){
-        return m_player[0].getScore();
-    }
-
-    /**
-    * get player two score 
-    * @param -Nothing
-    * @return int - player two score
-    */
-    int getPlayer2Score(){
-        return m_player[1].getScore();
-    }
-
-    /**
-    * set player one score
-    * @param score -the score of player one
-    * @return -Nothing
-    */
-    public void setPlayer1Score(int score){
-         m_player[0].setScore(score);
-    }
-
-    /**
-    * set player two score
-    * @param score -the score of player two
-    * @return -Nothing
-    */
-    public void setPlayer2Score(int score){
-        m_player[1].setScore(score);
-    }
-
     /**
     * main method for testing purposes only
     * @param args Unused.

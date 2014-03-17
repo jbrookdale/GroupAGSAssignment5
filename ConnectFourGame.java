@@ -13,19 +13,26 @@
 
 public class ConnectFourGame extends Game<Piece.ConnectFourPieceColour> {
 
-	private String m_playerOneName;
-	private String m_playerTwoName;
-	private String m_playerOneType;
-	private String m_playerTwoType;
-	private Piece.ConnectFourPieceColour m_playerOneColour;
-	private Piece.ConnectFourPieceColour m_playerTwoColour;
-
 	private ConnectFourBoard m_board;
 
     public int getLowestEmptySlot(int x) {
         return m_board.getLowestEmptySlot(x);
     }
 
+
+	public ConnectFourPiece[][] getPieces() {
+		return m_board.getPieces();
+	}
+	
+    
+	void saveGame(String fileName){
+	
+	}
+
+	void loadGame(String fileName){
+		
+	}
+    
 	/**
 	* Constructor for ConnectFourGame. This is used to instantiate 
 	* integers if we want it to.
@@ -54,33 +61,9 @@ public class ConnectFourGame extends Game<Piece.ConnectFourPieceColour> {
 	 * and if the move is valid.  
 	 */
 	public boolean gameLoop() {
-		/*boolean boardWon = true;
-		boolean playerMove = true;
-		while(!m_boardWon){
-		//If its player1 turn and the move they do is valid, change the move	
-			if(playerHasMoved && !m_board.checkWin()){
-				//playerMove = false;
-			} else {
-				//Correct use of this term?
-				//Continue jumps back up to the top of loop?
-				playerMove = true;
-				continue;
-				
-			}
-                        
-                }
-		if(gameBoard.checkWin() == true){
-			boardWon = false;
-		}*/
 		return false;
 	}
 	
-	//<--------------------VVVV remove this---------------------------------------------------------------
-	public boolean setPlayerHasMoved() {
-		//playerHasMoved = true;
-		return true;
-	}
-
 	/**
 	 * This method gets data from the GUI on the coordinates of the
 	 * move made and the colour.  It sends this data to the board
@@ -96,10 +79,6 @@ public class ConnectFourGame extends Game<Piece.ConnectFourPieceColour> {
 		 return m_board.setPiece(x, y, colour);
 	}
 
-	public ConnectFourPiece[][] getPieces() {
-		return m_board.getPieces();
-	}
-	
 	public boolean gameWon() {
 		return m_board.checkWin();
 	}
@@ -110,7 +89,5 @@ public class ConnectFourGame extends Game<Piece.ConnectFourPieceColour> {
 
 	public static void main (String[] args){
 		//Test here
-
 	}
-
 }
