@@ -39,151 +39,7 @@ import java.awt.event.KeyListener;
 
 public class MenuGUI extends GUI {
 	
-	/**< Stores the first players name */
-	private String m_PlayerOneName;
-
-	/**< Stores the second players name*/		
-	private String m_PlayerTwoName;
-
-	/** < Stores the type of game that the user has selected*/
-	private int m_Game;
 	
-	/**< This is the main frame*/
-	private JFrame m_MainMenu;
-
-	/**< This is for the image icon of the frame */
-	private ImageIcon m_Image;
-	
-	/**< The text field where the user inputs the name for player one*/
-	private JTextField m_PlayInputOne;
-
-	/**< The text field where the user inputs the name for player two*/
-	private JTextField m_PlayInputTwo;
-	
-	/**< This is the label for the Heading on the select window */
-	private JLabel m_Select;
-	
-	/**< This is the label for the connect four game */
-	private JLabel m_ConnectFourLbl;
-	
-	/**< This is the label for the othello game */
-	private JLabel m_OthelloLbl;
-	
-	/**< This is the label for the Heading on the input window */
-	private JLabel m_InputLabel;
-	
-	/**< This variable hold the string of the name for player one */
-	private String m_PlayerOne;
-
-	/**< This variable hold the string of the name for player two */
-	private String m_PlayerTwo;
-	
-	/**< The buttons for the user to select the othello game type */
-	private JButton m_OthelloButton;
-
-	/**< The buttons for the user to select the connect four game type */
-	private JButton m_ConnectFourButton;
-
-	/**< The buttons for the user to start up which ever game they have selected 
-	after inputing the two player names */
-	private JButton m_PlayerOK;
-
-	/**< The buttons for the user to go back to the select game screen */
-	private JButton m_PlayerBack;
-	
-    /**< This panel will hold the buttons for selecting either the connect four 
-    game or othello game*/
-	private JPanel m_ButtonPanel;
-
-	/**< This panel will hold the labels, buttons and text fields for inputting 
-	the player names*/
-    private JPanel m_InputScreen;
-
-     /**< This panel will hold the label for the select screen */
-    private JPanel m_SelectPanel;
-	
-	/**< Constants for the width of the menu frame */
-	private final int FRAME_WIDTH = 370;	
-
-	/**< Constants for the height of the menu frame */	
-	private final int FRAME_HEIGHT = 300;
-
-	/**< Constants for the width of the othello frame */
-	private final int OTH_FRM_WIDTH = 600;	
-
-	/**< Constants for the height of the othello frame */	
-	private final int OTH_FRM_HEIGHT = 600;
-
-	/**< Constant for Number of Players */
-	private final int NUM_PLAYERS = 2;
-
-	/**< Constant for player one */
-	private final int PLAYER_ONE = 0;
-
-	/**< Constant for player two */
-	private final int PLAYER_TWO = 1;
-
-	/**< Constants for connect four game type */
-	private static final int CONNECT = 1;
-
-	/**< Constants for othello game type */
-	private static final int OTHELLO = 2;
-
-	/**< This hold the font size for the main heading label on the select 
-	screen */
-	private final int HEADING_FONTSIZE = 36;
-	
-	/**< This hold the font sizes for the subheading labels on the select 
-	screen */
-	private final int SUBHEADING_FONTSIZE = 18;
-	
-	/**< This hold the font size for the heading label on the input screen */
-	private final int SECONDHEAD_FONTSIZE = 24;
-	
-	/**< This hold the column size for the text fields on the input screen */
-	private final int TEXTFIELD_COLUMNS = 20;
-	
-	/**< Constants for the GridBagLayout column one on the x axis */
-	private final int COLUMN_ONE = 0;
-	
-	/**< Constants for the GridBagLayout column two on the x axis */
-	private final int COLUMN_TWO = 1;
-	
-	/**< Constants for the GridBagLayout column three on the x axis */
-	private final int COLUMN_THREE = 2;
-	
-	/**< Constants for the GridBagLayout row one on the y axis */
-	private final int ROW_ONE = 0;
-	
-	/**< Constants for the GridBagLayout row two on the y axis */
-	private final int ROW_TWO = 1;
-	
-	/**< Constants for the GridBagLayout row three on the y axis */
-	private final int ROW_THREE = 2;
-	
-	/**< Constants for the GridBagLayout row four on the y axis */
-	private final int ROW_FOUR = 3;
-	
-	/**< Constant for the insets of no gap between components */
-	private final int NO_GAP = 0;
-	
-	/**< Constant for the insets of 10 size gap between components */
-	private final int GAP_TEN = 10;
-	
-	/**< Constant for the insets of 15 size gap between components */
-	private final int GAP_FIFTEEN = 15;
-
-	/**< Constant for the insets of 20 size gap between components */
-	private final int GAP_TWENTY = 20;
-	
-	/**< Constant for maximum name length */
-	private final int MAX_NAME = 20;
-	
-	/**< This sets up the timer for the validation checks*/
-	private Timer m_Timer;
-	
-	/**< This is used in the timer for the validation checks*/
-	private int m_Time;
 
 	/**
 	* This creates the MenuGUI frame which holds the buttons
@@ -282,7 +138,7 @@ public class MenuGUI extends GUI {
 	
 	/**
 	* This method returns the current game type of the game.
-	*
+	* @param -nil
 	* @return m_Game -This will return 1 or 2, 1 being Connect 4
 	*				  or 2 being Othello.
 	*/
@@ -316,7 +172,8 @@ public class MenuGUI extends GUI {
 	
  	/**
 	* This method will return Player one name.
-	*
+	* 
+	* @param nil
 	* @return m_PlayerOneName -This variable is the first players name.
 	*/   
 	private String getPlayerOneName() {
@@ -327,7 +184,8 @@ public class MenuGUI extends GUI {
     
  	/**
 	* This method will return Players Two name.
-	*
+	* 
+	* @param nil
 	* @return m_PlayerTwoName -This variable is the second players name.
 	*/  
 	private String getPlayerTwoName() {
@@ -339,7 +197,8 @@ public class MenuGUI extends GUI {
 	/**
 	* This method initializes the buttons and sets the icon of each button to be 
 	* the relevant image.
-	*
+	* 
+	* @param nil
 	* @return true -This will return true if the method is successfully executed.
 	*/
 	private boolean ButtonIconSetUp() {
@@ -365,7 +224,8 @@ public class MenuGUI extends GUI {
     /**
     * This method sets the position of the connect four and othello buttons 
     * and adds them to the frame to be displayed.
-    *
+    * 
+    * @param nil
     * @return true -This returns true if the method is successfully executed.
     */
 	private boolean ButtonPanelSetUp() {
@@ -404,7 +264,8 @@ public class MenuGUI extends GUI {
     /**
     * This method changes the current screen to allow user to input the two 
     * player names after they have selected a game to play.
-    *
+    * 
+    * @param nil
     * @return true -This method returns true if the method is successfully 
     *				executed.
 	*/
@@ -486,7 +347,8 @@ public class MenuGUI extends GUI {
 	* This method validates the name to make sure that when the player inputs
 	* a name, the name they input is either not empty or has a maximum length 
 	* of 20 characters.
-	*
+	* 
+	* @param nil
 	* @return true -This returns true if the name suits the requirements or 
 	*				false otherwise.
 	*/
@@ -528,9 +390,9 @@ public class MenuGUI extends GUI {
 			}
 
 		}
-
+    	// method not implemented
       	public void keyTyped(KeyEvent e) {}
-
+      	// method not implemented
       	public void keyPressed(KeyEvent e) {}
 
     }
@@ -756,4 +618,149 @@ public class MenuGUI extends GUI {
 		System.out.println("");
 
 	}
+	/**< Stores the first players name */
+	private String m_PlayerOneName;
+
+	/**< Stores the second players name*/		
+	private String m_PlayerTwoName;
+
+	/** < Stores the type of game that the user has selected*/
+	private int m_Game;
+	
+	/**< This is the main frame*/
+	private JFrame m_MainMenu;
+
+	/**< This is for the image icon of the frame */
+	private ImageIcon m_Image;
+	
+	/**< The text field where the user inputs the name for player one*/
+	private JTextField m_PlayInputOne;
+
+	/**< The text field where the user inputs the name for player two*/
+	private JTextField m_PlayInputTwo;
+	
+	/**< This is the label for the Heading on the select window */
+	private JLabel m_Select;
+	
+	/**< This is the label for the connect four game */
+	private JLabel m_ConnectFourLbl;
+	
+	/**< This is the label for the othello game */
+	private JLabel m_OthelloLbl;
+	
+	/**< This is the label for the Heading on the input window */
+	private JLabel m_InputLabel;
+	
+	/**< This variable hold the string of the name for player one */
+	private String m_PlayerOne;
+
+	/**< This variable hold the string of the name for player two */
+	private String m_PlayerTwo;
+	
+	/**< The buttons for the user to select the othello game type */
+	private JButton m_OthelloButton;
+
+	/**< The buttons for the user to select the connect four game type */
+	private JButton m_ConnectFourButton;
+
+	/**< The buttons for the user to start up which ever game they have selected 
+	after inputing the two player names */
+	private JButton m_PlayerOK;
+
+	/**< The buttons for the user to go back to the select game screen */
+	private JButton m_PlayerBack;
+	
+    /**< This panel will hold the buttons for selecting either the connect four 
+    game or othello game*/
+	private JPanel m_ButtonPanel;
+
+	/**< This panel will hold the labels, buttons and text fields for inputting 
+	the player names*/
+    private JPanel m_InputScreen;
+
+     /**< This panel will hold the label for the select screen */
+    private JPanel m_SelectPanel;
+	
+	/**< Constants for the width of the menu frame */
+	private final int FRAME_WIDTH = 370;	
+
+	/**< Constants for the height of the menu frame */	
+	private final int FRAME_HEIGHT = 300;
+
+	/**< Constants for the width of the othello frame */
+	private final int OTH_FRM_WIDTH = 600;	
+
+	/**< Constants for the height of the othello frame */	
+	private final int OTH_FRM_HEIGHT = 600;
+
+	/**< Constant for Number of Players */
+	private final int NUM_PLAYERS = 2;
+
+	/**< Constant for player one */
+	private final int PLAYER_ONE = 0;
+
+	/**< Constant for player two */
+	private final int PLAYER_TWO = 1;
+
+	/**< Constants for connect four game type */
+	private static final int CONNECT = 1;
+
+	/**< Constants for othello game type */
+	private static final int OTHELLO = 2;
+
+	/**< This hold the font size for the main heading label on the select 
+	screen */
+	private final int HEADING_FONTSIZE = 36;
+	
+	/**< This hold the font sizes for the subheading labels on the select 
+	screen */
+	private final int SUBHEADING_FONTSIZE = 18;
+	
+	/**< This hold the font size for the heading label on the input screen */
+	private final int SECONDHEAD_FONTSIZE = 24;
+	
+	/**< This hold the column size for the text fields on the input screen */
+	private final int TEXTFIELD_COLUMNS = 20;
+	
+	/**< Constants for the GridBagLayout column one on the x axis */
+	private final int COLUMN_ONE = 0;
+	
+	/**< Constants for the GridBagLayout column two on the x axis */
+	private final int COLUMN_TWO = 1;
+	
+	/**< Constants for the GridBagLayout column three on the x axis */
+	private final int COLUMN_THREE = 2;
+	
+	/**< Constants for the GridBagLayout row one on the y axis */
+	private final int ROW_ONE = 0;
+	
+	/**< Constants for the GridBagLayout row two on the y axis */
+	private final int ROW_TWO = 1;
+	
+	/**< Constants for the GridBagLayout row three on the y axis */
+	private final int ROW_THREE = 2;
+	
+	/**< Constants for the GridBagLayout row four on the y axis */
+	private final int ROW_FOUR = 3;
+	
+	/**< Constant for the insets of no gap between components */
+	private final int NO_GAP = 0;
+	
+	/**< Constant for the insets of 10 size gap between components */
+	private final int GAP_TEN = 10;
+	
+	/**< Constant for the insets of 15 size gap between components */
+	private final int GAP_FIFTEEN = 15;
+
+	/**< Constant for the insets of 20 size gap between components */
+	private final int GAP_TWENTY = 20;
+	
+	/**< Constant for maximum name length */
+	private final int MAX_NAME = 20;
+	
+	/**< This sets up the timer for the validation checks*/
+	private Timer m_Timer;
+	
+	/**< This is used in the timer for the validation checks*/
+	private int m_Time;
 }
