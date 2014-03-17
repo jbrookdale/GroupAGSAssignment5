@@ -20,8 +20,11 @@ public class ConnectFourGame extends Game<Piece.ConnectFourPieceColour> {
 	private Piece.ConnectFourPieceColour m_playerOneColour;
 	private Piece.ConnectFourPieceColour m_playerTwoColour;
 
-	ConnectFourBoard board;
+	private ConnectFourBoard m_board;
 
+    public int getLowestEmptySlot(int x) {
+        return m_board.getLowestEmptySlot(x);
+    }
 
 	/**
 	* Constructor for ConnectFourGame. This is used to instantiate 
@@ -31,7 +34,7 @@ public class ConnectFourGame extends Game<Piece.ConnectFourPieceColour> {
 	*/
 	public ConnectFourGame(String playerOneName, String playerOneType, 
         Piece.ConnectFourPieceColour m_player1Colour, String playerTwoName, 
-        String playerTwoType, Piece.ConnectFourPieceColour m_player2Colour) {
+        String playerTwoType, Piece.ConnectFourPieceColour m_player2Colour) { // This needs to be changed to only take 5 parameters or less - Jon
 	
         super(playerOneName,playerOneType,m_player1Colour, playerTwoName, 
             playerTwoType, m_player2Colour);
@@ -40,7 +43,7 @@ public class ConnectFourGame extends Game<Piece.ConnectFourPieceColour> {
         m_player[PLAYER_TWO] = new HumanPlayer(playerTwoName, m_player2Colour);
         //turn = PLAYER_ONE;
 
-        board = new ConnectFourBoard(ConnectFourBoard.WIDTH, 
+        m_board = new ConnectFourBoard(ConnectFourBoard.WIDTH, 
         	ConnectFourBoard.HEIGHT);
 
 	}
@@ -53,9 +56,9 @@ public class ConnectFourGame extends Game<Piece.ConnectFourPieceColour> {
 	public boolean gameLoop() {
 		/*boolean boardWon = true;
 		boolean playerMove = true;
-		while(!boardWon){
+		while(!m_boardWon){
 		//If its player1 turn and the move they do is valid, change the move	
-			if(playerHasMoved && !board.checkWin()){
+			if(playerHasMoved && !m_board.checkWin()){
 				//playerMove = false;
 			} else {
 				//Correct use of this term?
@@ -90,23 +93,19 @@ public class ConnectFourGame extends Game<Piece.ConnectFourPieceColour> {
 	 * 				  this shows whose turn it is
 	 */
 	public boolean move(int x, int y, Piece.ConnectFourPieceColour colour) {
-		 return board.setPiece(x, y, colour);
-	}
-	
-	public int getLowestEmptySlot(int x) {
-		return board.getLowestEmptySlot(x);
+		 return m_board.setPiece(x, y, colour);
 	}
 
 	public ConnectFourPiece[][] getPieces() {
-		return board.getPieces();
+		return m_board.getPieces();
 	}
 	
 	public boolean gameWon() {
-		return board.checkWin();
+		return m_board.checkWin();
 	}
 
 	public boolean boardIsFull() {
-		return board.isFull();
+		return m_board.isFull();
 	}
 
 	public static void main (String[] args){
