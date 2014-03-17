@@ -1,0 +1,117 @@
+/**
+* @file    -ConnectFourGame.java
+* @author  -Shannon Gahring, Kristoffer Page
+* @date    -17 Feb '14
+* @see     -Game.java for inherited methods
+*
+* @brief  -This class controls the order of the game, interactions between
+* Player and Board.  It tracks time and keeps the flow of the 
+* game going.  It switches off between players and contacts
+* board to make sure the move is valid
+*
+*/
+
+public class ConnectFourGame extends Game<Piece.ConnectFourPieceColour> {
+
+	private String m_playerOneName;
+	private String m_playerTwoName;
+	private String m_playerOneType;
+	private String m_playerTwoType;
+	private Piece.ConnectFourPieceColour m_playerOneColour;
+	private Piece.ConnectFourPieceColour m_playerTwoColour;
+
+	ConnectFourBoard board;
+
+
+	/**
+	* Constructor for ConnectFourGame. This is used to instantiate 
+	* integers if we want it to.
+	* @param n1 -an integer
+	* @return TRUE if successful
+	*/
+	public ConnectFourGame(String playerOneName, String playerOneType, 
+        Piece.ConnectFourPieceColour m_player1Colour, String playerTwoName, 
+        String playerTwoType, Piece.ConnectFourPieceColour m_player2Colour) {
+	
+        super(playerOneName,playerOneType,m_player1Colour, playerTwoName, 
+            playerTwoType, m_player2Colour);
+	
+        m_player[PLAYER_ONE] = new HumanPlayer(playerOneName, m_player1Colour);
+        m_player[PLAYER_TWO] = new HumanPlayer(playerTwoName, m_player2Colour);
+        //turn = PLAYER_ONE;
+
+        board = new ConnectFourBoard(ConnectFourBoard.WIDTH, 
+        	ConnectFourBoard.HEIGHT);
+
+	}
+	
+	/**
+	 * This method alternates from one player to the other.
+	 * It also checks to see if someone has won the game
+	 * and if the move is valid.  
+	 */
+	public boolean gameLoop() {
+		/*boolean boardWon = true;
+		boolean playerMove = true;
+		while(!boardWon){
+		//If its player1 turn and the move they do is valid, change the move	
+			if(playerHasMoved && !board.checkWin()){
+				//playerMove = false;
+			} else {
+				//Correct use of this term?
+				//Continue jumps back up to the top of loop?
+				playerMove = true;
+				continue;
+				
+			}
+                        
+                }
+		if(gameBoard.checkWin() == true){
+			boardWon = false;
+		}*/
+		return false;
+	}
+	
+	//<--------------------VVVV remove this---------------------------------------------------------------
+	public boolean setPlayerHasMoved() {
+		//playerHasMoved = true;
+		return true;
+	}
+
+	/**
+	 * This method gets data from the GUI on the coordinates of the
+	 * move made and the colour.  It sends this data to the board
+	 * to check if the board is full and if there has been a winner.
+	 * If these two pass then it says that it is a valid move.
+	 * 
+	 * @param x -the x coordinate from GUI
+	 * @param y -the y coordinate from GUI
+	 * @param colour -the colour of the piece played
+	 * 				  this shows whose turn it is
+	 */
+	public boolean move(int x, int y, Piece.ConnectFourPieceColour colour) {
+		 return board.setPiece(x, y, colour);
+	}
+	
+	public int getLowestEmptySlot(int x) {
+		return board.getLowestEmptySlot(x);
+	}
+
+	public ConnectFourPiece[][] getPieces() {
+		return board.getPieces();
+	}
+	
+	public boolean gameWon() {
+		return board.checkWin();
+	}
+
+	public boolean boardIsFull() {
+		return board.isFull();
+	}
+
+	public static void main (String[] args){
+		//Test here
+
+	}
+
+}
