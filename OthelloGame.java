@@ -5,6 +5,15 @@
 * @author Thomas Vass
 * @date 05 Feb 2014
 * @see 'Game.java for inherited methods.
+<<<<<<< HEAD
+* @brief This class will display the menu for the game allowing a user to select
+*		 a game type	
+* OthelloGame implements the abstract methods of Game.
+* It inherits all responsibilities of Game, as it is 
+* more specific version of Game. It interacts with the 
+* other classes in the same way as Game except it interacts
+* with the subclasses of those classes.
+=======
 *
 * @brief This class controls the Othello game
 *		
@@ -13,6 +22,7 @@
  * more specific version of Game. It interacts with the 
  * other classes in the same way as Game except it interacts
  * with the subclasses of those classes.
+>>>>>>> 109b491d3e25f52c49475d49241ebf909e7facf2
 *
 */
 
@@ -50,20 +60,14 @@ public class OthelloGame extends Game <Piece.OthelloPieceColour>{
         m_player[0].setScore(START_SCORE);
         m_player[1].setScore(START_SCORE);
     }
-        
-
-
-    //not done in this assignement
-    public void pause() {}
-
-
+       
     /**
     *was intended to hold the logic of the game (i.e who's turn it is)
     *however it ended up being easier to implement this in the GUI
     *@see OthelloGameGUI
     */
     @Override
-    boolean gameLoop() {
+    public boolean gameLoop() {
         boolean turn = true; //true = player1, false = player2
         while(turn){
             if(validMove){
@@ -76,10 +80,19 @@ public class OthelloGame extends Game <Piece.OthelloPieceColour>{
         return false;
     }
 
-    //not done in this assignment
-    public void save(String filename) {}
+ 
+   
+    // abstract method in Game Class
+	public void loadGame() {}
     //not done in this assignment
     public void load(String filename) {}
+	//not done in this assignement
+    public void pause() {}
+    //not done in this assignment
+    public void save(String filename) {}
+	//abstract method from Game class
+	public void saveGame() {}
+    
 
     /**
      * @param x - x cordinate on board
@@ -90,20 +103,34 @@ public class OthelloGame extends Game <Piece.OthelloPieceColour>{
     public boolean move(int x, int y, OthelloPiece colour) {
         return(board.move(x,y,colour));//ask board if valid move       
     }
+	
+	/**
+    * @param int x - x coord
+    * @param int y - y coord
+    * @param Piece.OthelloPieceColour
+    * @exception UnsupportedOperationException On move error
+    * inherited move function, decided not to use this as board takes in a piece object
+    * and this method only allows the colour itself as a parameter
+    */
+    @Override
+    public boolean move(int x, int y, Piece.OthelloPieceColour colour) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 
     //not done in this assignement
     public void timeStart(){}
 
     //not done in this assignement
-    public long timeElapsed(){return 0;}
+    public long timeElapsed(){
+		return 0;
+	}
     
-
-    /**
+	/**
     * get player one score 
     * @param -Nothing 
     * @return int - player one score
     */
-    int getPlayer1Score(){
+    public int getPlayer1Score(){
         return m_player[0].getScore();
     }
 
@@ -121,7 +148,7 @@ public class OthelloGame extends Game <Piece.OthelloPieceColour>{
     * @param score -the score of player one
     * @return -Nothing
     */
-    void setPlayer1Score(int score){
+    public void setPlayer1Score(int score){
          m_player[0].setScore(score);
     }
 
@@ -130,24 +157,9 @@ public class OthelloGame extends Game <Piece.OthelloPieceColour>{
     * @param score -the score of player two
     * @return -Nothing
     */
-    void setPlayer2Score(int score){
+    public void setPlayer2Score(int score){
         m_player[1].setScore(score);
     }
-
-
-    /**
-    * @param int x - x coord
-    * @param int y - y coord
-    * @param Piece.OthelloPieceColour
-    * @exception UnsupportedOperationException On move error
-    * inherited move function, decided not to use this as board takes in a piece object
-    * and this method only allows the colour itself as a parameter
-    */
-    @Override
-    boolean move(int x, int y, Piece.OthelloPieceColour colour) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
 
     /**
     * main method for testing purposes only
@@ -196,4 +208,5 @@ public class OthelloGame extends Game <Piece.OthelloPieceColour>{
         
 
     }
+
 }
