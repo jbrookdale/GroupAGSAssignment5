@@ -10,7 +10,9 @@
 */
 
 class HumanPlayer <C> extends Player{
-
+	
+	
+	final int TEST_PLAYER_SCORE = 2;
 	
 /**
 * This is the constructor for HumanPlayer.
@@ -20,7 +22,7 @@ class HumanPlayer <C> extends Player{
 */	
 	
 	public HumanPlayer(String newName, C newPlayerColour){
-        super(newName,newPlayerColour);
+        	super(newName,newPlayerColour);
 	}
 
 	
@@ -36,7 +38,7 @@ class HumanPlayer <C> extends Player{
         System.out.println("Player1: " +player1.getName());
         System.out.println("Colour: " +player1.getColour());
         System.out.println("score: " +player1.getScore());
-        player1.setScore(2);
+        player1.setScore(TEST_PLAYER_SCORE);
         System.out.println("Change score: " +player1.getScore());
     }
 
@@ -54,8 +56,8 @@ class HumanPlayer <C> extends Player{
         System.out.println("Player1: " +player1.getName());
         System.out.println("Colour: " +player1.getColour());
         System.out.println("score: " +player1.getScore());
-        player1.setScore(2);
-        System.out.println("Change score: " +player1.getScore());
+        player1.setScore(TEST_PLAYER_SCORE);
+        System.out.println("Change score: " + player1.getScore());
     }
     
 /** 		
