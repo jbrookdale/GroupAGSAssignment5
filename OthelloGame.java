@@ -1,20 +1,21 @@
-/*----------------------------------------------------------------------------*/
+
 
 /**
- * @file    -OthelloGame.java
- * @author  -Thomas Vass
- * @date    -05/02/14
- * @see Game.java for inherited methods.
- * @brief This class controls the Othello game
- *
+* @file OthelloGame.java
+* @author Thomas Vass
+* @date 05 Feb 2014
+* @see 'Game.java for inherited methods.
+*
+* @brief This class will display the menu for the game allowing a user to select
+*		 a game type
+*		
  * OthelloGame implements the abstract methods of Game.
  * It inherits all responsibilities of Game, as it is 
  * more specific version of Game. It interacts with the 
  * other classes in the same way as Game except it interacts
  * with the subclasses of those classes.
- *
- */
-
+*
+*/
 
 public class OthelloGame extends Game <Piece.OthelloPieceColour>{
     
@@ -29,14 +30,15 @@ public class OthelloGame extends Game <Piece.OthelloPieceColour>{
 
 
     /** 
-    *Constructor for OthelloGame. This is used to instantiate 
-    * integers if we want it to.
-     * @param playerOneName
-     * @param playerOneType
-     * @param playerOneColour
-     * @param playerTwoName
-     * @param playerTwoType
-     * @param playerTwoColour
+     *Constructor for OthelloGame. This is used to instantiate 
+     * integers if we want it to.
+     * 
+     * @param playerOneName  -Name of player one
+     * @param playerOneType  -Type of game player one is playing
+     * @param playerOneColour -Colour of player one piece
+     * @param playerTwoName  -Name of player two
+     * @param playerTwoType  -Type of game player two is playing
+     * @param playerTwoColour -Colour of player two piece
     */ 
     public OthelloGame(String playerOneName, String playerOneType, 
             Piece.OthelloPieceColour playerOneColour, String playerTwoName, 
@@ -81,7 +83,10 @@ public class OthelloGame extends Game <Piece.OthelloPieceColour>{
     public void load(String filename) {}
 
     /**
-    *@return boolean - returns true if a valid move has been made
+     * @param x - x cordinate on board
+     * @param y - y cordinate on board
+     * @param colour - Colour of the piece to move
+     *@return boolean - returns true if a valid move has been made
     */
     public boolean move(int x, int y, OthelloPiece colour) {
         return(board.move(x,y,colour));//ask board if valid move       
@@ -95,6 +100,8 @@ public class OthelloGame extends Game <Piece.OthelloPieceColour>{
     
 
     /**
+    * get player one score 
+    * @param -Nothing 
     * @return int - player one score
     */
     int getPlayer1Score(){
@@ -102,6 +109,8 @@ public class OthelloGame extends Game <Piece.OthelloPieceColour>{
     }
 
     /**
+    * get player two score 
+    * @param -Nothing
     * @return int - player two score
     */
     int getPlayer2Score(){
@@ -110,6 +119,8 @@ public class OthelloGame extends Game <Piece.OthelloPieceColour>{
 
     /**
     * set player one score
+    * @param score -the score of player one
+    * @return -Nothing
     */
     void setPlayer1Score(int score){
          m_player[0].setScore(score);
@@ -117,6 +128,8 @@ public class OthelloGame extends Game <Piece.OthelloPieceColour>{
 
     /**
     * set player two score
+    * @param score -the score of player two
+    * @return -Nothing
     */
     void setPlayer2Score(int score){
         m_player[1].setScore(score);
@@ -127,8 +140,9 @@ public class OthelloGame extends Game <Piece.OthelloPieceColour>{
     * @param int x - x coord
     * @param int y - y coord
     * @param Piece.OthelloPieceColour
+    * @exception UnsupportedOperationException On move error
     * inherited move function, decided not to use this as board takes in a piece object
-    * and this method only allows the colour itself as a param
+    * and this method only allows the colour itself as a parameter
     */
     @Override
     boolean move(int x, int y, Piece.OthelloPieceColour colour) {
@@ -138,6 +152,8 @@ public class OthelloGame extends Game <Piece.OthelloPieceColour>{
 
     /**
     * main method for testing purposes only
+    * @param args Unused.
+    * @return Nothing.
     */
     public static void main (String[] args){
         OthelloPiece testPiece = new OthelloPiece(OthelloPiece.OthelloPieceColour.WHITE);
