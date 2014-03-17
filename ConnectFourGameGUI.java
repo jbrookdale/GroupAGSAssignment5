@@ -153,6 +153,10 @@ public class ConnectFourGameGUI extends GameGUI {
             + game.getPlayerName(Game.PLAYER_TWO) +"\"");
     }
 
+    public Timer getTimer(){
+    	return m_Timer;
+    }
+    
     public int getTime(){
     	return m_Time;
     }
@@ -236,6 +240,7 @@ public class ConnectFourGameGUI extends GameGUI {
                 }
             }
             if (game.gameWon()) {
+            	getTimer().stop();
                 if (panel.getCurrentPiece().getPieceColour() 
                         == ConnectFourPanel.YELLOW_PIECE) {
                     //RED WON
@@ -250,6 +255,7 @@ public class ConnectFourGameGUI extends GameGUI {
             }
             if (game.boardIsFull() && !game.gameWon()) {
                 displayDraw();
+                getTimer().stop();
             }
         }
 
