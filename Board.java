@@ -61,6 +61,33 @@ public abstract class Board<C,P> {
     *                 multiplied by width, compared with thee piece count on 
     *                 the board.
 	*/
+	
+	/**
+	* This method will return the current state of the board
+	* and where the pieces are on the board.
+	* @return m_Pieces -This will return the two dimensional array which holds 
+	*                   the board with all the piece objects stored in it and 
+	*                   therefor what pieces are on the board.
+	*
+	*/
+	abstract P[][] getPieces();
+		
+	/**
+	* This method will set a pieces on the board at the designated place using
+	* the x and y coordinates
+	*
+	* @param x -Used for the coordinates
+	* @param y -Used for the coordinates
+	* @param colour -Used to set the players piece on the board
+	* @return boolean -If the method is successfully executed it returns true 
+	*                  else false means it had failed to place the piece at the 
+	*                  desired location. This potions could be invalid if it 
+	*                  returns false.
+	*
+    */
+	abstract boolean setPiece(int x, int y, C colour);
+	    
+	
 	public boolean isFull() {
         boolean isFull = false;
 		int totalValue =  HEIGHT * WIDTH;
@@ -73,32 +100,6 @@ public abstract class Board<C,P> {
 		return isFull;
 	}
 	
-    /**
-    * This method will return the current state of the board
-    * and where the pieces are on the board.
-    *
-    * @return m_Pieces -This will return the two dimensional array which holds 
-    *                   the board with all the piece objects stored in it and 
-    *                   therefor what pieces are on the board.
-    *
-    */
-	abstract P[][] getPieces();
-	
-    /**
-    * This method will set a pieces on the board at the designated place using
-    * the x and y coordinates
-    *
-    * @param x -Used for the coordinates
-    * @param y -Used for the coordinates
-    * @param colour -Used to set the players piece on the board
-    * @return boolean -If the method is successfully executed it returns true 
-    *                  else false means it had failed to place the piece at the 
-    *                  desired location. This potions could be invalid if it 
-    *                  returns false.
-    *
-    */
-	abstract boolean setPiece(int x, int y, C colour);
-    
     /**
     * This method checks to see if a player is in a winning position.
     *

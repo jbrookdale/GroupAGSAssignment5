@@ -1,6 +1,8 @@
 
 import java.util.Arrays;
 
+import Piece.OthelloPieceColour;
+
 /**
 *
 * @file OthelloBoard.java
@@ -519,16 +521,14 @@ public boolean setPiece (int x, int y, OthelloPiece colour) {
 /** 		
 * This is the main method of the OthelloBoard class. This method is used to test the 
 * methods within the class with both valid and invalid parameters.
-*/			       
-       public static void main (String[] args){
-            	
-            	test2();
-	     	test3();
-	     	test4();
-	     	test5();
+*/		
+	public static void main (String[] args){
+		test2();
+		test3();
+		test4();
+		test5();
 		test6();
 		test7();
 		test8();
 	}
-
 }
