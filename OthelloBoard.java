@@ -33,7 +33,28 @@ public class OthelloBoard extends Board <Piece.OthelloPieceColour,OthelloPiece> 
 	 private final int VALID_MOVE_2 = 0;
 	 private final int VALID_MOVE_3 = 1;
 	 
+	 //symbolic constants for test cases
+	 private static final int BOARD_SIZE = 8; //sets size of board to 8 wide and 8 high
+	 
+	 private static final int TEST_MOVE_X1 = 2; //sets x and y coorindates of a possible move
+	 private static final int TEST_MOVE_Y1 = 3; 
+	 
+	 private static final int TEST_PIECE_X = 5; //sets x and y coordinates of a piece in othello
+	 private static final int TEST_PIECE_Y = 3;
+	 
+     private static final int OUTPUT_TEST4_X = 3; //expected x and y coordinates from output in test 4
+     private static final int OUTPUT_TEST4_Y = 5;
     
+     private static final int OUTPUT_TEST5_X = 1; //expected x and y coordinates from output in test 5
+     private static final int OUTPUT_TEST5_Y = 2;
+     
+     private static final int OUTPUT_TEST6_X = 1; //expected x and y coordinates from output in test 6
+     private static final int OUTPUT_TEST6_Y = 2;
+     
+     private static final int OUTPUT_TEST2_X = 0; //expected x and y coordinates from output in test 2
+     private static final int OUTPUT_TEST2_Y = 3;
+     
+     
 
 /**
 * This is the constructor to make the Othello Board
@@ -365,12 +386,12 @@ public boolean setPiece (int x, int y, OthelloPiece colour) {
 */
 
 	public static void test2() {
-       	OthelloBoard Board = new OthelloBoard(8,8);
+       	OthelloBoard Board = new OthelloBoard(BOARD_SIZE,BOARD_SIZE);
        	Board.setBoard();
        	Board.incPieceCount();
        	System.out.println(Board.getPieceCount());
-       	System.out.println(Board.move(0, 3, Board.WHITE_PIECE));
-       	Board.m_Pieces[5][3]=Board.WHITE_PIECE;
+       	System.out.println(Board.move(OUTPUT_TEST2_X, OUTPUT_TEST2_Y, Board.WHITE_PIECE));
+       	Board.m_Pieces[TEST_PIECE_X][TEST_PIECE_Y]=Board.WHITE_PIECE;
        	System.out.println("");
        	System.out.println("");
 		Board.checkWin();
@@ -387,12 +408,12 @@ public boolean setPiece (int x, int y, OthelloPiece colour) {
 * This is a test for decPiececount and CheckWin
 */	
 	public static void test3() {
-	       OthelloBoard Board = new OthelloBoard(8,8);
+	       OthelloBoard Board = new OthelloBoard(BOARD_SIZE,BOARD_SIZE);
 	       Board.setBoard();
 	       Board.decPieceCount();
 	       System.out.println(Board.getPieceCount());
-	       System.out.println(Board.move(2, 3, Board.WHITE_PIECE));
-	       Board.m_Pieces[5][3]=Board.WHITE_PIECE;
+	       System.out.println(Board.move(TEST_MOVE_X1, TEST_MOVE_Y1, Board.WHITE_PIECE));
+	       Board.m_Pieces[TEST_PIECE_X][TEST_PIECE_Y]=Board.WHITE_PIECE;
 	       System.out.println("");
 	       System.out.println("");
 		Board.checkWin();
@@ -410,12 +431,12 @@ public boolean setPiece (int x, int y, OthelloPiece colour) {
 */	
 
 	public static void test4() {
-		OthelloBoard Board = new OthelloBoard(8,8);
+		OthelloBoard Board = new OthelloBoard(BOARD_SIZE,BOARD_SIZE);
 		Board.setBoard();
 		Board.decPieceCount();
 		System.out.println(Board.getPieceCount());
-		System.out.println(Board.move(2, 3, Board.WHITE_PIECE));
-		Board.m_Pieces[5][3]=Board.WHITE_PIECE;
+		System.out.println(Board.move(TEST_MOVE_X1, TEST_MOVE_Y1, Board.WHITE_PIECE));
+		Board.m_Pieces[TEST_PIECE_X][TEST_PIECE_Y]=Board.WHITE_PIECE;
 		System.out.println("");
 		System.out.println("");
 		Board.checkWin();
@@ -423,7 +444,8 @@ public boolean setPiece (int x, int y, OthelloPiece colour) {
 		System.out.println("OthelloBoard.setPiece() - Begin");
 		System.out.println("Expected output: true");
 		System.out.println("");
-		System.out.println("Actual output: " + Board.setPiece(3,5,Board.BLACK_PIECE));
+		System.out.println("Actual output: " + 
+		Board.setPiece(OUTPUT_TEST4_X,OUTPUT_TEST4_Y,Board.BLACK_PIECE));
 		System.out.println("");
 	}
 	
@@ -433,12 +455,13 @@ public boolean setPiece (int x, int y, OthelloPiece colour) {
 */
 	
 	public static void test5() {
-		OthelloBoard Board = new OthelloBoard(8,8);
+		OthelloBoard Board = new OthelloBoard(BOARD_SIZE,BOARD_SIZE);
 	       Board.setBoard();
 	       Board.decPieceCount();
 	       System.out.println(Board.getPieceCount());
-	       System.out.println(Board.move(2, 3, Board.WHITE_PIECE));
-	       Board.m_Pieces[5][3]=Board.WHITE_PIECE;
+	       System.out.println(Board.move(
+	       TEST_MOVE_X1, TEST_MOVE_Y1, Board.WHITE_PIECE));
+	       Board.m_Pieces[TEST_PIECE_X][TEST_PIECE_Y]=Board.WHITE_PIECE;
 	       System.out.println("");
 	       System.out.println("");
 		Board.checkWin();
@@ -446,7 +469,8 @@ public boolean setPiece (int x, int y, OthelloPiece colour) {
 		System.out.println("OthelloBoard.move() - Begin");
 		System.out.println("Expected output: false");
 		System.out.println("");
-		System.out.println("Actual output: " + Board.move(1,2,Board.BLACK_PIECE));
+		System.out.println("Actual output: " + 
+		Board.move(OUTPUT_TEST5_X,OUTPUT_TEST5_Y,Board.BLACK_PIECE));
 	       System.out.println("");
 	}
 	
@@ -456,12 +480,13 @@ public boolean setPiece (int x, int y, OthelloPiece colour) {
 * This is a test for anyMove
 */	
 	public static void test6() {
-		OthelloBoard Board = new OthelloBoard(8,8);
+		OthelloBoard Board = new OthelloBoard(BOARD_SIZE,BOARD_SIZE);
        	Board.setBoard();
 		Board.decPieceCount();
        	System.out.println(Board.getPieceCount());	
-		System.out.println(Board.move(2, 3, Board.WHITE_PIECE));
-		Board.m_Pieces[5][3]=Board.WHITE_PIECE;
+		System.out.println(Board.move(
+		TEST_MOVE_X1, TEST_MOVE_Y1, Board.WHITE_PIECE));
+		Board.m_Pieces[TEST_PIECE_X][TEST_PIECE_Y]=Board.WHITE_PIECE;
 		System.out.println("");
 		System.out.println("");
 		Board.checkWin();
@@ -469,7 +494,8 @@ public boolean setPiece (int x, int y, OthelloPiece colour) {
 		System.out.println("OthelloBoard.anyMove() - Begin");
 		System.out.println("Expected output: false");
 		System.out.println("");
-		System.out.println("Actual output: " + Board.anyMove(1,2,Board.BLACK_PIECE));
+		System.out.println("Actual output: " 
+		+ Board.anyMove(OUTPUT_TEST6_X,OUTPUT_TEST6_Y,Board.BLACK_PIECE));
 		System.out.println("");
 	}
 		
@@ -477,12 +503,12 @@ public boolean setPiece (int x, int y, OthelloPiece colour) {
 * This is a test for getPieces
 */		
 	public static void test7() {
-			OthelloBoard Board = new OthelloBoard(8,8);
+			OthelloBoard Board = new OthelloBoard(BOARD_SIZE,BOARD_SIZE);
 		      	Board.setBoard();
 			Board.decPieceCount();
 		      	System.out.println(Board.getPieceCount());	
-			System.out.println(Board.move(2, 3, Board.WHITE_PIECE));
-			Board.m_Pieces[5][3]=Board.WHITE_PIECE;
+			System.out.println(Board.move(TEST_MOVE_X1, TEST_MOVE_Y1, Board.WHITE_PIECE));
+			Board.m_Pieces[TEST_PIECE_X][TEST_PIECE_Y]=Board.WHITE_PIECE;
 			System.out.println("");
 			System.out.println("");
 			Board.checkWin();
@@ -501,12 +527,12 @@ public boolean setPiece (int x, int y, OthelloPiece colour) {
 */
 	
 	public static void test8() {
-				OthelloBoard Board = new OthelloBoard(8,8);
+				OthelloBoard Board = new OthelloBoard(BOARD_SIZE,BOARD_SIZE);
 			      	Board.setBoard();
 				Board.decPieceCount();
 			      	System.out.println(Board.getPieceCount());	
-				System.out.println(Board.move(2, 3, Board.WHITE_PIECE));
-				Board.m_Pieces[5][3]=Board.WHITE_PIECE;
+				System.out.println(Board.move(TEST_MOVE_X1, TEST_MOVE_Y1, Board.WHITE_PIECE));
+				Board.m_Pieces[TEST_PIECE_X][TEST_PIECE_Y]=Board.WHITE_PIECE;
 				System.out.println("");
 				System.out.println("");
 				Board.checkWin();
