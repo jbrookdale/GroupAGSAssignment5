@@ -27,6 +27,12 @@ public class OthelloBoard extends Board <Piece.OthelloPieceColour,OthelloPiece> 
 	 private final OthelloPiece BLACK_PIECE = new OthelloPiece(Piece.OthelloPieceColour.BLACK);
        // creates an object of Piece which contains 
 	 private final OthelloPiece NONE_PIECE = new OthelloPiece(Piece.OthelloPieceColour.NONE);
+	 
+	 //symbolic constants denoting options of possible valid moves
+	 private final int VALID_MOVE_1 = -1;
+	 private final int VALID_MOVE_2 = 0;
+	 private final int VALID_MOVE_3 = 1;
+	 
     
 
 /**
@@ -86,14 +92,14 @@ public boolean setPiece (int x, int y, OthelloPiece colour) {
         
 	public boolean move (int x,int y, OthelloPiece colour){
             boolean valid = false;
-            if(move(x,y,1,0,colour)) valid=true;
-            if(move(x,y,1,1,colour)) valid=true;
-            if(move(x,y,1,-1,colour)) valid=true;
-            if(move(x,y,0,1,colour)) valid=true;
-            if(move(x,y,0,-1,colour)) valid=true;
-            if(move(x,y,-1,0,colour)) valid=true;
-            if(move(x,y,-1,1,colour)) valid=true;
-            if(move(x,y,-1,-1,colour)) valid=true;
+            if(move(x,y,VALID_MOVE_3,VALID_MOVE_2,colour)) valid=true;
+            if(move(x,y,VALID_MOVE_3,VALID_MOVE_3,colour)) valid=true;
+            if(move(x,y,VALID_MOVE_3,VALID_MOVE_1,colour)) valid=true;
+            if(move(x,y,VALID_MOVE_2,VALID_MOVE_3,colour)) valid=true;
+            if(move(x,y,VALID_MOVE_2,VALID_MOVE_1,colour)) valid=true;
+            if(move(x,y,VALID_MOVE_1,VALID_MOVE_2,colour)) valid=true;
+            if(move(x,y,VALID_MOVE_1,VALID_MOVE_3,colour)) valid=true;
+            if(move(x,y,VALID_MOVE_1,VALID_MOVE_1,colour)) valid=true;
             setThePieces();
             if(valid){
                 m_PieceCount++;
@@ -115,14 +121,14 @@ public boolean setPiece (int x, int y, OthelloPiece colour) {
 
         private boolean anyMove (int x,int y, OthelloPiece colour){
             boolean valid = false;
-            if(move(x,y,1,0,colour)) valid=true;
-            if(move(x,y,1,1,colour)) valid=true;
-            if(move(x,y,1,-1,colour)) valid=true;
-            if(move(x,y,0,1,colour)) valid=true;
-            if(move(x,y,0,-1,colour)) valid=true;
-            if(move(x,y,-1,0,colour)) valid=true;
-            if(move(x,y,-1,1,colour)) valid=true;
-            if(move(x,y,-1,-1,colour)) valid=true;
+            if(move(x,y,VALID_MOVE_3,VALID_MOVE_2,colour)) valid=true;
+            if(move(x,y,VALID_MOVE_3,VALID_MOVE_3,colour)) valid=true;
+            if(move(x,y,VALID_MOVE_3,VALID_MOVE_1,colour)) valid=true;
+            if(move(x,y,VALID_MOVE_2,VALID_MOVE_3,colour)) valid=true;
+            if(move(x,y,VALID_MOVE_2,VALID_MOVE_1,colour)) valid=true;
+            if(move(x,y,VALID_MOVE_1,VALID_MOVE_2,colour)) valid=true;
+            if(move(x,y,VALID_MOVE_1,VALID_MOVE_3,colour)) valid=true;
+            if(move(x,y,VALID_MOVE_1,VALID_MOVE_1,colour)) valid=true;
             return (valid);
           }
 
