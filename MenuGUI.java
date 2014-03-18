@@ -371,6 +371,10 @@ public class MenuGUI extends GUI {
 		if (m_PlayInputTwo.getText().length() > MAX_NAME) {
 			validation = false;
 		}
+		
+		if (m_PlayInputOne.getText().equals(m_PlayInputTwo.getText())) {
+			validation = false;
+		}
 
 		 return validation;
 	}
