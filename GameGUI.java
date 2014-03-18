@@ -64,8 +64,11 @@ public abstract class GameGUI extends GUI{
     }
     
     protected void setTimerLabel(){
-    	m_TimerLabel = new JLabel("Time elapsed: " + getTime() + "s");
-    	m_TimerLabel.setBorder(new EmptyBorder(0,0,0,getWidth() - 125));
+    	m_TimerLabel = new JLabel("Time elapsed: " + 
+    String.format("%02d",(getTime() / 3600) % 60) + ":" + 
+    String.format("%02d",(getTime() / 60) % 60) + ":" + 
+    String.format("%02d",getTime() % 60));
+    	//m_TimerLabel.setBorder(new EmptyBorder(0,0,0,getWidth() - 125));
     }
     
     public JLabel getTimerLabel(){
@@ -74,7 +77,10 @@ public abstract class GameGUI extends GUI{
     
     protected void resetTimer(){
     	setTime(0);
-    	getTimerLabel().setText("Time elapsed: " + getTime() + "s");
+    	getTimerLabel().setText("Time elapsed: " + 
+    String.format("%02d",(getTime() / 3600) % 60) + ":" + 
+    String.format("%02d",(getTime() / 60) % 60) + ":" + 
+    String.format("%02d",getTime() % 60));
     	startTimer();
     }
     
@@ -82,7 +88,10 @@ public abstract class GameGUI extends GUI{
     	ActionListener actListener = new ActionListener(){
     		public void actionPerformed(ActionEvent event){
     			setTime(getTime() + 1);
-    			getTimerLabel().setText("Time elapsed: " + getTime() + "s");
+    			getTimerLabel().setText("Time elapsed: " + 
+                String.format("%02d",(getTime() / 3600) % 60) + ":" + 
+                String.format("%02d",(getTime() / 60) % 60) + ":" + 
+                String.format("%02d",getTime() % 60));
     		}
     	};
     	m_Timer = new Timer(1000, actListener);
