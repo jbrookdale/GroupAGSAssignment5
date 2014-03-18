@@ -14,11 +14,21 @@
 * class are all abstract methods that are implemented by the subclasses.
 */
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;
+import javax.swing.Timer;
+import javax.swing.border.EmptyBorder;
 
 public abstract class GameGUI extends GUI{
 
+    private Timer m_Timer;
+    private static int m_Time;
+    private JLabel m_TimerLabel;
+    
 	/**
 	* Constructor of this class, requires basic info such as Title of 
 	* the frame, the width of the frame and the height and sets them
@@ -41,6 +51,46 @@ public abstract class GameGUI extends GUI{
 	*              players move.
 	*
 	*/
+    public Timer getTimer(){
+    	return m_Timer;
+    }
+    
+    public int getTime(){
+    	return m_Time;
+    }
+    
+    public void setTime(int time){
+    	m_Time = time;
+    }
+    
+    protected void setTimerLabel(){
+    	m_TimerLabel = new JLabel("Time elapsed: " + getTime() + "s");
+    	m_TimerLabel.setBorder(new EmptyBorder(0,0,0,getWidth() - 125));
+    }
+    
+    public JLabel getTimerLabel(){
+    	return m_TimerLabel;
+    }
+    
+    protected void resetTimer(){
+    	setTime(0);
+    	getTimerLabel().setText("Time elapsed: " + getTime() + "s");
+    	startTimer();
+    }
+    
+    protected void startTimer(){
+    	ActionListener actListener = new ActionListener(){
+    		public void actionPerformed(ActionEvent event){
+    			setTime(getTime() + 1);
+    			getTimerLabel().setText("Time elapsed: " + getTime() + "s");
+    		}
+    	};
+    	m_Timer = new Timer(1000, actListener);
+    	System.out.println("Timer started");
+    	m_Timer.start();
+    }
+
+	
 	public boolean displayMoveFeedback(String message) {
 	
 		JOptionPane.showMessageDialog(this, message,"Your Move", 

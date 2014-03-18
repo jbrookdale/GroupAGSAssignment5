@@ -67,11 +67,6 @@ public class ConnectFourGameGUI extends GameGUI {
 
     /**< Stores an instance of ConnectFourGame */
     private ConnectFourGame game;
-
-    private Timer m_Timer;
-    private static int m_Time;
-    private JLabel m_TimerLabel;
-    
     
     /**
     * Constructor for ConnectFourGameGUI
@@ -160,45 +155,6 @@ public class ConnectFourGameGUI extends GameGUI {
         setTitle("Connect Four   Player One: \"" 
             + game.getPlayerName(Game.PLAYER_ONE) + "\"    Player Two: \"" 
             + game.getPlayerName(Game.PLAYER_TWO) +"\"");
-    }
-
-    public Timer getTimer(){
-    	return m_Timer;
-    }
-    
-    public int getTime(){
-    	return m_Time;
-    }
-    
-    public void setTime(int time){
-    	m_Time = time;
-    }
-    
-    private void setTimerLabel(){
-    	m_TimerLabel = new JLabel("Time elapsed: " + getTime() + "s");
-    	m_TimerLabel.setBorder(new EmptyBorder(0,0,0,WINDOW_WIDTH - 125));
-    }
-    
-    public JLabel getTimerLabel(){
-    	return m_TimerLabel;
-    }
-    
-    private void resetTimer(){
-    	setTime(0);
-    	getTimerLabel().setText("Time elapsed: " + getTime() + "s");
-    	startTimer();
-    }
-    
-    private void startTimer(){
-    	ActionListener actListener = new ActionListener(){
-    		public void actionPerformed(ActionEvent event){
-    			setTime(getTime() + 1);
-    			getTimerLabel().setText("Time elapsed: " + getTime() + "s");
-    		}
-    	};
-    	m_Timer = new Timer(1000, actListener);
-    	System.out.println("Timer started");
-    	m_Timer.start();
     }
     
     /**< private class for handling mouse clicks */
