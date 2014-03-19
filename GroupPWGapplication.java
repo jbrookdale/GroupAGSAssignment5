@@ -67,7 +67,7 @@ public class GroupPWGapplication extends GUI{
 	/**< constant for checking the maximum width of the display window */ 
 	public final int MAX_WIDTH = 550;
 
-	/**< constant for checking the maximum width of the display window */ 
+	/**< constant for checking the minimum width of the display window */ 
 	public final int MIN_WIDTH = 450;
 
 	/**<constant for checking the maximum height of the display window */ 
