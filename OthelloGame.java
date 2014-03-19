@@ -106,13 +106,6 @@ public class OthelloGame extends Game <Piece.OthelloPieceColour>{
         return false;
     }
 
- 
-	public void loadGame(String fileName) {}
-
-	
-	public void saveGame(String fileName) {}
-    
-
     /**
      * @param x - x cordinate on board
      * @param y - y cordinate on board

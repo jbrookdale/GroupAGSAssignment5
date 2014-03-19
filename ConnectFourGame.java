@@ -24,15 +24,6 @@ public class ConnectFourGame extends Game<Piece.ConnectFourPieceColour> {
 		return m_board.getPieces();
 	}
 	
-    
-	void saveGame(String fileName){
-	
-	}
-
-	void loadGame(String fileName){
-		
-	}
-    
 	/**
 	* Constructor for ConnectFourGame. This is used to instantiate 
 	* integers if we want it to.

@@ -116,10 +116,14 @@ public abstract class Game<C> {
     /**
      * This method handles the saving of the game.
      */
-    abstract void saveGame(String fileName);
+    void saveGame(String fileName){
+    	GameSaver saveGame = new GameSaver(fileName);
+    }
     
     /**
      * This method handles the loading of the game.
      */
-    abstract void loadGame(String fileName);
+    void loadGame(String fileName){
+    	GameLoader loadGame = new GameLoader(fileName);
+    }
 }
