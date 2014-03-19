@@ -6,6 +6,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 import java.io.File;
 
-public class GameLoader extends GameIO{
-
+public class GameLoader extends GameIOHandler{
+    public GameLoader(String fileName){
+        
+    }
 }

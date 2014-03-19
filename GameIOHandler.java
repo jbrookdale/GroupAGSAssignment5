@@ -16,7 +16,7 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Attr;
  
 
-public class GameIO {
+public class GameIOHandler {
 
 	
 }

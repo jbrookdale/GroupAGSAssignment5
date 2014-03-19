@@ -1,5 +1,5 @@
 
-public class GameSaver extends GameIO {
+public class GameSaver extends GameIOHandler {
 	
 	private String m_Filename;
 	
