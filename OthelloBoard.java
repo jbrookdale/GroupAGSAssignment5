@@ -332,6 +332,15 @@ public boolean setPiece (int x, int y, OthelloPiece colour) {
     	}
 
 
+        /**
+        * This method is to see if there are no pieces to set.
+        *
+        *@return false- This will return if the method fails to run successfully 
+        */
+
+        boolean setPiece(int x, int y, Piece.OthelloPieceColour colour) {
+                return false;
+        }
 	
 
 /**
