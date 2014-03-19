@@ -153,6 +153,7 @@ public class OthelloGameGUI extends GameGUI {
                         + "       "  +m_player2Name+" Score: " + gameCheck.getPlayer2Score());
 		window.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		window.setLayout(new GridBagLayout());
+        window.getContentPane().setBackground(Color.GREEN);
         GridBagConstraints c = new GridBagConstraints();
 		window.setIconImage(new ImageIcon(this.getClass()
                 .getResource("Othello.jpeg")).getImage());
@@ -167,7 +168,6 @@ public class OthelloGameGUI extends GameGUI {
 				gridButtons[x][y]=new JLabel("");
 				gridButtons[x][y].setIcon(backgroundTile);
 				gridButtons[x][y].addMouseListener(handler);
-				//gridButtons[x][y].setBounds(4, 4, 6, 6);
 				gridButtons[x][y].setPreferredSize(new Dimension(BOARDWIDTH,BOARDHEIGHT));
                c.gridx = x;
                c.gridy = y;
@@ -630,8 +630,8 @@ public class OthelloGameGUI extends GameGUI {
 	public static void main(String[] args){
 		final int WIDTH = 600, HEIGHT = 600;
 		String[] s = new String[2];
-		s[0]="Tom";
-		s[1]="Harry";
+		s[0]="Jon";
+		s[1]="Tom";
 		OthelloGameGUI displayExample = new OthelloGameGUI("Othello",WIDTH,HEIGHT);
 		displayExample.setPlayers(s);
 
