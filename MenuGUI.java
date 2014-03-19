@@ -36,6 +36,7 @@ import javax.swing.JTextField;
 import javax.swing.Timer;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import javax.swing.JComboBox;
 
 public class MenuGUI extends GUI {
 	
@@ -270,12 +271,60 @@ public class MenuGUI extends GUI {
     *				executed.
 	*/
 	private boolean InputScreen() {
+		
+		String[] playerNames = { "Human", "Computer: Easy", "Computer: Medium", "Computer: Hard"};
+		
+		
+		String[] connect4Colours = {"Red", "Yellow"};
+		
+		String[] othelloColours = {"Black", "White"};
+
+		
+		m_ComboPlayer1Mode = new JComboBox(playerNames);
+		m_ComboPlayer1Mode.setSelectedIndex(0);
+		//playerModes.addActionListener(this);
+		
+		m_ComboPlayer2Mode = new JComboBox(playerNames);
+		m_ComboPlayer2Mode.setSelectedIndex(0);
+		
+		m_ComboPlayer1Colour = new JComboBox(connect4Colours);
+		m_ComboPlayer1Colour.setSelectedIndex(0);
+		
+		m_ComboPlayer2Colour = new JComboBox(connect4Colours);
+		m_ComboPlayer2Colour.setSelectedIndex(0);
+		
+		m_ComboPlayer1Mode.addActionListener (new ActionListener () {
+		    public void actionPerformed(ActionEvent e) {
+		        if ("Red".equals(m_ComboPlayer1Mode.getSelectedItem())){
+		        	m_ComboPlayer2Mode.setSelectedIndex(0);    
+		        } else {
+		        	m_ComboPlayer2Mode.setSelectedIndex(1);   
+		        }
+		    }
+		});
+		
 
         m_InputScreen = new JPanel(new GridBagLayout());
         
-		m_InputLabel = new JLabel("Please Input Player Details");
+		m_InputLabel = new JLabel("Player Setup");
 		m_InputLabel.setFont(new Font("SansSerif", 
 			Font.PLAIN,SECONDHEAD_FONTSIZE));
+		
+		m_Player1Label = new JLabel("Player 1 details");
+		m_Player1Label.setFont(new Font("SansSerif", 
+			Font.ITALIC,SMALLHEADING_FONTSIZE));
+		
+		m_Player2Label = new JLabel("Player 2 details");
+		m_Player2Label.setFont(new Font("SansSerif", 
+			Font.ITALIC,SMALLHEADING_FONTSIZE));
+		
+		m_Player1TypeLabel = new JLabel("Player type:");
+		
+		m_Player2TypeLabel = new JLabel("Player type:");
+		
+		m_Player1ColourLabel = new JLabel("Player's colour:");
+		
+		m_Player2ColourLabel = new JLabel("Player's colour:");
 		
 		m_PlayerOK = new JButton("OK");
 		m_PlayerBack = new JButton("Cancel");
@@ -298,32 +347,97 @@ public class MenuGUI extends GUI {
 		input.fill = GridBagConstraints.HORIZONTAL;
 		input.gridx = COLUMN_ONE;							
 		input.gridy = ROW_ONE;
+		input.insets = new Insets(20,20,0,60);
 		inputPanel.add(m_InputLabel, input);
+		
 		
 		input.fill = GridBagConstraints.HORIZONTAL;
 		input.gridx = COLUMN_ONE;							
 		input.gridy = ROW_TWO;
-		input.insets = new Insets(GAP_TWENTY,NO_GAP,NO_GAP,NO_GAP);  		
-		inputPanel.add(m_PlayInputOne, input);
-
+		input.insets = new Insets(20,20,0,60);  		
+		inputPanel.add(m_Player1Label, input);
+		
+		input.fill = GridBagConstraints.HORIZONTAL;
+		input.gridx = 1;							
+		input.gridy = ROW_TWO;
+		input.insets = new Insets(20,10,0,60);  		
+		inputPanel.add(m_Player2Label, input);
+		
+		input.fill = GridBagConstraints.HORIZONTAL;
+		input.gridx = 0;							
+		input.gridy = 3;
+		input.insets = new Insets(50,20,0,120); 
+		inputPanel.add(m_ComboPlayer1Mode, input);
+		
+		input.fill = GridBagConstraints.HORIZONTAL;
+		input.gridx = 0;							
+		input.gridy = 3;
+		input.insets = new Insets(0,20,0,120); 
+		inputPanel.add(m_Player1TypeLabel, input);
+		
+		input.fill = GridBagConstraints.HORIZONTAL;
+		input.gridx = 1;							
+		input.gridy = 3;
+		input.insets = new Insets(50,10,0,120); 
+		inputPanel.add(m_ComboPlayer2Mode, input);
+		
+		input.fill = GridBagConstraints.HORIZONTAL;
+		input.gridx = 1;							
+		input.gridy = 3;
+		input.insets = new Insets(0,10,0,120); 
+		inputPanel.add(m_Player2TypeLabel, input);
+		
 		input.fill = GridBagConstraints.HORIZONTAL;
 		input.gridx = COLUMN_ONE;							
-		input.gridy = ROW_THREE;
-		input.insets = new Insets(GAP_TEN,NO_GAP,NO_GAP,NO_GAP);  			
+		input.gridy = 2;
+		input.insets = new Insets(20,20,0,100);  		
+		inputPanel.add(m_PlayInputOne, input);
+		
+		
+
+		input.fill = GridBagConstraints.HORIZONTAL;
+		input.gridx = 1;							
+		input.gridy = 2;
+		input.insets = new Insets(20,10,NO_GAP,100);  			
 		inputPanel.add(m_PlayInputTwo, input);
+		
+		input.fill = GridBagConstraints.HORIZONTAL;
+		input.gridx = 0;							
+		input.gridy = 4;
+		input.insets = new Insets(50,20,0,120);  			
+		inputPanel.add(m_ComboPlayer1Colour, input);
+		
+		input.fill = GridBagConstraints.HORIZONTAL;
+		input.gridx = 0;							
+		input.gridy = 4;
+		input.insets = new Insets(0,20,0,120); 
+		inputPanel.add(m_Player1ColourLabel, input);
+		
+		input.fill = GridBagConstraints.HORIZONTAL;
+		input.gridx = 1;							
+		input.gridy = 4;
+		input.insets = new Insets(50,10,NO_GAP,120);  			
+		inputPanel.add(m_ComboPlayer2Colour, input);
+		
+		input.fill = GridBagConstraints.HORIZONTAL;
+		input.gridx = 1;							
+		input.gridy = 4;
+		input.insets = new Insets(0,10,0,120); 
+		inputPanel.add(m_Player2ColourLabel, input);
 		
 		JPanel confirmPanel = new JPanel(new GridBagLayout());
 		GridBagConstraints confirm = new GridBagConstraints();
 		
-		confirm.fill = GridBagConstraints.NORTHEAST;
-		confirm.gridx = COLUMN_ONE;						
+		confirm.fill = GridBagConstraints.HORIZONTAL;
+		confirm.gridx = COLUMN_ONE;
 		confirm.gridy = ROW_ONE;
+		confirm.insets = new Insets(15,0,0,20); 
 		confirmPanel.add(m_PlayerBack, confirm);
 		
-		confirm.fill = GridBagConstraints.NORTHEAST;
-		confirm.gridx = COLUMN_TWO;							
+		confirm.fill = GridBagConstraints.HORIZONTAL;
+		confirm.gridx = COLUMN_TWO;	
 		confirm.gridy = ROW_ONE;
-		confirm.insets = new Insets(NO_GAP,GAP_FIFTEEN,NO_GAP,NO_GAP);  		
+		confirm.insets = new Insets(15,0,0,NO_GAP);  		
 		confirmPanel.add(m_PlayerOK, confirm);
 
 		MainPanel.insets = new Insets(GAP_TEN,NO_GAP,NO_GAP,NO_GAP); 
@@ -372,7 +486,15 @@ public class MenuGUI extends GUI {
 			validation = false;
 		}
 		
-		if (m_PlayInputOne.getText().equals(m_PlayInputTwo.getText())) {
+		if (m_PlayInputOne.getText().equals(m_PlayInputTwo.getText())) { //checks if both names are identical
+			validation = false;
+		}
+		
+		if (m_PlayInputOne.getText().trim().length()<1) { //checks if names contain white space
+			validation = false;
+		}
+		
+		if (m_PlayInputTwo.getText().trim().length()<1) {
 			validation = false;
 		}
 
@@ -655,6 +777,26 @@ public class MenuGUI extends GUI {
 	/**< This is the label for the Heading on the input window */
 	private JLabel m_InputLabel;
 	
+	private JLabel m_Player1Label;
+	
+	private JLabel m_Player2Label;
+	
+	private JComboBox m_ComboPlayer1Mode;
+	
+	private JComboBox m_ComboPlayer2Mode;
+	
+	private JComboBox m_ComboPlayer1Colour;
+	
+	private JComboBox m_ComboPlayer2Colour;
+	
+	private JLabel m_Player1TypeLabel;
+	
+	private JLabel m_Player2TypeLabel;
+	
+	private JLabel m_Player1ColourLabel;
+	
+	private JLabel m_Player2ColourLabel;
+	
 	/**< This variable hold the string of the name for player one */
 	private String m_PlayerOne;
 
@@ -686,7 +828,7 @@ public class MenuGUI extends GUI {
     private JPanel m_SelectPanel;
 	
 	/**< Constants for the width of the menu frame */
-	private final int FRAME_WIDTH = 370;	
+	private final int FRAME_WIDTH = 400;	
 
 	/**< Constants for the height of the menu frame */	
 	private final int FRAME_HEIGHT = 300;
@@ -720,8 +862,10 @@ public class MenuGUI extends GUI {
 	screen */
 	private final int SUBHEADING_FONTSIZE = 18;
 	
+	private final int SMALLHEADING_FONTSIZE = 16;
+	
 	/**< This hold the font size for the heading label on the input screen */
-	private final int SECONDHEAD_FONTSIZE = 24;
+	private final int SECONDHEAD_FONTSIZE = 23;
 	
 	/**< This hold the column size for the text fields on the input screen */
 	private final int TEXTFIELD_COLUMNS = 20;

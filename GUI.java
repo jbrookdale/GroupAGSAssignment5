@@ -30,13 +30,13 @@ public abstract class GUI extends JFrame {
 	private final int MAX_WIDTH = 800;
 
 	/**< constant for checkig the maximum width of the display window */ 
-	private final int MIN_WIDTH = 365;
+	private final int MIN_WIDTH = 450; //old 365
 
 	/**<constant for checkig the maximum height of the display window */ 
 	private final int MAX_HEIGHT = 600;
 
 	/**< constant for checkig the minimum height of the display window */ 
-	private final int MIN_HEIGHT = 295;
+	private final int MIN_HEIGHT = 400; //old 295
 
 	/** 
 	* This is the constructor for the OthelloGameGui class.
