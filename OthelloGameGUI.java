@@ -547,6 +547,12 @@ public class OthelloGameGUI extends GameGUI {
             final int DRAW = 3;
             int winner = NOBODY;
             
+            final boolean PLAYER_1 = true;
+            final boolean PLAYER_2 = false;
+            
+            updateTitle(PLAYER_1);
+            updateTitle(PLAYER_2);
+            
             if(!gameCheck.board.anyValid(m_player1Colour)&&
                     !gameCheck.board.anyValid(m_player2Colour)){
                 
