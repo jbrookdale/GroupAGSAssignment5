@@ -1,4 +1,18 @@
-/*--80 Characters Wide---------- Remove before Submitting --------------------*/
+/**
+ * @file OthelloGameGui.java
+ * @author Shannon Gahring
+ * @date 30 Jan 2014
+ * @see GameGui.java for inherited methods.
+ *
+ * @brief This class creates the GUI for the game of Othello and 
+ * 		  is extended from the GameGui class.
+ * 
+ * This class animates the move of a piece being added,
+ * displays a move feedback if a move is not allowed,
+ * displays the winner of the game,
+ * controls the pause game button and
+ * updates the display every time a move is made.
+ */
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -21,22 +35,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 
-/**
- * @file OthelloGameGui.java
- * @author Shannon Gahring
- * @date 30 Jan 2014
- * @see GameGui.java for inherited methods.
- *
- * @brief This class creates the GUI for the game of Othello and 
- * 		  is extended from the GameGui class.
- * 
- * This class animates the move of a piece being added,
- * displays a move feedback if a move is not allowed,
- * displays the winner of the game,
- * controls the pause game button and
- * updates the display every time a move is made.
- */
 public class OthelloGameGUI extends GameGUI {
     JFrame window;
 	/** 
@@ -51,6 +52,7 @@ public class OthelloGameGUI extends GameGUI {
 		super(title,width,height);
         URL location = OthelloGameGUI.class.getProtectionDomain().getCodeSource().getLocation();
 		System.out.println(location.getFile());
+        backgroundTile = new ImageIcon(getClass().getResource("OthelloBackground.png"));
 		blackPiece = new ImageIcon(getClass().getResource("PieceBlack.png"));
 		whitePiece = new ImageIcon(getClass().getResource("PieceWhite.png"));
         whiteWinningPiece = new ImageIcon(getClass().getResource("PieceWhiteFinal.png"));
@@ -150,23 +152,26 @@ public class OthelloGameGUI extends GameGUI {
 		window = new JFrame("Othello                 "+m_player1Name+" turn      "+m_player1Name+" Score: " +  gameCheck.getPlayer1Score()
                         + "       "  +m_player2Name+" Score: " + gameCheck.getPlayer2Score());
 		window.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		window.setLayout(new GridLayout(TOTALWIDTH,TOTALHEIGHT));
+		window.setLayout(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
 		window.setIconImage(new ImageIcon(this.getClass()
                 .getResource("Othello.jpeg")).getImage());
 		
 		//window.add(m_player1Score);
 		//m_player1Score.setText(score.getPieceCount());
-		GUIHandler handler = new GUIHandler(); //test.new GUIHandler();
+		GUIHandler handler = new GUIHandler();
 		//player1 = new JLabel("Player1 Score: ");
-		gridButtons = new JButton[TOTALWIDTH][TOTALHEIGHT];
+		gridButtons = new JLabel[TOTALWIDTH][TOTALHEIGHT];
 		for(int y = 0; y < TOTALWIDTH; y++){ 
 			for(int x = 0; x < TOTALHEIGHT; x++){
-				gridButtons[x][y]=new JButton("");
-				gridButtons[x][y].setBackground(Color.GREEN);
+				gridButtons[x][y]=new JLabel("");
+				gridButtons[x][y].setIcon(backgroundTile);
 				gridButtons[x][y].addMouseListener(handler);
 				//gridButtons[x][y].setBounds(4, 4, 6, 6);
 				gridButtons[x][y].setPreferredSize(new Dimension(BOARDWIDTH,BOARDHEIGHT));
-				window.add(gridButtons[x][y]); //adds button to grid
+               c.gridx = x;
+               c.gridy = y;
+			   	window.add(gridButtons[x][y],c); //adds button to grid
 			}
 		}
 		
@@ -298,8 +303,8 @@ public class OthelloGameGUI extends GameGUI {
 	private static JButton defaultButton = null;
 	private final int TOTALWIDTH = 8;
 	private final int TOTALHEIGHT = 8;
-	private final int BOARDWIDTH = 90;
-	private final int BOARDHEIGHT = 85;
+	private final int BOARDWIDTH = 75;
+	private final int BOARDHEIGHT = 75;
 	
 	OthelloBoard board = new OthelloBoard(TOTALHEIGHT,TOTALWIDTH);
 	//OthelloGame gameCheck = new OthelloGame(m_player1Name,m_player1Type,m_player1Colour.getPieceColour(),
@@ -311,7 +316,8 @@ public class OthelloGameGUI extends GameGUI {
                                                 m_player2Colour.
                                                     getPieceColour()));
 	//Pieces and Board
-	static JButton[][] gridButtons;
+	static JLabel[][] gridButtons;
+    private ImageIcon backgroundTile;
 	private ImageIcon blackPiece;
 	private ImageIcon whitePiece;
     private ImageIcon blackWinningPiece;
@@ -394,6 +400,7 @@ public class OthelloGameGUI extends GameGUI {
         */
         @Override
         public void mouseEntered(MouseEvent e) {
+            // Could highlight mouseovered cell if we wanted
         }
 
     }
@@ -448,6 +455,7 @@ public class OthelloGameGUI extends GameGUI {
                     System.out.println(" player 2 score: "+gameCheck.getPlayer2Score());
                     return true;//made a valid move
                 }
+                
                 return false;//invalid move
             }
             return true; //no possible move
@@ -468,7 +476,7 @@ public class OthelloGameGUI extends GameGUI {
                 gameCheck.setPlayer1Score(1);
                 gameCheck.setPlayer2Score(-1);
                 blackToWhitePiece.getImage().flush();
-                gridButtons[i][j].setIcon(whitePiece);
+                //gridButtons[i][j].setIcon(whitePiece);
             }
         }
 
@@ -520,7 +528,7 @@ public class OthelloGameGUI extends GameGUI {
                 gameCheck.setPlayer1Score(-1);
 
                 whiteToBlackPiece.getImage().flush();
-                gridButtons[i][j].setIcon(blackPiece);
+                //gridButtons[i][j].setIcon(blackPiece);
             }
         }
 
