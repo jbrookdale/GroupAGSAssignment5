@@ -19,6 +19,27 @@ public abstract class Piece<P> {
 	protected P m_PieceColour;
 	private boolean m_IsSet = false;
 	
+    public boolean setPieceColour(P pieceColour) {
+        m_IsSet = false;
+        if (pieceColour != OthelloPieceColour.NONE || 
+            pieceColour != ConnectFourPieceColour.NONE) {
+            
+            m_PieceColour = pieceColour;
+            m_IsSet = true;
+        }
+        return m_IsSet;
+    }
+
+    /** 
+    * This is the method for getting the colour of a piece.
+    *
+    * @param pieces -the array variable storing all the pieces on the board.
+    * @return m_PieceColour -the colour of the piece.
+    */
+    public P getPieceColour() {
+        return m_PieceColour;
+    }
+
 	/** 
 	* This is the enum of ConnectFourPieceColour, it defines all the colours 
 	* that a piece can be that is used in the Connect Four game.
@@ -53,24 +74,4 @@ public abstract class Piece<P> {
 	* @return isSet -a boolean variable returned as true if the piece
 	*			     was set or false if it was not.
 	*/
-	public boolean setPieceColour(P pieceColour) {
-		m_IsSet = false;
-		if (pieceColour != OthelloPieceColour.NONE || 
-			pieceColour != ConnectFourPieceColour.NONE) {
-			
-			m_PieceColour = pieceColour;
-			m_IsSet = true;
-		}
-		return m_IsSet;
-	}
-
-	/** 
-	* This is the method for getting the colour of a piece.
-	*
-	* @param pieces -the array variable storing all the pieces on the board.
-	* @return m_PieceColour -the colour of the piece.
-	*/
-	public P getPieceColour() {
-		return m_PieceColour;
-	}
 }

@@ -22,18 +22,8 @@
 
 abstract class Player <C> {
     String m_Name;
-    C connectFourPlayerColour;
+    C m_connectFourPlayerColour;
     private int m_Score = 0;
-
-    public Player (String newName, C newPlayerColour){
-        m_Name = newName;
-        connectFourPlayerColour = newPlayerColour;
-
-    }
-    	
-     boolean move (int x, int y) {
-		return false;
-	}
 
     public String getName () {
         return m_Name;
@@ -44,9 +34,19 @@ abstract class Player <C> {
     }
 
     public C getColour () {
-            return connectFourPlayerColour;
+            return m_connectFourPlayerColour;
     }
     public void setScore(int points) {
         m_Score+=points;
     }
+
+    public Player (String newName, C newPlayerColour){
+        m_Name = newName;
+        m_connectFourPlayerColour = newPlayerColour;
+
+    }
+    	
+     boolean move (int x, int y) {
+		return false;
+	}
 }

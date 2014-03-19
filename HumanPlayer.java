@@ -33,7 +33,8 @@ class HumanPlayer <C> extends Player{
         
         OthelloPiece player1Piece;
         player1Piece = new OthelloPiece(OthelloPiece.OthelloPieceColour.BLACK);
-        HumanPlayer player1 = new HumanPlayer("Tom",player1Piece.getPieceColour());
+        HumanPlayer player1 = 
+                new HumanPlayer("Tom",player1Piece.getPieceColour());
         System.out.println("Player1: " +player1.getName());
         System.out.println("Colour: " +player1.getColour());
         System.out.println("score: " +player1.getScore());
@@ -52,8 +53,10 @@ class HumanPlayer <C> extends Player{
         final int TEST_PLAYER_SCORE = 2;
         
         ConnectFourPiece player1Piece;
-        player1Piece = new ConnectFourPiece(ConnectFourPiece.ConnectFourPieceColour.YELLOW);
-        HumanPlayer player1 = new HumanPlayer("Tom",player1Piece.getPieceColour());
+        player1Piece = 
+        new ConnectFourPiece(ConnectFourPiece.ConnectFourPieceColour.YELLOW);
+        HumanPlayer player1 =
+            new HumanPlayer("Tom",player1Piece.getPieceColour());
         System.out.println("Player1: " +player1.getName());
         System.out.println("Colour: " +player1.getColour());
         System.out.println("score: " +player1.getScore());
