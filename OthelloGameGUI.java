@@ -528,7 +528,6 @@ public class OthelloGameGUI extends GameGUI {
                 gameCheck.setPlayer1Score(-1);
 
                 whiteToBlackPiece.getImage().flush();
-                //gridButtons[i][j].setIcon(blackPiece);
             }
         }
 
@@ -542,52 +541,48 @@ public class OthelloGameGUI extends GameGUI {
         * if the board is full then the game will end
         */
         private void endGame(){
+            final int NOBODY = 0;
+            final int PLAYER_ONE = 1;
+            final int PLAYER_TWO = 2;
+            final int DRAW = 3;
+            int winner = NOBODY;
+            
             if(!gameCheck.board.anyValid(m_player1Colour)&&
                     !gameCheck.board.anyValid(m_player2Colour)){
                 
                 if(gameCheck.getPlayer1Score()>gameCheck.getPlayer2Score()){
-					displayWinnerPieces(m_player1Colour);
-                    displayWinner(m_player1Name);
-                    System.out.println("m_player1Name");
-                    displayPlayAgain("play again?");
-                    
+				    winner = PLAYER_ONE;
                 }else{
-                	displayWinnerPieces(m_player2Colour);
-                    displayWinner(m_player2Name);
-                    System.out.println("m_player2Name");
-                    displayPlayAgain("play again?");
-                    
+                    winner = PLAYER_TWO;
                 }
             }
             if(gameCheck.getPlayer1Score()==0||gameCheck.getPlayer2Score()==0){
                 if(gameCheck.getPlayer1Score()>gameCheck.getPlayer2Score()){
-					displayWinnerPieces(m_player1Colour);
-                    displayWinner(m_player1Name);
-                    System.out.println("m_player1Name");
-                    displayPlayAgain("play again?");
-                    
+				    winner = PLAYER_ONE;
                 }else{
-                	displayWinnerPieces(m_player2Colour);
-                    displayWinner(m_player2Name);
-                    System.out.println("m_player2Name");
-                    displayPlayAgain("play again?");
+                    winner = PLAYER_TWO;
                 }
             }
             if(gameCheck.board.isFull()){
                 if(gameCheck.getPlayer1Score()>gameCheck.getPlayer2Score()){
-					displayWinnerPieces(m_player1Colour);
-                    displayWinner(m_player1Name);
-                    System.out.println("m_player1Name");
-                    displayPlayAgain("play again?");
-                    
+					winner = PLAYER_ONE;
                 }else{
-                	displayWinnerPieces(m_player2Colour);
-                    displayWinner(m_player2Name);
-                    System.out.println("m_player2Name");
-                    displayPlayAgain("play again?");
-                    
+                	winner = PLAYER_TWO;
                 }
                 
+            }
+            if (winner == PLAYER_ONE) {
+                displayWinnerPieces(m_player1Colour);
+                displayWinner(m_player1Name);
+                System.out.println("m_player1Name");
+                displayPlayAgain("play again?");
+            } else if (winner == PLAYER_TWO) {
+                displayWinnerPieces(m_player2Colour);
+                displayWinner(m_player2Name);
+                System.out.println("m_player2Name");
+                displayPlayAgain("play again?");
+            } else if (winner == DRAW) {
+                // This is not possible at the moment - implement above.
             }
         }
 
@@ -595,25 +590,33 @@ public class OthelloGameGUI extends GameGUI {
         *@param OthelloPiece colour - takes in the winning player's colour
         * replaces the player's pieces with the winning pieces.
         */
-        private void displayWinnerPieces(OthelloPiece colour){
-            if(colour.getPieceColour()==Piece.OthelloPieceColour.WHITE){
-                for(int i=0;i<TOTALHEIGHT;i++){
-                    for(int j=0;j<TOTALWIDTH;j++){
-                        if(gridButtons[i][j].getIcon()==whitePiece||gridButtons[i][j].getIcon()==blackToWhitePiece){
-                            gridButtons[i][j].setIcon(whiteWinningPiece);
+        private void displayWinnerPieces(final OthelloPiece colour){
+            new Thread(new Runnable() {
+                public void run() {
+                    try {
+                       Thread.sleep(1700); 
+                    } catch (Exception e) {
+                
+                    }
+                    if(colour.getPieceColour()==Piece.OthelloPieceColour.WHITE){
+                        for(int i=0;i<TOTALHEIGHT;i++){
+                            for(int j=0;j<TOTALWIDTH;j++){
+                                if(gridButtons[i][j].getIcon()==whitePiece||gridButtons[i][j].getIcon()==blackToWhitePiece){
+                                    gridButtons[i][j].setIcon(whiteWinningPiece);
+                                }
+                            }
+                        }
+                    }else{
+                        for(int i=0;i<TOTALHEIGHT;i++){
+                            for(int j=0;j<TOTALWIDTH;j++){
+                                if(gridButtons[i][j].getIcon()==blackPiece||gridButtons[i][j].getIcon()==whiteToBlackPiece){
+                                    gridButtons[i][j].setIcon(blackWinningPiece);
+                                }
+                            }
                         }
                     }
                 }
-            }else{
-                for(int i=0;i<TOTALHEIGHT;i++){
-                    for(int j=0;j<TOTALWIDTH;j++){
-                        if(gridButtons[i][j].getIcon()==blackPiece||gridButtons[i][j].getIcon()==whiteToBlackPiece){
-                            gridButtons[i][j].setIcon(blackWinningPiece);
-                        }
-                    }
-                }
-            }
-            
+            }).start();
         }
 
         /**
