@@ -38,6 +38,8 @@ import javax.swing.KeyStroke;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
+// The reason the gifs are getting frozen is because when the same image file is flushed, it freezes the position of the current gif image.
+
 public class OthelloGameGUI extends GameGUI {
     JFrame window;
 	/** 
@@ -558,8 +560,10 @@ public class OthelloGameGUI extends GameGUI {
                 
                 if(gameCheck.getPlayer1Score()>gameCheck.getPlayer2Score()){
 				    winner = PLAYER_ONE;
-                }else{
+                }else if (gameCheck.getPlayer1Score()<gameCheck.getPlayer2Score()) {
                     winner = PLAYER_TWO;
+                } else {
+                    winner = DRAW;
                 }
             }
             if(gameCheck.getPlayer1Score()==0||gameCheck.getPlayer2Score()==0){
@@ -588,7 +592,10 @@ public class OthelloGameGUI extends GameGUI {
                 System.out.println("m_player2Name");
                 displayPlayAgain("play again?");
             } else if (winner == DRAW) {
-                // This is not possible at the moment - implement above.
+                
+                displayWinner(m_player1Name + " and " + m_player2Name);
+                System.out.println("Draw");
+                displayPlayAgain("play again?");
             }
         }
 
