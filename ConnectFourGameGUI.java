@@ -105,9 +105,10 @@ public class ConnectFourGameGUI extends GameGUI {
         JMenu menu = new JMenu("Menu");
         add(menu);
         JMenuItem newGameButton = new JMenuItem("New Game");
+        JMenuItem saveGameButton = new JMenuItem("Save Game");
         menu.add(newGameButton);
-        menu.add(new JMenuItem("Pause Game"));
-        menu.add(new JMenuItem("Save Game"));
+        menu.add(saveGameButton);
+        menu.add(new JMenuItem("Pause game"));
         JMenuBar menuBar = new JMenuBar();
         menuBar.add(menu);
         setJMenuBar(menuBar);
@@ -126,6 +127,13 @@ public class ConnectFourGameGUI extends GameGUI {
             }
         });
 
+        saveGameButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                    System.out.println("save game clicked");
+                    new Connect4GameSaver("C:\\Users\\Ieuan\\Desktop\\save.xml");
+            }
+        });
+        
         //Add window listener (listens for window close event)
         addWindowListener(new WindowAdapter() {         
             public void windowClosing(WindowEvent e) {

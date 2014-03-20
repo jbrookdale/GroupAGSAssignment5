@@ -55,7 +55,7 @@ public abstract class GameGUI extends GUI{
     	return m_Timer;
     }
     
-    public int getTime(){
+    public static int getTime(){
     	return m_Time;
     }
     
