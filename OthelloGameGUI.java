@@ -524,7 +524,7 @@ public class OthelloGameGUI extends GameGUI {
                    gridButtons[x][y].setIcon(blackPiece);
                    OthelloPiece piecesToSwap[][] = gameCheck.board.setPieces();
 
-                   player2DoSwapPieces(piecesToSwap[][]);
+                   player2DoSwapPieces(piecesToSwap);
                    
                    gameCheck.setPlayer2Score(1);
                    gameCheck.board.clearPieces();
