@@ -5,7 +5,7 @@ public class GameSaver extends GameIOHandler {
 	
 	public GameSaver(String fileName){
 		setFileName(fileName);
-		
+		setPlayerName();
 	}
 	
 	public void setFileName(String fileName){
@@ -14,5 +14,10 @@ public class GameSaver extends GameIOHandler {
 	
 	public String getFileName(){
 		return m_Filename;
+	}
+	
+	public static void setPlayerName(){
+		String playerOneName = Game.getPlayerName(-1);
+		String playerTwoName = Game.getPlayerName(2);
 	}
 }

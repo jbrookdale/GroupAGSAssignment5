@@ -22,7 +22,7 @@ public abstract class Game<C> {
     protected Board m_Board;
 
     /**< This is an array of the players in the game of player objects */
-    protected Player[] m_player;
+    protected static Player[] m_player;
     
     /**< This actual board that is visible to the players */
     protected GameGUI m_GameGUI;
@@ -44,7 +44,7 @@ public abstract class Game<C> {
      *           the name needed to be returned.
      * @return String -The name of the player, either player one or two.
      */
-     public String getPlayerName(int x) {
+     public static String getPlayerName(int x) {
          if (x < PLAYER_ONE) {
              x = PLAYER_ONE;
          }
