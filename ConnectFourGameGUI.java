@@ -167,7 +167,7 @@ public class ConnectFourGameGUI extends GameGUI {
                 int x = Math.round(mouseX / ConnectFourPanel.Y_SPACING);
 
                 if (x > BOARD_WIDTH) {
-                    x = BOARD_WIDTH;
+                    x = BOARD_WIDTH - 1;
                 }
 
                 if (game.move(x, BOARD_HEIGHT, panel.getCurrentPiece()
