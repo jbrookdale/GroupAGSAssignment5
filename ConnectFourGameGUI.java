@@ -78,15 +78,11 @@ public class ConnectFourGameGUI extends GameGUI {
         //Call super class constructor
         super(WINDOW_TITLE, WINDOW_WIDTH, WINDOW_HEIGHT);
 
-        //Old way to Initialize the game
-        //game = new ConnectFourGame(playerOneName, Game.HUMAN, 
-            //Piece.ConnectFourPieceColour.YELLOW, playerTwoName, Game.HUMAN, 
-            //Piece.ConnectFourPieceColour.RED);
         game = new ConnectFourGame(new HumanPlayer(playerOneName,
                                                    Piece.
                                                        ConnectFourPieceColour.
                                                            YELLOW),
-                                   new HumanPlayer(playerTwoName,
+                               new ConnectFourEasyComputerPlayer(playerTwoName, ///////////////// Player Declaration, this is where the players are made
                                                    Piece.
                                                        ConnectFourPieceColour.
                                                            RED));    
@@ -173,6 +169,7 @@ public class ConnectFourGameGUI extends GameGUI {
             if ((!game.gameWon() && !game.boardIsFull()) 
                     && !panel.animationThread.isAlive()) {
                 int x = Math.round(mouseX / ConnectFourPanel.Y_SPACING);
+                        
 
                 if (x > BOARD_WIDTH) {
                     x = BOARD_WIDTH - 1;

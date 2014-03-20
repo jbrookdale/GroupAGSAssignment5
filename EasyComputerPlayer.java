@@ -1,8 +1,8 @@
 import java.awt.Point;
 
-class EasyComputerPlayer extends ComputerPlayer {
+class EasyComputerPlayer <C> extends ComputerPlayer {
     
-    public EasyComputerPlayer(String newName, Object newPlayerColour) {
+    public EasyComputerPlayer(String newName, C newPlayerColour) {
 		super(newName, newPlayerColour);
 		
 	}
