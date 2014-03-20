@@ -1,3 +1,5 @@
+import java.awt.Point;
+
 class EasyComputerPlayer extends ComputerPlayer {
     
     public EasyComputerPlayer(String newName, Object newPlayerColour) {
@@ -5,7 +7,8 @@ class EasyComputerPlayer extends ComputerPlayer {
 		
 	}
 
-    public static int move(ConnectFourBoard board){
+    public static Point move(ConnectFourBoard board){
+		return null;
     
     }
 

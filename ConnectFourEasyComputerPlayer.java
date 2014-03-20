@@ -12,18 +12,14 @@ class ConnectFourEasyComputerPlayer extends EasyComputerPlayer {
 
 	public static void main(String[] args) {
         // Tests go here
-    	randomMove();
+    	
     }
   
-	// not sure how this is going to work
-    // method is to generate random move, 
-	//the move method will check if the generated position is a valid move and there are valid move
-	//if true move else report invalid move and call the method again
     public static Point move(ConnectFourBoard board){
         Random r = new Random( );
         int Position;
         i = r.nextInt(WIDTH);
-        while (!board.getPieces[i][7] == Piece.ConnectFourPieceColour EMPTY_PIECE) {
+        while (!(board.getPieces()[i][HEIGHT] == Piece.ConnectFourPieceColour EMPTY_PIECE)) {
             i = r.nextInt(WIDTH);
         }
          System.out.println(i);
