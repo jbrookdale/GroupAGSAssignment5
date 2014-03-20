@@ -5,6 +5,10 @@ class EasyComputerPlayer extends ComputerPlayer {
 		
 	}
 
+    public static int move(ConnectFourBoard board){
+    
+    }
+
 	public static void main(String[] args) {
         // Tests go here
     }
