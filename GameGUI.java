@@ -63,7 +63,7 @@ public abstract class GameGUI extends GUI{
     	m_Time = time;
     }
     
-    protected void setTimerLabel(){
+    public void setTimerLabel(){
     	m_TimerLabel = new JLabel("Time elapsed: " + 
     String.format("%02d",(getTime() / 3600) % 60) + ":" + 
     String.format("%02d",(getTime() / 60) % 60) + ":" + 
@@ -75,7 +75,7 @@ public abstract class GameGUI extends GUI{
     	return m_TimerLabel;
     }
     
-    protected void resetTimer(){
+    public void resetTimer(){
     	setTime(0);
     	getTimerLabel().setText("Time elapsed: " + 
     String.format("%02d",(getTime() / 3600) % 60) + ":" + 
@@ -84,7 +84,7 @@ public abstract class GameGUI extends GUI{
     	startTimer();
     }
     
-    protected void startTimer(){
+    public void startTimer(){
     	ActionListener actListener = new ActionListener(){
     		public void actionPerformed(ActionEvent event){
     			setTime(getTime() + 1);
