@@ -21,17 +21,14 @@ class ConnectFourEasyComputerPlayer extends EasyComputerPlayer {
 	//if true move else report invalid move and call the method again
     public static Point move(ConnectFourBoard board){
         Random r = new Random( );
-        int Position;// = new int[WIDTH][HEIGHT];
+        int Position;
         i = r.nextInt(WIDTH);
         while (!board.getPieces[i][7] == Piece.ConnectFourPieceColour EMPTY_PIECE) {
             i = r.nextInt(WIDTH);
         }
-          
-          //j = r.nextInt(7);
-         //movePosition[i][j] =Position[i][j];
-         //System.out.println( j);
          System.out.println(i);
-       return new Point(i,7);
+        Point movePosition = new Point(i,7);
+       return movePosition;
     }
     
 	/**< constant for the size of the board in x direction */ 
@@ -40,8 +37,6 @@ class ConnectFourEasyComputerPlayer extends EasyComputerPlayer {
 	/**< constant for the size of the board in y direction */ 
 	private static final int HEIGHT = 7; 
 	
-	static int movePosition [][] = new int[WIDTH][HEIGHT];
 	private static int i;
-	private static int j;
 	
 }
