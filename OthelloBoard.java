@@ -22,9 +22,9 @@ public class OthelloBoard extends Board <Piece.OthelloPieceColour,OthelloPiece> 
 	 
 	
 	// creates an object of Piece which contains a white piece
-	 private final OthelloPiece WHITE_PIECE = new OthelloPiece(Piece.OthelloPieceColour.WHITE);
+	 private final static OthelloPiece WHITE_PIECE = new OthelloPiece(Piece.OthelloPieceColour.WHITE);
        // creates an object of Piece which contains a black piece 
-	 private final OthelloPiece BLACK_PIECE = new OthelloPiece(Piece.OthelloPieceColour.BLACK);
+	 private final static OthelloPiece BLACK_PIECE = new OthelloPiece(Piece.OthelloPieceColour.BLACK);
        // creates an object of Piece which contains 
 	 private final OthelloPiece NONE_PIECE = new OthelloPiece(Piece.OthelloPieceColour.NONE);
 	 
@@ -53,8 +53,6 @@ public class OthelloBoard extends Board <Piece.OthelloPieceColour,OthelloPiece> 
      
      private static final int OUTPUT_DECPIECE_TEST_X = 0; //expected x and y coordinates from output in decPiece test
      private static final int OUTPUT_DECPIECE_TEST_Y = 3;
-     
-     
 
 /**
 * This is the constructor to make the Othello Board
@@ -64,6 +62,7 @@ public class OthelloBoard extends Board <Piece.OthelloPieceColour,OthelloPiece> 
 
 	private OthelloPiece[][] piecesToSwap = new OthelloPiece[HEIGHT][WIDTH];
 	
+	static OthelloPiece[][] m_Pieces = new OthelloPiece[8][8];
 	
 /**	
 * This is the constructor for the OthelloBoard class.
@@ -73,12 +72,12 @@ public class OthelloBoard extends Board <Piece.OthelloPieceColour,OthelloPiece> 
 */	
 	public OthelloBoard (int height, int width){
             super(height, width);
-            m_Pieces = new OthelloPiece[WIDTH][HEIGHT];
             m_PieceCount+=4;
             
        }
 
-
+	
+	
  /**
 *
 * This sets the position of the piece the player has chosen to move to 
@@ -327,8 +326,8 @@ public boolean setPiece (int x, int y, OthelloPiece colour) {
 *@return m_Pieces - this is an array holding all the pieces on the board
 */
 
-    	public OthelloPiece[][] getPieces() {
-       	 return m_Pieces;
+    	public static OthelloPiece[][] getPieces() {
+       	 	return m_Pieces;
     	}
 
 

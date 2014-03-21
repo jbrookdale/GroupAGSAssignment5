@@ -76,7 +76,14 @@ public class OthelloGameGUI extends GameGUI {
 		startTimer();
 	}
 	
-
+	public static String getPlayerName(int x){
+		if(x == 0){
+			return m_player1Name;
+		}else{
+			return m_player2Name;
+		}
+	}
+	
 	/**
 	 * This gets the height of the board
 	 * @param height -height of the board
@@ -284,9 +291,9 @@ public class OthelloGameGUI extends GameGUI {
 
 	private JLabel[][] m_pieceLabels; /**< array variable storing all the pieces on the board to be displayed */ 
 	//private JLabel m_player1Name; /**< variable storing player one's name to be displayed */ 
-	private String m_player1Name;
+	private static String m_player1Name;
 	//private JLabel m_player2Name; /**< variable storing player two's name to be displayed */ 
-	private String m_player2Name;
+	private static String m_player2Name;
 	private JLabel m_player1Score; /**< variable storing player one's score to be displayed */ 
 	private JLabel m_player2Score; /**< variable storing player two's score to be displayed */ 
 	private String m_player1Type= "Human";/**< variable storing player one's type*/ 

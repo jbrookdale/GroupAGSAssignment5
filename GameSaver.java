@@ -42,15 +42,15 @@ public class GameSaver extends GameIOHandler {
 			setRootElement();
 			
 			setGameTypeElement();
-			//setTimeElement();
-			//setPlayerTurnElement();
+			setTimeElement();
+			setPlayerTurnElement();
 			
-			//initPlayerElement();
-			//setPlayerName();
-			//setPlayerType();
-			//setColour();
-			//setPlayerPieceCount();
-			//setPieces();
+			initPlayerElement();
+			setPlayerName();
+			setPlayerType();
+			setColour();
+			setPlayerPieceCount();
+			setPieces();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -118,18 +118,7 @@ public class GameSaver extends GameIOHandler {
 		m_doc.appendChild(m_rootElement);
 	}
 	
-	public static void setPlayerName(){
-		String playerOneName = Game.getPlayerName(-1);
-		String playerTwoName = Game.getPlayerName(2);
-		Element p1Name = m_doc.createElement("name");
-		Element p2Name = m_doc.createElement("name");
-		
-		p1Name.appendChild(m_doc.createTextNode(playerOneName));
-		p2Name.appendChild(m_doc.createTextNode(playerTwoName));
-	
-		m_playerOne.appendChild(p1Name);
-		m_playerTwo.appendChild(p2Name);
-	}
+	public void setPlayerName(){}
 	
 	public void writeFile(){
 		m_transformerFactory = TransformerFactory.newInstance();
@@ -150,7 +139,7 @@ public class GameSaver extends GameIOHandler {
 		System.out.println("File saved!");
 	}
 	
-	public Element getPlayers(int x){
+	public static Element getPlayers(int x){
 		if(x == 0){
 			return m_playerOne;
 		}else{

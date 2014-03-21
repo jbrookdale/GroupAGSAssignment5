@@ -148,14 +148,6 @@ public class ConnectFourBoard extends Board<Piece.ConnectFourPieceColour,
 		}
 	}
 	
-	public static Piece.ConnectFourPieceColour getRedPiece(){
-		return RED_PIECE;
-	}
-	
-	public static Piece.ConnectFourPieceColour getYellowPiece(){
-		return YELLOW_PIECE;
-	}
-	
 	/** 
 	* This is the method for setting a piece on the board from the users input.
 	*

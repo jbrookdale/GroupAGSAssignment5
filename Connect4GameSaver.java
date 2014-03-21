@@ -5,6 +5,19 @@ public class Connect4GameSaver extends GameSaver{
 		super(fileName);
 	}
 
+	public void setPlayerName(){
+		String playerOneName = Game.getPlayerName(-1);
+		String playerTwoName = Game.getPlayerName(2);
+		Element p1Name = getDoc().createElement("name");
+		Element p2Name = getDoc().createElement("name");
+		
+		p1Name.appendChild(getDoc().createTextNode(playerOneName));
+		p2Name.appendChild(getDoc().createTextNode(playerTwoName));
+	
+		getPlayers(0).appendChild(p1Name);
+		getPlayers(1).appendChild(p2Name);
+	}
+	
 	public void setGameTypeElement(){
 		Element gametype = getDoc().createElement("gametype");
 		gametype.appendChild(getDoc().createTextNode("Connect4"));
@@ -23,7 +36,7 @@ public class Connect4GameSaver extends GameSaver{
 		
 		for(int j = 0; j < piecesToBeSaved[0].length; j++){
 			for(int i = 0; i < piecesToBeSaved.length; i++){
-				if(piecesToBeSaved[i][j].getPieceColour() == ConnectFourBoard.getRedPiece()){
+				if(piecesToBeSaved[i][j].getPieceColour() == Piece.ConnectFourPieceColour.RED){
 					Element x = getDoc().createElement("x");
 					x.appendChild(getDoc().createTextNode(i + ""));
 					Element y = getDoc().createElement("y");
@@ -31,7 +44,7 @@ public class Connect4GameSaver extends GameSaver{
 					
 					redPiece.appendChild(x);
 					redPiece.appendChild(y);
-				}else if(piecesToBeSaved[i][j].getPieceColour() == ConnectFourBoard.getYellowPiece()){
+				}else if(piecesToBeSaved[i][j].getPieceColour() == Piece.ConnectFourPieceColour.YELLOW){
 					Element x = getDoc().createElement("x");
 					x.appendChild(getDoc().createTextNode(i + ""));
 					Element y = getDoc().createElement("y");
