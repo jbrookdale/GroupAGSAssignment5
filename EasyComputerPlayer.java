@@ -1,11 +1,14 @@
-class EasyComputerPlayer extends ComputerPlayer {
+import java.awt.Point;
+
+class EasyComputerPlayer <C> extends ComputerPlayer {
     
-    public EasyComputerPlayer(String newName, Object newPlayerColour) {
+    public EasyComputerPlayer(String newName, C newPlayerColour) {
 		super(newName, newPlayerColour);
 		
 	}
 
-    public static int move(ConnectFourBoard board){
+    public static Point move(ConnectFourBoard board){
+		return null;
     
     }
 

@@ -1,5 +1,5 @@
 import java.awt.Point;
-class ConnectFourHardComputerPlayer {
+class ConnectFourHardComputerPlayer <C> extends HardComputerPlayer {
 
     private int numPieces;
     private static final int maxPieces = 70, Empty = 2;

@@ -2,31 +2,30 @@ import java.util.Arrays;
 import java.util.Random;
 import java.awt.Point;
 
-class ConnectFourEasyComputerPlayer extends EasyComputerPlayer {
+class ConnectFourEasyComputerPlayer <C> extends EasyComputerPlayer {
 
 	
-    public ConnectFourEasyComputerPlayer(String newName, Object newPlayerColour) {
+    public ConnectFourEasyComputerPlayer(String newName, C newPlayerColour) {
 		super(newName, newPlayerColour);
 	}
 
 
 	public static void main(String[] args) {
         // Tests go here
-    	randomMove();
+    	
     }
   
-	// not sure how this is going to work
-    // method is to generate random move, 
-	//the move method will check if the generated position is a valid move and there are valid move
-	//if true move else report invalid move and call the method again
     public static Point move(ConnectFourBoard board){
         Random r = new Random( );
         int Position;
         i = r.nextInt(WIDTH);
-        while (!board.getPieces[i][7] == Piece.ConnectFourPieceColour EMPTY_PIECE) {
+        // I didn't realise Piece.ConnectFourPiece EMPTY_PIECE was private - Jon
+        // The new while condition is what the ConnectFourGameGUI uses to check for full rows.
+        //while (!(board.getPieces()[i][HEIGHT] == Piece.ConnectFourPieceColour EMPTY_PIECE)) {
+        while(board.getLowestEmptySlot(i) < HEIGHT) {
             i = r.nextInt(WIDTH);
         }
-         System.out.println(i);
+        System.out.println(i);
         Point movePosition = new Point(i,7);
        return movePosition;
     }

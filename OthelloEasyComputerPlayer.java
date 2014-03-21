@@ -1,4 +1,7 @@
-class OthelloEasyComputerPlayer extends EasyComputerPlayer{
+import java.awt.Point;
+import java.util.Random;
+
+class OthelloEasyComputerPlayer <C> extends EasyComputerPlayer{
     
     public OthelloEasyComputerPlayer(String newName, Object newPlayerColour) {
 		super(newName, newPlayerColour);
@@ -14,7 +17,7 @@ class OthelloEasyComputerPlayer extends EasyComputerPlayer{
         int Position;
         i = r.nextInt(WIDTH);
         j = r.nextInt(HEIGHT);
-        while (!board.getPieces[i][j] == Piece.ConnectFourPieceColour EMPTY_PIECE) {
+        while (!(board.getPieces()[i][j] == Piece.ConnectFourPieceColour.EMPTY_PIECE)) {
             i = r.nextInt(WIDTH);
             j = r.nextInt(HEIGHT);
         }

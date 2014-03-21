@@ -1,4 +1,4 @@
-class OthelloHardComputerPlayer {
+class OthelloHardComputerPlayer <C> extends HardComputerPlayer {
     
 
 
