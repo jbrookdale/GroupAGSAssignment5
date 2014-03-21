@@ -21,6 +21,7 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.awt.event.WindowListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -270,8 +271,8 @@ public class MenuGUI extends GUI {
     		m_ComboPlayer1Colour.addItem("Red");
     		m_ComboPlayer1Colour.addItem("Yellow");
     		
-    		m_ComboPlayer2Colour.addItem("Red");
     		m_ComboPlayer2Colour.addItem("Yellow");
+    		m_ComboPlayer2Colour.addItem("Red");
     		
     	} else if(getGameType()==OTHELLO) {
     		System.out.println("chosen othello");
@@ -282,8 +283,8 @@ public class MenuGUI extends GUI {
     		m_ComboPlayer1Colour.addItem("Black");
     		m_ComboPlayer1Colour.addItem("White");
     		
-    		m_ComboPlayer2Colour.addItem("Black");
     		m_ComboPlayer2Colour.addItem("White");
+    		m_ComboPlayer2Colour.addItem("Black");
     	}
     	
     }
@@ -309,17 +310,35 @@ public class MenuGUI extends GUI {
 		
 		m_ComboPlayer2Colour = new JComboBox();
 		
-		m_ComboPlayer1Mode.addActionListener (new ActionListener () {
-		    public void actionPerformed(ActionEvent e) {
-		        if ("Red".equals(m_ComboPlayer1Mode.getSelectedItem())){
-		        	m_ComboPlayer2Mode.setSelectedIndex(0);    
-		        } else {
-		        	m_ComboPlayer2Mode.setSelectedIndex(1);   
-		        }
-		    }
+		m_ComboPlayer1Colour.addActionListener (new ActionListener () {
+		public void actionPerformed(ActionEvent e) {
+	        if ("Red".equals(m_ComboPlayer1Colour.getSelectedItem())){
+	        	m_ComboPlayer2Colour.setSelectedItem("Yellow");   
+	        } else if ("Yellow".equals(m_ComboPlayer1Colour.getSelectedItem())) {
+	        	m_ComboPlayer2Colour.setSelectedItem("Red");      
+	        } else if ("Black".equals(m_ComboPlayer1Colour.getSelectedItem())) {
+	        	m_ComboPlayer2Colour.setSelectedItem("White");      
+	        } else if ("White".equals(m_ComboPlayer1Colour.getSelectedItem())) {
+	        	m_ComboPlayer2Colour.setSelectedItem("Black");      
+	        }
+	    }
 		});
 		
-
+		m_ComboPlayer2Colour.addActionListener (new ActionListener () {
+		public void actionPerformed(ActionEvent e) {
+		    if ("Red".equals(m_ComboPlayer2Colour.getSelectedItem())){
+		        	m_ComboPlayer1Colour.setSelectedItem("Yellow");   
+		    } else if ("Yellow".equals(m_ComboPlayer2Colour.getSelectedItem())) {
+	        	m_ComboPlayer1Colour.setSelectedItem("Red");      
+	        } else if ("Black".equals(m_ComboPlayer2Colour.getSelectedItem())) {
+	        	m_ComboPlayer1Colour.setSelectedItem("White");      
+	        } else if ("White".equals(m_ComboPlayer2Colour.getSelectedItem())) {
+	        	m_ComboPlayer1Colour.setSelectedItem("Black");      
+	        }
+		}
+		});
+		
+		
         m_InputScreen = new JPanel(new GridBagLayout());
         
 		m_InputLabel = new JLabel("Player Setup");
@@ -552,22 +571,24 @@ public class MenuGUI extends GUI {
 			    m_ConnectFourButton.setEnabled(false);
 			    m_OthelloButton.setEnabled(false);
 			    setGameType(CONNECT);
+			    ComboBoxes();
                 m_ButtonPanel.setVisible(false);
                 m_SelectPanel.setVisible(false);
                 m_InputScreen.setVisible(true);
                 m_MainMenu.setTitle("Connect Four Setup");
-                ComboBoxes();
+                
 				
 			} else if(event.getSource() == m_OthelloButton) {
 				
 			    m_ConnectFourButton.setEnabled(false);
 			    m_OthelloButton.setEnabled(false);
 			    setGameType(OTHELLO);
+			    ComboBoxes();
                 m_ButtonPanel.setVisible(false);
                 m_SelectPanel.setVisible(false);
                 m_InputScreen.setVisible(true);
                 m_MainMenu.setTitle("Othello Setup");
-                ComboBoxes();
+                
 
 			} else if(event.getSource() == m_PlayerOK){
 			
