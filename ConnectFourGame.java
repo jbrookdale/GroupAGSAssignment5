@@ -13,7 +13,7 @@
 
 public class ConnectFourGame extends Game<Piece.ConnectFourPieceColour> {
 
-	private ConnectFourBoard m_board;
+	private static ConnectFourBoard m_board;
 
     public int getLowestEmptySlot(int x) {
         return m_board.getLowestEmptySlot(x);
@@ -23,6 +23,10 @@ public class ConnectFourGame extends Game<Piece.ConnectFourPieceColour> {
 	public ConnectFourPiece[][] getPieces() {
 		return m_board.getPieces();
 	}
+
+    public static ConnectFourBoard getBoard() {
+        return m_board;
+    }
 	
 	/**
 	* Constructor for ConnectFourGame. This is used to instantiate 
@@ -30,7 +34,7 @@ public class ConnectFourGame extends Game<Piece.ConnectFourPieceColour> {
 	* @param n1 -an integer
 	* @return TRUE if successful
 	*/
-	public ConnectFourGame(Player playerOne, Player playerTwo) { // This needs to be changed to only take 5 parameters or less - Jon
+	public ConnectFourGame(Player playerOne, Player playerTwo) {
 	
         super(playerOne, playerTwo);
 

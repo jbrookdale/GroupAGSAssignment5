@@ -68,6 +68,8 @@ public class ConnectFourGameGUI extends GameGUI {
     /**< Stores an instance of ConnectFourGame */
     private ConnectFourGame game;
     
+    private int TOTAL_PLAYERS = 2;
+    
     /**
     * Constructor for ConnectFourGameGUI
     * @param playerOneName - String representation of player one's name
@@ -85,8 +87,7 @@ public class ConnectFourGameGUI extends GameGUI {
                                new ConnectFourEasyComputerPlayer(playerTwoName,
                                                    Piece.
                                                        ConnectFourPieceColour.
-                                                           RED));    
-            
+                                                           RED));
         
         panel = new ConnectFourPanel(game.getPieces());
         panel.updatePieces(game.getPieces());
@@ -169,7 +170,11 @@ public class ConnectFourGameGUI extends GameGUI {
             if ((!game.gameWon() && !game.boardIsFull()) 
                     && !panel.animationThread.isAlive()) {
                 int x = Math.round(mouseX / ConnectFourPanel.Y_SPACING);
-                        
+                
+                System.out.println("Player type: " + game.getPlayer(game.getPlayerTurn() % TOTAL_PLAYERS).getPlayerType());
+                if (game.getPlayer(game.getPlayerTurn() % TOTAL_PLAYERS).getPlayerType().equals("Computer")) {
+                    x = (int)game.getPlayer(game.getPlayerTurn() % TOTAL_PLAYERS).move(game.getBoard()).getX();
+                }
 
                 if (x > BOARD_WIDTH) {
                     x = BOARD_WIDTH - 1;
@@ -233,6 +238,7 @@ public class ConnectFourGameGUI extends GameGUI {
                 displayDraw();
                 getTimer().stop();
             }
+            game.incrementTurn();
         }
 
         //Currently unused, but must be declared
@@ -298,7 +304,7 @@ public class ConnectFourGameGUI extends GameGUI {
                                            Piece.
                                                ConnectFourPieceColour.
                                                    YELLOW),
-                           new HumanPlayer(game.getPlayerName(Game.PLAYER_TWO),
+                           new ConnectFourEasyComputerPlayer(game.getPlayerName(Game.PLAYER_TWO),
                                            Piece.
                                                ConnectFourPieceColour.
                                                    RED));  
