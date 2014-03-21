@@ -47,8 +47,9 @@ public class GameSaver extends GameIOHandler {
 			
 			initPlayerElement();
 			setPlayerName();
-			
+			setPlayerType();
 			setColour();
+			setPlayerPieceCount();
 			setPieces();
 			
 		} catch (Exception e) {
@@ -63,7 +64,21 @@ public class GameSaver extends GameIOHandler {
 	
 	public void setColour(){}
 	
-	public void setPlayerType(){}
+	public void setPlayerPieceCount(){}
+	
+	public void setPlayerType(){
+		String p1Type = Game.getPlayer(0).getPlayerType();
+		String p2Type = Game.getPlayer(1).getPlayerType();
+		
+		Element playerOneType = m_doc.createElement("type");
+		Element playerTwoType = m_doc.createElement("type");
+		
+		playerOneType.appendChild(m_doc.createTextNode(p1Type));
+		playerTwoType.appendChild(m_doc.createTextNode(p2Type));	
+		
+		m_playerOne.appendChild(playerOneType);
+		m_playerTwo.appendChild(playerTwoType);
+	}
 	
 	public void setPieceCount(){}
 	
