@@ -261,7 +261,32 @@ public class MenuGUI extends GUI {
 		return true;
 
 	}
-    
+    private void ComboBoxes(){
+    	if(getGameType()== CONNECT) {
+    		System.out.println("chosen connect 4");
+    		m_ComboPlayer1Colour.removeAllItems();
+    		m_ComboPlayer2Colour.removeAllItems();
+    		
+    		m_ComboPlayer1Colour.addItem("Red");
+    		m_ComboPlayer1Colour.addItem("Yellow");
+    		
+    		m_ComboPlayer2Colour.addItem("Red");
+    		m_ComboPlayer2Colour.addItem("Yellow");
+    		
+    	} else if(getGameType()==OTHELLO) {
+    		System.out.println("chosen othello");
+    		
+    		m_ComboPlayer1Colour.removeAllItems();
+    		m_ComboPlayer2Colour.removeAllItems();
+    		
+    		m_ComboPlayer1Colour.addItem("Black");
+    		m_ComboPlayer1Colour.addItem("White");
+    		
+    		m_ComboPlayer2Colour.addItem("Black");
+    		m_ComboPlayer2Colour.addItem("White");
+    	}
+    	
+    }
     /**
     * This method changes the current screen to allow user to input the two 
     * player names after they have selected a game to play.
@@ -272,26 +297,17 @@ public class MenuGUI extends GUI {
 	*/
 	private boolean InputScreen() {
 		
-		String[] playerNames = { "Human", "Computer: Easy", "Computer: Medium", "Computer: Hard"};
-		
-		
-		String[] connect4Colours = {"Red", "Yellow"};
-		
-		String[] othelloColours = {"Black", "White"};
-
-		
-		m_ComboPlayer1Mode = new JComboBox(playerNames);
+				
+		m_ComboPlayer1Mode = new JComboBox(m_PlayerNames);
 		m_ComboPlayer1Mode.setSelectedIndex(0);
 		//playerModes.addActionListener(this);
 		
-		m_ComboPlayer2Mode = new JComboBox(playerNames);
+		m_ComboPlayer2Mode = new JComboBox(m_PlayerNames);
 		m_ComboPlayer2Mode.setSelectedIndex(0);
 		
-		m_ComboPlayer1Colour = new JComboBox(connect4Colours);
-		m_ComboPlayer1Colour.setSelectedIndex(0);
+		m_ComboPlayer1Colour = new JComboBox();
 		
-		m_ComboPlayer2Colour = new JComboBox(connect4Colours);
-		m_ComboPlayer2Colour.setSelectedIndex(0);
+		m_ComboPlayer2Colour = new JComboBox();
 		
 		m_ComboPlayer1Mode.addActionListener (new ActionListener () {
 		    public void actionPerformed(ActionEvent e) {
@@ -540,6 +556,7 @@ public class MenuGUI extends GUI {
                 m_SelectPanel.setVisible(false);
                 m_InputScreen.setVisible(true);
                 m_MainMenu.setTitle("Connect Four Setup");
+                ComboBoxes();
 				
 			} else if(event.getSource() == m_OthelloButton) {
 				
@@ -550,6 +567,7 @@ public class MenuGUI extends GUI {
                 m_SelectPanel.setVisible(false);
                 m_InputScreen.setVisible(true);
                 m_MainMenu.setTitle("Othello Setup");
+                ComboBoxes();
 
 			} else if(event.getSource() == m_PlayerOK){
 			
@@ -911,4 +929,7 @@ public class MenuGUI extends GUI {
 	
 	/**< This is used in the timer for the validation checks*/
 	private int m_Time;
+	
+	String[] m_PlayerNames = { "Human", "Computer: Easy", "Computer: Medium", "Computer: Hard"};
+	
 }
