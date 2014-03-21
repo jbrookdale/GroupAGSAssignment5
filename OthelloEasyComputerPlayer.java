@@ -3,7 +3,7 @@ import java.util.Random;
 
 class OthelloEasyComputerPlayer <C> extends EasyComputerPlayer{
     
-    public OthelloEasyComputerPlayer(String newName, Object newPlayerColour) {
+    public OthelloEasyComputerPlayer(String newName, C newPlayerColour) {
 		super(newName, newPlayerColour);
 		
 	}
@@ -12,12 +12,15 @@ class OthelloEasyComputerPlayer <C> extends EasyComputerPlayer{
         // Tests go here
     }
     
-    public static Point move(ConnectFourBoard board){
+    public Point move(OthelloBoard board){
         Random r = new Random( );
         int Position;
         i = r.nextInt(WIDTH);
         j = r.nextInt(HEIGHT);
-        while (!(board.getPieces()[i][j] == Piece.ConnectFourPieceColour.EMPTY_PIECE)) {
+        // Assuming their piece is white...
+        // Othello isn't using the HumanPlayer class at the moment...
+        // That fact may need to change...
+        while (!board.anyValid(i,j,new OthelloPiece(Piece.OthelloPieceColour.WHITE))) {
             i = r.nextInt(WIDTH);
             j = r.nextInt(HEIGHT);
         }
