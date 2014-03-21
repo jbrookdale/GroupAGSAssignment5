@@ -173,7 +173,9 @@ public class ConnectFourGameGUI extends GameGUI {
                 
                 System.out.println("Player type: " + game.getPlayer(game.getPlayerTurn() % TOTAL_PLAYERS).getPlayerType());
                 if (game.getPlayer(game.getPlayerTurn() % TOTAL_PLAYERS).getPlayerType().equals("Computer")) {
-                    x = (int)game.getPlayer(game.getPlayerTurn() % TOTAL_PLAYERS).move(game.getBoard()).getX();
+                    int playerTurn = game.getPlayerTurn();
+                    ConnectFourEasyComputerPlayer player = (ConnectFourEasyComputerPlayer) game.getPlayer(playerTurn % TOTAL_PLAYERS);
+                	x = (int)player.makeAIMove(game.getBoard()).getX();
                 }
 
                 if (x > BOARD_WIDTH) {

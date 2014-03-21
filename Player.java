@@ -1,3 +1,6 @@
+import java.awt.Component;
+import java.awt.Point;
+
 /**
  * @file    -Player.java
  * @author  -Thomas Vass

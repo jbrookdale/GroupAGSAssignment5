@@ -139,7 +139,7 @@ public boolean setPiece (int x, int y, OthelloPiece colour) {
 *
 **/   
 
-        public boolean anyMove (int x,int y, OthelloPiece colour){
+        boolean anyMove (int x,int y, OthelloPiece colour){
             boolean valid = false;
             if(move(x,y,VALID_MOVE_3,VALID_MOVE_2,colour)) valid=true;
             if(move(x,y,VALID_MOVE_3,VALID_MOVE_3,colour)) valid=true;

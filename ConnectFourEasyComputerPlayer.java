@@ -15,8 +15,8 @@ class ConnectFourEasyComputerPlayer <C> extends EasyComputerPlayer {
     	
     }
   
-    public Point move(ConnectFourBoard board){
-        Random r = new Random( );
+    public Point makeAIMove(ConnectFourBoard board){
+        Random r = new Random();
         int Position;
         i = r.nextInt(WIDTH);
         while(!(board.getLowestEmptySlot(i) < HEIGHT)) {

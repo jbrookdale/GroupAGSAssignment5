@@ -13,7 +13,7 @@
 
 public class ConnectFourGame extends Game<Piece.ConnectFourPieceColour> {
 
-	private static ConnectFourBoard m_board;
+	private ConnectFourBoard m_board;
 
     public int getLowestEmptySlot(int x) {
         return m_board.getLowestEmptySlot(x);
@@ -24,7 +24,7 @@ public class ConnectFourGame extends Game<Piece.ConnectFourPieceColour> {
 		return m_board.getPieces();
 	}
 
-    public static ConnectFourBoard getBoard() {
+    public ConnectFourBoard getBoard() {
         return m_board;
     }
 	
