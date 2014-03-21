@@ -17,6 +17,8 @@
 */
 
 public abstract class Game<C> {
+    
+    protected int m_PlayerTurn = 0;
 
     /**< This is the board of the current game */
     protected Board m_Board;
@@ -44,6 +46,19 @@ public abstract class Game<C> {
      *           the name needed to be returned.
      * @return String -The name of the player, either player one or two.
      */
+     
+     public void resetTurn() {
+        m_PlayerTurn = PLAYER_ONE;
+    }
+    
+    public void incrementTurn() {
+        m_PlayerTurn++;
+    }
+    
+    public int getPlayerTurn() {
+        return m_PlayerTurn;
+    }
+    
      public static String getPlayerName(int x) {
          if (x < PLAYER_ONE) {
              x = PLAYER_ONE;
