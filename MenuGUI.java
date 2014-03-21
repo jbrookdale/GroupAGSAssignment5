@@ -172,6 +172,26 @@ public class MenuGUI extends GUI {
 
 	}
 	
+	private boolean setPlayerOneColour(String playerOneColour) {
+		m_PlayerOneColour = playerOneColour;
+		return true;
+	}
+	
+	private boolean setPlayerTwoColour(String playerTwoColour) {
+		m_PlayerTwoColour = playerTwoColour;
+		return true;
+	}
+	
+	private boolean setPlayerOneType(String playerOneType) {
+		m_PlayerOneType = playerOneType;
+		return true;
+	}
+	
+	private boolean setPlayerTwoType(String playerTwoType) {
+		m_PlayerTwoType = playerTwoType;
+		return true;
+	}
+	
  	/**
 	* This method will return Player one name.
 	* 
@@ -194,6 +214,22 @@ public class MenuGUI extends GUI {
 	
 		return m_PlayerTwoName;
 
+	}
+	
+	public static String getPlayerTwoColour() {
+		return m_PlayerTwoColour;
+	}
+	
+	public static String getPlayerOneColour() {
+		return m_PlayerOneColour;
+	}
+	
+	public static String getPlayerOneType() {
+		return m_PlayerOneType;
+	}
+	
+	public static String getPlayerTwoType() {
+		return m_PlayerTwoType;
 	}
 
 	/**
@@ -301,7 +337,6 @@ public class MenuGUI extends GUI {
 				
 		m_ComboPlayer1Mode = new JComboBox(m_PlayerNames);
 		m_ComboPlayer1Mode.setSelectedIndex(0);
-		//playerModes.addActionListener(this);
 		
 		m_ComboPlayer2Mode = new JComboBox(m_PlayerNames);
 		m_ComboPlayer2Mode.setSelectedIndex(0);
@@ -594,13 +629,31 @@ public class MenuGUI extends GUI {
 			
 			    setPlayerOneName(m_PlayInputOne.getText());
 			    setPlayerTwoName(m_PlayInputTwo.getText());
+			    
+			    setPlayerOneColour(m_ComboPlayer1Colour.getSelectedItem().toString());
+			    setPlayerTwoColour(m_ComboPlayer2Colour.getSelectedItem().toString());
+			    
+			    setPlayerOneType(m_ComboPlayer1Mode.getSelectedItem().toString());
+			    setPlayerTwoType(m_ComboPlayer2Mode.getSelectedItem().toString());
+			    
 			    //m_MainMenu.dispose();	//Disposes the main menu
 				
 				if (getGameType() == CONNECT) {
 					//m_MainMenu.dispose();
-					ConnectFourGameGUI connectFour = 
-					    new ConnectFourGameGUI(m_PlayInputOne.getText(),
-	                    m_PlayInputTwo.getText());				
+					
+					String[] playerOneDetails = new String[3];
+					playerOneDetails[0] = m_PlayInputOne.getText();
+					playerOneDetails[1] = getPlayerOneType();
+					playerOneDetails[2] = getPlayerOneColour();
+					
+					String[] playerTwoDetails = new String[3];
+					playerTwoDetails[0] = m_PlayInputTwo.getText();
+					playerTwoDetails[1] = getPlayerTwoType();
+					playerTwoDetails[2] = getPlayerTwoColour();
+					
+					
+					ConnectFourGameGUI connectFour =
+					    new ConnectFourGameGUI(playerOneDetails, playerTwoDetails);				
 					
 				} else if(getGameType() == OTHELLO){
 					//m_MainMenu.dispose();
@@ -951,6 +1004,14 @@ public class MenuGUI extends GUI {
 	/**< This is used in the timer for the validation checks*/
 	private int m_Time;
 	
-	String[] m_PlayerNames = { "Human", "Computer: Easy", "Computer: Medium", "Computer: Hard"};
+	String[] m_PlayerNames = { "Human", "Computer: Easy", "Computer: Hard"};
+	
+	private static String m_PlayerOneColour;
+	
+	private static String m_PlayerTwoColour;
+	
+	private static String m_PlayerOneType;
+	
+	private static String m_PlayerTwoType;
 	
 }
