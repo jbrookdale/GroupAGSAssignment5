@@ -26,6 +26,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.net.URL;
 import java.util.Date;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -35,6 +36,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
+
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
@@ -69,6 +71,9 @@ public class OthelloGameGUI extends GameGUI {
             new ImageIcon(getClass().getResource("PieceWhiteToBlack75.gif"));
 		blackToWhitePiece = 
             new ImageIcon(getClass().getResource("PieceBlackToWhite75.gif"));
+		setTime(0);
+		setTimerLabel();
+		startTimer();
 	}
 	
 
@@ -165,6 +170,7 @@ public class OthelloGameGUI extends GameGUI {
 		window.setIconImage(new ImageIcon(this.getClass()
                 .getResource("Othello.jpeg")).getImage());
 		
+		window.add(getTimerLabel());
 		//window.add(m_player1Score);
 		//m_player1Score.setText(score.getPieceCount());
 		GUIHandler handler = new GUIHandler();
@@ -247,51 +253,30 @@ public class OthelloGameGUI extends GameGUI {
     * load,save, and pause have not been implemented in this version
     */  
 	private JMenuBar creatingMenu(){
-		menuBar = new JMenuBar();
-		mainMenu = new JMenu("Menu");
+		 	JMenu menu = new JMenu("Menu");
+	        add(menu);
+	        JMenuItem newGameButton = new JMenuItem("New Game");
+	        JMenuItem saveGameButton = new JMenuItem("Save Game");
+	        menu.add(newGameButton);
+	        menu.add(saveGameButton);
+	        menu.add(new JMenuItem("Pause game"));
+	        JMenuBar menuBar = new JMenuBar();
+	        menuBar.add(menu);
+	        setJMenuBar(menuBar);
 
-		mainMenu.setMnemonic(KeyEvent.VK_A);
-		mainMenu.getAccessibleContext();
-		menuBar.add(mainMenu);
-        javax.swing.JMenuItem newGame=new javax.swing.JMenuItem();
-        newGame.setText("New Game");
-        newGame.addActionListener(new ActionListener() { 
-        	public void actionPerformed(ActionEvent event){
-        		displayPlayAgain("play again?");
-        	}
-        });
-		mainMenu.add(newGame);
-		menuItem = new JMenuItem("Pause Game",
-				KeyEvent.VK_T);
+	        newGameButton.addActionListener(new ActionListener() {
+	            public void actionPerformed(ActionEvent event) {
+	                    System.out.println("new game clicked");
+	                    displayPlayAgain("Start new game?");
+	            }
+	        });
 
-		menuItem.setMnemonic(KeyEvent.VK_T); 
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(
-				KeyEvent.VK_1, ActionEvent.ALT_MASK));
-		menuItem.getAccessibleContext();
-
-		mainMenu.add(menuItem);
-
-		mainMenu.setMnemonic(KeyEvent.VK_A);
-		mainMenu.getAccessibleContext();
-		menuBar.add(mainMenu);
-		menuItem = new JMenuItem("Save Game",
-				KeyEvent.VK_T);
-		menuItem.setMnemonic(KeyEvent.VK_T); 
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(
-				KeyEvent.VK_1, ActionEvent.ALT_MASK));
-		menuItem.getAccessibleContext();
-		mainMenu.add(menuItem);
-
-		mainMenu.setMnemonic(KeyEvent.VK_A);
-		mainMenu.getAccessibleContext();
-		menuBar.add(mainMenu);
-		menuItem = new JMenuItem("Load Game",
-				KeyEvent.VK_T);
-		menuItem.setMnemonic(KeyEvent.VK_T); 
-		menuItem.setAccelerator(KeyStroke.getKeyStroke(
-				KeyEvent.VK_1, ActionEvent.ALT_MASK));
-		menuItem.getAccessibleContext();
-		mainMenu.add(menuItem);
+	        saveGameButton.addActionListener(new ActionListener() {
+	            public void actionPerformed(ActionEvent event) {
+	                    System.out.println("save game clicked");
+	                    new OthelloGameSaver("C:\\Users\\Ieuan\\Desktop\\OthelloTest.xml");
+	            }
+	        });
 		return menuBar;
 	}
 

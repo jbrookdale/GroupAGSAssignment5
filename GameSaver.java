@@ -42,15 +42,15 @@ public class GameSaver extends GameIOHandler {
 			setRootElement();
 			
 			setGameTypeElement();
-			setTimeElement();
-			setPlayerTurnElement();
+			//setTimeElement();
+			//setPlayerTurnElement();
 			
-			initPlayerElement();
-			setPlayerName();
-			setPlayerType();
-			setColour();
-			setPlayerPieceCount();
-			setPieces();
+			//initPlayerElement();
+			//setPlayerName();
+			//setPlayerType();
+			//setColour();
+			//setPlayerPieceCount();
+			//setPieces();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
