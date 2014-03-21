@@ -8,7 +8,7 @@ class ComputerPlayer <C> extends Player{
     
 
 	public ComputerPlayer(String newName, C newPlayerColour){
-    	super(newName,newPlayerColour);
+    	super(newName,newPlayerColour,"Computer");
     	
     	
     }

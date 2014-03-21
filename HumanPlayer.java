@@ -19,7 +19,7 @@ class HumanPlayer <C> extends Player{
 */	
 	
 	public HumanPlayer(String newName, C newPlayerColour){
-        	super(newName,newPlayerColour);
+        	super(newName,newPlayerColour,"Human");
 	}
 
 	

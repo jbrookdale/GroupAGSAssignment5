@@ -1,5 +1,3 @@
-/*--80 Characters Wide---------- Remove before Submitting --------------------*/
-
 /**
  * @file    -Player.java
  * @author  -Thomas Vass
@@ -21,10 +19,11 @@
 
 
 abstract class Player <C> {
-    String m_Name;
-    C m_connectFourPlayerColour;
+    private String m_Name;
+    private C m_connectFourPlayerColour;
     private int m_Score = 0;
-
+    private String m_PlayerType;
+    
     public String getName () {
         return m_Name;
     }
@@ -40,10 +39,14 @@ abstract class Player <C> {
         m_Score+=points;
     }
 
-    public Player (String newName, C newPlayerColour){
+    public Player (String newName, C newPlayerColour, String playerType){
         m_Name = newName;
         m_connectFourPlayerColour = newPlayerColour;
-
+        m_PlayerType = playerType;
+    }
+    
+    public String getPlayerType() {
+        return m_PlayerType;
     }
     	
      boolean move (int x, int y) {
