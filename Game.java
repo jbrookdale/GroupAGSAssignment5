@@ -69,6 +69,10 @@ public abstract class Game<C> {
          return m_player[x].getName();
      }
      
+     public static Player getPlayer(int x){
+    	 return m_player[x];
+     }
+     
      /**
       * This method returns the name of both players playing the game.
       *
@@ -127,18 +131,4 @@ public abstract class Game<C> {
     * @return boolean -If the method is successfully executed.
     */  
     abstract boolean move(int x, int y, C colour);
-    
-    /**
-     * This method handles the saving of the game.
-     */
-    void saveGame(String fileName){
-    	GameSaver saveGame = new GameSaver(fileName);
-    }
-    
-    /**
-     * This method handles the loading of the game.
-     */
-    void loadGame(String fileName){
-    	GameLoader loadGame = new GameLoader(fileName);
-    }
 }

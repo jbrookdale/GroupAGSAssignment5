@@ -48,6 +48,7 @@ public class GameSaver extends GameIOHandler {
 			initPlayerElement();
 			setPlayerName();
 			
+			setColour();
 			setPieces();
 			
 		} catch (Exception e) {
@@ -59,6 +60,12 @@ public class GameSaver extends GameIOHandler {
 	public void setGameTypeElement(){}
 	
 	public void setPieces(){}
+	
+	public void setColour(){}
+	
+	public void setPlayerType(){}
+	
+	public void setPieceCount(){}
 	
 	public static void setTimeElement(){
 		String gameTime = GameGUI.getTime() + "";

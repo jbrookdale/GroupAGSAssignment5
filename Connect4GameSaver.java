@@ -23,8 +23,6 @@ public class Connect4GameSaver extends GameSaver{
 		
 		for(int j = 0; j < piecesToBeSaved[0].length; j++){
 			for(int i = 0; i < piecesToBeSaved.length; i++){
-				System.out.println("Width:" + piecesToBeSaved.length);
-				System.out.println("Height:" + piecesToBeSaved[0].length);
 				if(piecesToBeSaved[i][j].getPieceColour() == ConnectFourBoard.getRedPiece()){
 					Element x = getDoc().createElement("x");
 					x.appendChild(getDoc().createTextNode(i + ""));
@@ -43,6 +41,22 @@ public class Connect4GameSaver extends GameSaver{
 					yellowPiece.appendChild(y);
 				}else{}
 			}
+		}	
+	}
+	
+	public void setColour(){
+		Element playerOneColour = getDoc().createElement("colour");
+		Element playerTwoColour = getDoc().createElement("colour");	
+		
+		if(Game.getPlayer(0).getColour() == Piece.ConnectFourPieceColour.RED){
+			playerOneColour.appendChild(getDoc().createTextNode("Red"));
+			playerTwoColour.appendChild(getDoc().createTextNode("Yellow"));
+		}else{
+			playerOneColour.appendChild(getDoc().createTextNode("Yellow"));
+			playerTwoColour.appendChild(getDoc().createTextNode("Red"));
 		}
+		
+		getPlayers(0).appendChild(playerOneColour);
+		getPlayers(1).appendChild(playerTwoColour);
 	}
 }
