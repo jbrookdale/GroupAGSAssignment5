@@ -47,7 +47,7 @@ public abstract class Piece<P> {
 	public enum ConnectFourPieceColour {
 		NONE, RED, YELLOW, RED_STAR, YELLOW_STAR
 	}
-	
+		
 	/** 
 	* This is the enum of OthelloPieceColour, it defines all the colours 
 	* that a piece can be that is used in the Othello game.

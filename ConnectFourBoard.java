@@ -27,7 +27,7 @@ public class ConnectFourBoard extends Board<Piece.ConnectFourPieceColour,
 	public static final int HEIGHT = 7; 
 	
 	/**< array of piece variables storing all pieces on the board */ 
-	private ConnectFourPiece[][] m_Pieces = 
+	private static ConnectFourPiece[][] m_Pieces = 
 		new ConnectFourPiece[WIDTH][HEIGHT]; 
 
 	/**< constant for column one on the board */ 					
@@ -93,22 +93,22 @@ public class ConnectFourBoard extends Board<Piece.ConnectFourPieceColour,
 
 	/**< create an object of Piece with colour RED so to give the colour to the 
 	RED_PIECE constant*/ 
-	private ConnectFourPiece m_RedPiece = new
+	private static ConnectFourPiece m_RedPiece = new
 							ConnectFourPiece(Piece.ConnectFourPieceColour.RED);
 
 	/**< constant for storing the red piece colour for comparing with other
 	pieces,	for setting a piece and checking for win scenario*/  							
-	private final Piece.ConnectFourPieceColour	RED_PIECE = 
+	private final static Piece.ConnectFourPieceColour	RED_PIECE = 
 													m_RedPiece.getPieceColour();
 
 	/**< create an object of Piece with colour YELLOW so to give the colour to 
 	the YELLOW_PIECE constant*/  
-	private ConnectFourPiece m_YellowPiece = new
+	private static ConnectFourPiece m_YellowPiece = new
 						ConnectFourPiece(Piece.ConnectFourPieceColour.YELLOW);
 
 	/**< constant for storing the yellow piece colour for comparing with other 
 	pieces,	for setting a piece and checking for win scenario*/ 					
-	private final Piece.ConnectFourPieceColour	YELLOW_PIECE = 
+	private final static Piece.ConnectFourPieceColour	YELLOW_PIECE = 
 												m_YellowPiece.getPieceColour();
 
 	/**< create an object of Piece with colour RED_STAR so to give the colour 
@@ -146,6 +146,14 @@ public class ConnectFourBoard extends Board<Piece.ConnectFourPieceColour,
 				m_Pieces[j][i] = new ConnectFourPiece(EMPTY_PIECE);
 			}
 		}
+	}
+	
+	public static Piece.ConnectFourPieceColour getRedPiece(){
+		return RED_PIECE;
+	}
+	
+	public static Piece.ConnectFourPieceColour getYellowPiece(){
+		return YELLOW_PIECE;
 	}
 	
 	/** 
@@ -192,7 +200,7 @@ public class ConnectFourBoard extends Board<Piece.ConnectFourPieceColour,
 	* @return Piece[][] -the array of pieces is returned to get all
 	*				     the pieces on the board. 
 	*/
-	public ConnectFourPiece[][] getPieces() {
+	public static ConnectFourPiece[][] getPieces() {
 		return m_Pieces;
 	}
 

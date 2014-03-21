@@ -61,16 +61,6 @@ public abstract class Board<C,P> {
     *                 multiplied by width, compared with thee piece count on 
     *                 the board.
 	*/
-	
-	/**
-	* This method will return the current state of the board
-	* and where the pieces are on the board.
-	* @return m_Pieces -This will return the two dimensional array which holds 
-	*                   the board with all the piece objects stored in it and 
-	*                   therefor what pieces are on the board.
-	*
-	*/
-	abstract P[][] getPieces();
 		
 	/**
 	* This method will set a pieces on the board at the designated place using

@@ -130,7 +130,7 @@ public class ConnectFourGameGUI extends GameGUI {
         saveGameButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                     System.out.println("save game clicked");
-                    new Connect4GameSaver("C:\\Users\\Ieuan\\Desktop\\save.xml");
+                    new Connect4GameSaver("C:\\Users\\Ieuan\\Desktop\\newSave.xml");
             }
         });
         

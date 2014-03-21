@@ -31,9 +31,7 @@ public class GameSaver extends GameIOHandler {
 	
 	private static Element m_playerOne;
 	private static Element m_playerTwo;
-	
-	private static Element m_piece;
-	
+
 	public GameSaver(String fileName){
 		m_file = new File(fileName);
 		m_docFactory = DocumentBuilderFactory.newInstance();
@@ -50,6 +48,8 @@ public class GameSaver extends GameIOHandler {
 			initPlayerElement();
 			setPlayerName();
 			
+			setPieces();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -57,6 +57,8 @@ public class GameSaver extends GameIOHandler {
 	}
 	
 	public void setGameTypeElement(){}
+	
+	public void setPieces(){}
 	
 	public static void setTimeElement(){
 		String gameTime = GameGUI.getTime() + "";
@@ -114,6 +116,14 @@ public class GameSaver extends GameIOHandler {
 		}
 		
 		System.out.println("File saved!");
+	}
+	
+	public Element getPlayers(int x){
+		if(x == 0){
+			return m_playerOne;
+		}else{
+			return m_playerTwo;
+		}
 	}
 
 	public static Element getRootElement() {
