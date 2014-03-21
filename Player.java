@@ -20,7 +20,7 @@
 
 abstract class Player <C> {
     private String m_Name;
-    private C m_connectFourPlayerColour;
+    private C m_PlayerColour;
     private int m_Score = 0;
     private String m_PlayerType;
     
@@ -33,7 +33,7 @@ abstract class Player <C> {
     }
 
     public C getColour () {
-            return m_connectFourPlayerColour;
+        return m_PlayerColour;
     }
     public void setScore(int points) {
         m_Score+=points;
@@ -41,7 +41,7 @@ abstract class Player <C> {
 
     public Player (String newName, C newPlayerColour, String playerType){
         m_Name = newName;
-        m_connectFourPlayerColour = newPlayerColour;
+        m_PlayerColour = newPlayerColour;
         m_PlayerType = playerType;
     }
     

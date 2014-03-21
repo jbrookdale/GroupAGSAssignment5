@@ -82,7 +82,7 @@ public class ConnectFourGameGUI extends GameGUI {
                                                    Piece.
                                                        ConnectFourPieceColour.
                                                            YELLOW),
-                               new ConnectFourEasyComputerPlayer(playerTwoName, ///////////////// Player Declaration, this is where the players are made
+                               new ConnectFourEasyComputerPlayer(playerTwoName,
                                                    Piece.
                                                        ConnectFourPieceColour.
                                                            RED));    

@@ -17,10 +17,14 @@ class OthelloEasyComputerPlayer <C> extends EasyComputerPlayer{
         int Position;
         i = r.nextInt(WIDTH);
         j = r.nextInt(HEIGHT);
-        // Assuming their piece is white...
-        // Othello isn't using the HumanPlayer class at the moment...
-        // That fact may need to change...
-        while (!board.anyValid(i,j,new OthelloPiece(Piece.OthelloPieceColour.WHITE))) {
+        OthelloPiece piece;
+        if (getColour() == Piece.OthelloPieceColour.BLACK) {
+            piece = new OthelloPiece(Piece.OthelloPieceColour.BLACK);
+        } else {
+            piece = new OthelloPiece(Piece.OthelloPieceColour.WHITE);
+        }
+        
+        while (!board.anyMove(i,j,piece)) {
             i = r.nextInt(WIDTH);
             j = r.nextInt(HEIGHT);
         }
