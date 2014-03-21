@@ -43,7 +43,7 @@ public class GameSaver extends GameIOHandler {
 			
 			setGameTypeElement();
 			setTimeElement();
-			//setPlayerTurnElement();
+			setPlayerTurnElement();
 			
 			initPlayerElement();
 			setPlayerName();
@@ -68,8 +68,18 @@ public class GameSaver extends GameIOHandler {
 	}
 	
 	public static void setPlayerTurnElement(){
+		String turn;
+		if(Game.getPlayerTurn() % 2 == 0){
+			turn = "Player 1";
+		}else{
+			turn = "Player 2";
+		}
 	
+		Element playerTurn = m_doc.createElement("turn");
+		playerTurn.appendChild(m_doc.createTextNode(turn));
+		m_rootElement.appendChild(playerTurn);
 	}
+	
 	public static void initPlayerElement(){
 		m_playerOne = m_doc.createElement("player");
 		m_playerTwo = m_doc.createElement("player");

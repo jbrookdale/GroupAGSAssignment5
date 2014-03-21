@@ -18,7 +18,7 @@
 
 public abstract class Game<C> {
     
-    protected int m_PlayerTurn = 0;
+    protected static int m_PlayerTurn = 0;
 
     /**< This is the board of the current game */
     protected Board m_Board;
@@ -55,7 +55,7 @@ public abstract class Game<C> {
         m_PlayerTurn++;
     }
     
-    public int getPlayerTurn() {
+    public static int getPlayerTurn() {
         return m_PlayerTurn;
     }
     
