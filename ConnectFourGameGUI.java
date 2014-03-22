@@ -84,7 +84,7 @@ public class ConnectFourGameGUI extends GameGUI {
                                                    Piece.
                                                        ConnectFourPieceColour.
                                                            YELLOW),
-                               new ConnectFourEasyComputerPlayer(playerTwoName,
+                               new HumanPlayer(playerTwoName,
                                                    Piece.
                                                        ConnectFourPieceColour.
                                                            RED));
@@ -103,8 +103,10 @@ public class ConnectFourGameGUI extends GameGUI {
         add(menu);
         JMenuItem newGameButton = new JMenuItem("New Game");
         JMenuItem saveGameButton = new JMenuItem("Save Game");
+        JMenuItem loadGameButton = new JMenuItem("Load Game");
         menu.add(newGameButton);
         menu.add(saveGameButton);
+        menu.add(loadGameButton);
         menu.add(new JMenuItem("Pause game"));
         JMenuBar menuBar = new JMenuBar();
         menuBar.add(menu);
@@ -127,7 +129,14 @@ public class ConnectFourGameGUI extends GameGUI {
         saveGameButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                     System.out.println("save game clicked");
-                    new Connect4GameSaver("C:\\Users\\Ieuan\\Desktop\\newSave.xml");
+                    new Connect4GameSaver("C:\\Users\\Ieuan\\Desktop\\firstTest.xml");
+            }
+        });
+        
+        loadGameButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                    System.out.println("load game clicked");
+                    new Connect4GameLoader("C:\\Users\\Ieuan\\Desktop\\firstTest.xml");
             }
         });
         
@@ -175,7 +184,7 @@ public class ConnectFourGameGUI extends GameGUI {
                 if (game.getPlayer(game.getPlayerTurn() % TOTAL_PLAYERS).getPlayerType().equals("Computer")) {
                     int playerTurn = game.getPlayerTurn();
                     ConnectFourEasyComputerPlayer player = (ConnectFourEasyComputerPlayer) game.getPlayer(playerTurn % TOTAL_PLAYERS);
-                	x = (int)player.makeAIMove(game.getBoard()).getX();
+                	//x = (int)player.makeAIMove(game.getBoard()).getX();
                 }
 
                 if (x > BOARD_WIDTH) {

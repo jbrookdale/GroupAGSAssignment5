@@ -27,31 +27,34 @@ public class Connect4GameSaver extends GameSaver{
 	public void setPieces(){
 		ConnectFourPiece[][] piecesToBeSaved = ConnectFourBoard.getPieces(); 
 		
-		Element redPiece = getDoc().createElement("piece");
-		Element yellowPiece = getDoc().createElement("piece");
-		
-		//Player one is yellow, player 2 is red NEEDS CHANGING!
-		getPlayers(0).appendChild(yellowPiece);
-		getPlayers(1).appendChild(redPiece);
-		
 		for(int j = 0; j < piecesToBeSaved[0].length; j++){
 			for(int i = 0; i < piecesToBeSaved.length; i++){
 				if(piecesToBeSaved[i][j].getPieceColour() == Piece.ConnectFourPieceColour.RED){
+					
+					Element newRedPiece = getDoc().createElement("piece2");
+					
 					Element x = getDoc().createElement("x");
 					x.appendChild(getDoc().createTextNode(i + ""));
 					Element y = getDoc().createElement("y");
 					y.appendChild(getDoc().createTextNode(j + ""));
 					
-					redPiece.appendChild(x);
-					redPiece.appendChild(y);
+					newRedPiece.appendChild(x);
+					newRedPiece.appendChild(y);
+					
+					// NEEDS TO BE CHANGED WHEN COLOUR CHANGING IS IMPLEMENTED!
+					getPlayers(1).appendChild(newRedPiece);
 				}else if(piecesToBeSaved[i][j].getPieceColour() == Piece.ConnectFourPieceColour.YELLOW){
+					Element newYellowPiece = getDoc().createElement("piece1");
 					Element x = getDoc().createElement("x");
 					x.appendChild(getDoc().createTextNode(i + ""));
 					Element y = getDoc().createElement("y");
 					y.appendChild(getDoc().createTextNode(j + ""));
 					
-					yellowPiece.appendChild(x);
-					yellowPiece.appendChild(y);
+					newYellowPiece.appendChild(x);
+					newYellowPiece.appendChild(y);
+
+					// NEEDS TO BE CHANGED WHEN COLOUR CHANGING IS IMPLEMENTED!
+					getPlayers(0).appendChild(newYellowPiece);
 				}else{}
 			}
 		}	
