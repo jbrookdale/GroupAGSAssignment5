@@ -297,6 +297,7 @@ public class ConnectFourGameGUI extends GameGUI {
             	getTimer().stop();
                 if (panel.getCurrentPiece().getPieceColour() 
                         == getPlayerOnePieceColour()) {
+                	System.out.println("Working");
                     displayWinner(getGame().getPlayerName(Game.PLAYER_ONE));
                 } else {
                     displayWinner(getGame().getPlayerName(Game.PLAYER_TWO));

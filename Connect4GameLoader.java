@@ -38,9 +38,9 @@ public class Connect4GameLoader extends GameLoader{
 		}
 		
 		 if (getM_playerOneType().equals("Human")) {
-	            playerOne = new HumanPlayer(getM_playerOneName(), p1Colour);
-	        } else {
-	            playerOne = new ConnectFourEasyComputerPlayer(
+	           playerOne = new HumanPlayer(getM_playerOneName(), p1Colour);
+	     } else {
+	    	 playerOne = new ConnectFourEasyComputerPlayer(
 	            			getM_playerOneName(), p1Colour);
 	        }
 	        
@@ -79,15 +79,20 @@ public class Connect4GameLoader extends GameLoader{
 		ConnectFourGameGUI.resetPlayerLabel(getM_playerOneName(), getM_playerOneColour(), getM_playerTwoName(), getM_playerTwoColour());
 		
 		if(getM_playerTurn().equals("Player 1")){
+			System.out.println("Wrong");
 			ConnectFourGameGUI.getGame().setTurn(0);
+			ConnectFourGameGUI.getPanel().setCurrentPiece(new ConnectFourPiece(p1Colour));
 		}else{
 			ConnectFourGameGUI.getGame().setTurn(1);
+			ConnectFourGameGUI.getPanel().setCurrentPiece(new ConnectFourPiece(p2Colour));
 		}
 		
 		ConnectFourGameGUI.setGame(loadGame);
 		
 		ConnectFourGameGUI.getPanel().updatePieces(loadGame.getPieces());
 		ConnectFourGameGUI.getPanel().refreshDisplay();
+		
+		System.out.println("Player 1 Name" + getM_playerOneName());
 	}
 	
 	

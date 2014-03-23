@@ -51,7 +51,7 @@ public abstract class Game<C> {
         m_PlayerTurn = PLAYER_ONE;
     }
     
-     public static void setTurn(int x){
+     public void setTurn(int x){
     	 if(x == 0){
     		 resetTurn();
     	 }else{
