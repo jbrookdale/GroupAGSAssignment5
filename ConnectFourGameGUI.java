@@ -76,6 +76,9 @@ public class ConnectFourGameGUI extends GameGUI {
     private Piece.ConnectFourPieceColour m_playerOnePieceColour;
     private Piece.ConnectFourPieceColour m_playerTwoPieceColour;
     
+    private String m_playerOneType;
+    private String m_playerTwoType;
+    
     /**
     * Constructor for ConnectFourGameGUI
     * @param playerOneName - String representation of player one's name
@@ -100,6 +103,11 @@ public class ConnectFourGameGUI extends GameGUI {
     	}
     }
     
+    private void setPlayerTypes(String[] playerTypes) {
+        m_playerOneType = playerTypes[0];
+        m_playerTwoType = playerTypes[1];
+    }
+    
     public Piece.ConnectFourPieceColour getPlayerOnePieceColour(){
 		return m_playerOnePieceColour;
     }
@@ -114,9 +122,28 @@ public class ConnectFourGameGUI extends GameGUI {
         super(WINDOW_TITLE, WINDOW_WIDTH, WINDOW_HEIGHT);
 
         setPieceColours(playerOneDetails[2]);
+        setPlayerTypes(new String[] {playerOneDetails[1],playerTwoDetails[2]});
         
-        game = new ConnectFourGame(new HumanPlayer(playerOneDetails[0], getPlayerOnePieceColour()), 
-        							new HumanPlayer(playerTwoDetails[0], getPlayerTwoPieceColour()));
+        Player playerOne;
+        Player playerTwo;
+        
+        if (m_playerOneType == "Human") {
+            playerOne = new HumanPlayer(
+                               playerOneDetails[0], getPlayerOnePieceColour());
+        } else {
+            playerOne = new ConnectFourEasyComputerPlayer(
+                               playerOneDetails[0], getPlayerOnePieceColour());
+        }
+        
+        if (m_playerTwoType == "Human") {
+            playerTwo = new HumanPlayer(
+                               playerTwoDetails[0], getPlayerTwoPieceColour());
+        } else {
+            playerTwo = new ConnectFourEasyComputerPlayer(
+                               playerTwoDetails[0], getPlayerTwoPieceColour());
+        }
+        
+        game = new ConnectFourGame(playerOne, playerTwo);
         
         panel = new ConnectFourPanel(game.getPieces());
         panel.updatePieces(game.getPieces());
@@ -334,16 +361,26 @@ public class ConnectFourGameGUI extends GameGUI {
             JOptionPane.YES_NO_OPTION);
         if (reply == JOptionPane.YES_OPTION) {
         	resetTimer();
-            //game = new ConnectFourGame(game.getPlayerName(Game.PLAYER_ONE), 
-                //Game.HUMAN, Piece.ConnectFourPieceColour.YELLOW, 
-                //game.getPlayerName(Game.PLAYER_TWO), Game.HUMAN, 
-                //Piece.ConnectFourPieceColour.RED);
-
-            game = new ConnectFourGame(
-                           new HumanPlayer(game.getPlayerName(Game.PLAYER_ONE),
-                                          getPlayerOnePieceColour()),
-                           new ConnectFourEasyComputerPlayer(game.getPlayerName(Game.PLAYER_TWO),
-                                          getPlayerTwoPieceColour()));  
+                Player playerOne;
+                Player playerTwo;
+                
+                if (m_playerOneType == "Human") {
+                    playerOne = new HumanPlayer(game.getPlayerName(Game.PLAYER_ONE),
+                                                    getPlayerOnePieceColour());
+                } else {
+                    playerOne = new ConnectFourEasyComputerPlayer(game.getPlayerName(Game.PLAYER_ONE),
+                                                                        getPlayerOnePieceColour());
+                }
+                
+                if (m_playerTwoType == "Human") {
+                    playerTwo = new HumanPlayer(game.getPlayerName(Game.PLAYER_TWO),
+                                getPlayerTwoPieceColour());
+                } else {
+                    playerTwo = new ConnectFourEasyComputerPlayer(game.getPlayerName(Game.PLAYER_TWO),
+                                                    getPlayerTwoPieceColour());
+                }
+                
+                game = new ConnectFourGame(playerOne, playerTwo);
 
             panel.updatePieces(game.getPieces());
             panel.setCurrentPiece(new ConnectFourPiece(getPlayerOnePieceColour()));
