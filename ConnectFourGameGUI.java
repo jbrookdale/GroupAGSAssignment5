@@ -126,7 +126,7 @@ public class ConnectFourGameGUI extends GameGUI {
         super(WINDOW_TITLE, WINDOW_WIDTH, WINDOW_HEIGHT);
 
         setPieceColours(playerOneDetails[2]);
-        setPlayerTypes(new String[] {playerOneDetails[1],playerTwoDetails[2]});
+        setPlayerTypes(new String[] {playerOneDetails[1],playerTwoDetails[1]});
         
         Player playerOne;
         Player playerTwo;
@@ -297,10 +297,8 @@ public class ConnectFourGameGUI extends GameGUI {
             	getTimer().stop();
                 if (panel.getCurrentPiece().getPieceColour() 
                         == getPlayerOnePieceColour()) {
-                    //RED WON
                     displayWinner(getGame().getPlayerName(Game.PLAYER_ONE));
                 } else {
-                    //YELLOW WON
                     displayWinner(getGame().getPlayerName(Game.PLAYER_TWO));
                 }
                 if (!displayPlayAgain("Play again?")) {
