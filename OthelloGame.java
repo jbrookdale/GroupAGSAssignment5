@@ -186,4 +186,8 @@ public class OthelloGame extends Game <Piece.OthelloPieceColour>{
 
     }
 
+	public OthelloPiece[][] getPieces() {
+		// TODO Auto-generated method stub
+		return board.getPieces();
+	}
 }

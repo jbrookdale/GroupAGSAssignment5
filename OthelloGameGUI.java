@@ -712,6 +712,11 @@ public class OthelloGameGUI extends GameGUI {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	public static JLabel[][] getLabels() {
+		// TODO Auto-generated method stub
+		return gridButtons;
+	}
 	
 	
 }

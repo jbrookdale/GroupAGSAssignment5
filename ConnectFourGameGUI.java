@@ -100,8 +100,9 @@ public class ConnectFourGameGUI extends GameGUI {
             YELLOW));
         
         setTimerLabel();
+        setPlayerLabel(playerOneName, "Yellow", playerTwoName, "Red");
         panel.add(getTimerLabel());
-        
+        panel.add(getPlayerLabel());
         
         //Add menu bar
         JMenu menu = new JMenu("Menu");

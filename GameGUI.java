@@ -25,9 +25,10 @@ import javax.swing.border.EmptyBorder;
 
 public abstract class GameGUI extends GUI{
 
-    private Timer m_Timer;
+    private static Timer m_Timer;
     private static int m_Time;
-    private JLabel m_TimerLabel;
+    private static JLabel m_TimerLabel;
+    private static JLabel m_PlayerLabel;
     
 	/**
 	* Constructor of this class, requires basic info such as Title of 
@@ -42,15 +43,22 @@ public abstract class GameGUI extends GUI{
 		super(title, width, height);
 	}
 	
-	/**
-	* This will bring up a message box explaining the users move, for instance
-	* if the move is an incorrect move, then a message box will appear.
-	*
-	* @param true -This returns true if the method is successfully executed.
-	*              It also displays a feed back dialog box with a message for a 
-	*              players move.
-	*
-	*/
+	public static void setPlayerLabel(String p1Name, String p1Colour,
+								String p2Name, String p2Colour){
+		m_PlayerLabel = new JLabel("\nPlayer One: " + p1Name + "[" + p1Colour + "]" +
+								 "\nPlayer Two: " + p2Name + "[" + p2Colour + "]");
+	}
+	
+	public static void resetPlayerLabel(String p1Name, String p1Colour,
+								String p2Name, String p2Colour){
+		getPlayerLabel().setText("\nPlayer One: " + p1Name + "[" + p1Colour + "]" +
+								 "\nPlayer Two: " + p2Name + "[" + p2Colour + "]");
+	}
+	
+	public static JLabel getPlayerLabel(){
+		return m_PlayerLabel;
+	}
+	
     public Timer getTimer(){
     	return m_Timer;
     }
@@ -59,11 +67,11 @@ public abstract class GameGUI extends GUI{
     	return m_Time;
     }
     
-    public void setTime(int time){
+    public static void setTime(int time){
     	m_Time = time;
     }
     
-    public void setTimerLabel(){
+    public static void setTimerLabel(){
     	m_TimerLabel = new JLabel("Time elapsed: " + 
     String.format("%02d",(getTime() / 3600) % 60) + ":" + 
     String.format("%02d",(getTime() / 60) % 60) + ":" + 
@@ -71,7 +79,7 @@ public abstract class GameGUI extends GUI{
     	//m_TimerLabel.setBorder(new EmptyBorder(0,0,0,getWidth() - 125));
     }
     
-    public JLabel getTimerLabel(){
+    public static JLabel getTimerLabel(){
     	return m_TimerLabel;
     }
     
@@ -84,7 +92,16 @@ public abstract class GameGUI extends GUI{
     	startTimer();
     }
     
-    public void startTimer(){
+    public static void beginTimer(int x){
+    	setTime(x);
+    	getTimerLabel().setText("Time elapsed: " + 
+    String.format("%02d",(getTime() / 3600) % 60) + ":" + 
+    String.format("%02d",(getTime() / 60) % 60) + ":" + 
+    String.format("%02d",getTime() % 60));
+    	startTimer();
+    }
+    
+    public static void startTimer(){
     	ActionListener actListener = new ActionListener(){
     		public void actionPerformed(ActionEvent event){
     			setTime(getTime() + 1);
@@ -99,7 +116,15 @@ public abstract class GameGUI extends GUI{
     	m_Timer.start();
     }
 
-	
+	/**
+	* This will bring up a message box explaining the users move, for instance
+	* if the move is an incorrect move, then a message box will appear.
+	*
+	* @param true -This returns true if the method is successfully executed.
+	*              It also displays a feed back dialog box with a message for a 
+	*              players move.
+	*
+	*/
 	public boolean displayMoveFeedback(String message) {
 	
 		JOptionPane.showMessageDialog(this, message,"Your Move", 

@@ -9,6 +9,15 @@ public class Connect4GameLoader extends GameLoader{
 		super(fileName);
 	}
 	
+	/**
+		THINGS THAT ARE STILL NEEDED TO BE DONE:
+			-- Player turn needs to be taken into account.
+			-- Timer is incrementing too fast.
+			-- Needs to handle loading an already won??
+			-- Needs to take into account both players colour and type,
+			   as of right now it's assumed player one is human and yellow 
+			   whilst player two is an easy computer player and red.
+	*/
 	public void setupBoard(){
 		System.out.println("Setting up board");
 		
@@ -16,7 +25,7 @@ public class Connect4GameLoader extends GameLoader{
 		Player playerTwo = new ConnectFourEasyComputerPlayer(getM_playerTwoName(), Piece.ConnectFourPieceColour.RED);
 		
 		ConnectFourGame loadGame = new ConnectFourGame(playerOne, playerTwo);
-
+		
 		//Setting the red pieces
 		for(int i = 0; i < getP1PiecesX().size(); i++){
 			ConnectFourBoard.setRedPieces(getP1PiecesX().get(i), getP1PiecesY().get(i));
@@ -26,6 +35,9 @@ public class Connect4GameLoader extends GameLoader{
 		for(int i = 0; i < getP2PiecesX().size(); i++){
 			ConnectFourBoard.setYellowPieces(getP2PiecesX().get(i), getP2PiecesY().get(i));
 		}
+		System.out.println(getM_time());
+		ConnectFourGameGUI.beginTimer(getM_time());
+		ConnectFourGameGUI.resetPlayerLabel(getM_playerOneName(), getM_playerOneColour(), getM_playerTwoName(), getM_playerTwoColour());
 		
 		ConnectFourGameGUI.getPanel().updatePieces(loadGame.getPieces());
 		ConnectFourGameGUI.getPanel().refreshDisplay();

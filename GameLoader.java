@@ -144,6 +144,7 @@ public class GameLoader extends GameIOHandler{
 	
     public void setTime(Element element){
     	String time = element.getElementsByTagName("time").item(0).getTextContent();
+    	
     	m_time = Integer.parseInt(time);
     }
   
@@ -157,7 +158,7 @@ public class GameLoader extends GameIOHandler{
     
     public void drawToTerminal(){
     	System.out.println("Game type: " + m_gametype);
-    	System.out.println("Game time: " + m_time);
+    	System.out.println("Game time: " + getM_time());
     	System.out.println("Players turn: " + m_playerTurn);
     	
     	System.out.println("-------------------------------------");
@@ -260,5 +261,13 @@ public class GameLoader extends GameIOHandler{
 
 	public void setM_playerTwoColour(String m_playerTwoColour) {
 		this.m_playerTwoColour = m_playerTwoColour;
+	}
+
+	public int getM_time() {
+		return m_time;
+	}
+
+	public void setM_time(int m_time) {
+		this.m_time = m_time;
 	}
 }
