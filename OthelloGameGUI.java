@@ -35,6 +35,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
 import java.awt.GridBagConstraints;
@@ -74,6 +75,9 @@ public class OthelloGameGUI extends GameGUI {
 		setTime(0);
 		setTimerLabel();
 		startTimer();
+		
+		panel = new JPanel();
+		
 	}
 	
 	public static String getPlayerName(int x){
@@ -177,7 +181,18 @@ public class OthelloGameGUI extends GameGUI {
 		window.setIconImage(new ImageIcon(this.getClass()
                 .getResource("Othello.jpeg")).getImage());
 		
-		window.add(getTimerLabel());
+		
+		setPlayerLabel(m_player1Name, "Black", m_player2Name, "White");
+		
+		panel.add(getTimerLabel());
+		panel.add(getPlayerLabel());
+		
+		c.gridx = 0;
+		c.gridy = 0;
+		c.gridwidth = 10;
+		c.anchor = GridBagConstraints.NORTH;
+		panel.setBackground(Color.GREEN);
+		window.add(panel, c);
 		//window.add(m_player1Score);
 		//m_player1Score.setText(score.getPieceCount());
 		GUIHandler handler = new GUIHandler();
@@ -191,6 +206,7 @@ public class OthelloGameGUI extends GameGUI {
 				gridButtons[x][y].setPreferredSize(new Dimension(BOARDWIDTH,BOARDHEIGHT));
                c.gridx = x;
                c.gridy = y;
+               c.gridwidth = 1;
 			   	window.add(gridButtons[x][y],c); //adds button to grid
 			}
 		}
@@ -340,7 +356,7 @@ public class OthelloGameGUI extends GameGUI {
 	private static JMenuBar menuBar;
 	private static JMenu mainMenu;
 	private static JMenuItem menuItem;
-        
+    private JPanel panel;
 
 	
 	/**
