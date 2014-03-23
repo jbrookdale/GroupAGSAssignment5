@@ -169,6 +169,14 @@ public class ConnectFourBoard extends Board<Piece.ConnectFourPieceColour,
 		return pieceSet;
 	}
 	
+	public static void setRedPieces(int x, int y){
+		m_Pieces[x][y].setPieceColour(Piece.ConnectFourPieceColour.RED);
+	}
+	
+	public static void setYellowPieces(int x, int y){
+		m_Pieces[x][y].setPieceColour(Piece.ConnectFourPieceColour.YELLOW);
+	}
+	
 	/** 
 	* This is the method for getting the next available empty slot for a new 
 	* piece that is to be placed in a specific column.

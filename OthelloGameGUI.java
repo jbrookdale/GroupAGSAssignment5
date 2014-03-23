@@ -264,8 +264,10 @@ public class OthelloGameGUI extends GameGUI {
 	        add(menu);
 	        JMenuItem newGameButton = new JMenuItem("New Game");
 	        JMenuItem saveGameButton = new JMenuItem("Save Game");
+	        JMenuItem loadGameButton = new JMenuItem("Load Game");
 	        menu.add(newGameButton);
 	        menu.add(saveGameButton);
+	        menu.add(loadGameButton);
 	        menu.add(new JMenuItem("Pause game"));
 	        JMenuBar menuBar = new JMenuBar();
 	        menuBar.add(menu);
@@ -282,6 +284,13 @@ public class OthelloGameGUI extends GameGUI {
 	            public void actionPerformed(ActionEvent event) {
 	                    System.out.println("save game clicked");
 	                    new OthelloGameSaver("C:\\Users\\Ieuan\\Desktop\\OthelloTest.xml");
+	            }
+	        });
+	        
+	        loadGameButton.addActionListener(new ActionListener() {
+	            public void actionPerformed(ActionEvent event) {
+	                    System.out.println("load game clicked");
+	                    new OthelloGameLoader("C:\\Users\\Ieuan\\Desktop\\OthelloTest.xml");
 	            }
 	        });
 		return menuBar;

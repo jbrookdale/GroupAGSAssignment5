@@ -1,4 +1,5 @@
 import java.awt.Point;
+
 class ConnectFourHardComputerPlayer <C> extends HardComputerPlayer {
 
     private int numPieces;
@@ -10,7 +11,13 @@ class ConnectFourHardComputerPlayer <C> extends HardComputerPlayer {
     //Equation for checking the winning place on Connect4board
     //winPlace=(4 * w *h) - (3*w*n) - (3*h*n) + (3*w) + (3*h) - (4*n) + (2*n*n);
     private static final int winPlaces =143;
-    public static void main(String[] args) {
+    public ConnectFourHardComputerPlayer(String newName, C newPlayerColour) {
+ 		super(newName, newPlayerColour);
+ 	}
+
+
+
+	public static void main(String[] args) {
         // Tests go here
     }
     

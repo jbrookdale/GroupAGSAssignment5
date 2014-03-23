@@ -29,31 +29,35 @@ public class OthelloGameSaver extends GameSaver{
 	public void setPieces(){
 		OthelloPiece[][] piecesToBeSaved = OthelloBoard.getPieces(); 
 		
-		Element blackPiece = getDoc().createElement("piece");
-		Element whitePiece = getDoc().createElement("piece");
-		
-		//Player one is white, player 2 is black NEEDS CHANGING!
-		getPlayers(0).appendChild(whitePiece);
-		getPlayers(1).appendChild(blackPiece);
-		
 		for(int j = 0; j < piecesToBeSaved[0].length; j++){
 			for(int i = 0; i < piecesToBeSaved.length; i++){
 				if(piecesToBeSaved[i][j].getPieceColour() == Piece.OthelloPieceColour.BLACK){
+
+					Element newBlackPiece = getDoc().createElement("piece2");
+					
+					
 					Element x = getDoc().createElement("x");
 					x.appendChild(getDoc().createTextNode(i + ""));
 					Element y = getDoc().createElement("y");
 					y.appendChild(getDoc().createTextNode(j + ""));
 					
-					blackPiece.appendChild(x);
-					blackPiece.appendChild(y);
+					newBlackPiece.appendChild(x);
+					newBlackPiece.appendChild(y);
+
+					getPlayers(1).appendChild(newBlackPiece);
 				}else if(piecesToBeSaved[i][j].getPieceColour() == Piece.OthelloPieceColour.WHITE){
+
+					Element newWhitePiece = getDoc().createElement("piece1");
+					
 					Element x = getDoc().createElement("x");
 					x.appendChild(getDoc().createTextNode(i + ""));
 					Element y = getDoc().createElement("y");
 					y.appendChild(getDoc().createTextNode(j + ""));
 					
-					whitePiece.appendChild(x);
-					whitePiece.appendChild(y);
+					newWhitePiece.appendChild(x);
+					newWhitePiece.appendChild(y);
+					
+					getPlayers(1).appendChild(newWhitePiece);
 				}else{}
 			}
 		}	

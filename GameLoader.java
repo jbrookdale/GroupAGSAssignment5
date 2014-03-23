@@ -85,18 +85,23 @@ public class GameLoader extends GameIOHandler{
 		convertToIntegers();
 		
 		drawToTerminal();
+		
+		setupBoard();
+		System.out.println("Passed setup board");
 	}	
 	
+	public void setupBoard() {}
+
 	public void setPlayerData(Element element){
 		if(element.getAttribute("id").equals("1")){
-			m_playerOneType = element.getElementsByTagName("type").item(0).getTextContent();
-			m_playerOneName = element.getElementsByTagName("name").item(0).getTextContent();
-			m_playerOneColour = element.getElementsByTagName("colour").item(0).getTextContent();
+			setM_playerOneType(element.getElementsByTagName("type").item(0).getTextContent());
+			setM_playerOneName(element.getElementsByTagName("name").item(0).getTextContent());
+			setM_playerOneColour(element.getElementsByTagName("colour").item(0).getTextContent());
 			//m_playerOnePieceCount = Integer.parseInt(element.getElementsByTagName("pieceCount").item(0).getTextContent());
 		}else{
-			m_playerTwoType = element.getElementsByTagName("type").item(0).getTextContent();
-			m_playerTwoName = element.getElementsByTagName("name").item(0).getTextContent();
-			m_playerTwoColour = element.getElementsByTagName("colour").item(0).getTextContent();
+			setM_playerTwoType(element.getElementsByTagName("type").item(0).getTextContent());
+			setM_playerTwoName(element.getElementsByTagName("name").item(0).getTextContent());
+			setM_playerTwoColour(element.getElementsByTagName("colour").item(0).getTextContent());
 			//m_playerOnePieceCount = Integer.parseInt(element.getElementsByTagName("pieceCount").item(0).getTextContent());
 		}
 	}
@@ -127,13 +132,13 @@ public class GameLoader extends GameIOHandler{
 	
 	public void convertToIntegers(){
 		for(int i = 0; i < playerOnePiecesX.size(); i++){
-			p1PiecesX.add(Integer.parseInt(playerOnePiecesX.get(i)));
-			p1PiecesY.add(Integer.parseInt(playerOnePiecesY.get(i)));
+			getP1PiecesX().add(Integer.parseInt(playerOnePiecesX.get(i)));
+			getP1PiecesY().add(Integer.parseInt(playerOnePiecesY.get(i)));
 		}
 		
 		for(int i = 0; i < playerTwoPiecesX.size(); i++){
-			p2PiecesX.add(Integer.parseInt(playerTwoPiecesX.get(i)));
-			p2PiecesY.add(Integer.parseInt(playerTwoPiecesY.get(i)));
+			getP2PiecesX().add(Integer.parseInt(playerTwoPiecesX.get(i)));
+			getP2PiecesY().add(Integer.parseInt(playerTwoPiecesY.get(i)));
 		}
 	}
 	
@@ -157,23 +162,103 @@ public class GameLoader extends GameIOHandler{
     	
     	System.out.println("-------------------------------------");
     	
-    	System.out.println("Player one name: " + m_playerOneName);
-    	System.out.println("Player one type: " + m_playerOneType);
-    	System.out.println("Player one colour: " + m_playerOneColour);
+    	System.out.println("Player one name: " + getM_playerOneName());
+    	System.out.println("Player one type: " + getM_playerOneType());
+    	System.out.println("Player one colour: " + getM_playerOneColour());
     	System.out.println("Player one pieces: ");
-    	for(int i = 0; i < p1PiecesX.size(); i++){
-    		System.out.print("\n" + p1PiecesX.get(i) + "," + p1PiecesY.get(i));
+    	for(int i = 0; i < getP1PiecesX().size(); i++){
+    		System.out.print("\n" + getP1PiecesX().get(i) + "," + getP1PiecesY().get(i));
     	}
     	
     	System.out.println("\n------------------------------------");
     
-    	System.out.println("Player two name: " + m_playerTwoName);
-    	System.out.println("Player two type: " + m_playerTwoType);
-    	System.out.println("Player two colour: " + m_playerTwoColour);
+    	System.out.println("Player two name: " + getM_playerTwoName());
+    	System.out.println("Player two type: " + getM_playerTwoType());
+    	System.out.println("Player two colour: " + getM_playerTwoColour());
     	System.out.println("Player two pieces: ");
-    	for(int i = 0; i < p2PiecesX.size(); i++){
-    		System.out.print("\n" + p2PiecesX.get(i) + "," + p2PiecesY.get(i));
+    	for(int i = 0; i < getP2PiecesX().size(); i++){
+    		System.out.print("\n" + getP2PiecesX().get(i) + "," + getP2PiecesY().get(i));
     	}
     	
     }
+
+	public ArrayList<Integer> getP1PiecesX() {
+		return p1PiecesX;
+	}
+
+	public void setP1PiecesX(ArrayList<Integer> p1PiecesX) {
+		this.p1PiecesX = p1PiecesX;
+	}
+
+	public ArrayList<Integer> getP1PiecesY() {
+		return p1PiecesY;
+	}
+
+	public void setP1PiecesY(ArrayList<Integer> p1PiecesY) {
+		this.p1PiecesY = p1PiecesY;
+	}
+
+	public ArrayList<Integer> getP2PiecesX() {
+		return p2PiecesX;
+	}
+
+	public void setP2PiecesX(ArrayList<Integer> p2PiecesX) {
+		this.p2PiecesX = p2PiecesX;
+	}
+
+	public ArrayList<Integer> getP2PiecesY() {
+		return p2PiecesY;
+	}
+
+	public void setP2PiecesY(ArrayList<Integer> p2PiecesY) {
+		this.p2PiecesY = p2PiecesY;
+	}
+
+	public String getM_playerOneName() {
+		return m_playerOneName;
+	}
+
+	public void setM_playerOneName(String m_playerOneName) {
+		this.m_playerOneName = m_playerOneName;
+	}
+
+	public String getM_playerOneType() {
+		return m_playerOneType;
+	}
+
+	public void setM_playerOneType(String m_playerOneType) {
+		this.m_playerOneType = m_playerOneType;
+	}
+
+	public String getM_playerOneColour() {
+		return m_playerOneColour;
+	}
+
+	public void setM_playerOneColour(String m_playerOneColour) {
+		this.m_playerOneColour = m_playerOneColour;
+	}
+
+	public String getM_playerTwoName() {
+		return m_playerTwoName;
+	}
+
+	public void setM_playerTwoName(String m_playerTwoName) {
+		this.m_playerTwoName = m_playerTwoName;
+	}
+
+	public String getM_playerTwoType() {
+		return m_playerTwoType;
+	}
+
+	public void setM_playerTwoType(String m_playerTwoType) {
+		this.m_playerTwoType = m_playerTwoType;
+	}
+
+	public String getM_playerTwoColour() {
+		return m_playerTwoColour;
+	}
+
+	public void setM_playerTwoColour(String m_playerTwoColour) {
+		this.m_playerTwoColour = m_playerTwoColour;
+	}
 }

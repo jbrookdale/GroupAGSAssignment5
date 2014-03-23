@@ -46,7 +46,7 @@ public class ConnectFourGameGUI extends GameGUI {
     public static final int BOARD_WIDTH = 10;
 
     /**< This is the panel that of draws the graphics to the screen */
-    private ConnectFourPanel panel;
+    private static ConnectFourPanel panel;
 
     /**< Distance between the edge of the window to the board */
     final static int WINDOW_BORDER_WIDTH = ConnectFourPanel.BOARD_SIDE_SPACING;
@@ -66,28 +66,33 @@ public class ConnectFourGameGUI extends GameGUI {
     public int mouseX;
 
     /**< Stores an instance of ConnectFourGame */
-    private ConnectFourGame game;
+    private static ConnectFourGame game;
     
     private int TOTAL_PLAYERS = 2;
+    
+    private Player m_playerOne;
+    private Player m_playerTwo;
     
     /**
     * Constructor for ConnectFourGameGUI
     * @param playerOneName - String representation of player one's name
     * @param playerTwoName - String representation of player two's name
     */
+    public static ConnectFourPanel getPanel(){
+    	return panel;
+    }
+    
+    public static ConnectFourGame getGame(){
+    	return game;
+    }
+    
     public ConnectFourGameGUI(String playerOneName, 
         String playerTwoName) {
         //Call super class constructor
         super(WINDOW_TITLE, WINDOW_WIDTH, WINDOW_HEIGHT);
 
-        game = new ConnectFourGame(new HumanPlayer(playerOneName,
-                                                   Piece.
-                                                       ConnectFourPieceColour.
-                                                           YELLOW),
-                               new HumanPlayer(playerTwoName,
-                                                   Piece.
-                                                       ConnectFourPieceColour.
-                                                           RED));
+        game = new ConnectFourGame(new HumanPlayer(playerOneName, Piece.ConnectFourPieceColour.RED), 
+        							new HumanPlayer(playerTwoName, Piece.ConnectFourPieceColour.YELLOW));
         
         panel = new ConnectFourPanel(game.getPieces());
         panel.updatePieces(game.getPieces());
@@ -184,7 +189,7 @@ public class ConnectFourGameGUI extends GameGUI {
                 if (game.getPlayer(game.getPlayerTurn() % TOTAL_PLAYERS).getPlayerType().equals("Computer")) {
                     int playerTurn = game.getPlayerTurn();
                     ConnectFourEasyComputerPlayer player = (ConnectFourEasyComputerPlayer) game.getPlayer(playerTurn % TOTAL_PLAYERS);
-                	//x = (int)player.makeAIMove(game.getBoard()).getX();
+                	x = (int)player.makeAIMove(game.getBoard()).getX();
                 }
 
                 if (x > BOARD_WIDTH) {
