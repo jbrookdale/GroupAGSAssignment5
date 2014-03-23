@@ -263,7 +263,7 @@ public class ConnectFourGameGUI extends GameGUI {
             if (game.gameWon()) {
             	getTimer().stop();
                 if (panel.getCurrentPiece().getPieceColour() 
-                        == ConnectFourPanel.YELLOW_PIECE) {
+                        == getPlayerOnePieceColour()) {
                     //RED WON
                     displayWinner(game.getPlayerName(Game.PLAYER_ONE));
                 } else {
