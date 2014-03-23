@@ -23,23 +23,58 @@ public class Connect4GameLoader extends GameLoader{
 	public void setupBoard(){
 		System.out.println("Setting up board");
 		
-		Player playerOne = new HumanPlayer(getM_playerOneName(), Piece.ConnectFourPieceColour.YELLOW);
-		Player playerTwo = new ConnectFourEasyComputerPlayer(getM_playerTwoName(), Piece.ConnectFourPieceColour.RED);
+		Player playerOne;
+		Player playerTwo;
 		
+		Piece.ConnectFourPieceColour p1Colour;
+		Piece.ConnectFourPieceColour p2Colour;
+		
+		if(getM_playerOneColour().equals("Red")){
+			p1Colour = Piece.ConnectFourPieceColour.RED;
+			p2Colour = Piece.ConnectFourPieceColour.YELLOW;
+		}else{
+			p1Colour = Piece.ConnectFourPieceColour.YELLOW;
+			p2Colour = Piece.ConnectFourPieceColour.RED;
+		}
+		
+		 if (getM_playerOneType().equals("Human")) {
+	            playerOne = new HumanPlayer(getM_playerOneName(), p1Colour);
+	        } else {
+	            playerOne = new ConnectFourEasyComputerPlayer(
+	            			getM_playerOneName(), p1Colour);
+	        }
+	        
+	        if (getM_playerTwoType().equals("Human")) {
+	            playerTwo = new HumanPlayer(getM_playerTwoName(), p2Colour);
+	        } else {
+	            playerTwo = new ConnectFourEasyComputerPlayer(
+	            			getM_playerTwoName(), p2Colour);
+	        }
+	        
 		ConnectFourGame loadGame = new ConnectFourGame(playerOne, playerTwo);
 		
-		//Setting the red pieces
-		for(int i = 0; i < getP1PiecesX().size(); i++){
-			ConnectFourBoard.setRedPieces(getP1PiecesX().get(i), getP1PiecesY().get(i));
+		if(p1Colour == Piece.ConnectFourPieceColour.RED){
+			//Setting the red pieces
+			for(int i = 0; i < getP1PiecesX().size(); i++){
+				ConnectFourBoard.setRedPieces(getP1PiecesX().get(i), getP1PiecesY().get(i));
+			}	
+		
+			//Setting the yellow pieces
+			for(int i = 0; i < getP2PiecesX().size(); i++){
+				ConnectFourBoard.setYellowPieces(getP2PiecesX().get(i), getP2PiecesY().get(i));
+			}
+		}else{
+			//Setting the yellow pieces
+			for(int i = 0; i < getP1PiecesX().size(); i++){
+				ConnectFourBoard.setYellowPieces(getP1PiecesX().get(i), getP1PiecesY().get(i));
+			}	
+		
+			//Setting the red pieces
+			for(int i = 0; i < getP2PiecesX().size(); i++){
+				ConnectFourBoard.setRedPieces(getP2PiecesX().get(i), getP2PiecesY().get(i));
+			}
 		}
 		
-		//Setting the yellow pieces
-		for(int i = 0; i < getP2PiecesX().size(); i++){
-			ConnectFourBoard.setYellowPieces(getP2PiecesX().get(i), getP2PiecesY().get(i));
-		}
-		
-		
-		System.out.println(getM_time());
 		ConnectFourGameGUI.beginTimer(getM_time());
 		ConnectFourGameGUI.resetPlayerLabel(getM_playerOneName(), getM_playerOneColour(), getM_playerTwoName(), getM_playerTwoColour());
 		
@@ -48,6 +83,8 @@ public class Connect4GameLoader extends GameLoader{
 		}else{
 			ConnectFourGameGUI.getGame().setTurn(1);
 		}
+		
+		ConnectFourGameGUI.setGame(loadGame);
 		
 		ConnectFourGameGUI.getPanel().updatePieces(loadGame.getPieces());
 		ConnectFourGameGUI.getPanel().refreshDisplay();
