@@ -149,7 +149,7 @@ public class MenuGUI extends GUI {
 	}
 	
 	/**
-	* This method will will set the name for player one.
+	* This method will set the name for player one.
 	*
 	* @param playerOneName -This variable brings in the First players name.
     * @return true -if the method was successfully executed.
@@ -160,7 +160,7 @@ public class MenuGUI extends GUI {
 	}
 	
     /**
-	* This method will will set the name for player two.
+	* This method will set the name for player two.
 	*
 	* @param playerTwoName -This variable brings in the Second players name.
     * @return true -If the method was successfully executed.
@@ -172,21 +172,45 @@ public class MenuGUI extends GUI {
 
 	}
 	
+	/**
+	* This method will set the colour for player one.
+	*
+	* @param playerOneColour -This variable brings in the first players colour.
+    * @return true -If the method was successfully executed.
+	*/
 	private boolean setPlayerOneColour(String playerOneColour) {
 		m_PlayerOneColour = playerOneColour;
 		return true;
 	}
 	
+	/**
+	* This method will set the colour for player two.
+	*
+	* @param playerTwoColour -This variable brings in the second players colour.
+    * @return true -If the method was successfully executed.
+	*/
 	private boolean setPlayerTwoColour(String playerTwoColour) {
 		m_PlayerTwoColour = playerTwoColour;
 		return true;
 	}
 	
+	/**
+	* This method will set the type for player one.
+	*
+	* @param playerOneType -This variable brings in the first players colour.
+    * @return true -If the method was successfully executed.
+	*/
 	private boolean setPlayerOneType(String playerOneType) {
 		m_PlayerOneType = playerOneType;
 		return true;
 	}
 	
+	/**
+	* This method will set the type for player two.
+	*
+	* @param playerTwoType -This variable brings in the second players colour.
+    * @return true -If the method was successfully executed.
+	*/
 	private boolean setPlayerTwoType(String playerTwoType) {
 		m_PlayerTwoType = playerTwoType;
 		return true;
@@ -216,18 +240,42 @@ public class MenuGUI extends GUI {
 
 	}
 	
+	/**
+	* This method will return Players Two colour.
+	* 
+	* @param nil
+	* @return m_PlayerTwoColour -This variable is the second players colour.
+	*/
 	public static String getPlayerTwoColour() {
 		return m_PlayerTwoColour;
 	}
 	
+	/**
+	* This method will return Players One colour.
+	* 
+	* @param nil
+	* @return m_PlayerOneColour -This variable is the first players colour.
+	*/
 	public static String getPlayerOneColour() {
 		return m_PlayerOneColour;
 	}
 	
+	/**
+	* This method will return Players One type.
+	* 
+	* @param nil
+	* @return m_PlayerOneType -This variable is the first players type.
+	*/
 	public static String getPlayerOneType() {
 		return m_PlayerOneType;
 	}
 	
+	/**
+	* This method will return Players Two type.
+	* 
+	* @param nil
+	* @return m_PlayerTwoType -This variable is the second players type.
+	*/
 	public static String getPlayerTwoType() {
 		return m_PlayerTwoType;
 	}
@@ -298,9 +346,14 @@ public class MenuGUI extends GUI {
 		return true;
 
 	}
+	
+	/**
+	* This method updates the content of the combo boxes
+	* depending on what game has been chosen
+    *
+	*/
     private void ComboBoxes(){
     	if(getGameType()== CONNECT) {
-    		System.out.println("chosen connect 4");
     		m_ComboPlayer1Colour.removeAllItems();
     		m_ComboPlayer2Colour.removeAllItems();
     		
@@ -311,8 +364,6 @@ public class MenuGUI extends GUI {
     		m_ComboPlayer2Colour.addItem("Red");
     		
     	} else if(getGameType()==OTHELLO) {
-    		System.out.println("chosen othello");
-    		
     		m_ComboPlayer1Colour.removeAllItems();
     		m_ComboPlayer2Colour.removeAllItems();
     		
@@ -335,11 +386,11 @@ public class MenuGUI extends GUI {
 	private boolean InputScreen() {
 		
 				
-		m_ComboPlayer1Mode = new JComboBox(m_PlayerNames);
-		m_ComboPlayer1Mode.setSelectedIndex(0);
+		m_ComboPlayer1Type = new JComboBox(m_PlayerTypes);
+		m_ComboPlayer1Type.setSelectedIndex(0);
 		
-		m_ComboPlayer2Mode = new JComboBox(m_PlayerNames);
-		m_ComboPlayer2Mode.setSelectedIndex(0);
+		m_ComboPlayer2Type = new JComboBox(m_PlayerTypes);
+		m_ComboPlayer2Type.setSelectedIndex(0);
 		
 		m_ComboPlayer1Colour = new JComboBox();
 		
@@ -417,82 +468,82 @@ public class MenuGUI extends GUI {
 		input.fill = GridBagConstraints.HORIZONTAL;
 		input.gridx = COLUMN_ONE;							
 		input.gridy = ROW_ONE;
-		input.insets = new Insets(20,20,0,60);
+		input.insets = new Insets(GAP_TWENTY,GAP_TWENTY,NO_GAP,60);
 		inputPanel.add(m_InputLabel, input);
 		
 		
 		input.fill = GridBagConstraints.HORIZONTAL;
 		input.gridx = COLUMN_ONE;							
 		input.gridy = ROW_TWO;
-		input.insets = new Insets(20,20,0,60);  		
+		input.insets = new Insets(GAP_TWENTY,GAP_TWENTY,NO_GAP,60);  		
 		inputPanel.add(m_Player1Label, input);
 		
 		input.fill = GridBagConstraints.HORIZONTAL;
-		input.gridx = 1;							
+		input.gridx = COLUMN_TWO;							
 		input.gridy = ROW_TWO;
-		input.insets = new Insets(20,10,0,60);  		
+		input.insets = new Insets(GAP_TWENTY,GAP_TEN,NO_GAP,60);  		
 		inputPanel.add(m_Player2Label, input);
 		
 		input.fill = GridBagConstraints.HORIZONTAL;
-		input.gridx = 0;							
-		input.gridy = 3;
-		input.insets = new Insets(50,20,0,120); 
-		inputPanel.add(m_ComboPlayer1Mode, input);
+		input.gridx = COLUMN_ONE;							
+		input.gridy = ROW_FOUR;
+		input.insets = new Insets(GAP_FIFTY,GAP_TWENTY,NO_GAP,GAP_ONE_HUNDRED_TWENTY); 
+		inputPanel.add(m_ComboPlayer1Type, input);
 		
 		input.fill = GridBagConstraints.HORIZONTAL;
-		input.gridx = 0;							
-		input.gridy = 3;
-		input.insets = new Insets(0,20,0,120); 
+		input.gridx = COLUMN_ONE;							
+		input.gridy = ROW_FOUR;
+		input.insets = new Insets(NO_GAP,GAP_TWENTY,NO_GAP,GAP_ONE_HUNDRED_TWENTY); 
 		inputPanel.add(m_Player1TypeLabel, input);
 		
 		input.fill = GridBagConstraints.HORIZONTAL;
-		input.gridx = 1;							
-		input.gridy = 3;
-		input.insets = new Insets(50,10,0,120); 
-		inputPanel.add(m_ComboPlayer2Mode, input);
+		input.gridx = COLUMN_TWO;							
+		input.gridy = ROW_FOUR;
+		input.insets = new Insets(GAP_FIFTY,GAP_TEN,NO_GAP,GAP_ONE_HUNDRED_TWENTY); 
+		inputPanel.add(m_ComboPlayer2Type, input);
 		
 		input.fill = GridBagConstraints.HORIZONTAL;
-		input.gridx = 1;							
-		input.gridy = 3;
-		input.insets = new Insets(0,10,0,120); 
+		input.gridx = COLUMN_TWO;							
+		input.gridy = ROW_FOUR;
+		input.insets = new Insets(NO_GAP,GAP_TEN,NO_GAP,GAP_ONE_HUNDRED_TWENTY); 
 		inputPanel.add(m_Player2TypeLabel, input);
 		
 		input.fill = GridBagConstraints.HORIZONTAL;
 		input.gridx = COLUMN_ONE;							
-		input.gridy = 2;
-		input.insets = new Insets(20,20,0,100);  		
+		input.gridy = ROW_THREE;
+		input.insets = new Insets(GAP_TWENTY,GAP_TWENTY,NO_GAP,GAP_ONE_HUNDRED);  		
 		inputPanel.add(m_PlayInputOne, input);
 		
 		
 
 		input.fill = GridBagConstraints.HORIZONTAL;
-		input.gridx = 1;							
-		input.gridy = 2;
-		input.insets = new Insets(20,10,NO_GAP,100);  			
+		input.gridx = COLUMN_TWO;							
+		input.gridy = ROW_THREE;
+		input.insets = new Insets(GAP_TWENTY,GAP_TEN,NO_GAP,GAP_ONE_HUNDRED);  			
 		inputPanel.add(m_PlayInputTwo, input);
 		
 		input.fill = GridBagConstraints.HORIZONTAL;
-		input.gridx = 0;							
-		input.gridy = 4;
-		input.insets = new Insets(50,20,0,120);  			
+		input.gridx = COLUMN_ONE;							
+		input.gridy = ROW_FIVE;
+		input.insets = new Insets(GAP_FIFTY,GAP_TWENTY,NO_GAP,GAP_ONE_HUNDRED_TWENTY);  			
 		inputPanel.add(m_ComboPlayer1Colour, input);
 		
 		input.fill = GridBagConstraints.HORIZONTAL;
-		input.gridx = 0;							
-		input.gridy = 4;
-		input.insets = new Insets(0,20,0,120); 
+		input.gridx = COLUMN_ONE;							
+		input.gridy = ROW_FIVE;
+		input.insets = new Insets(NO_GAP,GAP_TWENTY,NO_GAP,GAP_ONE_HUNDRED_TWENTY); 
 		inputPanel.add(m_Player1ColourLabel, input);
 		
 		input.fill = GridBagConstraints.HORIZONTAL;
-		input.gridx = 1;							
-		input.gridy = 4;
-		input.insets = new Insets(50,10,NO_GAP,120);  			
+		input.gridx = COLUMN_TWO;							
+		input.gridy = ROW_FIVE;
+		input.insets = new Insets(GAP_FIFTY,GAP_TEN,NO_GAP,GAP_ONE_HUNDRED_TWENTY);  			
 		inputPanel.add(m_ComboPlayer2Colour, input);
 		
 		input.fill = GridBagConstraints.HORIZONTAL;
-		input.gridx = 1;							
-		input.gridy = 4;
-		input.insets = new Insets(0,10,0,120); 
+		input.gridx = COLUMN_TWO;							
+		input.gridy = ROW_FIVE;
+		input.insets = new Insets(NO_GAP,GAP_TEN,NO_GAP,GAP_ONE_HUNDRED_TWENTY); 
 		inputPanel.add(m_Player2ColourLabel, input);
 		
 		JPanel confirmPanel = new JPanel(new GridBagLayout());
@@ -501,13 +552,13 @@ public class MenuGUI extends GUI {
 		confirm.fill = GridBagConstraints.HORIZONTAL;
 		confirm.gridx = COLUMN_ONE;
 		confirm.gridy = ROW_ONE;
-		confirm.insets = new Insets(15,0,0,20); 
+		confirm.insets = new Insets(GAP_FIFTEEN,NO_GAP,NO_GAP,GAP_TWENTY); 
 		confirmPanel.add(m_PlayerBack, confirm);
 		
 		confirm.fill = GridBagConstraints.HORIZONTAL;
 		confirm.gridx = COLUMN_TWO;	
 		confirm.gridy = ROW_ONE;
-		confirm.insets = new Insets(15,0,0,NO_GAP);  		
+		confirm.insets = new Insets(GAP_FIFTEEN,NO_GAP,NO_GAP,NO_GAP);  		
 		confirmPanel.add(m_PlayerOK, confirm);
 
 		MainPanel.insets = new Insets(GAP_TEN,NO_GAP,NO_GAP,NO_GAP); 
@@ -530,7 +581,7 @@ public class MenuGUI extends GUI {
 	/**
 	* This method validates the name to make sure that when the player inputs
 	* a name, the name they input is either not empty or has a maximum length 
-	* of 20 characters.
+	* of 20 characters or has two identical names, or if name is whitespace
 	* 
 	* @param nil
 	* @return true -This returns true if the name suits the requirements or 
@@ -633,8 +684,8 @@ public class MenuGUI extends GUI {
 			    setPlayerOneColour(m_ComboPlayer1Colour.getSelectedItem().toString());
 			    setPlayerTwoColour(m_ComboPlayer2Colour.getSelectedItem().toString());
 			    
-			    setPlayerOneType(m_ComboPlayer1Mode.getSelectedItem().toString());
-			    setPlayerTwoType(m_ComboPlayer2Mode.getSelectedItem().toString());
+			    setPlayerOneType(m_ComboPlayer1Type.getSelectedItem().toString());
+			    setPlayerTwoType(m_ComboPlayer2Type.getSelectedItem().toString());
 			    
 			    //m_MainMenu.dispose();	//Disposes the main menu
 				
@@ -869,24 +920,34 @@ public class MenuGUI extends GUI {
 	/**< This is the label for the Heading on the input window */
 	private JLabel m_InputLabel;
 	
+	/**< This is the label for the player1 details heading on the input window */
 	private JLabel m_Player1Label;
 	
+	/**< This is the label for the player2 details heading on the input window */
 	private JLabel m_Player2Label;
 	
-	private JComboBox m_ComboPlayer1Mode;
+	/**< This is the ComboBox for the player1 types on the input window */
+	private JComboBox m_ComboPlayer1Type;
 	
-	private JComboBox m_ComboPlayer2Mode;
+	/**< This is the ComboBox for the player2 types on the input window */
+	private JComboBox m_ComboPlayer2Type;
 	
+	/**< This is the ComboBox for the player1 colours on the input window */
 	private JComboBox m_ComboPlayer1Colour;
 	
+	/**< This is the ComboBox for the player2 colours on the input window */
 	private JComboBox m_ComboPlayer2Colour;
 	
+	/**< This is the label for the player 1's type combobox on the input window */
 	private JLabel m_Player1TypeLabel;
 	
+	/**< This is the label for the player 2's type combobox on the input window */
 	private JLabel m_Player2TypeLabel;
 	
+	/**< This is the label for the player 1's colour combobox on the input window */
 	private JLabel m_Player1ColourLabel;
 	
+	/**< This is the label for the player 2's colour combobox on the input window */
 	private JLabel m_Player2ColourLabel;
 	
 	/**< This variable hold the string of the name for player one */
@@ -894,6 +955,18 @@ public class MenuGUI extends GUI {
 
 	/**< This variable hold the string of the name for player two */
 	private String m_PlayerTwo;
+	
+	/**< This variable hold the string of the colour for player one */
+	private static String m_PlayerOneColour;
+	
+	/**< This variable hold the string of the colour for player two */
+	private static String m_PlayerTwoColour;
+	
+	/**< This variable hold the string of the player type for player one */
+	private static String m_PlayerOneType;
+	
+	/**< This variable hold the string of the player type for player one */
+	private static String m_PlayerTwoType;
 	
 	/**< The buttons for the user to select the othello game type */
 	private JButton m_OthelloButton;
@@ -968,9 +1041,6 @@ public class MenuGUI extends GUI {
 	/**< Constants for the GridBagLayout column two on the x axis */
 	private final int COLUMN_TWO = 1;
 	
-	/**< Constants for the GridBagLayout column three on the x axis */
-	private final int COLUMN_THREE = 2;
-	
 	/**< Constants for the GridBagLayout row one on the y axis */
 	private final int ROW_ONE = 0;
 	
@@ -982,6 +1052,9 @@ public class MenuGUI extends GUI {
 	
 	/**< Constants for the GridBagLayout row four on the y axis */
 	private final int ROW_FOUR = 3;
+	
+	/**< Constants for the GridBagLayout row five on the y axis */
+	private final int ROW_FIVE = 4;
 	
 	/**< Constant for the insets of no gap between components */
 	private final int NO_GAP = 0;
@@ -995,6 +1068,15 @@ public class MenuGUI extends GUI {
 	/**< Constant for the insets of 20 size gap between components */
 	private final int GAP_TWENTY = 20;
 	
+	/**< Constant for the insets of 50 size gap between components */
+	private final int GAP_FIFTY = 50;
+	
+	/**< Constant for the insets of 100 size gap between components */
+	private final int GAP_ONE_HUNDRED = 100;
+	
+	/**< Constant for the insets of 120 size gap between components */
+	private final int GAP_ONE_HUNDRED_TWENTY = 120;
+	
 	/**< Constant for maximum name length */
 	private final int MAX_NAME = 20;
 	
@@ -1004,14 +1086,7 @@ public class MenuGUI extends GUI {
 	/**< This is used in the timer for the validation checks*/
 	private int m_Time;
 	
-	String[] m_PlayerNames = { "Human", "Computer: Easy", "Computer: Hard"};
-	
-	private static String m_PlayerOneColour;
-	
-	private static String m_PlayerTwoColour;
-	
-	private static String m_PlayerOneType;
-	
-	private static String m_PlayerTwoType;
+	/**< String array that stores player modes for comboboxes*/
+	private final String[] m_PlayerTypes = { "Human", "Computer: Easy", "Computer: Hard"};
 	
 }
