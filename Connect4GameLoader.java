@@ -12,6 +12,8 @@ public class Connect4GameLoader extends GameLoader{
 	/**
 		THINGS THAT ARE STILL NEEDED TO BE DONE:
 			-- Player turn needs to be taken into account.
+			   Okay so player turn now works but the colour of the piece doesn't change
+			   so it's pretty useless and just flips the players.
 			-- Timer is incrementing too fast.
 			-- Needs to handle loading an already won??
 			-- Needs to take into account both players colour and type,
@@ -35,9 +37,17 @@ public class Connect4GameLoader extends GameLoader{
 		for(int i = 0; i < getP2PiecesX().size(); i++){
 			ConnectFourBoard.setYellowPieces(getP2PiecesX().get(i), getP2PiecesY().get(i));
 		}
+		
+		
 		System.out.println(getM_time());
 		ConnectFourGameGUI.beginTimer(getM_time());
 		ConnectFourGameGUI.resetPlayerLabel(getM_playerOneName(), getM_playerOneColour(), getM_playerTwoName(), getM_playerTwoColour());
+		
+		if(getM_playerTurn().equals("Player 1")){
+			ConnectFourGameGUI.getGame().setTurn(0);
+		}else{
+			ConnectFourGameGUI.getGame().setTurn(1);
+		}
 		
 		ConnectFourGameGUI.getPanel().updatePieces(loadGame.getPieces());
 		ConnectFourGameGUI.getPanel().refreshDisplay();

@@ -153,13 +153,13 @@ public class GameLoader extends GameIOHandler{
     }
     
     public void setPlayerTurn(Element element){
-    	m_playerTurn = element.getElementsByTagName("turn").item(0).getTextContent();
+    	setM_playerTurn(element.getElementsByTagName("turn").item(0).getTextContent());
     }
     
     public void drawToTerminal(){
     	System.out.println("Game type: " + m_gametype);
     	System.out.println("Game time: " + getM_time());
-    	System.out.println("Players turn: " + m_playerTurn);
+    	System.out.println("Players turn: " + getM_playerTurn());
     	
     	System.out.println("-------------------------------------");
     	
@@ -269,5 +269,13 @@ public class GameLoader extends GameIOHandler{
 
 	public void setM_time(int m_time) {
 		this.m_time = m_time;
+	}
+
+	public String getM_playerTurn() {
+		return m_playerTurn;
+	}
+
+	public void setM_playerTurn(String m_playerTurn) {
+		this.m_playerTurn = m_playerTurn;
 	}
 }

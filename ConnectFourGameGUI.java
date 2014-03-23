@@ -73,6 +73,9 @@ public class ConnectFourGameGUI extends GameGUI {
     private Player m_playerOne;
     private Player m_playerTwo;
     
+    private Piece.ConnectFourPieceColour m_playerOnePieceColour;
+    private Piece.ConnectFourPieceColour m_playerTwoPieceColour;
+    
     /**
     * Constructor for ConnectFourGameGUI
     * @param playerOneName - String representation of player one's name
@@ -86,21 +89,41 @@ public class ConnectFourGameGUI extends GameGUI {
     	return game;
     }
     
-    public ConnectFourGameGUI(String playerOneName, 
-        String playerTwoName) {
+    
+    public void setPieceColours(String p1Colour){
+    	if(p1Colour.equals("Red")){
+    		m_playerOnePieceColour = Piece.ConnectFourPieceColour.RED;
+    		m_playerTwoPieceColour = Piece.ConnectFourPieceColour.YELLOW;
+    	}else{
+    		m_playerOnePieceColour = Piece.ConnectFourPieceColour.YELLOW;
+    		m_playerTwoPieceColour = Piece.ConnectFourPieceColour.RED;
+    	}
+    }
+    
+    public Piece.ConnectFourPieceColour getPlayerOnePieceColour(){
+		return m_playerOnePieceColour;
+    }
+    
+    public Piece.ConnectFourPieceColour getPlayerTwoPieceColour(){
+		return m_playerTwoPieceColour;
+    }
+    
+    public ConnectFourGameGUI(String[] playerOneDetails, 
+        String[] playerTwoDetails) {
         //Call super class constructor
         super(WINDOW_TITLE, WINDOW_WIDTH, WINDOW_HEIGHT);
 
-        game = new ConnectFourGame(new HumanPlayer(playerOneName, Piece.ConnectFourPieceColour.RED), 
-        							new HumanPlayer(playerTwoName, Piece.ConnectFourPieceColour.YELLOW));
+        setPieceColours(playerOneDetails[2]);
+        
+        game = new ConnectFourGame(new HumanPlayer(playerOneDetails[0], getPlayerOnePieceColour()), 
+        							new HumanPlayer(playerTwoDetails[0], getPlayerTwoPieceColour()));
         
         panel = new ConnectFourPanel(game.getPieces());
         panel.updatePieces(game.getPieces());
-        panel.setCurrentPiece(new ConnectFourPiece(Piece.ConnectFourPieceColour.
-            YELLOW));
+        panel.setCurrentPiece(new ConnectFourPiece(getPlayerOnePieceColour()));
         
         setTimerLabel();
-        setPlayerLabel(playerOneName, "Yellow", playerTwoName, "Red");
+        setPlayerLabel(playerOneDetails[0], playerOneDetails[2], playerTwoDetails[0], playerTwoDetails[2]);
         panel.add(getTimerLabel());
         panel.add(getPlayerLabel());
         
@@ -318,17 +341,12 @@ public class ConnectFourGameGUI extends GameGUI {
 
             game = new ConnectFourGame(
                            new HumanPlayer(game.getPlayerName(Game.PLAYER_ONE),
-                                           Piece.
-                                               ConnectFourPieceColour.
-                                                   YELLOW),
+                                          getPlayerOnePieceColour()),
                            new ConnectFourEasyComputerPlayer(game.getPlayerName(Game.PLAYER_TWO),
-                                           Piece.
-                                               ConnectFourPieceColour.
-                                                   RED));  
+                                          getPlayerTwoPieceColour()));  
 
             panel.updatePieces(game.getPieces());
-            panel.setCurrentPiece(new ConnectFourPiece(
-            						Piece.ConnectFourPieceColour.YELLOW));
+            panel.setCurrentPiece(new ConnectFourPiece(getPlayerOnePieceColour()));
             panel.refreshDisplay();
         }
         return reply == JOptionPane.YES_OPTION;

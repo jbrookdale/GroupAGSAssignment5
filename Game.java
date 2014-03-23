@@ -47,10 +47,18 @@ public abstract class Game<C> {
      * @return String -The name of the player, either player one or two.
      */
      
-     public void resetTurn() {
+     public static void resetTurn() {
         m_PlayerTurn = PLAYER_ONE;
     }
     
+     public static void setTurn(int x){
+    	 if(x == 0){
+    		 resetTurn();
+    	 }else{
+    		 m_PlayerTurn = 1; // Is this how to do it??
+    	 }
+     }
+     
     public void incrementTurn() {
         m_PlayerTurn++;
     }

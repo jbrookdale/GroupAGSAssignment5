@@ -704,7 +704,7 @@ public class MenuGUI extends GUI {
 					
 					
 					ConnectFourGameGUI connectFour =
-					    new ConnectFourGameGUI(playerOneDetails[0], playerTwoDetails[0]);				
+					    new ConnectFourGameGUI(playerOneDetails, playerTwoDetails);				
 					
 				} else if(getGameType() == OTHELLO){
 					//m_MainMenu.dispose();
