@@ -101,5 +101,8 @@ class OthelloHardComputerPlayer <C> extends HardComputerPlayer {
                 System.out.println("(" + (i) + "," + (j) + "): " + "flips " + y + " pieces");
             }
         }
+        
+        Point x = compAI.makeAIMove(g);
+        System.out.println("ComAI move: " + x);
     }
 }
