@@ -42,10 +42,10 @@ import javax.swing.SwingUtilities;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
-// The reason the gifs are getting frozen is because when the same image file is flushed, it freezes the position of the current gif image.
-
 public class OthelloGameGUI extends GameGUI {
-    static JFrame window;
+	private static final long serialVersionUID = 1L;
+
+	static JFrame window;
     
     private static Piece.OthelloPieceColour p1colour;
     private static Piece.OthelloPieceColour p2colour;
@@ -84,25 +84,20 @@ public class OthelloGameGUI extends GameGUI {
 	 * @param height -the variable storing height of the .
 	 */
 	public OthelloGameGUI(String title, int width, int height, String p1Colour) {
-		//Sets title, width, and height to the value of GameGui
 		super(title,width,height);
+		
+		/* What is this? */
         URL location = OthelloGameGUI.class.getProtectionDomain()
                        .getCodeSource().getLocation();
 		System.out.println(location.getFile());
-        backgroundTile = 
-            new ImageIcon(getClass().getResource("OthelloBackground.png"));
-		blackPiece = 
-            new ImageIcon(getClass().getResource("PieceBlack.png"));
-		whitePiece = 
-            new ImageIcon(getClass().getResource("PieceWhite.png"));
-        whiteWinningPiece = new ImageIcon(getClass()
-                            .getResource("PieceWhiteFinal.png"));
-        blackWinningPiece = 
-            new ImageIcon(getClass().getResource("PieceBlackFinal.png"));
-		whiteToBlackPiece = 
-            new ImageIcon(getClass().getResource("PieceWhiteToBlack75.gif"));
-		blackToWhitePiece = 
-            new ImageIcon(getClass().getResource("PieceBlackToWhite75.gif"));
+		
+        backgroundTile = new ImageIcon(getClass().getResource("OthelloBackground.png"));
+		blackPiece = new ImageIcon(getClass().getResource("PieceBlack.png"));
+		whitePiece = new ImageIcon(getClass().getResource("PieceWhite.png"));
+        whiteWinningPiece = new ImageIcon(getClass().getResource("PieceWhiteFinal.png"));
+        blackWinningPiece = new ImageIcon(getClass().getResource("PieceBlackFinal.png"));
+		whiteToBlackPiece = new ImageIcon(getClass().getResource("PieceWhiteToBlack75.gif"));
+		blackToWhitePiece = new ImageIcon(getClass().getResource("PieceBlackToWhite75.gif"));
 		setTime(0);
 		setTimerLabel();
 		startTimer();
@@ -119,17 +114,24 @@ public class OthelloGameGUI extends GameGUI {
 			p2colour = Piece.OthelloPieceColour.BLACK;
 		}
 		
-		gameCheck = new OthelloGame(new HumanPlayer(m_player1Name,
-                m_player1Colour.
-                getPieceColour()),
-                new HumanPlayer(m_player2Name,
-                			m_player2Colour.
-                getPieceColour()));
+		gameCheck = new OthelloGame(new HumanPlayer(m_player1Name, p1colour),
+                					new HumanPlayer(m_player2Name, p2colour));
 		
-		panel = new JPanel();
-		
+		panel = new JPanel();	
 	}
 	
+
+    /**
+    *@param String[] players - takes in a string of players
+    * first two values become player 1 and player 2
+    */
+    public void setPlayers(String[] players){
+        final int PLAYER_ONE = 0;
+        final int PLAYER_TWO = 1;
+        m_player1Name = players[PLAYER_ONE];
+        m_player2Name = players[PLAYER_TWO];
+    }
+    
 	public static String getPlayerName(int x){
 		if(x == 0){
 			return m_player1Name;
@@ -143,7 +145,7 @@ public class OthelloGameGUI extends GameGUI {
 	 * @param height -height of the board
 	 * @return the height of the board
 	 */
-	public int getHeight(int height){
+	public int getHeight(int height){ // Could this be more useless??
 		return height;
 	}
 
@@ -152,7 +154,7 @@ public class OthelloGameGUI extends GameGUI {
 	 * @param width -width of the board
 	 * @return the width of the board
 	 */
-	public int getWidth(int width){
+	public int getWidth(int width){ //Same here, why!?
 		return width;
 	}
 
@@ -163,14 +165,12 @@ public class OthelloGameGUI extends GameGUI {
 	 * @return moveMade -if the move was successful moveMade returns true and false if not.
 	 */
 	public boolean animateMove() {
-
 		boolean moveMade = false;
 		//Check if this is actually what they want
 		if (!moveMade) {
 			moveMade = true;
 		}
 		return moveMade;
-		
 	}
 
 	/** 
@@ -181,13 +181,11 @@ public class OthelloGameGUI extends GameGUI {
 	 */
 	public boolean displayMoveFeedback(String message) {
 
-		if(animateMove() == true){
-
+		if(animateMove() == true){	
 		}
 		else{
 			JOptionPane.showMessageDialog(null, message);
 			System.out.println("Invalid move.  Try another");
-			//return message;
 		}
 		return true;
 	}
@@ -206,10 +204,9 @@ public class OthelloGameGUI extends GameGUI {
 	 * @param score -the variable storing the score of each player.
 	 * @param pieceCount -the variable storing the number of pieces on the board.
 	 */
-	 boolean updateDisplay(OthelloPiece[][] pieces, Date time,
+	 boolean updateDisplay(OthelloPiece[][] pieces, Date time, //This does absolutely nothing??
                            int[] score, int[] pieceCount) {
 		return false;
-
 	}
 
 
@@ -307,8 +304,7 @@ public class OthelloGameGUI extends GameGUI {
 			//	m_player2Name,m_player2Type,m_player2Colour.getPieceColour());
             gameCheck = new OthelloGame(new HumanPlayer(m_player1Name, p1colour),
                                         new HumanPlayer(m_player2Name, p2colour));
-        	String[] s = gameCheck.getPlayerNames();
-            creatingGui();
+        	creatingGui();
             panel.updateUI();
         } else {
             dispose();
@@ -375,16 +371,14 @@ public class OthelloGameGUI extends GameGUI {
 	 * @param -Event is which button is clicked
 	 */
 
-	private class GUIHandler implements MouseListener{
+		private class GUIHandler implements MouseListener{
 		OthelloBoard changeBoard = new OthelloBoard(TOTALHEIGHT,TOTALWIDTH);
 		boolean player = true; //true is player1, false player2
-		@Override
+		
         public void mouseReleased(MouseEvent event) {
-        	
         	for(int y = 0; y < TOTALWIDTH; y++){ 
 				for(int x = 0; x < TOTALHEIGHT; x++){ 
-
-                    updateTitle(player);
+					updateTitle(player);
                     //player1 moves
 					if(event.getSource() == gridButtons[x][y] && player == true){
                         if(player1Move(x,y)){
@@ -407,35 +401,14 @@ public class OthelloGameGUI extends GameGUI {
             }
         }
 
-
-        /**
-        * Inherited from MouseListener
-        */
-		@Override
-        public void mouseClicked(MouseEvent e) {
-
-        }
-        /**
-        * Inherited from MouseListener
-        */
-        @Override
-        public void mousePressed(MouseEvent e) {
-            
-        }
-        /**
-        * Inherited from MouseListener
-        */
-        @Override
-        public void mouseExited(MouseEvent e) {
-        }
-        /**
-        * Inherited from MouseListener
-        */
-        @Override
-        public void mouseEntered(MouseEvent e) {
-            // Could highlight mouseovered cell if we wanted
-        }
-
+		/* Inherited from MouseListener */
+        public void mouseClicked(MouseEvent e) {}
+		/* Inherited from MouseListener */ 
+		public void mousePressed(MouseEvent e) {}
+        /* Inherited from MouseListener */
+        public void mouseExited(MouseEvent e) {}
+        /* Inherited from MouseListener */
+        public void mouseEntered(MouseEvent e) {}
     }
 
 
@@ -485,7 +458,7 @@ public class OthelloGameGUI extends GameGUI {
                     
                     gameCheck.setPlayer1Score(1);
                     gameCheck.board.clearPieces();
-                    //gridButtons[x][y].setIcon(whitePiece);
+
                     System.out.print("player 1 score: "+
                                      gameCheck.getPlayer1Score());
                     System.out.println(" player 2 score: "+
@@ -741,19 +714,6 @@ public class OthelloGameGUI extends GameGUI {
                 }
             }).start();
         }
-
-        /**
-        *@param String[] players - takes in a string of players
-        * first two values become player 1 and player 2
-        */
-        public void setPlayers(String[] players){
-            final int PLAYER_ONE = 0;
-            final int PLAYER_TWO = 1;
-            m_player1Name = players[PLAYER_ONE];
-            m_player2Name = players[PLAYER_TWO];
-        }
-        
-        
 
 	public static void main(String[] args){
 		final int WIDTH = 600, HEIGHT = 600;
