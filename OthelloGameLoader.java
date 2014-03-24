@@ -4,6 +4,7 @@ public class OthelloGameLoader extends GameLoader{
 
 	private int m_playerOneScore;
 	private int m_playerTwoScore;
+	private int START_SCORE = 2;
 	
 	public OthelloGameLoader(String fileName) {
 		super(fileName);
@@ -56,6 +57,7 @@ public class OthelloGameLoader extends GameLoader{
 			OthelloGameGUI.setPieces(getP1PiecesX().get(k), getP1PiecesY().get(k), getM_playerOneColour());
 			if(getM_playerOneColour().equals("Black")){
 				OthelloBoard.setLoadedPieces(getP1PiecesX().get(k), getP1PiecesY().get(k), new OthelloPiece(Piece.OthelloPieceColour.BLACK));
+				
 			}else{
 				OthelloBoard.setLoadedPieces(getP1PiecesX().get(k), getP1PiecesY().get(k), new OthelloPiece(Piece.OthelloPieceColour.WHITE));
 			}
@@ -70,8 +72,8 @@ public class OthelloGameLoader extends GameLoader{
 			}
 		}	
 		
-		OthelloGame.setPlayer1Score(m_playerOneScore);
-		OthelloGame.setPlayer2Score(m_playerTwoScore);
+		OthelloGame.setPlayer1Score(m_playerOneScore - START_SCORE);
+		OthelloGame.setPlayer2Score(m_playerTwoScore - START_SCORE);
 		
 	}
 }
