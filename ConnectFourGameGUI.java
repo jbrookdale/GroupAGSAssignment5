@@ -191,14 +191,14 @@ public class ConnectFourGameGUI extends GameGUI {
         saveGameButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                     System.out.println("save game clicked");
-                    new Connect4GameSaver("C:\\Users\\Ieuan\\Desktop\\firstTest.xml");
+                    new Connect4GameSaver("C:\\Users\\Ieuan\\Desktop\\newTesting.xml");
             }
         });
         
         loadGameButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                     System.out.println("load game clicked");
-                    new Connect4GameLoader("C:\\Users\\Ieuan\\Desktop\\firstTest.xml");
+                    new Connect4GameLoader("C:\\Users\\Ieuan\\Desktop\\newTesting.xml");
             }
         });
         

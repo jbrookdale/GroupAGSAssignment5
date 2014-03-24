@@ -92,7 +92,7 @@ public class OthelloBoard extends Board <Piece.OthelloPieceColour,OthelloPiece> 
 * @return true -It returns true if the method returns successfully. 
 **/
 	
-public boolean setPiece (int x, int y, OthelloPiece colour) {
+public static boolean setPiece (int x, int y, OthelloPiece colour) {
         m_Pieces[x][y]=colour;
         
         return true;

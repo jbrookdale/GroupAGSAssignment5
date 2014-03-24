@@ -323,20 +323,20 @@ public class OthelloGameGUI extends GameGUI {
 	private JLabel m_player2Score; /**< variable storing player two's score to be displayed */ 
 	private String m_player1Type= "Human";/**< variable storing player one's type*/ 
 	private String m_player2Type= "Human";/**< variable storing player two's type*/ 
-	private OthelloPiece m_player1Colour =
+	private static OthelloPiece m_player1Colour =
                     new OthelloPiece(Piece.OthelloPieceColour.WHITE);
-	private OthelloPiece m_player2Colour =
+	private static OthelloPiece m_player2Colour =
                     new OthelloPiece(Piece.OthelloPieceColour.BLACK);
 	private static JButton defaultButton = null;
-	private final int TOTALWIDTH = 8;
-	private final int TOTALHEIGHT = 8;
+	private final static int TOTALWIDTH = 8;
+	private final static int TOTALHEIGHT = 8;
 	private final int BOARDWIDTH = 75;
 	private final int BOARDHEIGHT = 75;
 	
 	OthelloBoard board = new OthelloBoard(TOTALHEIGHT,TOTALWIDTH);
 	//OthelloGame gameCheck = new OthelloGame(m_player1Name,m_player1Type,m_player1Colour.getPieceColour(),
 				//m_player2Name,m_player2Type,m_player2Colour.getPieceColour());
-    OthelloGame gameCheck = new OthelloGame(new HumanPlayer(m_player1Name,
+    static OthelloGame gameCheck = new OthelloGame(new HumanPlayer(m_player1Name,
                                                 m_player1Colour.
                                                     getPieceColour()),
                                 new HumanPlayer(m_player2Name,
@@ -345,12 +345,12 @@ public class OthelloGameGUI extends GameGUI {
 	//Pieces and Board
 	static JLabel[][] gridButtons;
     private ImageIcon backgroundTile;
-	private ImageIcon blackPiece;
-	private ImageIcon whitePiece;
-    private ImageIcon blackWinningPiece;
-	private ImageIcon whiteWinningPiece;
-	private ImageIcon whiteToBlackPiece;
-	private ImageIcon blackToWhitePiece;
+	private static ImageIcon blackPiece;
+	private static ImageIcon whitePiece;
+    private static ImageIcon blackWinningPiece;
+	private static ImageIcon whiteWinningPiece;
+	private static ImageIcon whiteToBlackPiece;
+	private static ImageIcon blackToWhitePiece;
 
 	//Menu bar
 	private static JMenuBar menuBar;
@@ -358,6 +358,9 @@ public class OthelloGameGUI extends GameGUI {
 	private static JMenuItem menuItem;
     private JPanel panel;
 
+    public static OthelloGame getGame(){
+    	return gameCheck;
+    }
 	
 	/**
 	 * This is a separate class inside of OthelloGameGui that receives
@@ -468,9 +471,9 @@ public class OthelloGameGUI extends GameGUI {
     	* @return boolean - returns false if move could not be validated or
     	* 					that they have no valid move to make.
     	*/
-        private boolean player1Move(int x, int y){
-            if(gameCheck.board.anyValid(m_player1Colour)){
-                if(gameCheck.move(x,y,m_player1Colour)){
+        static boolean player1Move(int x, int y){
+            if(getGame().board.anyValid(m_player1Colour)){
+                if(getGame().move(x,y,m_player1Colour)){
                     gridButtons[x][y].setIcon(whitePiece);
                     OthelloPiece piecesToSwap[][]=gameCheck.board.setPieces();
 
@@ -496,7 +499,7 @@ public class OthelloGameGUI extends GameGUI {
         * pieces that need swapping
         * This method will flip all pieces that need to be flipped
         */
-        private void player1DoSwapPieces(OthelloPiece piecesToSwap[][]) {
+        private static void player1DoSwapPieces(OthelloPiece piecesToSwap[][]) {
             for(int i=0;i<TOTALWIDTH;i++){
                 for(int j=0;j<TOTALHEIGHT;j++){
                     if(piecesToSwap[i][j]==null){
@@ -515,7 +518,7 @@ public class OthelloGameGUI extends GameGUI {
 		*
 		* used to swap player one's pieces
     	*/
-        private void player1SwapPieces(int i, int j){
+        private static void player1SwapPieces(int i, int j){
             if(gridButtons[i][j].getIcon()==blackPiece||
                     gridButtons[i][j].getIcon()==whiteToBlackPiece){
                 
@@ -535,7 +538,7 @@ public class OthelloGameGUI extends GameGUI {
     	* @return boolean - returns false if move could not be validated or
     	* 					that they have no valid move to make.
     	*/
-        private boolean player2Move(int x, int y){
+        static boolean player2Move(int x, int y){
             if(gameCheck.board.anyValid(m_player2Colour)){
                 if(gameCheck.move(x,y,m_player2Colour)){
                    gridButtons[x][y].setIcon(blackPiece);
@@ -558,7 +561,7 @@ public class OthelloGameGUI extends GameGUI {
         * pieces that need swapping
         * This method will flip all pieces that need to be flipped
         */
-        private void player2DoSwapPieces(OthelloPiece piecesToSwap[][]) {
+        private static void player2DoSwapPieces(OthelloPiece piecesToSwap[][]) {
             for(int i=0;i<TOTALWIDTH;i++){
                 for(int j=0;j<TOTALHEIGHT;j++){
                     if(piecesToSwap[i][j]==null){
@@ -576,7 +579,7 @@ public class OthelloGameGUI extends GameGUI {
 		*
 		* used to swap player two's pieces
     	*/
-        private void player2SwapPieces(int i, int j){
+        private static void player2SwapPieces(int i, int j){
             if(gridButtons[i][j].getIcon()==whitePiece||
                gridButtons[i][j].getIcon()==blackToWhitePiece){
                 gridButtons[i][j].setIcon(whiteToBlackPiece);
