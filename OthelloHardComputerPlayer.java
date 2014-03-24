@@ -50,23 +50,27 @@ class OthelloHardComputerPlayer <C> extends HardComputerPlayer {
         // If there is not a piece at position (x,y) then work out how many flips it causes
         // Otherwise it doesn't flip anything.
         if (pieces[x][y].getPieceColour() == OthelloPiece.OthelloPieceColour.NONE) {
-            System.out.println("Checking piece (" + x + "," + y + ")");
             for (int i = -1; i <= 1; i++) { // These signify directions on a graph in the x-axis
                 for (int j = -1; j <= 1; j++) { // These signify directions on a graph in the y-axis
-                    int counter = 0;
-                    // Loop while pieces are the opponets colour. Add 1 to counter for each iteration.
+                    int counter = 1;
+                    
                     if ((x+(i*counter)) >= 0 && (x+(i*counter)) < 8 && (y+(j*counter)) >= 0 && (y+(j*counter)) < 8) {
-                        while (pieces[x+(i*counter)][y+(j*counter)].getPieceColour() != OthelloPiece.OthelloPieceColour.NONE
-                            || pieces[x+(i*counter)][y+(j*counter)].getPieceColour() != getColour()) {
+                        // Loop while pieces are the opponents colour. Add 1 to counter for each iteration.
+                        while (pieces[x+(i*counter)][y+(j*counter)].getPieceColour() != OthelloPiece.OthelloPieceColour.NONE // != NONE
+                            && pieces[x+(i*counter)][y+(j*counter)].getPieceColour() != getColour()) { // != WHITE
                             counter++;
-                            System.out.println("Incrementing counter");
                         }
                     }
+                    
 
                     // If the piece which stops the loop above is the players own colour, add the counter
                     // To the total number of flippied pieces, else don't add anything.
-                    if (pieces[x+(i*counter)][y+(j*counter)].getPieceColour() == getColour()) {
-                        flippedPieces += counter;
+                    if ((x+(i*counter)) >= 0 && (x+(i*counter)) < 8 && (y+(j*counter)) >= 0 && (y+(j*counter)) < 8) {
+                        if (!((x+(i*counter)) == x && (y+(j*counter)) == y)) {
+                            if (pieces[x+(i*counter)][y+(j*counter)].getPieceColour() == getColour()) {
+                                flippedPieces += (counter - 1);
+                            }
+                        }
                     }
                 }
             }
@@ -90,13 +94,15 @@ class OthelloHardComputerPlayer <C> extends HardComputerPlayer {
         game.board.setLoadedPieces(4, 4, new OthelloPiece(Piece.OthelloPieceColour.WHITE));
         game.board.setLoadedPieces(4, 3, new OthelloPiece(Piece.OthelloPieceColour.BLACK));
         
+        
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
             	int y = compAI.getFlipsForPosition(i,j,game.board);
-                // System.out.println("(" + (i) + "," + (j) + "): " + game.board.getPieces()[i][j].getPieceColour() + " flips " + y + " pieces");
+                System.out.println("(" + (i) + "," + (j) + "): " + "flips " + y + " pieces");
             }
         }
+        
+        Point x = compAI.makeAIMove(game.board);
+        System.out.println("ComAI move: " + x);
     }
-
-
 }

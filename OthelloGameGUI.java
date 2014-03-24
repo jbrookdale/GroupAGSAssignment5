@@ -326,14 +326,18 @@ public class OthelloGameGUI extends GameGUI {
 	        saveGameButton.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent event) {
 	                    System.out.println("save game clicked");
-	                    new OthelloGameSaver("C:\\Users\\Ieuan\\Desktop\\OthelloTest.xml");
+	                    String saveGame = JOptionPane.showInputDialog("Enter save name:");
+	                    
+	                    new OthelloGameSaver("saves\\" + saveGame + ".xml");
 	            }
 	        });
 	        
 	        loadGameButton.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent event) {
 	                    System.out.println("load game clicked");
-	                    new OthelloGameLoader("C:\\Users\\Ieuan\\Desktop\\OthelloTest.xml");
+	                    String loadGame = JOptionPane.showInputDialog("Enter load name:");
+	                    
+	                    new OthelloGameLoader("saves\\" + loadGame + ".xml");
 	            }
 	        });
 		return menuBar;

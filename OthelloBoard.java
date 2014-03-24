@@ -157,8 +157,6 @@ public static boolean setPiece (int x, int y, OthelloPiece colour) {
 */
 
         public static void clearPieces(){
-        	System.out.println("W: " + piecesToSwap.length);
-        	//System.out.println("H: " + piecesToSwap[0].length);
             for(int i =0; i<WIDTH;i++){
                 for(int j = 0 ; j<HEIGHT;j++){
                     piecesToSwap[i][j]=null;
