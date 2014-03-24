@@ -37,6 +37,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
+import javax.swing.SwingUtilities;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -44,10 +45,36 @@ import java.awt.GridBagLayout;
 // The reason the gifs are getting frozen is because when the same image file is flushed, it freezes the position of the current gif image.
 
 public class OthelloGameGUI extends GameGUI {
-    JFrame window;
+    static JFrame window;
     
     private static Piece.OthelloPieceColour p1colour;
-    private static Piece.OthelloPieceColour p2colour; 
+    private static Piece.OthelloPieceColour p2colour;
+
+    private static String m_player1Name;
+	private static String m_player2Name;
+	
+	private static OthelloPiece m_player1Colour;
+	private static OthelloPiece m_player2Colour;
+	
+	private static JButton defaultButton = null;
+	private final static int TOTALWIDTH = 8;
+	private final static int TOTALHEIGHT = 8;
+	private final int BOARDWIDTH = 75;
+	private final int BOARDHEIGHT = 75;
+	
+	OthelloBoard board = new OthelloBoard(TOTALHEIGHT,TOTALWIDTH);
+	static OthelloGame gameCheck;
+	
+    static JLabel[][] gridButtons;
+    private ImageIcon backgroundTile;
+	private static ImageIcon blackPiece;
+	private static ImageIcon whitePiece;
+    private static ImageIcon blackWinningPiece;
+	private static ImageIcon whiteWinningPiece;
+	private static ImageIcon whiteToBlackPiece;
+	private static ImageIcon blackToWhitePiece;
+
+    private JPanel panel;
     
 	/** 
 	 * This is the constructor for the OthelloGameGui class.
@@ -212,7 +239,7 @@ public class OthelloGameGUI extends GameGUI {
 		
 		c.gridx = 0;
 		c.gridy = 0;
-		c.gridwidth = 10;
+		c.gridwidth = 8;
 		c.anchor = GridBagConstraints.NORTH;
 		panel.setBackground(Color.GREEN);
 		window.add(panel, c);
@@ -228,7 +255,7 @@ public class OthelloGameGUI extends GameGUI {
 				gridButtons[x][y].addMouseListener(handler);
 				gridButtons[x][y].setPreferredSize(new Dimension(BOARDWIDTH,BOARDHEIGHT));
                c.gridx = x;
-               c.gridy = y;
+               c.gridy = y+1;
                c.gridwidth = 1;
 			   	window.add(gridButtons[x][y],c); //adds button to grid
 			}
@@ -331,52 +358,6 @@ public class OthelloGameGUI extends GameGUI {
 	        });
 		return menuBar;
 	}
-
-
-
-	private JLabel[][] m_pieceLabels; /**< array variable storing all the pieces on the board to be displayed */ 
-	//private JLabel m_player1Name; /**< variable storing player one's name to be displayed */ 
-	private static String m_player1Name;
-	//private JLabel m_player2Name; /**< variable storing player two's name to be displayed */ 
-	private static String m_player2Name;
-	private JLabel m_player1Score; /**< variable storing player one's score to be displayed */ 
-	private JLabel m_player2Score; /**< variable storing player two's score to be displayed */ 
-	private String m_player1Type= "Human";/**< variable storing player one's type*/ 
-	private String m_player2Type= "Human";/**< variable storing player two's type*/ 
-	private static OthelloPiece m_player1Colour;
-	
-	//new OthelloPiece(Piece.OthelloPieceColour.WHITE);
-	
-	private static OthelloPiece m_player2Colour;
-	
-	//new OthelloPiece(Piece.OthelloPieceColour.BLACK);
-	
-	private static JButton defaultButton = null;
-	private final static int TOTALWIDTH = 8;
-	private final static int TOTALHEIGHT = 8;
-	private final int BOARDWIDTH = 75;
-	private final int BOARDHEIGHT = 75;
-	
-	OthelloBoard board = new OthelloBoard(TOTALHEIGHT,TOTALWIDTH);
-	//OthelloGame gameCheck = new OthelloGame(m_player1Name,m_player1Type,m_player1Colour.getPieceColour(),
-				//m_player2Name,m_player2Type,m_player2Colour.getPieceColour());
-    static OthelloGame gameCheck;
-	//Pieces and Board
-	static JLabel[][] gridButtons;
-    private ImageIcon backgroundTile;
-	private static ImageIcon blackPiece;
-	private static ImageIcon whitePiece;
-    private static ImageIcon blackWinningPiece;
-	private static ImageIcon whiteWinningPiece;
-	private static ImageIcon whiteToBlackPiece;
-	private static ImageIcon blackToWhitePiece;
-
-	//Menu bar
-	private static JMenuBar menuBar;
-	private static JMenu mainMenu;
-	private static JMenuItem menuItem;
-    private JPanel panel;
-
     public static OthelloGame getGame(){
     	return gameCheck;
     }
@@ -786,20 +767,5 @@ public class OthelloGameGUI extends GameGUI {
 		displayExample.setPlayers(s);
 
 		displayExample.creatingGui();
-	}
-
-
-	//@Override
-	boolean updateDisplay(Piece[][] pieces, Date time, int[] score,
-			int[] pieceCount) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public static JLabel[][] getLabels() {
-		// TODO Auto-generated method stub
-		return gridButtons;
-	}
-	
-	
+	}	
 }

@@ -211,7 +211,7 @@ public static boolean setPiece (int x, int y, OthelloPiece colour) {
                     }
                 }    
             }
-                clearPieces();
+            clearPieces();
             return valid;
         }
 	
