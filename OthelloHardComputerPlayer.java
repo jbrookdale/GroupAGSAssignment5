@@ -48,113 +48,31 @@ class OthelloHardComputerPlayer <C> extends HardComputerPlayer {
     
     private int getFlipsForPosition(int x, int y, OthelloBoard board) {
         int flippedPieces = 0;
-                OthelloPiece[][] boardPieces = board.getPieces();
-                //already has piece here
-                if(boardPieces[x][y] != new OthelloPiece(OthelloPiece.OthelloPieceColour.NONE)) {
-                    //System.out.println(boardPieces[x][y]);
-                    return 0;
-                }
-                        
-                    //check pieces
-                    for(int i = 0; i < 4; i++)
-                    {
-                        int off = 1;
-                        int tempX = x;
-                        int tempY = y;
-                        boolean validPosition = false;
-                        int end = 1;
-                            
-                        //two sides of a direction
-                        for(int j = 0; j < 2; j ++)
-                        {
-                            off = 1;
-                            while(true)
-                            {
-                                switch(i)
-                                {
-                                    //vertical direction
-                                        case 0:
-                                            if(j == 0)
-                                                tempX = x + off;
-                                            else
-                                                tempX = x - off;
-                                            break;
-                                        //horizontal direction
-                                        case 1:
-                                            if(j == 0)
-                                                tempY = y + off;
-                                            else
-                                                tempY = y - off;
-                                            break;
-                                        //1 o'clock and 7 o'clock direction
-                                        case 2:
-                                            if(j == 0)
-                                            {
-                                                tempX = x + off;	
-                                                tempY = y + off;
-                                            }
-                                            else
-                                            {
-                                                tempX = x - off;	
-                                                tempY = y - off;
-                                            }
-                                            break;
-                                        //11 o'clock and 5 o'clock direction
-                                        case 3:
-                                            if(j == 0)
-                                            {
-                                                tempX = x - off;	
-                                                tempY = y + off;
-                                            }
-                                            else
-                                            {
-                                                tempX = x + off;	
-                                                tempY = y - off;
-                                            }
-                                            break;
-                                        default:
-                                            //JOptionPane.showMessageDialog(of, "error!");
-                                }
-                                    
-                                //search for the next direction
-                                if(!validPosition && boardPieces[tempX][tempY] == getColour())
-                                {
-                                    if(off > 1)
-                                    {
-                                        j --;
-                                        validPosition = true;
-                                        end = off;
-                                    }
-                                    break;
-                                }
-                                //no piece
-                                if(boardPieces[tempX][tempY] == getColour()) 
-                                                            break;
-                               
-                                //can eat some piece (change colour of them)
-                                if(validPosition)
-                                {
-                                    // There is a white between 2 black pieces.
-                                    if(off < end)	
-                                    {
-                                        flippedPieces++;
-                                }
-                                else
-                                {
-                                    validPosition = false;
-                                    break;
-                                }
-                            }
-                            off ++;
-                        }
+        Piece pieces[][] = board.getPieces();
+        // If there is not a piece at position (x,y) then work out how many flips it causes
+        // Otherwise it doesn't flip anything.
+        if (pieces[x][y].getPieceColour() == OthelloPiece.OthelloPieceColour.NONE) {
+            for (int i = -1; i <= 1; i++) { // These signify directions on a graph in the x-axis
+                for (int j = -1; j <= 1; j++) { // These signify directions on a graph in the y-axis
+                    int counter = 0;
+                    // Loop while pieces are the opponets colour. Add 1 to counter for each iteration.
+                    while (pieces[x+(i*counter)][y+(j*counter)].getPieceColour() != OthelloPiece.OthelloPieceColour.NONE
+                        && pieces[x+(i*counter)][y+(j*counter)].getPieceColour() != getColour()) {
+                        counter++;
+                    }
+                    // If the piece which stops the loop above is the players own colour, add the counter
+                    // To the total number of flippied pieces, else don't add anything.
+                    if (pieces[x+(i*counter)][y+(j*counter)].getPieceColour() == getColour()) {
+                        flippedPieces += counter;
                     }
                 }
-                System.out.println( " eated:  " + flippedPieces);
-                return flippedPieces; // This isn't working at the moment...
+            }
+        }
+        return flippedPieces;
     }
 
 	public static void main(String[] args) {
-        // Tests go here
+
     }
 	
 
