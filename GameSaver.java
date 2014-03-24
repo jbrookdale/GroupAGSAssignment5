@@ -49,7 +49,8 @@ public class GameSaver extends GameIOHandler {
 			setPlayerName();
 			setPlayerType();
 			setColour();
-			setPlayerPieceCount();
+			setScore();
+			setPlayerPieceCount(); //Unused as of right now?
 			setPieces();
 			
 		} catch (Exception e) {
@@ -57,6 +58,8 @@ public class GameSaver extends GameIOHandler {
 		}
 		writeFile();
 	}
+	
+	public void setScore(){}
 	
 	public void setGameTypeElement(){}
 	

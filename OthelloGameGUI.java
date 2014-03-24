@@ -61,7 +61,7 @@ public class OthelloGameGUI extends GameGUI {
 	static OthelloGame gameCheck;
 	
     static JLabel[][] gridButtons;
-    private ImageIcon backgroundTile;
+    private static ImageIcon backgroundTile;
 	private static ImageIcon blackPiece;
 	private static ImageIcon whitePiece;
     private static ImageIcon blackWinningPiece;
@@ -114,8 +114,17 @@ public class OthelloGameGUI extends GameGUI {
 		
 		panel = new JPanel();	
 	}
-	
 
+	public static void setPieces(int i, int j, String colour){
+		if(colour.equals("Black")){
+			gridButtons[i][j].setIcon(blackPiece);
+		}else if(colour.equals("White")){
+			gridButtons[i][j].setIcon(whitePiece);
+		}else{
+			gridButtons[i][j].setIcon(backgroundTile);
+		}
+	}
+	
     /**
     *@param String[] players - takes in a string of players
     * first two values become player 1 and player 2

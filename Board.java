@@ -25,10 +25,10 @@ public abstract class Board<C,P> {
     protected int m_PieceCount;
     
     /**< This is the constant for the height of the board*/
-    protected final int HEIGHT;
+    protected static int HEIGHT;
     
     /**< This is the constant for the Width of the board*/
-    protected final int WIDTH;
+    protected static int WIDTH;
     
 	/**
 	* This is the constructor for the class, gets the height and width of the

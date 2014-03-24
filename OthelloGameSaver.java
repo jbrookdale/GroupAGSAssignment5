@@ -79,4 +79,16 @@ public class OthelloGameSaver extends GameSaver{
 		getPlayers(1).appendChild(playerTwoColour);
 	}
 
+	public void setScore(){
+		Element playerOneScore = getDoc().createElement("score");
+		Element playerTwoScore = getDoc().createElement("score");
+		
+		playerOneScore.appendChild(getDoc().createTextNode(OthelloGame.getPlayer1Score() + ""));
+		playerTwoScore.appendChild(getDoc().createTextNode(OthelloGame.getPlayer2Score() + ""));
+		
+		getPlayers(0).appendChild(playerOneScore);
+		getPlayers(1).appendChild(playerTwoScore);
+		
+	}
+	
 }

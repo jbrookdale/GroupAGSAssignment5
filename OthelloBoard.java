@@ -60,7 +60,7 @@ public class OthelloBoard extends Board <Piece.OthelloPieceColour,OthelloPiece> 
 * @param OthelloPieces - an array which stores the pieces on the board
 */	
 
-	private OthelloPiece[][] piecesToSwap = new OthelloPiece[HEIGHT][WIDTH];
+	private static OthelloPiece[][] piecesToSwap = new OthelloPiece[8][8];
 	
 	static OthelloPiece[][] m_Pieces = new OthelloPiece[8][8];
 	
@@ -156,7 +156,9 @@ public static boolean setPiece (int x, int y, OthelloPiece colour) {
 * This method clears the array with the pieces in.
 */
 
-        public void clearPieces(){
+        public static void clearPieces(){
+        	System.out.println("W: " + piecesToSwap.length);
+        	//System.out.println("H: " + piecesToSwap[0].length);
             for(int i =0; i<WIDTH;i++){
                 for(int j = 0 ; j<HEIGHT;j++){
                     piecesToSwap[i][j]=null;
@@ -164,6 +166,18 @@ public static boolean setPiece (int x, int y, OthelloPiece colour) {
             }
         }
           
+        public static void clearPieces2(){
+        	for(int i = 0; i < WIDTH; i++){
+        		 for(int j = 0 ; j<HEIGHT;j++){
+                    m_Pieces[i][j]= new OthelloPiece(Piece.OthelloPieceColour.NONE);
+                 }
+        	}
+        }
+        
+        public static void setLoadedPieces(int i, int j, OthelloPiece piece){
+        	m_Pieces[i][j] = piece;
+        }
+        
 /**
 * This method returns the pieces to swap from the array, which ultimately places the 
 * pieces on the board.

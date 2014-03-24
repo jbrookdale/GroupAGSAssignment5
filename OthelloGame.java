@@ -42,7 +42,7 @@ public class OthelloGame extends Game <Piece.OthelloPieceColour>{
      * @param -Nothing 
      * @return int - player one score
      */
-     public int getPlayer1Score(){
+     public static int getPlayer1Score(){
          return m_player[0].getScore();
      }
 
@@ -51,7 +51,7 @@ public class OthelloGame extends Game <Piece.OthelloPieceColour>{
      * @param -Nothing
      * @return int - player two score
      */
-     int getPlayer2Score(){
+     static int getPlayer2Score(){
          return m_player[1].getScore();
      }
 
@@ -60,7 +60,7 @@ public class OthelloGame extends Game <Piece.OthelloPieceColour>{
      * @param score -the score of player one
      * @return -Nothing
      */
-     public void setPlayer1Score(int score){
+     public static void setPlayer1Score(int score){
           m_player[0].setScore(score);
      }
 
@@ -69,7 +69,7 @@ public class OthelloGame extends Game <Piece.OthelloPieceColour>{
      * @param score -the score of player two
      * @return -Nothing
      */
-     public void setPlayer2Score(int score){
+     public static void setPlayer2Score(int score){
          m_player[1].setScore(score);
      }
 
