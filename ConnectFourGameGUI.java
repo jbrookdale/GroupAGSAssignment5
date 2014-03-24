@@ -236,6 +236,14 @@ public class ConnectFourGameGUI extends GameGUI {
         setTitle("Connect Four   Player One: \"" 
             + getGame().getPlayerName(Game.PLAYER_ONE) + "\"    Player Two: \"" 
             + getGame().getPlayerName(Game.PLAYER_TWO) +"\"");
+            
+            if (getGame().getPlayer(getGame().getPlayerTurn() % TOTAL_PLAYERS).getPlayerType().equals("Computer")) {
+                                            int playerTurn = getGame().getPlayerTurn();
+                                            ConnectFourEasyComputerPlayer player = (ConnectFourEasyComputerPlayer) getGame().getPlayer(playerTurn % TOTAL_PLAYERS);
+                                            int x = (int)player.makeAIMove(getGame().getBoard()).getX();
+                                            getGame().incrementTurn();            
+                                         performMove(x);
+                                     }
     }
 
 	/**< private class for handling mouse clicks */
@@ -243,79 +251,14 @@ public class ConnectFourGameGUI extends GameGUI {
 
         public void mouseReleased(MouseEvent e) {
             //Game Logic
-            if ((!getGame().gameWon() && !getGame().boardIsFull()) 
+            if (getGame().getPlayer(getGame().getPlayerTurn() % TOTAL_PLAYERS).getPlayerType().equals("Human"))
+                if ((!getGame().gameWon() && !getGame().boardIsFull()) 
                     && !panel.animationThread.isAlive()) {
-                int x = Math.round(mouseX / ConnectFourPanel.Y_SPACING);
+                    int x = Math.round(mouseX / ConnectFourPanel.Y_SPACING);
+                    getGame().incrementTurn();
+                    performMove(x);
                 
-                System.out.println("Player type: " + getGame().getPlayer(getGame().getPlayerTurn() % TOTAL_PLAYERS).getPlayerType());
-                if (getGame().getPlayer(getGame().getPlayerTurn() % TOTAL_PLAYERS).getPlayerType().equals("Computer")) {
-                    int playerTurn = getGame().getPlayerTurn();
-                    ConnectFourEasyComputerPlayer player = (ConnectFourEasyComputerPlayer) getGame().getPlayer(playerTurn % TOTAL_PLAYERS);
-                	x = (int)player.makeAIMove(getGame().getBoard()).getX();
-                }
-
-                if (x > BOARD_WIDTH) {
-                    x = BOARD_WIDTH - 1;
-                }
-
-                if (getGame().move(x, BOARD_HEIGHT, panel.getCurrentPiece()
-                        .getPieceColour())) {
-                    //y is the height the piece will be dropped to
-                    int y = getGame().getLowestEmptySlot(x) + 1;
-
-                    if (y >= BOARD_HEIGHT + 1) {
-                        y = BOARD_HEIGHT + 1;
-                        System.out.println(y);
-                    }
-
-                    panel.dropPiece(x, BOARD_HEIGHT - y, panel.getCurrentPiece()
-                        .getPieceColour());
-
-                    new Thread(new Runnable() {
-                        public void run() {
-
-                            while(panel.animationThread.isAlive()){
-                            }
-
-                            panel.updatePieces(getGame().getPieces()); 
-                            if (!getGame().boardIsFull()) {
-                                if (panel.getCurrentPiece().getPieceColour()
-                                    == ConnectFourPanel.YELLOW_PIECE) { 
-                                    panel.setCurrentPiece(
-                                        new ConnectFourPiece(
-                                        ConnectFourPanel.RED_PIECE));
-                                } else {
-                                    panel.setCurrentPiece(
-                                        new ConnectFourPiece(
-                                        ConnectFourPanel.YELLOW_PIECE));
-                                }
-                            }
-                            panel.refreshDisplay();
-                        }
-                    }).start();
-                } else {
-                    javax.swing.JOptionPane.showMessageDialog(null, 
-                        "Invalid move");
-                }
             }
-            if (getGame().gameWon()) {
-            	getTimer().stop();
-                if (panel.getCurrentPiece().getPieceColour() 
-                        == getPlayerOnePieceColour()) {
-                	System.out.println("Working");
-                    displayWinner(getGame().getPlayerName(Game.PLAYER_ONE));
-                } else {
-                    displayWinner(getGame().getPlayerName(Game.PLAYER_TWO));
-                }
-                if (!displayPlayAgain("Play again?")) {
-                    dispose();
-                }
-            }
-            if (getGame().boardIsFull() && !getGame().gameWon()) {
-                displayDraw();
-                getTimer().stop();
-            }
-            getGame().incrementTurn();
         }
 
         //Currently unused, but must be declared
@@ -350,6 +293,89 @@ public class ConnectFourGameGUI extends GameGUI {
                 panel.setPieceX(mouseX);
             }
         }
+    }
+    
+    public void performMove(int x) {
+        if (x > BOARD_WIDTH) {
+            x = BOARD_WIDTH - 1;
+        }
+
+        if (getGame().move(x, BOARD_HEIGHT, panel.getCurrentPiece()
+                                .getPieceColour())) {
+        //y is the height the piece will be dropped to
+        int y = getGame().getLowestEmptySlot(x) + 1;
+
+        if (y >= BOARD_HEIGHT + 1) {
+            y = BOARD_HEIGHT + 1;
+            System.out.println(y);
+        }
+
+         panel.dropPiece(x, BOARD_HEIGHT - y, panel.getCurrentPiece()
+                                .getPieceColour());
+
+         new Thread(new Runnable() {
+             public void run() {
+
+                 while(panel.animationThread.isAlive()){
+                 }
+
+                 panel.updatePieces(getGame().getPieces()); 
+                 if (!getGame().boardIsFull()) {
+                     if (panel.getCurrentPiece().getPieceColour()
+                                            == ConnectFourPanel.YELLOW_PIECE) { 
+                                            panel.setCurrentPiece(
+                                                new ConnectFourPiece(
+                                                ConnectFourPanel.RED_PIECE));
+                                        } else {
+                                            panel.setCurrentPiece(
+                                                new ConnectFourPiece(
+                                                ConnectFourPanel.YELLOW_PIECE));
+                                        }
+                                    }
+                                    panel.refreshDisplay();
+                                }
+        }).start();
+    } else {
+        javax.swing.JOptionPane.showMessageDialog(null, 
+                                "Invalid move");
+    }
+                    if (getGame().gameWon()) {
+                        getTimer().stop();
+                        if (panel.getCurrentPiece().getPieceColour() 
+                                == getPlayerOnePieceColour()) {
+                            System.out.println("Working");
+                            displayWinner(getGame().getPlayerName(Game.PLAYER_ONE));
+                        } else {
+                            displayWinner(getGame().getPlayerName(Game.PLAYER_TWO));
+                        }
+                        if (!displayPlayAgain("Play again?")) {
+                            dispose();
+                        }
+                    }
+                    if (getGame().boardIsFull() && !getGame().gameWon()) {
+                        displayDraw();
+                        getTimer().stop();
+                    }
+                    
+        final int ANIMATION_TIME = 500;
+                    new Thread(new Runnable() {
+                        public void run() {
+                            try {
+                               Thread.sleep(ANIMATION_TIME); 
+                            } catch (Exception e) {
+                        
+                            }
+                            if (getGame().getPlayer(getGame().getPlayerTurn() % TOTAL_PLAYERS).getPlayerType().equals("Computer")) {
+                                int playerTurn = getGame().getPlayerTurn();
+                                ConnectFourEasyComputerPlayer player = (ConnectFourEasyComputerPlayer) getGame().getPlayer(playerTurn % TOTAL_PLAYERS);
+                                int x = (int)player.makeAIMove(getGame().getBoard()).getX();
+                                getGame().incrementTurn();            
+                             performMove(x);
+                         }
+                        }
+                    }).start();
+                    
+                    
     }
 
     /**
