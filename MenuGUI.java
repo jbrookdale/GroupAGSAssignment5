@@ -709,7 +709,7 @@ public class MenuGUI extends GUI {
 				} else if(getGameType() == OTHELLO){
 					//m_MainMenu.dispose();
 					OthelloGameGUI othello = new OthelloGameGUI("Othello",
-						OTH_FRM_WIDTH,OTH_FRM_HEIGHT);
+						OTH_FRM_WIDTH,OTH_FRM_HEIGHT, getPlayerOneColour());
 					String[] players = new String[NUM_PLAYERS];
 					players[PLAYER_ONE] = m_PlayInputOne.getText();
 					players[PLAYER_TWO] = m_PlayInputTwo.getText();

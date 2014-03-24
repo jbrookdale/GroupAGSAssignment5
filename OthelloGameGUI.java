@@ -45,6 +45,10 @@ import java.awt.GridBagLayout;
 
 public class OthelloGameGUI extends GameGUI {
     JFrame window;
+    
+    private static Piece.OthelloPieceColour p1colour;
+    private static Piece.OthelloPieceColour p2colour; 
+    
 	/** 
 	 * This is the constructor for the OthelloGameGui class.
 	 *
@@ -52,7 +56,7 @@ public class OthelloGameGUI extends GameGUI {
 	 * @param width -the variable storing width of the .
 	 * @param height -the variable storing height of the .
 	 */
-	public OthelloGameGUI(String title, int width, int height) {
+	public OthelloGameGUI(String title, int width, int height, String p1Colour) {
 		//Sets title, width, and height to the value of GameGui
 		super(title,width,height);
         URL location = OthelloGameGUI.class.getProtectionDomain()
@@ -75,6 +79,25 @@ public class OthelloGameGUI extends GameGUI {
 		setTime(0);
 		setTimerLabel();
 		startTimer();
+		
+		if(p1Colour.equals("Black")){
+			m_player1Colour = new OthelloPiece(Piece.OthelloPieceColour.BLACK);
+			m_player2Colour = new OthelloPiece(Piece.OthelloPieceColour.WHITE);
+			p1colour = Piece.OthelloPieceColour.BLACK;
+			p2colour = Piece.OthelloPieceColour.WHITE;
+		}else{
+			m_player1Colour = new OthelloPiece(Piece.OthelloPieceColour.WHITE);
+			m_player2Colour = new OthelloPiece(Piece.OthelloPieceColour.BLACK);
+			p1colour = Piece.OthelloPieceColour.WHITE;
+			p2colour = Piece.OthelloPieceColour.BLACK;
+		}
+		
+		gameCheck = new OthelloGame(new HumanPlayer(m_player1Name,
+                m_player1Colour.
+                getPieceColour()),
+                new HumanPlayer(m_player2Name,
+                			m_player2Colour.
+                getPieceColour()));
 		
 		panel = new JPanel();
 		
@@ -251,18 +274,15 @@ public class OthelloGameGUI extends GameGUI {
                                                   JOptionPane.YES_NO_OPTION);
         if (reply == JOptionPane.YES_OPTION) {
         	window.dispose();
+        	panel.removeAll();
             // Old constructor call
         	//gameCheck = new OthelloGame(m_player1Name,m_player1Type,m_player1Colour.getPieceColour(),
 			//	m_player2Name,m_player2Type,m_player2Colour.getPieceColour());
-            gameCheck = new OthelloGame(new HumanPlayer(m_player1Name,
-                                                        m_player1Colour.
-                                                            getPieceColour()),
-                                        new HumanPlayer(m_player2Name,
-                                                        m_player2Colour.
-                                                            getPieceColour()));
+            gameCheck = new OthelloGame(new HumanPlayer(m_player1Name, p1colour),
+                                        new HumanPlayer(m_player2Name, p2colour));
         	String[] s = gameCheck.getPlayerNames();
             creatingGui();
-            
+            panel.updateUI();
         } else {
             dispose();
         }
@@ -323,10 +343,14 @@ public class OthelloGameGUI extends GameGUI {
 	private JLabel m_player2Score; /**< variable storing player two's score to be displayed */ 
 	private String m_player1Type= "Human";/**< variable storing player one's type*/ 
 	private String m_player2Type= "Human";/**< variable storing player two's type*/ 
-	private static OthelloPiece m_player1Colour =
-                    new OthelloPiece(Piece.OthelloPieceColour.WHITE);
-	private static OthelloPiece m_player2Colour =
-                    new OthelloPiece(Piece.OthelloPieceColour.BLACK);
+	private static OthelloPiece m_player1Colour;
+	
+	//new OthelloPiece(Piece.OthelloPieceColour.WHITE);
+	
+	private static OthelloPiece m_player2Colour;
+	
+	//new OthelloPiece(Piece.OthelloPieceColour.BLACK);
+	
 	private static JButton defaultButton = null;
 	private final static int TOTALWIDTH = 8;
 	private final static int TOTALHEIGHT = 8;
@@ -336,12 +360,7 @@ public class OthelloGameGUI extends GameGUI {
 	OthelloBoard board = new OthelloBoard(TOTALHEIGHT,TOTALWIDTH);
 	//OthelloGame gameCheck = new OthelloGame(m_player1Name,m_player1Type,m_player1Colour.getPieceColour(),
 				//m_player2Name,m_player2Type,m_player2Colour.getPieceColour());
-    static OthelloGame gameCheck = new OthelloGame(new HumanPlayer(m_player1Name,
-                                                m_player1Colour.
-                                                    getPieceColour()),
-                                new HumanPlayer(m_player2Name,
-                                                m_player2Colour.
-                                                    getPieceColour()));
+    static OthelloGame gameCheck;
 	//Pieces and Board
 	static JLabel[][] gridButtons;
     private ImageIcon backgroundTile;
@@ -474,7 +493,11 @@ public class OthelloGameGUI extends GameGUI {
         static boolean player1Move(int x, int y){
             if(getGame().board.anyValid(m_player1Colour)){
                 if(getGame().move(x,y,m_player1Colour)){
-                    gridButtons[x][y].setIcon(whitePiece);
+                	if(p1colour == Piece.OthelloPieceColour.WHITE){
+                		gridButtons[x][y].setIcon(whitePiece);
+                	}else{
+                		gridButtons[x][y].setIcon(blackPiece);
+                	}
                     OthelloPiece piecesToSwap[][]=gameCheck.board.setPieces();
 
                     player1DoSwapPieces(piecesToSwap);
@@ -519,10 +542,25 @@ public class OthelloGameGUI extends GameGUI {
 		* used to swap player one's pieces
     	*/
         private static void player1SwapPieces(int i, int j){
-            if(gridButtons[i][j].getIcon()==blackPiece||
-                    gridButtons[i][j].getIcon()==whiteToBlackPiece){
+        	
+        	ImageIcon p1Icon;
+        	ImageIcon p1FlipIcon;
+        	ImageIcon p1FlipIcon2;
+        	
+        	if(p1colour != Piece.OthelloPieceColour.WHITE){
+        		p1Icon= whitePiece;
+        		p1FlipIcon = blackToWhitePiece;
+        		p1FlipIcon2 = whiteToBlackPiece;
+        	}else{
+        		p1Icon= blackPiece;
+        		p1FlipIcon2 = blackToWhitePiece;
+        		p1FlipIcon = whiteToBlackPiece;
+        	}
+        	
+        	if(gridButtons[i][j].getIcon()==p1Icon||
+                    gridButtons[i][j].getIcon()==p1FlipIcon){
                 
-                gridButtons[i][j].setIcon(blackToWhitePiece);
+                gridButtons[i][j].setIcon(p1FlipIcon2);
                 gameCheck.setPlayer1Score(1);
                 gameCheck.setPlayer2Score(-1);
                 blackToWhitePiece.getImage().flush();
@@ -541,14 +579,25 @@ public class OthelloGameGUI extends GameGUI {
         static boolean player2Move(int x, int y){
             if(gameCheck.board.anyValid(m_player2Colour)){
                 if(gameCheck.move(x,y,m_player2Colour)){
-                   gridButtons[x][y].setIcon(blackPiece);
+                	if(p1colour == Piece.OthelloPieceColour.WHITE){
+                		gridButtons[x][y].setIcon(blackPiece);
+                	}else{
+                		gridButtons[x][y].setIcon(whitePiece);
+                	}
+                	
                    OthelloPiece piecesToSwap[][] = gameCheck.board.setPieces();
 
                    player2DoSwapPieces(piecesToSwap);
                    
                    gameCheck.setPlayer2Score(1);
                    gameCheck.board.clearPieces();
-                   gridButtons[x][y].setIcon(blackPiece);
+                   
+                   if(p1colour == Piece.OthelloPieceColour.WHITE){
+               			gridButtons[x][y].setIcon(blackPiece);
+               		}else{
+               			gridButtons[x][y].setIcon(whitePiece);
+               		}
+                   
                    return true;//valid move made
                 }
                 return false;//invalid move
@@ -580,9 +629,24 @@ public class OthelloGameGUI extends GameGUI {
 		* used to swap player two's pieces
     	*/
         private static void player2SwapPieces(int i, int j){
-            if(gridButtons[i][j].getIcon()==whitePiece||
-               gridButtons[i][j].getIcon()==blackToWhitePiece){
-                gridButtons[i][j].setIcon(whiteToBlackPiece);
+            
+        	ImageIcon p2Icon;
+        	ImageIcon p2FlipIcon;
+        	ImageIcon p2FlipIcon2;
+        	
+        	if(p1colour == Piece.OthelloPieceColour.WHITE){
+        		p2Icon= whitePiece;
+        		p2FlipIcon = blackToWhitePiece;
+        		p2FlipIcon2 = whiteToBlackPiece;
+        	}else{
+        		p2Icon= blackPiece;
+        		p2FlipIcon2 = blackToWhitePiece;
+        		p2FlipIcon = whiteToBlackPiece;
+        	}
+        	
+        	if(gridButtons[i][j].getIcon()==p2Icon||
+               gridButtons[i][j].getIcon()==p2FlipIcon){
+                gridButtons[i][j].setIcon(p2FlipIcon2);
                 gameCheck.setPlayer2Score(1);
                 gameCheck.setPlayer1Score(-1);
 
@@ -718,7 +782,7 @@ public class OthelloGameGUI extends GameGUI {
 		String[] s = new String[TOTAL_PLAYERS];
 		s[PLAYER_ONE]="Jon";
 		s[PLAYER_TWO]="Tom";
-		OthelloGameGUI displayExample = new OthelloGameGUI("Othello",WIDTH,HEIGHT);
+		OthelloGameGUI displayExample = new OthelloGameGUI("Othello",WIDTH,HEIGHT, "Black");
 		displayExample.setPlayers(s);
 
 		displayExample.creatingGui();
