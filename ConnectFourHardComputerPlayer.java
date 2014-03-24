@@ -6,8 +6,8 @@ class ConnectFourHardComputerPlayer <C> extends HardComputerPlayer {
     private static final int maxPieces = 70, Empty = 2;
     public static boolean[][][] map;
     static int w = 10;
-    static int h =7;
-    static int n =4;
+    static int h = 7;
+    static int n = 4;
     //Equation for checking the winning place on Connect4board
     //winPlace=(4 * w *h) - (3*w*n) - (3*h*n) + (3*w) + (3*h) - (4*n) + (2*n*n);
     private static final int winPlaces =143;

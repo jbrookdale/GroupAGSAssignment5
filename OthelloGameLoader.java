@@ -14,12 +14,6 @@ public class OthelloGameLoader extends GameLoader{
 	 */
 	
 	public void setupBoard(){
-		for(int i = 0; i < getP1PiecesX().size(); i++){
-			OthelloGameGUI.setPlayerPieces(getP1PiecesX().get(i), getP1PiecesY().get(i), getM_playerOneColour());
-		}
 		
-		for(int i = 0; i < getP2PiecesX().size(); i++){
-			OthelloGameGUI.setPlayerPieces(getP2PiecesX().get(i), getP2PiecesY().get(i), getM_playerTwoColour());
-		}
 	}
 }

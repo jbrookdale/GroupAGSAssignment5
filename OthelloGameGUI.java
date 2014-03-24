@@ -16,16 +16,13 @@
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.net.URL;
-import java.util.Date;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -36,8 +33,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.KeyStroke;
-import javax.swing.SwingUtilities;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -189,26 +184,6 @@ public class OthelloGameGUI extends GameGUI {
 		}
 		return true;
 	}
-
-
-	/** 
-	 * This is the method for updating the GUI display of Othello game it will 
-	 * keep track of the pieces, time, score and piece count.
-	 * 
-	 * Take amount of pieces from the player.  From get and sets
-	 *
-	 * Note
-	 *
-	 * @param pieces -the array variable storing all the pieces on the board.
-	 * @param time -the variable storing amount of the time elapsed since the start of the game.
-	 * @param score -the variable storing the score of each player.
-	 * @param pieceCount -the variable storing the number of pieces on the board.
-	 */
-	 boolean updateDisplay(OthelloPiece[][] pieces, Date time, //This does absolutely nothing??
-                           int[] score, int[] pieceCount) {
-		return false;
-	}
-
 
 	 /**
 	  * This method creates the GUI and board, adds current score, checks to see what button
@@ -372,7 +347,6 @@ public class OthelloGameGUI extends GameGUI {
 	 */
 
 		private class GUIHandler implements MouseListener{
-		OthelloBoard changeBoard = new OthelloBoard(TOTALHEIGHT,TOTALWIDTH);
 		boolean player = true; //true is player1, false player2
 		
         public void mouseReleased(MouseEvent event) {
