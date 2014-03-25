@@ -477,10 +477,8 @@ public class ConnectFourGameGUI extends GameGUI {
                 setGame(newGame);
                 if(win){
                 	newGame.incrementTurn();
-                }else{
-                    newGame.incrementTurn();
-                    newGame.incrementTurn();
                 }
+                
             panel.updatePieces(getGame().getPieces());
             panel.setCurrentPiece(new ConnectFourPiece(getPlayerOnePieceColour()));
             panel.refreshDisplay();
