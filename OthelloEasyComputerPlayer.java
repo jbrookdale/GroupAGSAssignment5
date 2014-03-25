@@ -12,7 +12,7 @@ class OthelloEasyComputerPlayer <C> extends EasyComputerPlayer{
         // Tests go here
     }
     
-    public Point move(OthelloBoard board){
+    public Point makeAIMove(OthelloBoard board){
         Random r = new Random( );
         int Position;
         i = r.nextInt(WIDTH);

@@ -134,20 +134,26 @@ public class ConnectFourGameGUI extends GameGUI {
         Player playerOne;
         Player playerTwo;
         
-        if (m_playerOneType.equals("Human")) {
-            playerOne = new HumanPlayer(
-                               playerOneDetails[0], getPlayerOnePieceColour());
-        } else {
+        if (m_playerOneType.equals("Computer: Easy")) {
             playerOne = new ConnectFourEasyComputerPlayer(
-                               playerOneDetails[0], getPlayerOnePieceColour());
+                                                       playerOneDetails[0], getPlayerOnePieceColour());
+        } else if (m_playerOneType.equals("Computer: Hard")) {
+            playerOne = new ConnectFourHardComputerPlayer(
+                                           playerOneDetails[0], getPlayerOnePieceColour());
+        } else {
+            playerOne = new HumanPlayer(
+                                           playerOneDetails[0], getPlayerOnePieceColour());
         }
         
-        if (m_playerTwoType.equals("Human")) {
-            playerTwo = new HumanPlayer(
-                               playerTwoDetails[0], getPlayerTwoPieceColour());
-        } else {
+        if (m_playerTwoType.equals("Computer: Easy")) {
             playerTwo = new ConnectFourEasyComputerPlayer(
-                               playerTwoDetails[0], getPlayerTwoPieceColour());
+                                           playerTwoDetails[0], getPlayerTwoPieceColour());
+        } else if (m_playerTwoType.equals("Computer: Hard")) {
+            playerTwo = new ConnectFourHardComputerPlayer(
+                                                       playerTwoDetails[0], getPlayerTwoPieceColour());
+        } else {
+            playerTwo = new HumanPlayer(
+                                           playerTwoDetails[0], getPlayerTwoPieceColour());
         }
         
         ConnectFourGame newGame = new ConnectFourGame(playerOne, playerTwo);
@@ -384,7 +390,7 @@ public class ConnectFourGameGUI extends GameGUI {
                     }
                     
                     if (!getGame().gameWon()) {
-        final int ANIMATION_TIME = 750;
+                    final int ANIMATION_TIME = 750;
                     new Thread(new Runnable() {
                         public void run() {
                             try {
@@ -392,14 +398,22 @@ public class ConnectFourGameGUI extends GameGUI {
                             } catch (Exception e) {
                         
                             }
-                            if (getGame().getPlayer(getGame().getPlayerTurn() % TOTAL_PLAYERS).getPlayerType().equals("Computer")) {
+                            if (!getGame().getPlayer(getGame().getPlayerTurn() % TOTAL_PLAYERS).getPlayerType().equals("Human")) {
                                 int playerTurn = getGame().getPlayerTurn();
-                                ConnectFourEasyComputerPlayer player = (ConnectFourEasyComputerPlayer) getGame().getPlayer(playerTurn % TOTAL_PLAYERS);
-                                int x = (int)player.makeAIMove(getGame().getBoard()).getX();
+                                int x;
+                                if ((getGame().getPlayerTurn() % TOTAL_PLAYERS == 0 && m_playerOneType == "Computer: Easy") 
+                                 || (getGame().getPlayerTurn() % TOTAL_PLAYERS == 1 && m_playerTwoType == "Computer: Easy")) {
+                                    ConnectFourEasyComputerPlayer player = (ConnectFourEasyComputerPlayer)getGame().getPlayer(playerTurn % TOTAL_PLAYERS);
+                                    x = (int)player.makeAIMove(getGame().getBoard()).getX();
+                                } else {
+                                    ConnectFourHardComputerPlayer player = (ConnectFourHardComputerPlayer)getGame().getPlayer(playerTurn % TOTAL_PLAYERS);
+                                    x = (int)player.makeAIMove(getGame().getBoard()).getX();
+                                }
+                                
                                          
-                             performMove(x);
-                            getGame().incrementTurn();   
-                         }
+                                performMove(x);
+                                getGame().incrementTurn();
+                            }
                         }
                     }).start();
                     }
@@ -429,22 +443,28 @@ public class ConnectFourGameGUI extends GameGUI {
                 Player playerOne;
                 Player playerTwo;
                 
-                if (m_playerOneType.equals("Human")) {
-                    playerOne = new HumanPlayer(getGame().getPlayerName(Game.PLAYER_ONE),
-                                                    getPlayerOnePieceColour());
-                } else {
-                    playerOne = new ConnectFourEasyComputerPlayer(getGame().getPlayerName(Game.PLAYER_ONE),
-                                                                        getPlayerOnePieceColour());
-                }
-                
-                if (m_playerTwoType.equals("Human")) {
-                    playerTwo = new HumanPlayer(getGame().getPlayerName(Game.PLAYER_TWO),
-                                getPlayerTwoPieceColour());
-                } else {
-                    playerTwo = new ConnectFourEasyComputerPlayer(getGame().getPlayerName(Game.PLAYER_TWO),
-                                                    getPlayerTwoPieceColour());
-                }
-                
+                if (m_playerOneType.equals("Computer: Easy")) {
+                            playerOne = new ConnectFourEasyComputerPlayer(getGame().getPlayerName(Game.PLAYER_ONE),
+                                                                                getPlayerOnePieceColour());
+                        } else if (m_playerOneType.equals("Computer: Hard")) {
+                            playerOne = new ConnectFourHardComputerPlayer(getGame().getPlayerName(Game.PLAYER_ONE),
+                                                                                getPlayerOnePieceColour());
+                        } else {
+                            playerOne = new HumanPlayer(getGame().getPlayerName(Game.PLAYER_ONE),
+                                                                                getPlayerOnePieceColour());
+                        }
+                        
+                        if (m_playerTwoType.equals("Computer: Easy")) {
+                            playerTwo = new ConnectFourEasyComputerPlayer(getGame().getPlayerName(Game.PLAYER_TWO),
+                                                            getPlayerTwoPieceColour());
+                        } else if (m_playerTwoType.equals("Computer: Hard")) {
+                            playerTwo = new ConnectFourHardComputerPlayer(getGame().getPlayerName(Game.PLAYER_TWO),
+                                                            getPlayerTwoPieceColour());
+                        } else {
+                            playerTwo = new HumanPlayer(getGame().getPlayerName(Game.PLAYER_TWO),
+                                                            getPlayerTwoPieceColour());
+                        }
+
                 ConnectFourGame newGame = new ConnectFourGame(playerOne, playerTwo);
                 
                 setGame(newGame);

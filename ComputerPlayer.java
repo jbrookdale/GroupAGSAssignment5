@@ -1,4 +1,4 @@
-class ComputerPlayer <C> extends Player{
+abstract class ComputerPlayer <C> extends Player{
     
     public static void main(String[] args) {
     	
@@ -7,8 +7,8 @@ class ComputerPlayer <C> extends Player{
     }
     
 
-	public ComputerPlayer(String newName, C newPlayerColour){
-    	super(newName,newPlayerColour,"Computer");
+	public ComputerPlayer(String newName, C newPlayerColour, String playerType){
+    	super(newName,newPlayerColour,playerType);
     	
     	
     }
