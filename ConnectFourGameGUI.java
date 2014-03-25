@@ -187,7 +187,7 @@ public class ConnectFourGameGUI extends GameGUI {
         newGameButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                     System.out.println("new game clicked");
-                    displayPlayAgain("Start new game?");
+                    displayPlayAgain("Start new game?", false);
             }
         });
 
@@ -374,7 +374,7 @@ public class ConnectFourGameGUI extends GameGUI {
                         } else {
                             displayWinner(getGame().getPlayerName(Game.PLAYER_TWO));
                         }
-                        if (!displayPlayAgain("Play again?")) {
+                        if (!displayPlayAgain("Play again?", true)) {
                             dispose();
                         }
                     }
@@ -413,7 +413,7 @@ public class ConnectFourGameGUI extends GameGUI {
     */
     private boolean displayDraw() { 
         JOptionPane.showMessageDialog(null, "It's a draw!");
-        displayPlayAgain("Play again?");
+        displayPlayAgain("Play again?", true);
         return true;
     }
 
@@ -421,7 +421,7 @@ public class ConnectFourGameGUI extends GameGUI {
     * Message dialog asks players if they want to play again
     * @param message - A string with the message to display
     */
-    private boolean displayPlayAgain(String message) {
+    private boolean displayPlayAgain(String message, boolean win) {
         int reply = JOptionPane.showConfirmDialog(null, message , message, 
             JOptionPane.YES_NO_OPTION);
         if (reply == JOptionPane.YES_OPTION) {
@@ -448,7 +448,12 @@ public class ConnectFourGameGUI extends GameGUI {
                 ConnectFourGame newGame = new ConnectFourGame(playerOne, playerTwo);
                 
                 setGame(newGame);
-                
+                if(win){
+                	newGame.incrementTurn();
+                }else{
+                    newGame.incrementTurn();
+                    newGame.incrementTurn();
+                }
             panel.updatePieces(getGame().getPieces());
             panel.setCurrentPiece(new ConnectFourPiece(getPlayerOnePieceColour()));
             panel.refreshDisplay();
