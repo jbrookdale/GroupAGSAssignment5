@@ -31,20 +31,17 @@ class ConnectFourHardComputerPlayer <C> extends HardComputerPlayer {
     	        ArrayList<Point> max_choice = new ArrayList<Point>();
     	        
     	        for (int i = 0; i < Height; i++) {
-    	            for (int j = 0; j < Width; j++) {
-    	                if (MaximumChain(i,j, board) > maximum) {
-    	                     maximum = MaximumChain(i,j, board);
-    	                }
+    	                if (MaximumChain(i,board.getLowestEmptySlot(i), board) > maximum) {
+    	                     maximum = MaximumChain(i,board.getLowestEmptySlot(i), board);
+    	                
     	            }
     	        }
     	        
     	        for (int i = 0; i < Height; i++) {
-    	            for (int j = 0; j < Width; j++) {
     	            	// checking if more than one maximum chain exist
-    	                if (MaximumChain(i,j, board) == maximum) {
+    	                if (MaximumChain(i,board.getLowestEmptySlot(i), board) == maximum) {
     	                    max_choice.add(new Point(i,7));
     	                }
-    	            }
     	        }
     	        
     	        Random r = new Random();
@@ -53,9 +50,38 @@ class ConnectFourHardComputerPlayer <C> extends HardComputerPlayer {
     	    }
       // This method should return the longest chain
     // We need to return just the column to pace the piece after getting the maximum chain 
-      private int MaximumChain(int i, int j, ConnectFourBoard board) {
-			
-			return 1; 
+      private int MaximumChain(int x, int y, ConnectFourBoard board) {
+      int chainLength = 0;
+      Piece pieces[][] = board.getPieces();
+        // If there is not a piece at position (x,y) then work out how many flips it causes
+        // Otherwise it doesn't flip anything.
+        if (pieces[x][y].getPieceColour() == ConnectFourPiece.ConnectFourPieceColour.NONE) {
+            for (int i = -1; i <= 1; i++) { // These signify directions on a graph in the x-axis
+                for (int j = -1; j <= 1; j++) { // These signify directions on a graph in the y-axis
+                    int counter = 1;
+                    
+                    if ((x+(i*counter)) >= 0 && (x+(i*counter)) < 10 && (y+(j*counter)) >= 0 && (y+(j*counter)) < 7) {
+                        // Loop while pieces are the opponents colour. Add 1 to counter for each iteration.
+                        while (pieces[x+(i*counter)][y+(j*counter)].getPieceColour() == getColour()) {
+                            counter++;
+                        }
+                    }
+                    
+
+                    // If the piece which stops the loop above is the players own colour, add the counter
+                    // To the total number of flippied pieces, else don't add anything.
+                    if ((x+(i*counter)) >= 0 && (x+(i*counter)) < 8 && (y+(j*counter)) >= 0 && (y+(j*counter)) < 8) {
+                        if (!((x+(i*counter)) == x && (y+(j*counter)) == y)) {
+                            
+                                if ((counter - 1) > chainLength)
+                                chainLength = (counter - 1);
+                            
+                        }
+                    }
+                }
+            }
+        }
+        return chainLength;
 		}
 
 
