@@ -82,8 +82,8 @@ public class Connect4GameLoader extends GameLoader{
 				ConnectFourBoard.setRedPieces(getP2PiecesX().get(i), getP2PiecesY().get(i));
 			}
 		}
-		
-		ConnectFourGameGUI.beginTimer(getM_time());
+
+		ConnectFourGameGUI.setTime(getM_time());
 		ConnectFourGameGUI.resetPlayerLabel(getM_playerOneName(), getM_playerOneColour(), getM_playerTwoName(), getM_playerTwoColour());
 		
 		if(getM_playerTurn().equals("Player 1")){
