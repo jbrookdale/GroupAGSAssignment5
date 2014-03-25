@@ -290,6 +290,8 @@ public class OthelloGameGUI extends GameGUI {
                                         new HumanPlayer(m_player2Name, p2colour));
         	creatingGui();
             panel.updateUI();
+            // Reset for next game if they play again.
+            gameCheck.board.resetBoard();
         } else {
             dispose();
         }

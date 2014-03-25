@@ -372,6 +372,27 @@ public static boolean setPiece (int x, int y, OthelloPiece colour) {
                 }
             }
         }
+        
+        public void resetBoard(){
+            
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                m_Pieces[i][j] = NONE_PIECE;
+            }
+        }
+                        
+        m_Pieces[3][3]= WHITE_PIECE;
+        m_Pieces[4][4]= WHITE_PIECE;
+        m_Pieces[3][4]= BLACK_PIECE;
+        m_Pieces[4][3]= BLACK_PIECE;
+        for(int x=0;x<WIDTH;x++){
+            for(int y=0;y<HEIGHT;y++){
+                if(m_Pieces[x][y]==null){
+                    m_Pieces[x][y]=NONE_PIECE;
+                }
+             }
+         }
+    }
  
 
 /**
