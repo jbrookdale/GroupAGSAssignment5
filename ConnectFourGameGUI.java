@@ -258,11 +258,18 @@ public class ConnectFourGameGUI extends GameGUI {
             + getGame().getPlayerName(Game.PLAYER_ONE) + "\"    Player Two: \"" 
             + getGame().getPlayerName(Game.PLAYER_TWO) +"\"");
             
-            if (getGame().getPlayer(getGame().getPlayerTurn() % TOTAL_PLAYERS).getPlayerType().equals("Computer")) {
+            if (!getGame().getPlayer(getGame().getPlayerTurn() % TOTAL_PLAYERS).getPlayerType().equals("Human")) {
                                             int playerTurn = getGame().getPlayerTurn();
-                                            ConnectFourEasyComputerPlayer player = (ConnectFourEasyComputerPlayer) getGame().getPlayer(playerTurn % TOTAL_PLAYERS);
-                                            int x = (int)player.makeAIMove(getGame().getBoard()).getX();
-                                            getGame().incrementTurn();            
+                                            int x;
+                                            if ((getGame().getPlayerTurn() % TOTAL_PLAYERS == 0 && m_playerOneType == "Computer: Easy") 
+                                             || (getGame().getPlayerTurn() % TOTAL_PLAYERS == 1 && m_playerTwoType == "Computer: Easy")) {
+                                                ConnectFourEasyComputerPlayer player = (ConnectFourEasyComputerPlayer)getGame().getPlayer(playerTurn % TOTAL_PLAYERS);
+                                                x = (int)player.makeAIMove(getGame().getBoard()).getX();
+                                            } else {
+                                                ConnectFourHardComputerPlayer player = (ConnectFourHardComputerPlayer)getGame().getPlayer(playerTurn % TOTAL_PLAYERS);
+                                                x = (int)player.makeAIMove(getGame().getBoard()).getX();
+                                            }
+                                         getGame().incrementTurn();            
                                          performMove(x);
                                      }
             if(loaded) {
