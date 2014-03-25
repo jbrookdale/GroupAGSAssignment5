@@ -340,8 +340,10 @@ public class ConnectFourGameGUI extends GameGUI {
                                 }
         }).start();
     } else {
-        javax.swing.JOptionPane.showMessageDialog(null, 
-                                "Invalid move");
+        if (getGame().getPlayer(getGame().getPlayerTurn() % TOTAL_PLAYERS).getPlayerType() == "Human") {
+            javax.swing.JOptionPane.showMessageDialog(null, 
+                                            "Invalid move");
+        }
     }
                     if (getGame().gameWon()) {
                         getTimer().stop();
@@ -361,7 +363,7 @@ public class ConnectFourGameGUI extends GameGUI {
                     }
                     
                     if (!getGame().gameWon()) {
-        final int ANIMATION_TIME = 500;
+        final int ANIMATION_TIME = 750;
                     new Thread(new Runnable() {
                         public void run() {
                             try {
