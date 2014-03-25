@@ -64,31 +64,44 @@ public class GameLoader extends GameIOHandler{
 			Element element = (Element) game;
 
 			setGametype(element);
-			setTime(element);
-			setPlayerTurn(element);
 			
-			for (int i = 0; i < m_player.getLength(); i++) {
+			if(getGameType()){
 				
-				Node nNode = m_player.item(i);
+				setTime(element);
+				setPlayerTurn(element);
+			
+				for (int i = 0; i < m_player.getLength(); i++) {
+				
+					Node nNode = m_player.item(i);
 	
-				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-					Element eElement = (Element) nNode;
-					setPlayerData(eElement);
-					setPlayerPieces(eElement);
-				}
+					if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+						Element eElement = (Element) nNode;
+						setPlayerData(eElement);
+						setPlayerPieces(eElement);
+					}
 				
+				}
+			}else{
+				System.out.println("Wrong game");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}	
 
-		convertToIntegers();
-		
-		drawToTerminal();
-		
-		setupBoard();
-		System.out.println("Passed setup board");
+		if(getGameType()){
+			convertToIntegers();
+			
+			drawToTerminal();
+			
+			setupBoard();
+			System.out.println("Passed setup board");
+		}else{
+		}
 	}	
+	
+	public boolean getGameType(){
+		return false;
+	}
 	
 	public void setupBoard() {}
 
@@ -149,7 +162,7 @@ public class GameLoader extends GameIOHandler{
     }
   
     public void setGametype(Element element){
-    	m_gametype = element.getElementsByTagName("gametype").item(0).getTextContent();
+    	setM_gametype(element.getElementsByTagName("gametype").item(0).getTextContent());
     }
     
     public void setPlayerTurn(Element element){
@@ -157,7 +170,7 @@ public class GameLoader extends GameIOHandler{
     }
     
     public void drawToTerminal(){
-    	System.out.println("Game type: " + m_gametype);
+    	System.out.println("Game type: " + getM_gametype());
     	System.out.println("Game time: " + getM_time());
     	System.out.println("Players turn: " + getM_playerTurn());
     	
@@ -277,5 +290,13 @@ public class GameLoader extends GameIOHandler{
 
 	public void setM_playerTurn(String m_playerTurn) {
 		this.m_playerTurn = m_playerTurn;
+	}
+
+	public String getM_gametype() {
+		return m_gametype;
+	}
+
+	public void setM_gametype(String m_gametype) {
+		this.m_gametype = m_gametype;
 	}
 }

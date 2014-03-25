@@ -9,6 +9,14 @@ public class Connect4GameLoader extends GameLoader{
 		super(fileName);
 	}
 	
+	public boolean getGameType(){
+		if(getM_gametype().equals("Connect4")){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
 	/**
 		THINGS THAT ARE STILL NEEDED TO BE DONE:
 			-- Player turn needs to be taken into account.

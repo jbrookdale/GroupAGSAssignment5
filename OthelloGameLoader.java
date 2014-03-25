@@ -10,6 +10,14 @@ public class OthelloGameLoader extends GameLoader{
 		super(fileName);
 	}
 	
+	public boolean getGameType(){
+		if(getM_gametype().equals("Othello")){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
 	public void setPlayerData(Element element){
 		if(element.getAttribute("id").equals("1")){
 			setM_playerOneType(element.getElementsByTagName("type").item(0).getTextContent());
