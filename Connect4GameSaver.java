@@ -30,8 +30,15 @@ public class Connect4GameSaver extends GameSaver{
 		for(int j = 0; j < piecesToBeSaved[0].length; j++){
 			for(int i = 0; i < piecesToBeSaved.length; i++){
 				if(piecesToBeSaved[i][j].getPieceColour() == Piece.ConnectFourPieceColour.RED){
+					Element newRedPiece;
 					
-					Element newRedPiece = getDoc().createElement("piece2");
+					
+					
+					if(Game.getPlayer(0).getColour() == Piece.ConnectFourPieceColour.RED){
+						newRedPiece = getDoc().createElement("piece1");
+					}else{	
+						newRedPiece = getDoc().createElement("piece2");
+					}
 					
 					Element x = getDoc().createElement("x");
 					x.appendChild(getDoc().createTextNode(i + ""));
@@ -41,10 +48,21 @@ public class Connect4GameSaver extends GameSaver{
 					newRedPiece.appendChild(x);
 					newRedPiece.appendChild(y);
 					
-					// NEEDS TO BE CHANGED WHEN COLOUR CHANGING IS IMPLEMENTED!
-					getPlayers(1).appendChild(newRedPiece);
+					if(Game.getPlayer(0).getColour() == Piece.ConnectFourPieceColour.RED){
+						getPlayers(0).appendChild(newRedPiece);
+					}else{	
+						getPlayers(1).appendChild(newRedPiece);
+					}
 				}else if(piecesToBeSaved[i][j].getPieceColour() == Piece.ConnectFourPieceColour.YELLOW){
-					Element newYellowPiece = getDoc().createElement("piece1");
+					Element newYellowPiece;
+					
+					if(Game.getPlayer(1).getColour() == Piece.ConnectFourPieceColour.RED){
+						newYellowPiece = getDoc().createElement("piece1");
+					}else{	
+						newYellowPiece = getDoc().createElement("piece2");
+					}
+					
+					
 					Element x = getDoc().createElement("x");
 					x.appendChild(getDoc().createTextNode(i + ""));
 					Element y = getDoc().createElement("y");
@@ -53,8 +71,11 @@ public class Connect4GameSaver extends GameSaver{
 					newYellowPiece.appendChild(x);
 					newYellowPiece.appendChild(y);
 
-					// NEEDS TO BE CHANGED WHEN COLOUR CHANGING IS IMPLEMENTED!
-					getPlayers(0).appendChild(newYellowPiece);
+					if(Game.getPlayer(1).getColour() == Piece.ConnectFourPieceColour.RED){
+						getPlayers(0).appendChild(newYellowPiece);
+					}else{	
+						getPlayers(1).appendChild(newYellowPiece);
+					}
 				}else{}
 			}
 		}	
