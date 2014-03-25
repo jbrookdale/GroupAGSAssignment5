@@ -24,6 +24,11 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.net.URL;
 
+import javax.swing.JFileChooser;
+
+import java.io.File;
+
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -292,6 +297,7 @@ public class OthelloGameGUI extends GameGUI {
             panel.updateUI();
             // Reset for next game if they play again.
             gameCheck.board.resetBoard();
+
         } else {
             dispose();
         }
@@ -337,9 +343,20 @@ public class OthelloGameGUI extends GameGUI {
 	        loadGameButton.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent event) {
 	                    System.out.println("load game clicked");
-	                    String loadGame = JOptionPane.showInputDialog("Enter load name:");
+	                    //String loadGame = JOptionPane.showInputDialog("Enter load name:");
 	                    
-	                    new OthelloGameLoader("saves\\" + loadGame + ".xml");
+	                    //new OthelloGameLoader("saves\\" + loadGame + ".xml");
+	                    JFileChooser chooser = new JFileChooser();
+	                    chooser.setCurrentDirectory(new File(".\\saves"));
+	                    FileNameExtensionFilter filter = new FileNameExtensionFilter(
+	                        "Game saves only", "xml");
+	                    chooser.setFileFilter(filter);
+	                    int returnVal = chooser.showOpenDialog(OthelloGameGUI.this);
+	                    if(returnVal == JFileChooser.APPROVE_OPTION) {
+	                    	new OthelloGameLoader("saves\\" +chooser.getSelectedFile().getName());
+	                       System.out.println("You chose to open this file: " +
+	                            chooser.getSelectedFile().getName());
+	                    }
 	            }
 	        });
 		return menuBar;

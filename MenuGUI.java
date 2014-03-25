@@ -20,11 +20,13 @@ import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.*;
+import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -36,6 +38,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JComboBox;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class MenuGUI extends GUI {
 	
@@ -746,12 +749,24 @@ public class MenuGUI extends GUI {
 				m_PlayInputTwo.setText("Player Two");
 			
 			} else if(event.getSource() == m_LoadButton){ //start of load button code
+				
+				String fn = "";
+				
+				JFileChooser chooser = new JFileChooser();
+                chooser.setCurrentDirectory(new File(".\\saves"));
+                FileNameExtensionFilter filter = new FileNameExtensionFilter(
+                    "Game saves only", "xml");
+                chooser.setFileFilter(filter);
+                int returnVal = chooser.showOpenDialog(MenuGUI.this);
+                if(returnVal == JFileChooser.APPROVE_OPTION) {
+                        fn = chooser.getSelectedFile().getName();
+                }
 				if (getGameType() == CONNECT) {
-	                    String loadGame = JOptionPane.showInputDialog("Enter load name:");
 
 	                    String[] playerTemp = {"X", "Human", "Red"};
 	                    
-	                    new ConnectFourGameGUI(playerTemp, playerTemp, true, loadGame);
+	                    new ConnectFourGameGUI(playerTemp, playerTemp, true, fn);
+	                    
 	            } else if(getGameType() == OTHELLO) {
 	            	    String loadGame = JOptionPane.showInputDialog("Enter load name:");
 	                    
