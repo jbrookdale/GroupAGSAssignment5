@@ -20,6 +20,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
@@ -31,12 +32,14 @@ import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JFileChooser;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
 
 public class ConnectFourGameGUI extends GameGUI {
     /**< This is the height (amount of slots/places vertically) in the board */
@@ -121,7 +124,7 @@ public class ConnectFourGameGUI extends GameGUI {
 	}
     
     public ConnectFourGameGUI(String[] playerOneDetails, 
-        String[] playerTwoDetails, boolean loaded, String location) {
+        String[] playerTwoDetails, boolean loaded, String loc) {
         //Call super class constructor
         super(WINDOW_TITLE, WINDOW_WIDTH, WINDOW_HEIGHT);
 
@@ -195,15 +198,27 @@ public class ConnectFourGameGUI extends GameGUI {
                     
                     
                     new Connect4GameSaver("saves\\" + saveGame + ".xml");
+                    
             }
         });
         
         loadGameButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                     System.out.println("load game clicked");
-                    String loadGame = JOptionPane.showInputDialog("Enter load name:");
+                    //String loadGame = JOptionPane.showInputDialog("Enter load name:");
                     
-                    new Connect4GameLoader("saves\\" + loadGame + ".xml");
+                    //new Connect4GameLoader("saves\\" + loadGame + ".xml");
+                    JFileChooser chooser = new JFileChooser();
+                    chooser.setCurrentDirectory(new File(".\\saves"));
+                    FileNameExtensionFilter filter = new FileNameExtensionFilter(
+                        "Game saves only", "xml");
+                    chooser.setFileFilter(filter);
+                    int returnVal = chooser.showOpenDialog(ConnectFourGameGUI.this);
+                    if(returnVal == JFileChooser.APPROVE_OPTION) {
+                    	new Connect4GameLoader("saves\\" +chooser.getSelectedFile().getName());
+                       System.out.println("You chose to open this file: " +
+                            chooser.getSelectedFile().getName());
+                    }
             }
         });
         
@@ -244,15 +259,14 @@ public class ConnectFourGameGUI extends GameGUI {
                                             getGame().incrementTurn();            
                                          performMove(x);
                                      }
-            if(loaded){
-            	loadGame(location);
+            if(loaded) {
+            	loadgame(loc);
+            	
             }
     }
-
-    private void loadGame(String location){	
-    	new Connect4GameLoader("saves\\" + location + ".xml");
+    private void loadgame(String loc) {
+    	new Connect4GameLoader("saves\\" + loc);
     }
-    
 	/**< private class for handling mouse clicks */
     private class ClickListener implements MouseListener {
 
