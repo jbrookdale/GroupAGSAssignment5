@@ -19,13 +19,9 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.*;
-import java.awt.event.WindowListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.io.IOException;
+
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -35,8 +31,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.Timer;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+
 import javax.swing.JComboBox;
 
 public class MenuGUI extends GUI {
@@ -449,6 +447,7 @@ public class MenuGUI extends GUI {
 		
 		m_PlayerOK = new JButton("OK");
 		m_PlayerBack = new JButton("Cancel");
+		m_LoadButton = new JButton("Load Previous Game");
 		
 		m_PlayInputOne = new JTextField("Player One",TEXTFIELD_COLUMNS);
 		m_PlayInputOne.setFont(new Font("SansSerif", 
@@ -470,6 +469,12 @@ public class MenuGUI extends GUI {
 		input.gridy = ROW_ONE;
 		input.insets = new Insets(GAP_TWENTY,GAP_TWENTY,NO_GAP,60);
 		inputPanel.add(m_InputLabel, input);
+		
+		input.fill = GridBagConstraints.HORIZONTAL;
+		input.gridx = COLUMN_TWO;							
+		input.gridy = ROW_ONE;
+		input.insets = new Insets(GAP_TWENTY,NO_GAP,NO_GAP,120);
+		inputPanel.add(m_LoadButton, input);
 		
 		
 		input.fill = GridBagConstraints.HORIZONTAL;
@@ -571,6 +576,7 @@ public class MenuGUI extends GUI {
 		
 		m_PlayerOK.addActionListener(handler);
 		m_PlayerBack.addActionListener(handler);
+		m_LoadButton.addActionListener(handler);
 		m_PlayInputOne.addKeyListener(check);
 		m_PlayInputTwo.addKeyListener(check);
 
@@ -739,9 +745,21 @@ public class MenuGUI extends GUI {
 			    m_PlayInputOne.setText("Player One");
 				m_PlayInputTwo.setText("Player Two");
 			
+			} else if(event.getSource() == m_LoadButton){ //start of load button code
+				if (getGameType() == CONNECT) {
+	                    String loadGame = JOptionPane.showInputDialog("Enter load name:");
+	                    
+	                    new Connect4GameLoader("saves\\" + loadGame + ".xml");
+	            } else if(getGameType() == OTHELLO) {
+	            	    String loadGame = JOptionPane.showInputDialog("Enter load name:");
+	                    
+	                    new OthelloGameLoader("saves\\" + loadGame + ".xml");
+	            	
+	            }
+				}
+				
 			}
 		}
-	}
 
 	/**
 	* This method tests the methods of this class with valid inputs
@@ -949,6 +967,8 @@ public class MenuGUI extends GUI {
 	
 	/**< This is the label for the player 2's colour combobox on the input window */
 	private JLabel m_Player2ColourLabel;
+	
+	private JButton m_LoadButton;
 	
 	/**< This variable hold the string of the name for player one */
 	private String m_PlayerOne;
