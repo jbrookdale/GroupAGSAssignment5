@@ -710,7 +710,7 @@ public class MenuGUI extends GUI {
 					
 					
 					ConnectFourGameGUI connectFour =
-					    new ConnectFourGameGUI(playerOneDetails, playerTwoDetails);				
+					    new ConnectFourGameGUI(playerOneDetails, playerTwoDetails, false, "");				
 					
 				} else if(getGameType() == OTHELLO){
 					//m_MainMenu.dispose();
@@ -748,13 +748,14 @@ public class MenuGUI extends GUI {
 			} else if(event.getSource() == m_LoadButton){ //start of load button code
 				if (getGameType() == CONNECT) {
 	                    String loadGame = JOptionPane.showInputDialog("Enter load name:");
+
+	                    String[] playerTemp = {"X", "Human", "Red"};
 	                    
-	                    new Connect4GameLoader("saves\\" + loadGame + ".xml");
+	                    new ConnectFourGameGUI(playerTemp, playerTemp, true, loadGame);
 	            } else if(getGameType() == OTHELLO) {
 	            	    String loadGame = JOptionPane.showInputDialog("Enter load name:");
 	                    
 	                    new OthelloGameLoader("saves\\" + loadGame + ".xml");
-	            	
 	            }
 				}
 				

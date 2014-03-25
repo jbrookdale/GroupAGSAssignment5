@@ -121,7 +121,7 @@ public class ConnectFourGameGUI extends GameGUI {
 	}
     
     public ConnectFourGameGUI(String[] playerOneDetails, 
-        String[] playerTwoDetails) {
+        String[] playerTwoDetails, boolean loaded, String location) {
         //Call super class constructor
         super(WINDOW_TITLE, WINDOW_WIDTH, WINDOW_HEIGHT);
 
@@ -244,8 +244,15 @@ public class ConnectFourGameGUI extends GameGUI {
                                             getGame().incrementTurn();            
                                          performMove(x);
                                      }
+            if(loaded){
+            	loadGame(location);
+            }
     }
 
+    private void loadGame(String location){	
+    	new Connect4GameLoader("saves\\" + location + ".xml");
+    }
+    
 	/**< private class for handling mouse clicks */
     private class ClickListener implements MouseListener {
 
