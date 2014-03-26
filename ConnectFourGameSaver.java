@@ -7,10 +7,10 @@
 * @brief This class writes game data specific to Connect4 to an xml file.
 * 
 * This class will write the data specific to Connect4 to an xml file
-* specified the player. They have the option to name the save file but
-* not choose it's location i.e. it defaults to "saves/ ... ". Specific
-* data includes its gametype, piece colour and piece locations as their
-* boards do not index spaces the same.
+* specified by the player. They have the option to name the save file but
+* not choose it's location i.e. it defaults to "saves/connect4saves ... ". 
+* Specific data includes its gametype, piece colour and piece locations as 
+* their boards do not index spaces the same.
  */
 
 import org.w3c.dom.Element;
@@ -139,5 +139,10 @@ public class ConnectFourGameSaver extends GameSaver{
 		
 		getPlayers(0).appendChild(playerOneColour);
 		getPlayers(1).appendChild(playerTwoColour);
+	}
+
+	/** This is the main method containing the unit tests for this class. */
+	public static void main(String[] args){
+		//Test cases to be implemented.
 	}
 }

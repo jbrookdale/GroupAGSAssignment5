@@ -37,12 +37,7 @@ public class ConnectFourGameLoader extends GameLoader{
 			return false;
 		}
 	}
-	
-	/**
-		THINGS THAT ARE STILL NEEDED TO BE DONE:
-			-- Needs to handle loading an already won??
-	*/
-	
+
 	/**
 	 * This method is used to initialise the game with all the data taken from
 	 * the save file.
@@ -66,9 +61,9 @@ public class ConnectFourGameLoader extends GameLoader{
 			p2Colour = Piece.ConnectFourPieceColour.RED;
 		}
 		
-		 if (getM_playerOneType().equals("Human")) {
+		 if(getM_playerOneType().equals("Human")){
 	           playerOne = new HumanPlayer(getM_playerOneName(), p1Colour);
-	     } else if(getM_playerOneType().equals("Computer: Easy")) {
+	     }else if(getM_playerOneType().equals("Computer: Easy")){
 	    	 playerOne = new ConnectFourEasyComputerPlayer(
 	            			getM_playerOneName(), p1Colour);
 	     }else{
@@ -123,5 +118,10 @@ public class ConnectFourGameLoader extends GameLoader{
 		ConnectFourGameGUI.setGame(loadGame);
 		ConnectFourGameGUI.getPanel().updatePieces(loadGame.getPieces());
 		ConnectFourGameGUI.getPanel().refreshDisplay();
+	}
+
+	/** This is the main method containing the unit tests for this class. */
+	public static void main(String[] args){
+		//Test cases to be implemented.
 	}
 }
