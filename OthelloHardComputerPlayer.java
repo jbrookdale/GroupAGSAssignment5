@@ -163,8 +163,36 @@ class OthelloHardComputerPlayer <C> extends HardComputerPlayer {
                 System.out.println("(" + (i) + "," + (j) + "): " + "flips " + y + " pieces");
             }
         }
+        
         /** < show the move of the hard computer player  */
         Point x = compAI.makeAIMove(game.board);
         System.out.println("Othello Hard ComAI move: " + x);
+        
+        
+            OthelloHardComputerPlayer hardComPlayer = new OthelloHardComputerPlayer("MABELLE", Piece.OthelloPieceColour.BLACK);
+    	    System.out.println("Expected Random position corresponding to point x");
+    	    Point y = hardComPlayer.makeAIMove(game.board);
+    	    System.out.println(y);
+            
+    	    /**
+    		* This is to test that Othello game works with hard computer player implementation
+    		* This tests that the name, colour and score for each player can be retrieved 
+    		*/
+    		final int TEST_PLAYER_SCORE = 2;
+
+    		OthelloHardComputerPlayer player1Piece;
+    		    player1Piece = new OthelloHardComputerPlayer("computer", Piece.OthelloPieceColour.BLACK);
+    		    OthelloHardComputerPlayer player1 =
+    		            new OthelloHardComputerPlayer("Computer",player1Piece.getColour());
+    		    System.out.println("Player Expected name " + "Computer");
+    		    System.out.println("Player1: " +player1.getName());
+    		    System.out.println("Player Expected colour " + "BLACK");
+    		    System.out.println("Colour: " +player1.getColour());
+    		    System.out.println("Player Expected Score " + "0");
+    		    System.out.println("score: " +player1.getScore());
+    		    player1.setScore(TEST_PLAYER_SCORE);
+    		    System.out.println("Player Expected Score " + "2");
+    		    System.out.println("Change score: " + player1.getScore());
+
     }
 }
