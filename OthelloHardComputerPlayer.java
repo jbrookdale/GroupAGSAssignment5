@@ -1,8 +1,12 @@
+import java.util.ArrayList;
+import java.awt.Point;
+import java.util.Random;
+
 /**
 * @file OthelloEasyComputerPlayer.java
-* @author 
+* @author Mabelle, Jon
 * @date  24th Mar 2014
-* @see
+* @see 'JAVA for everyone' - Cay Horstmann, Second edition,for Random class and Loops
 *
 * @brief This is a OthelloHardComputerPlayer inherited from the HardComputerPlayer
 *        which generate a hard move for the computer player in Othello.
@@ -11,12 +15,6 @@
 * number of pieces that the move can flipped.
 *
 */
-
-
-
-import java.util.ArrayList;
-import java.awt.Point;
-import java.util.Random;
 
 class OthelloHardComputerPlayer <C> extends HardComputerPlayer {
     
@@ -39,7 +37,12 @@ class OthelloHardComputerPlayer <C> extends HardComputerPlayer {
 	private final static int POSITIVE_Y_AXIS = 1;
 	
 	
-	
+	/**
+     * This is the Constructor for the OthelloHardComputerPlayer class.
+     * @param newName -The name of player
+     * @param newPlayerColour -The Piece colour of the player
+     *
+     */
 	public OthelloHardComputerPlayer(String newName, Object newPlayerColour) {
 		super(newName, newPlayerColour);
 	}
