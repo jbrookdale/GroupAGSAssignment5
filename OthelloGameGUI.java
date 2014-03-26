@@ -23,6 +23,8 @@ import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.awt.Point;
 
 import javax.swing.JFileChooser;
@@ -356,10 +358,16 @@ public class OthelloGameGUI extends GameGUI {
 
 	        saveGameButton.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent event) {
-	                    System.out.println("save game clicked");
-	                    String saveGame = JOptionPane.showInputDialog("Enter save name:");
+	            	 System.out.println("save game clicked");
+	                 String saveGame = JOptionPane.showInputDialog("Enter save name:");
+	                 Date dNow = new Date( );
+	                 SimpleDateFormat timeStamp = 
+	                 new SimpleDateFormat ("H.mm dd.MM.yy");
+
+	                 System.out.println("Current Date: " + timeStamp.format(dNow));
 	                    
-	                    new OthelloGameSaver("saves\\" + saveGame + ".xml");
+	                 new OthelloGameSaver("saves\\othellosaves\\" + saveGame + "  [" + timeStamp.format(dNow) + "]" + ".xml");
+	                    
 	            }
 	        });
 	        
@@ -369,7 +377,7 @@ public class OthelloGameGUI extends GameGUI {
 	                    String saveFile = "";
 	    				String fileExtension = "";
 	                    JFileChooser chooser = new JFileChooser();
-	                    chooser.setCurrentDirectory(new File(".\\saves"));
+	                    chooser.setCurrentDirectory(new File(".\\saves\\othellosaves\\"));
 	                    FileNameExtensionFilter filter = new FileNameExtensionFilter(
 	                        "Game saves only", "xml");
 	                    chooser.setFileFilter(filter);

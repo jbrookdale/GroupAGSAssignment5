@@ -778,7 +778,11 @@ public class MenuGUI extends GUI {
 				String fileExtension = "";
 				
 				JFileChooser chooser = new JFileChooser();
-                chooser.setCurrentDirectory(new File(".\\saves"));
+				if(getGameType() == CONNECT) {
+					chooser.setCurrentDirectory(new File(".\\saves\\connect4saves"));
+				} else if(getGameType() == OTHELLO) {
+					chooser.setCurrentDirectory(new File(".\\saves\\othellosaves"));
+				}
                 FileNameExtensionFilter filter = new FileNameExtensionFilter(
                     "Game saves only", "xml");
                 chooser.setFileFilter(filter);
@@ -799,7 +803,7 @@ public class MenuGUI extends GUI {
 		            } 	else if(getGameType() == OTHELLO) {
 		            	    String loadGame = JOptionPane.showInputDialog("Enter load name:");
 		                    
-		                    new OthelloGameLoader("saves\\" + loadGame + ".xml");
+		                    new OthelloGameLoader("saves\\othellosaves\\" + loadGame + ".xml");
 		            	}
 	                }
 	             } else {

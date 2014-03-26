@@ -40,6 +40,8 @@ import java.awt.event.WindowListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ConnectFourGameGUI extends GameGUI {
     /**< This is the height (amount of slots/places vertically) in the board */
@@ -201,9 +203,14 @@ public class ConnectFourGameGUI extends GameGUI {
             public void actionPerformed(ActionEvent event) {
                     System.out.println("save game clicked");
                     String saveGame = JOptionPane.showInputDialog("Enter save name:");
+                    Date dNow = new Date( );
+                    SimpleDateFormat timeStamp = 
+                    new SimpleDateFormat ("H.mm dd.MM.yy");
+
+                    System.out.println("Current Date: " + timeStamp.format(dNow));
                     
+                    new Connect4GameSaver("saves\\connect4saves\\" + saveGame + "  [" + timeStamp.format(dNow) + "]" + ".xml");
                     
-                    new Connect4GameSaver("saves\\" + saveGame + ".xml");
                     
             }
         });
@@ -216,7 +223,7 @@ public class ConnectFourGameGUI extends GameGUI {
     				String fileExtension = "";
     				
                     JFileChooser chooser = new JFileChooser();
-                    chooser.setCurrentDirectory(new File(".\\saves"));
+                    chooser.setCurrentDirectory(new File(".\\saves\\connect4saves\\"));
                     FileNameExtensionFilter filter = new FileNameExtensionFilter(
                         "Game saves only", "xml");
                     chooser.setFileFilter(filter);
@@ -228,7 +235,7 @@ public class ConnectFourGameGUI extends GameGUI {
                     }
                     if(fileExtension.equals("xml")) { //checks if file selected is an xml file
     	                if(saveFile != "") { //checks if the user selected cancel instead
-    	                	new Connect4GameLoader("saves\\" + saveFile);
+    	                	new Connect4GameLoader("saves\\connect4saves\\" + saveFile);
     	                }
                     } else {
                     	JOptionPane.showMessageDialog(null, "You have not chosen a game save");
