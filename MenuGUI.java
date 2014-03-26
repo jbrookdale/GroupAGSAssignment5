@@ -797,7 +797,7 @@ public class MenuGUI extends GUI {
 	                	if (getGameType() == CONNECT) {
 	
 		                    	String[] playerTemp = {"X", "Human", "Red"};
-		                    
+		                    	System.out.println(saveFile);
 		                    	new ConnectFourGameGUI(playerTemp, playerTemp, true, saveFile);
 		                    
 		            } 	else if(getGameType() == OTHELLO) {

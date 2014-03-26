@@ -292,7 +292,7 @@ public class ConnectFourGameGUI extends GameGUI {
             }
     }
     private void loadgame(String loc) {
-    	new Connect4GameLoader("saves\\" + loc);
+    	new Connect4GameLoader("saves\\connect4saves\\" + loc);
     }
 	/**< private class for handling mouse clicks */
     private class ClickListener implements MouseListener {
