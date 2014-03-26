@@ -87,13 +87,39 @@ class OthelloEasyComputerPlayer <C> extends EasyComputerPlayer{
      * @param args -nil
      */
     public static void main(String[] args) {
-
+    	/** Test to ensure random move works */
 		/** < set two player   */
-		OthelloHardComputerPlayer compAI = new OthelloHardComputerPlayer("CompAI",Piece.OthelloPieceColour.WHITE);
+		OthelloEasyComputerPlayer compAI = new OthelloEasyComputerPlayer("CompAI",Piece.OthelloPieceColour.WHITE);
         OthelloGame game = new OthelloGame(compAI, new HumanPlayer("Mabelle",Piece.OthelloPieceColour.BLACK));
               
         /** < show the move of the easy computer player  */
         Point x = compAI.makeAIMove(game.board);
         System.out.println("Othello Easy ComAI move: " + x);
+        
+	    OthelloEasyComputerPlayer board = new OthelloEasyComputerPlayer("MABELLE", Piece.OthelloPieceColour.BLACK);
+	    System.out.println("Expected Random position corresponding to point x");
+	    Point y = board.makeAIMove(game.board);
+	    System.out.println(y);
+        /**
+		* This is to test that Othello game works with Othello Computer Easy implementation
+		* This tests that the name, colour and score for each player can be retrieved 
+		*/
+		final int TEST_PLAYER_SCORE = 2;
+		        
+		OthelloEasyComputerPlayer player1Piece;
+		    player1Piece = new OthelloEasyComputerPlayer("computer", Piece.OthelloPieceColour.BLACK);
+		    OthelloEasyComputerPlayer player1 =
+		            new OthelloEasyComputerPlayer("Computer",player1Piece.getColour());
+		    System.out.println("Player Expected name " + "Computer");
+		    System.out.println("Player1: " +player1.getName());
+		    System.out.println("Player Expected colour " + "BLACK");
+		    System.out.println("Colour: " +player1.getColour());
+		    System.out.println("Player Expected Score " + "0");
+		    System.out.println("score: " +player1.getScore());
+		    player1.setScore(TEST_PLAYER_SCORE);
+		    System.out.println("Player Expected Score " + "2");
+		    System.out.println("Change score: " + player1.getScore());
+		    
+		   
     }
 }
