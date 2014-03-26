@@ -3,7 +3,7 @@ import java.awt.Point;
 import java.util.Random;
 
 /**
-* @file OthelloEasyComputerPlayer.java
+* @file OthelloHardComputerPlayer.java
 * @author Mabelle, Jon
 * @date  24th Mar 2014
 * @see 'JAVA for everyone' - Cay Horstmann, Second edition,for Random class and Loops
