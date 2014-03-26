@@ -74,6 +74,9 @@ public class OthelloGameGUI extends GameGUI {
 	private static ImageIcon whiteToBlackPiece;
 	private static ImageIcon blackToWhitePiece;
 
+    private Player m_playerOne;
+    private Player m_playerTwo;
+
     private JPanel panel;
     
 	/** 
@@ -83,7 +86,7 @@ public class OthelloGameGUI extends GameGUI {
 	 * @param width -the variable storing width of the .
 	 * @param height -the variable storing height of the .
 	 */
-	public OthelloGameGUI(String title, int width, int height, String p1Colour) {
+	public OthelloGameGUI(String title, int width, int height, Player playerOne, Player playerTwo) {
 		super(title,width,height);
 		
 		/* What is this? */
@@ -101,8 +104,11 @@ public class OthelloGameGUI extends GameGUI {
 		setTime(0);
 		setTimerLabel();
 		startTimer();
+
+        m_playerOne = playerOne;
+        m_playerTwo = playerTwo;
 		
-		if(p1Colour.equals("Black")){
+		if(playerOne.getColour() == Piece.OthelloPieceColour.BLACK){
 			m_player1Colour = new OthelloPiece(Piece.OthelloPieceColour.BLACK);
 			m_player2Colour = new OthelloPiece(Piece.OthelloPieceColour.WHITE);
 			p1colour = Piece.OthelloPieceColour.BLACK;
@@ -729,7 +735,9 @@ public class OthelloGameGUI extends GameGUI {
 		String[] s = new String[TOTAL_PLAYERS];
 		s[PLAYER_ONE]="Jon";
 		s[PLAYER_TWO]="Tom";
-		OthelloGameGUI displayExample = new OthelloGameGUI("Othello",WIDTH,HEIGHT, "Black");
+        Player playerOne = new HumanPlayer(s[0], Piece.OthelloPieceColour.BLACK);
+        Player playerTwo = new HumanPlayer(s[1], Piece.OthelloPieceColour.WHITE);
+		OthelloGameGUI displayExample = new OthelloGameGUI("Othello",WIDTH,HEIGHT, playerOne, playerTwo);
 		displayExample.setPlayers(s);
 
 		displayExample.creatingGui();

@@ -717,8 +717,32 @@ public class MenuGUI extends GUI {
 					
 				} else if(getGameType() == OTHELLO){
 					//m_MainMenu.dispose();
+                    Player playerOne;
+                    if (getPlayerOneType().equals("Computer: Easy")) {
+                        playerOne = new ConnectFourEasyComputerPlayer(
+                                        m_PlayInputOne.getText(), getPlayerOneColour());
+                    } else if (getPlayerOneType().equals("Computer: Hard")) {
+                        playerOne = new ConnectFourHardComputerPlayer(
+                                        m_PlayInputOne.getText(), getPlayerOneColour());
+                    } else {
+                        playerOne = new HumanPlayer(
+                                        m_PlayInputOne.getText(), getPlayerOneColour());
+                    }
+                    
+                    Player playerTwo;
+                    if (getPlayerTwoType().equals("Computer: Easy")) {
+                        playerTwo = new ConnectFourEasyComputerPlayer(
+                                        m_PlayInputTwo.getText(), getPlayerTwoColour());
+                    } else if (getPlayerTwoType().equals("Computer: Hard")) {
+                           playerTwo = new ConnectFourHardComputerPlayer(
+                                           m_PlayInputTwo.getText(), getPlayerTwoColour());
+                    } else {
+                           playerTwo = new HumanPlayer(
+                                           m_PlayInputTwo.getText(), getPlayerTwoColour());
+                    }
+                    
 					OthelloGameGUI othello = new OthelloGameGUI("Othello",
-						OTH_FRM_WIDTH,OTH_FRM_HEIGHT, getPlayerOneColour());
+						OTH_FRM_WIDTH,OTH_FRM_HEIGHT, playerOne, playerTwo);
 					String[] players = new String[NUM_PLAYERS];
 					players[PLAYER_ONE] = m_PlayInputOne.getText();
 					players[PLAYER_TWO] = m_PlayInputTwo.getText();
