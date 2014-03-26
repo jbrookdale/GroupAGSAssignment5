@@ -14,7 +14,7 @@ import java.util.Random;
 * @brief This class implements the Connect Four Hard Computer player moves
 *
 * 
-* This class handles the Hard Computer player. The move made extends the 
+* This class handles the Hard Computer player. It extends HardComputerPlayer class and implement the Connect Four Computer moves. The move made extends the 
 * longest chain(horizontal, vertical or diagonal) on the board by one.
 * It randomly picks one if many of such chain exist.
 */

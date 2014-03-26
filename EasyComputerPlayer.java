@@ -13,7 +13,7 @@ import java.awt.Point;
 
 abstract class EasyComputerPlayer <C> extends ComputerPlayer {
     /**
-     * EasyComputerPlaye Constructor
+     * EasyComputerPlayer Constructor
      * @param newName -The name of the player
      * @param newPlayerColour - The piece colour of the player
      */

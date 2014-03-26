@@ -1,21 +1,25 @@
-/**
-* @file OthelloEasyComputerPlayer.java
-* @author 
-* @date  21st Mar 2014
-* @see
-*
-* @brief This is a OthelloEasyComputerPlayer inherited from the EasyComputerPlayer
-*        which generate a easy move for the computer player in Othello.
-*		
-* This class provides a random position among all the empty point with a valid move.
-*
-*/
-
 import java.awt.Point;
 import java.util.Random;
 
+/**
+* @file OthelloEasyComputerPlayer.java
+* @author Damabel Godfrey
+* @date  21st Mar 2014
+* @see 'JAVA for everyone' - Cay Horstmann, Second edition,for Random class
+*
+* @brief This is a OthelloEasyComputerPlayer it extends EasyComputerPlayer class
+*        which generate a easy move for the computer player in Othello.
+*		
+* This class makes a random move in any of the points on Othello board.
+*
+*/
+
 class OthelloEasyComputerPlayer <C> extends EasyComputerPlayer{
-    
+    /**
+     * Constructor calls the player's name and the player piece colour
+     * @param newName -The name of the player
+     * @param newPlayerColour -The colour of the player
+     */
     public OthelloEasyComputerPlayer(String newName, C newPlayerColour) {
 		super(newName, newPlayerColour);
 		
@@ -24,8 +28,8 @@ class OthelloEasyComputerPlayer <C> extends EasyComputerPlayer{
     /**
 	* 
 	* @param board - Othello board which provided all the information in the OthelloBoard class
-	* @param colour -  The board which contains all the pieces for the current game.
-	* @return m_movePosition -  return a move position point.        	* 
+	* @param colour -  The colour of the player piece.
+	* @return m_movePosition -  return a move position point.
 	*/
     
     public Point makeAIMove(OthelloBoard board){
@@ -62,7 +66,10 @@ class OthelloEasyComputerPlayer <C> extends EasyComputerPlayer{
         Point m_movePosition = new Point(m_columnNum, m_rowNum);
         return m_movePosition;
     }
-    
+    /**
+     * This is the main method where all the test is done
+     * @param args -nil
+     */
     public static void main(String[] args) {
         // Tests go here
     }
