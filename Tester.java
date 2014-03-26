@@ -1,4 +1,4 @@
-public class Test{
+public class Tester{
 
 	public static OthelloPiece WHITE_PIECE = new OthelloPiece(Piece.OthelloPieceColour.WHITE);
        // creates an object of Piece which contains a black piece 
@@ -30,55 +30,55 @@ public class Test{
 	private ConnectFourPiece[][] m_Pieces = new ConnectFourPiece[WIDTH][HEIGHT]; 
 
 	/**< constant for column one on the board */ 					
-	private final int COLUMN_ONE = 0;
+	private final static int COLUMN_ONE = 0;
 
 	/**< constant for column two on the board */ 
-	private final int COLUMN_TWO = 1;
+	private final static int COLUMN_TWO = 1;
 
 	/**< constant for column three on the board */ 
-	private final int COLUMN_THREE = 2;
+	private final static int COLUMN_THREE = 2;
 	
 	/**< constant for column four on the board */ 
-	private final int COLUMN_FOUR = 3;
+	private final static int COLUMN_FOUR = 3;
 	
 	/**< constant for column five on the board */ 
-	private final int COLUMN_FIVE = 4;
+	private final static int COLUMN_FIVE = 4;
 	
 	/**< constant for column six on the board */ 
-	private final int COLUMN_SIX = 5;
+	private final static int COLUMN_SIX = 5;
 	
 	/**< constant for column seven on the board */ 
-	private final int COLUMN_SEVEN = 6;
+	private final static int COLUMN_SEVEN = 6;
 
 	/**< constant for row one on the board */ 
-	private final int ROW_ONE = 0;
+	private final static int ROW_ONE = 0;
 	
 	/**< constant for row two on the board */ 
-	private final int ROW_TWO = 1;
+	private final static int ROW_TWO = 1;
 
 	/**< constant for row three on the board */ 
-	private final int ROW_THREE = 2;
+	private final static int ROW_THREE = 2;
 
 	/**< constant for row four on the board */ 
-	private final int ROW_FOUR = 3;
+	private final static int ROW_FOUR = 3;
 	
 	/**< constant for row five on the board */ 
-	private final int ROW_FIVE = 4;
+	private final static int ROW_FIVE = 4;
 
 	/**< constant for row six on the board */ 
-	private final int ROW_SIX = 5;
+	private final static int ROW_SIX = 5;
 	
 	/**< constant for row seven on the board */ 
-	private final int ROW_SEVEN = 6;
+	private final static int ROW_SEVEN = 6;
 
 	/**< constant for row eight on the board */ 
-	private final int ROW_EIGHT = 7;
+	private final static int ROW_EIGHT = 7;
 
 	/**< constant for row nine on the board */ 
-	private final int ROW_NINE = 8;
+	private final static int ROW_NINE = 8;
 	
 	/**< constant for row ten on the board */ 
-	private final int ROW_TEN = 9;
+	private final static int ROW_TEN = 9;
 
 
 
