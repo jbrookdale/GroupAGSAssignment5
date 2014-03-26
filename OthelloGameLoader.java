@@ -66,6 +66,28 @@ public class OthelloGameLoader extends GameLoader{
 	 */
 	
 	public void setupBoard(){
+		Player player1;
+		Player player2;
+		
+		if(getM_playerOneType().equals("Human")){
+			player1 = new HumanPlayer(getM_playerOneName(), getM_playerOneColour());
+		}else if(getM_playerOneType().equals("Computer: Easy")){
+			player1 = new OthelloEasyComputerPlayer(getM_playerOneName(), getM_playerOneColour());
+		}else{
+			player1 = new OthelloHardComputerPlayer(getM_playerOneName(), getM_playerOneColour());
+		}
+		
+		if(getM_playerTwoType().equals("Human")){
+			player2 = new HumanPlayer(getM_playerTwoName(), getM_playerTwoColour());
+		}else if(getM_playerTwoType().equals("Computer: Easy")){
+			player2 = new OthelloEasyComputerPlayer(getM_playerTwoName(), getM_playerTwoColour());
+			System.out.println("Correct");
+		}else{
+			player2 = new OthelloHardComputerPlayer(getM_playerTwoName(), getM_playerTwoColour());
+		}
+		
+		OthelloGame loadGame = new OthelloGame(player1, player2);
+
 		for (int i = 0; i < 8; i++){
 			for (int j = 0; j < 8; j++){
 				OthelloGameGUI.setPieces(i, j, "Blank");
@@ -95,7 +117,7 @@ public class OthelloGameLoader extends GameLoader{
 			}
 		}	
 		
-		testPieceSetup();
+		//testPieceSetup();
 		
 		if(getM_playerTurn().equals("Player 1")){
 			OthelloGameGUI.getGame().setTurn(0);
@@ -104,9 +126,15 @@ public class OthelloGameLoader extends GameLoader{
 		}
 		
 		OthelloGameGUI.setTime(getM_time());
+		OthelloGameGUI.resetPlayerLabel(getM_playerOneName(), getM_playerOneColour(), 
+				getM_playerTwoName(), getM_playerTwoColour());
 		
-		OthelloGame.setPlayer1Score(m_playerOneScore - START_SCORE);
-		OthelloGame.setPlayer2Score(m_playerTwoScore - START_SCORE);
+		loadGame.setPlayer1Score(m_playerOneScore - loadGame.getPlayer1Score());
+		loadGame.setPlayer2Score(m_playerTwoScore - loadGame.getPlayer2Score());
+
+		OthelloGameGUI.setGame(loadGame);
+		OthelloGameGUI.setPlayerOne(player1);
+		OthelloGameGUI.setPlayerTwo(player2);
 	}
 	
 	public void testClearing(){
