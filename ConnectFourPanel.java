@@ -1,5 +1,5 @@
 /**
- * @file Game.java
+ * @file ConnectFourPanel.java
  * @author Kristoffer Page
  * @date 31 Jan 2014
  * @see jPanel and AWT Graphics JavaDoc -
