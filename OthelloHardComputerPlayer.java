@@ -96,8 +96,9 @@ class OthelloHardComputerPlayer <C> extends HardComputerPlayer {
                     
                     if ((x+(i*counter)) >= 0 && (x+(i*counter)) < BOARD_WIDTH && (y+(j*counter)) >= 0 && (y+(j*counter)) < BOARD_HEIGHT) {
                         // Loop while pieces are the opponents colour. Add 1 to counter for each iteration.
-                        while (m_Pieces[x+(i*counter)][y+(j*counter)].getPieceColour() != OthelloPiece.OthelloPieceColour.NONE // != NONE
-                            && m_Pieces[x+(i*counter)][y+(j*counter)].getPieceColour() != playerColour) { // != WHITE
+                    	while ((x+(i*counter)) >= 0 && (x+(i*counter)) < BOARD_WIDTH && (y+(j*counter)) >= 0 && (y+(j*counter)) < BOARD_HEIGHT
+                                && m_Pieces[x+(i*counter)][y+(j*counter)].getPieceColour() != OthelloPiece.OthelloPieceColour.NONE
+                                && m_Pieces[x+(i*counter)][y+(j*counter)].getPieceColour() != playerColour) {
                             counter++;
                         }
                     }
@@ -118,12 +119,12 @@ class OthelloHardComputerPlayer <C> extends HardComputerPlayer {
         return m_FlippedPieces;
     }
 
-
-      /**
-        * 
-        * Testing for OthelloHardComputerPlayer.
-        *
-        **/   
+    
+    /**
+    * 
+    * Testing for OthelloHardComputerPlayer.
+    *
+    **/   
 	public static void main(String[] args) {
 
 		OthelloHardComputerPlayer compAI = new OthelloHardComputerPlayer("CompAI",Piece.OthelloPieceColour.WHITE);
