@@ -23,6 +23,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.net.URL;
+import java.awt.Point;
 
 import javax.swing.JFileChooser;
 
@@ -61,6 +62,7 @@ public class OthelloGameGUI extends GameGUI {
 	private final static int TOTALHEIGHT = 8;
 	private final int BOARDWIDTH = 75;
 	private final int BOARDHEIGHT = 75;
+    private final int TOTAL_PLAYERS = 2;
 	
 	OthelloBoard board = new OthelloBoard(TOTALHEIGHT,TOTALWIDTH);
 	static OthelloGame gameCheck;
@@ -73,6 +75,8 @@ public class OthelloGameGUI extends GameGUI {
 	private static ImageIcon whiteWinningPiece;
 	private static ImageIcon whiteToBlackPiece;
 	private static ImageIcon blackToWhitePiece;
+
+    private Thread animationThread = new Thread();
 
     private Player m_playerOne;
     private Player m_playerTwo;
@@ -108,7 +112,7 @@ public class OthelloGameGUI extends GameGUI {
         m_playerOne = playerOne;
         m_playerTwo = playerTwo;
 		
-		if(playerOne.getColour() == Piece.OthelloPieceColour.BLACK){
+		if(playerOne.getColour().equals("Black")){
 			m_player1Colour = new OthelloPiece(Piece.OthelloPieceColour.BLACK);
 			m_player2Colour = new OthelloPiece(Piece.OthelloPieceColour.WHITE);
 			p1colour = Piece.OthelloPieceColour.BLACK;
@@ -119,9 +123,9 @@ public class OthelloGameGUI extends GameGUI {
 			p1colour = Piece.OthelloPieceColour.WHITE;
 			p2colour = Piece.OthelloPieceColour.BLACK;
 		}
-		
-		gameCheck = new OthelloGame(new HumanPlayer(m_player1Name, p1colour),
-                					new HumanPlayer(m_player2Name, p2colour));
+        
+		gameCheck = new OthelloGame(playerOne,
+                					playerTwo);
 		
 		panel = new JPanel();	
 	}
@@ -279,6 +283,19 @@ public class OthelloGameGUI extends GameGUI {
 		window.pack();
 		window.setVisible(true);
 
+        if (!m_playerOne.getPlayerType().equals("Human")) {
+            int x, y;
+            if (m_playerOne.getPlayerType().equals("ComputerEasy")) {
+                Point p = ((OthelloEasyComputerPlayer)m_playerOne).makeAIMove(board);
+                x = (int)p.getX();
+                y = (int)p.getY();
+            } else {
+                Point p = ((OthelloHardComputerPlayer)m_playerOne).makeAIMove(board);
+                x = (int)p.getX();
+                y = (int)p.getY();
+            }
+            performMove(x,y);
+        }
 	}
 
 	/**
@@ -394,28 +411,57 @@ public class OthelloGameGUI extends GameGUI {
 		boolean player = true; //true is player1, false player2
 		
         public void mouseReleased(MouseEvent event) {
-        	for(int y = 0; y < TOTALWIDTH; y++){ 
-				for(int x = 0; x < TOTALHEIGHT; x++){ 
-					updateTitle(player);
-                    //player1 moves
-					if(event.getSource() == gridButtons[x][y] && player == true){
-                        if(player1Move(x,y)){
-                            //player1 made valid move, player2's turn
-                            player = false;
-                        }else{
-                            //player1 invalid move
-                            player = true;
+            while (!animationThread.isAlive()) {
+        	boolean playerHuman = false;
+                    if (gameCheck.getPlayerTurn() % TOTAL_PLAYERS == 0) {
+                        if (m_playerOne.getPlayerType().equals("Human")) {
+                            playerHuman = true;
                         }
-                        endGame();
-                    }else if(player == false && event.getSource() == gridButtons[x][y]) {
-                        if(player2Move(x,y)){
-                            player = true;
-                        }else{
-                            player = false;
-                    	}
-                    	endGame();
+                    } else {
+                        if (m_playerTwo.getPlayerType().equals("Human")) {
+                            playerHuman = true;
+                        }
                     }
-                }
+                    
+                    if (playerHuman) {
+                        for(int y = 0; y < TOTALWIDTH; y++){ 
+                            for(int x = 0; x < TOTALHEIGHT; x++){ 
+                                updateTitle(player);
+                                //player1 moves
+                                if(event.getSource() == gridButtons[x][y]){
+                                    performMove(x,y);
+                                }
+                            }
+                        }
+                    }
+                    
+                    
+                    if (!playerHuman) {
+                        int i, j;
+                        if (gameCheck.getPlayerTurn() % TOTAL_PLAYERS == 0) {
+                            if (m_playerOne.getPlayerType().equals("ComputerEasy")) {
+                                Point p = ((OthelloEasyComputerPlayer)m_playerOne).makeAIMove(board);
+                                i = (int)p.getX();
+                                j = (int)p.getY();
+                            } else {
+                                Point p = ((OthelloHardComputerPlayer)m_playerOne).makeAIMove(board);
+                                i = (int)p.getX();
+                                j = (int)p.getY();
+                            }
+                            performMove(i,j);
+                        } else if (gameCheck.getPlayerTurn() % TOTAL_PLAYERS == 1) {
+                            if (m_playerTwo.getPlayerType().equals("ComputerEasy")) {
+                                Point p = ((OthelloEasyComputerPlayer)m_playerTwo).makeAIMove(board);
+                                i = (int)p.getX();
+                                j = (int)p.getY();
+                            } else {
+                                Point p = ((OthelloHardComputerPlayer)m_playerTwo).makeAIMove(board);
+                                i = (int)p.getX();
+                                j = (int)p.getY();
+                            }
+                            performMove(i,j);
+                        }
+                    }
             }
         }
 
@@ -429,6 +475,75 @@ public class OthelloGameGUI extends GameGUI {
         public void mouseEntered(MouseEvent e) {}
     }
 
+    public void performMove(int x, int y) {
+        if (gameCheck.getPlayerTurn() % TOTAL_PLAYERS == 0) {
+            if(player1Move(x,y)){
+                //player1 made valid move, player2's turn
+                gameCheck.incrementTurn();
+            } else {
+                System.out.println("Player 1 made an invalid move!");
+            }
+        } else {
+            if(player2Move(x,y)){
+                gameCheck.incrementTurn();
+            }
+        }
+        endGame();
+        
+        animationThread = new Thread(new Runnable() {
+            final int ANIMATION_TIME = 2000;
+            public void run() {
+                try {
+                    Thread.sleep(ANIMATION_TIME);
+                } catch (Exception e) {
+                            
+                }
+                boolean playerHuman = false;
+                        if (gameCheck.getPlayerTurn() % TOTAL_PLAYERS == 0) {
+                            if (m_playerOne.getPlayerType().equals("Human")) {
+                                playerHuman = true;
+                            }
+                        } else {
+                            if (m_playerTwo.getPlayerType().equals("Human")) {
+                                playerHuman = true;
+                            }
+                        }
+                        
+                        
+                        if (!playerHuman) {
+                            int i, j;
+                            if (gameCheck.getPlayerTurn() % TOTAL_PLAYERS == 0) {
+                                if (m_playerOne.getPlayerType().equals("ComputerEasy")) {
+                                    Point p = ((OthelloEasyComputerPlayer)m_playerOne).makeAIMove(board);
+                                    i = (int)p.getX();
+                                    j = (int)p.getY();
+                                } else {
+                                    Point p = ((OthelloHardComputerPlayer)m_playerOne).makeAIMove(board);
+                                    i = (int)p.getX();
+                                    j = (int)p.getY();
+                                }
+                                performMove(i,j);
+                            } else if (gameCheck.getPlayerTurn() % TOTAL_PLAYERS == 1) {
+                                if (m_playerTwo.getPlayerType().equals("ComputerEasy")) {
+                                    Point p = ((OthelloEasyComputerPlayer)m_playerTwo).makeAIMove(board);
+                                    i = (int)p.getX();
+                                    j = (int)p.getY();
+                                } else {
+                                    Point p = ((OthelloHardComputerPlayer)m_playerTwo).makeAIMove(board);
+                                    i = (int)p.getX();
+                                    j = (int)p.getY();
+                                }
+                                performMove(i,j);
+                            }
+                        }
+            }
+        });
+        animationThread.start();
+        
+        
+    }
+    
+    
 
 
     /**
@@ -741,8 +856,8 @@ public class OthelloGameGUI extends GameGUI {
 		String[] s = new String[TOTAL_PLAYERS];
 		s[PLAYER_ONE]="Jon";
 		s[PLAYER_TWO]="Tom";
-        Player playerOne = new HumanPlayer(s[0], Piece.OthelloPieceColour.BLACK);
-        Player playerTwo = new HumanPlayer(s[1], Piece.OthelloPieceColour.WHITE);
+        Player playerOne = new OthelloEasyComputerPlayer(s[0], "Black");
+        Player playerTwo = new OthelloHardComputerPlayer(s[1], "White");
 		OthelloGameGUI displayExample = new OthelloGameGUI("Othello",WIDTH,HEIGHT, playerOne, playerTwo);
 		displayExample.setPlayers(s);
 
