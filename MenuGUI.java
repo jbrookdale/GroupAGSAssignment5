@@ -786,24 +786,25 @@ public class MenuGUI extends GUI {
                 if(returnVal == JFileChooser.APPROVE_OPTION) {
                         saveFile = chooser.getSelectedFile().getName();
                         fileExtension = saveFile.substring(saveFile.lastIndexOf(".") + 1, saveFile.length());
+                        System.out.println(fileExtension);
                 }
-                if(fileExtension == "xml") {
-                if(saveFile != "") {
-                	if (getGameType() == CONNECT) {
-
-	                    	String[] playerTemp = {"X", "Human", "Red"};
-	                    
-	                    	new ConnectFourGameGUI(playerTemp, playerTemp, true, saveFile);
-	                    
-	            } 	else if(getGameType() == OTHELLO) {
-	            	    String loadGame = JOptionPane.showInputDialog("Enter load name:");
-	                    
-	                    new OthelloGameLoader("saves\\" + loadGame + ".xml");
-	            	}
-                }
-			} else {
-				JOptionPane.showMessageDialog(null, "You have not chosen a game save");
-			}
+                if(fileExtension.equals("xml")) {
+	                if(saveFile != "") {
+	                	if (getGameType() == CONNECT) {
+	
+		                    	String[] playerTemp = {"X", "Human", "Red"};
+		                    
+		                    	new ConnectFourGameGUI(playerTemp, playerTemp, true, saveFile);
+		                    
+		            } 	else if(getGameType() == OTHELLO) {
+		            	    String loadGame = JOptionPane.showInputDialog("Enter load name:");
+		                    
+		                    new OthelloGameLoader("saves\\" + loadGame + ".xml");
+		            	}
+	                }
+	             } else {
+					JOptionPane.showMessageDialog(null, "You have not chosen a game save");
+                 }
 				
 			}
 		}
