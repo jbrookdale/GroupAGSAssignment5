@@ -118,6 +118,12 @@ class OthelloHardComputerPlayer <C> extends HardComputerPlayer {
         return m_FlippedPieces;
     }
 
+
+      /**
+        * 
+        * Testing for OthelloHardComputerPlayer.
+        *
+        **/   
 	public static void main(String[] args) {
 
 		OthelloHardComputerPlayer compAI = new OthelloHardComputerPlayer("CompAI",Piece.OthelloPieceColour.WHITE);
