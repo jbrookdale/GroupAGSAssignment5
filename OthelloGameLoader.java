@@ -1,3 +1,17 @@
+/**
+* @file OthelloGameLoader.java
+* @author Ieuan Skinner
+* @date 26 March 14
+* @see http://www.mkyong.com/java/how-to-read-xml-file-in-java-dom-parser/
+* 
+* @brief This class reads in game data specific to Othello.
+*
+* 
+* This class will read the xml file at the location passed to it and 
+* set the data as expected. This class specifically deals with things 
+* that are specific to Othello such as player scores.
+ */
+
 import org.w3c.dom.Element;
 
 public class OthelloGameLoader extends GameLoader{
@@ -82,13 +96,13 @@ public class OthelloGameLoader extends GameLoader{
 			}
 		}	
 		
-		//testPieces();
+		testPieceSetup();
 		
 		OthelloGame.setPlayer1Score(m_playerOneScore - START_SCORE);
 		OthelloGame.setPlayer2Score(m_playerTwoScore - START_SCORE);
 	}
 	
-	public static void testClearing(){
+	public void testClearing(){
 		OthelloPiece[][] test = OthelloBoard.getPieces();
 		
 		for(int i = 0; i < 8; i++){
@@ -103,4 +117,38 @@ public class OthelloGameLoader extends GameLoader{
 			}
 		}
 	}
+	
+	public void testPieceSetup(){
+		OthelloPiece[][] test = OthelloBoard.getPieces();
+	
+		for(int k = 0; k < getP1PiecesX().size(); k++){
+			if(getM_playerOneColour().equals("Black")){
+				if(test[getP1PiecesX().get(k)][getP1PiecesY().get(k)].getPieceColour().equals(Piece.OthelloPieceColour.BLACK)){
+					System.out.println("Right");
+					System.out.println(getP1PiecesX().get(k) + " " + getP1PiecesY().get(k));
+				}
+			}else{
+				if(test[getP1PiecesX().get(k)][getP1PiecesY().get(k)].getPieceColour().equals(Piece.OthelloPieceColour.WHITE)){
+					System.out.println("Right");
+					System.out.println(getP1PiecesX().get(k) + " " + getP1PiecesY().get(k));
+				}
+			}
+		}
+		System.out.println("PieceCount: " + getP1PiecesX().size());	
+		
+		for(int k2 = 0; k2 < getP2PiecesX().size(); k2++){
+			if(getM_playerTwoColour().equals("Black")){
+				if(test[getP2PiecesX().get(k2)][getP2PiecesY().get(k2)].getPieceColour().equals(Piece.OthelloPieceColour.BLACK)){
+					System.out.println("Right");
+					System.out.println(getP2PiecesX().get(k2) + " " + getP2PiecesY().get(k2));
+				}
+			}else{
+				if(test[getP2PiecesX().get(k2)][getP2PiecesY().get(k2)].getPieceColour().equals(Piece.OthelloPieceColour.WHITE)){
+					System.out.println("Right");
+					System.out.println(getP2PiecesX().get(k2) + " " + getP2PiecesY().get(k2));
+				}
+			}
+		}
+		System.out.println("PieceCount2: " + getP2PiecesX().size());
+	}	
 }

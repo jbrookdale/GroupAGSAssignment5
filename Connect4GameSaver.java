@@ -1,10 +1,39 @@
+/**
+* @file Connect4GameSaver.java
+* @author Ieuan Skinner
+* @date 26 March 14
+* @see http://www.mkyong.com/java/how-to-create-xml-file-in-java-dom/
+* 
+* @brief This class writes game data specific to Connect4 to an xml file.
+* 
+* This class will write the data specific to Connect4 to an xml file
+* specified the player. They have the option to name the save file but
+* not choose it's location i.e. it defaults to "saves/ ... ". Specific
+* data includes its gametype, piece colour and piece locations as their
+* boards do not index spaces the same.
+ */
+
 import org.w3c.dom.Element;
 
 public class Connect4GameSaver extends GameSaver{
+	
+	/**
+	 * This is the constructor for the Connect4GameSaver class.
+	 * 
+	 * @param fileName	fileName is used to locate/refer to the file 
+	 * 					the user wants to save to. If fileName doesn't
+	 * 					already exist a new instance of it will be 
+	 * 					created.
+	 */ 
 	public Connect4GameSaver(String fileName) {
 		super(fileName);
 	}
 
+	
+	/**
+	 * This method will write the players names to the xml file.
+	 * Appending them to the appropriate player id tag.
+	 */
 	public void setPlayerName(){
 		String playerOneName = Game.getPlayerName(-1);
 		String playerTwoName = Game.getPlayerName(2);
@@ -18,12 +47,24 @@ public class Connect4GameSaver extends GameSaver{
 		getPlayers(1).appendChild(p2Name);
 	}
 	
+	/**
+	 * This method will set the game type element in the xml file
+	 * to Connect4. This value is then used to test the file wanted
+	 * to load is of the correct game. (i.e. so you can't load an 
+	 * Othello game on to a Connect4 game).
+	 * 
+	 */
 	public void setGameTypeElement(){
 		Element gametype = getDoc().createElement("gametype");
 		gametype.appendChild(getDoc().createTextNode("Connect4"));
 		getRootElement().appendChild(gametype);		
 	}
 	
+	/**
+	 * This method sets all the players pieces x and y value and appends
+	 * them to the piece1 (player 1) or piece2 (player 2) tag. Easiest way
+	 * to do this for loading.
+	 */
 	public void setPieces(){
 		ConnectFourPiece[][] piecesToBeSaved = ConnectFourBoard.getPieces(); 
 		
@@ -31,8 +72,6 @@ public class Connect4GameSaver extends GameSaver{
 			for(int i = 0; i < piecesToBeSaved.length; i++){
 				if(piecesToBeSaved[i][j].getPieceColour() == Piece.ConnectFourPieceColour.RED){
 					Element newRedPiece;
-					
-					
 					
 					if(Game.getPlayer(0).getColour() == Piece.ConnectFourPieceColour.RED){
 						newRedPiece = getDoc().createElement("piece1");
@@ -53,7 +92,8 @@ public class Connect4GameSaver extends GameSaver{
 					}else{	
 						getPlayers(1).appendChild(newRedPiece);
 					}
-				}else if(piecesToBeSaved[i][j].getPieceColour() == Piece.ConnectFourPieceColour.YELLOW){
+				}else if(piecesToBeSaved[i][j].getPieceColour() == 
+														Piece.ConnectFourPieceColour.YELLOW){
 					Element newYellowPiece;
 					
 					if(Game.getPlayer(1).getColour() == Piece.ConnectFourPieceColour.RED){
@@ -81,6 +121,10 @@ public class Connect4GameSaver extends GameSaver{
 		}	
 	}
 	
+	/**
+	 * This method sets the players piece colours and appends this value
+	 * to the appropriate player id tag.
+	 */
 	public void setColour(){
 		Element playerOneColour = getDoc().createElement("colour");
 		Element playerTwoColour = getDoc().createElement("colour");	
