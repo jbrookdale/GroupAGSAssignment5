@@ -16,28 +16,28 @@ class OthelloHardComputerPlayer <C> extends HardComputerPlayer {
 	}
 
     public Point makeAIMove(OthelloBoard board) {
-        int maximumFlips = 0;
-        ArrayList<Point> bestFlips = new ArrayList<Point>();
+        int m_MaximumFlips = 0;
+        ArrayList<Point> m_BestFlips = new ArrayList<Point>();
         
         for (int i = 0; i < BOARD_HEIGHT; i++) {
             for (int j = 0; j < BOARD_WIDTH; j++) {
-                if (getFlipsForPosition(i,j, board) > maximumFlips) {
-                     maximumFlips = getFlipsForPosition(i,j,board);
+                if (getFlipsForPosition(i,j, board) > m_MaximumFlips) {
+                	m_MaximumFlips = getFlipsForPosition(i,j,board);
                 }
             }
         }
         
         for (int i = 0; i < BOARD_HEIGHT; i++) {
             for (int j = 0; j < BOARD_WIDTH; j++) {
-                if (getFlipsForPosition(i,j, board) == maximumFlips) {
-                    bestFlips.add(new Point(i,j));
+                if (getFlipsForPosition(i,j, board) == m_MaximumFlips) {
+                	m_BestFlips.add(new Point(i,j));
                 }
             }
         }
         
         Random r = new Random();
-        int arrayPosition = r.nextInt(bestFlips.size());
-        return bestFlips.get(arrayPosition);
+        int m_ArrayPosition = r.nextInt(m_BestFlips.size());
+        return m_BestFlips.get(m_ArrayPosition);
     }
     
     
@@ -52,19 +52,19 @@ class OthelloHardComputerPlayer <C> extends HardComputerPlayer {
     **/   
     
     private int getFlipsForPosition(int x, int y, OthelloBoard board) {
-        int flippedPieces = 0;
-        Piece pieces[][] = board.getPieces();
+        int m_FlippedPieces = 0;
+        Piece m_Pieces[][] = board.getPieces();
         // If there is not a piece at position (x,y) then work out how many flips it causes
         // Otherwise it doesn't flip anything.
-        if (pieces[x][y].getPieceColour() == OthelloPiece.OthelloPieceColour.NONE) {
+        if (m_Pieces[x][y].getPieceColour() == OthelloPiece.OthelloPieceColour.NONE) {
             for (int i = NEGATIVE_X_AXIS; i <= POSITIVE_X_AXIS; i++) { // These signify directions on a graph in the x-axis
                 for (int j = NEGATIVE_Y_AXIS; j <= POSITIVE_Y_AXIS; j++) { // These signify directions on a graph in the y-axis
                     int counter = 1;
                     
                     if ((x+(i*counter)) >= 0 && (x+(i*counter)) < BOARD_WIDTH && (y+(j*counter)) >= 0 && (y+(j*counter)) < BOARD_HEIGHT) {
                         // Loop while pieces are the opponents colour. Add 1 to counter for each iteration.
-                        while (pieces[x+(i*counter)][y+(j*counter)].getPieceColour() != OthelloPiece.OthelloPieceColour.NONE // != NONE
-                            && pieces[x+(i*counter)][y+(j*counter)].getPieceColour() != getColour()) { // != WHITE
+                        while (m_Pieces[x+(i*counter)][y+(j*counter)].getPieceColour() != OthelloPiece.OthelloPieceColour.NONE // != NONE
+                            && m_Pieces[x+(i*counter)][y+(j*counter)].getPieceColour() != getColour()) { // != WHITE
                             counter++;
                         }
                     }
@@ -74,15 +74,15 @@ class OthelloHardComputerPlayer <C> extends HardComputerPlayer {
                     // To the total number of flippied pieces, else don't add anything.
                     if ((x+(i*counter)) >= 0 && (x+(i*counter)) < BOARD_WIDTH && (y+(j*counter)) >= 0 && (y+(j*counter)) < BOARD_HEIGHT) {
                         if (!((x+(i*counter)) == x && (y+(j*counter)) == y)) {
-                            if (pieces[x+(i*counter)][y+(j*counter)].getPieceColour() == getColour()) {
-                                flippedPieces += (counter - 1);
+                            if (m_Pieces[x+(i*counter)][y+(j*counter)].getPieceColour() == getColour()) {
+                            	m_FlippedPieces += (counter - 1);
                             }
                         }
                     }
                 }
             }
         }
-        return flippedPieces;
+        return m_FlippedPieces;
     }
 
 	public static void main(String[] args) {
