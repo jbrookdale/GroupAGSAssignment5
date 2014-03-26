@@ -99,7 +99,7 @@ public class Tester{
                 OthelloGame testGame = new OthelloGame(
                                             new HumanPlayer("Tom","Black"),
                                             new HumanPlayer("Harry","White"));
-        testGame.board.setBoard();
+        testGame.m_board.setBoard();
         System.out.println("testing implemented methods:");
         System.out.println("testing placing a piece in a valid square (5,3) WHITE");
         System.out.println("expected output: true");
