@@ -13,14 +13,10 @@
 
 public class OthelloGame extends Game <Piece.OthelloPieceColour>{
     
-    //each player starts with 2 pieces
     private final int START_SCORE = 2;
-    //for the game loop
-    private boolean validMove = false;
-    //size of the board
+    private boolean m_validMove = false;
     private final int MAX_LENGTH=8, MAX_HEIGHT=8;
-    //the board its self
-    public OthelloBoard board = new OthelloBoard(MAX_LENGTH,MAX_HEIGHT);
+    public OthelloBoard m_board = new OthelloBoard(MAX_LENGTH,MAX_HEIGHT);
 
 	/**
      * This access method will return player ones score.
@@ -62,7 +58,7 @@ public class OthelloGame extends Game <Piece.OthelloPieceColour>{
       * @return board.getPieces	A 2D array of OthelloPieces.
       */
  	 public OthelloPiece[][] getPieces() {
- 		 return board.getPieces();
+ 		 return m_board.getPieces();
      }
      
      /** 
@@ -75,7 +71,7 @@ public class OthelloGame extends Game <Piece.OthelloPieceColour>{
     public OthelloGame(Player playerOne, Player playerTwo) {
         super(playerOne, playerTwo);
 
-        board.setBoard();
+        m_board.setBoard();
         m_player[PLAYER_ONE].setScore(START_SCORE);
         m_player[PLAYER_TWO].setScore(START_SCORE);
     }
@@ -88,7 +84,7 @@ public class OthelloGame extends Game <Piece.OthelloPieceColour>{
     public boolean gameLoop() {
         boolean turn = true; //true = player1, false = player2
         while(turn){
-            if(validMove){
+            if(m_validMove){
                 return true;
             }else{
                 return false;
@@ -104,7 +100,7 @@ public class OthelloGame extends Game <Piece.OthelloPieceColour>{
      * @return boolean 	Returns true if a valid move has been made.
      */
     public boolean move(int x, int y, OthelloPiece colour) {
-        return(board.move(x,y,colour));//ask board if valid move       
+        return(m_board.move(x,y,colour));//ask board if valid move       
     }
 	
 	/**
@@ -134,7 +130,7 @@ public class OthelloGame extends Game <Piece.OthelloPieceColour>{
                                                OthelloPiece.
                                                OthelloPieceColour.BLACK));
         
-        testGame.board.setBoard();
+        testGame.m_board.setBoard();
         System.out.println("Testing implemented methods:");
         System.out.println("Testing placing a piece in a valid square (5,3) WHITE");
         System.out.println("Expected output: true");

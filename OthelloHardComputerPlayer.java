@@ -159,7 +159,7 @@ class OthelloHardComputerPlayer <C> extends HardComputerPlayer {
         /** < show whether there is a piece there at every single point */
         for (int i = 0; i < BOARD_HEIGHT; i++) {
             for (int j = 0; j < BOARD_WIDTH; j++) {
-            	int y = compAI.getFlipsForPosition(i,j,game.board);
+            	int y = compAI.getFlipsForPosition(i,j,game.m_board);
                 System.out.println("(" + (i) + "," + (j) + "): " + "flips " + y + " pieces");
             }
         }
@@ -167,7 +167,7 @@ class OthelloHardComputerPlayer <C> extends HardComputerPlayer {
         /** < show the move of the hard computer player  */
         System.out.println("");
         System.out.println("Expected Random position corresponding to point x");
-        Point x = compAI.makeAIMove(game.board);
+        Point x = compAI.makeAIMove(game.m_board);
         System.out.println("Othello Hard ComAI move: " + x);
 
             
