@@ -363,13 +363,13 @@ public class ConnectFourGameGUI extends GameGUI {
         
         public void mouseReleased(MouseEvent e) {
             //Game Logic
-            if (!m_panel.animationThread.isAlive()) {
+            if (!m_panel.getAnimationThread().isAlive()) {
                 if (getGame().getPlayer(getGame()
                                             .getPlayerTurn() % TOTAL_PLAYERS)
                                                 .getPlayerType()
                                                     .equals("Human"))
                     if ((!getGame().gameWon() && !getGame().boardIsFull())
-                        && !m_panel.animationThread.isAlive()) {
+                        && !m_panel.getAnimationThread().isAlive()) {
                         int x = Math.round(m_mouseX / ConnectFourPanel.Y_SPACING);
                         
                         performMove(x);
@@ -406,7 +406,7 @@ public class ConnectFourGameGUI extends GameGUI {
         /**< Handle mouse moved event */
         public void mouseMoved(MouseEvent e) {
             //Dont allow the mouse to move when animating a piece dropping
-            if (!m_panel.animationThread.isAlive()) {
+            if (!m_panel.getAnimationThread().isAlive()) {
                 m_mouseX = e.getX();
                 m_panel.setPieceX(m_mouseX);
             }
@@ -419,7 +419,7 @@ public class ConnectFourGameGUI extends GameGUI {
      for the piece to be placed in.
      */
     public void performMove(int column) {
-        if (!m_panel.animationThread.isAlive()) {
+        if (!m_panel.getAnimationThread().isAlive()) {
             System.out.println(getGame().getPlayer(getGame()
                                                       .getPlayerTurn()
                                                           % TOTAL_PLAYERS)
@@ -444,7 +444,7 @@ public class ConnectFourGameGUI extends GameGUI {
                 new Thread(new Runnable() {
                     public void run() {
                         
-                        while(m_panel.animationThread.isAlive()){
+                        while(m_panel.getAnimationThread().isAlive()){
                         }
                         
                         m_panel.updatePieces(getGame().getPieces());
