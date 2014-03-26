@@ -37,7 +37,6 @@ public class OthelloGameSaver extends GameSaver{
 					
 					if(Game.getPlayer(0).getColour().equals("Black")){
 						newBlackPiece = getDoc().createElement("piece1");
-						System.out.println("True");
 					}else{
 						newBlackPiece = getDoc().createElement("piece2");
 					}

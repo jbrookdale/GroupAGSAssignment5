@@ -97,6 +97,14 @@ public class OthelloGameLoader extends GameLoader{
 		
 		testPieceSetup();
 		
+		if(getM_playerTurn().equals("Player 1")){
+			OthelloGameGUI.getGame().setTurn(0);
+		}else{
+			OthelloGameGUI.getGame().setTurn(1);
+		}
+		
+		OthelloGameGUI.setTime(getM_time());
+		
 		OthelloGame.setPlayer1Score(m_playerOneScore - START_SCORE);
 		OthelloGame.setPlayer2Score(m_playerTwoScore - START_SCORE);
 	}
