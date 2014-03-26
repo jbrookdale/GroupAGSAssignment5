@@ -17,14 +17,13 @@ class ConnectFourEasyComputerPlayer <C> extends EasyComputerPlayer {
   
     public Point makeAIMove(ConnectFourBoard board){
         Random r = new Random();
-        int Position;
-        i = r.nextInt(WIDTH);
-        while(!(board.getLowestEmptySlot(i) < HEIGHT)) {
-            i = r.nextInt(WIDTH);
-            System.out.println(board.getLowestEmptySlot(i));
+        m_columnNum = r.nextInt(WIDTH);
+        while(!(board.getLowestEmptySlot(m_columnNum) < HEIGHT)) {
+        	m_columnNum = r.nextInt(WIDTH);
+            System.out.println(board.getLowestEmptySlot(m_columnNum));
         }
-        System.out.println(i);
-        Point movePosition = new Point(i,6);
+        System.out.println(m_columnNum);
+        Point movePosition = new Point(m_columnNum,6);
        return movePosition;
     }
     
@@ -34,6 +33,6 @@ class ConnectFourEasyComputerPlayer <C> extends EasyComputerPlayer {
 	/**< constant for the size of the board in y direction */ 
 	private static final int HEIGHT = 7; 
 	
-	private static int i;
+	private static int m_columnNum;
 	
 }
