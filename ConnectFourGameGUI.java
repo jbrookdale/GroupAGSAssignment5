@@ -73,26 +73,44 @@ public class ConnectFourGameGUI extends GameGUI {
     /**< Stores an instance of ConnectFourGame */
     private static ConnectFourGame game;
     
+    /**< Stores number of players in game */
     private int TOTAL_PLAYERS = 2;
     
+    /**< Stores both player's details */
     private Player m_playerOne;
     private Player m_playerTwo;
     
+    /**< Stores both player's piece colours */
     private Piece.ConnectFourPieceColour m_playerOnePieceColour;
     private Piece.ConnectFourPieceColour m_playerTwoPieceColour;
     
+    /**< Stores two strings containing each player's type */
     private String m_playerOneType;
     private String m_playerTwoType;
     
+    /**
+     * Get method that returns panel for connect 4
+     * @return panel
+     * 
+     */
     public static ConnectFourPanel getPanel(){
         return panel;
     }
     
+    /**
+     * Get method that returns game for connect 4
+     * @return game
+     * 
+     */
     public static ConnectFourGame getGame(){
         return game;
     }
     
-    
+    /**
+     * Set method that sets the piece colours
+     * @param p1Colour - colour of player1, player2 is not 
+     * needed as it must be opposite colour
+     */
     public void setPieceColours(String p1Colour){
         if(p1Colour.equals("Red")){
             m_playerOnePieceColour = Piece.ConnectFourPieceColour.RED;
@@ -103,19 +121,38 @@ public class ConnectFourGameGUI extends GameGUI {
         }
     }
     
+    /**
+     * Set method that sets the types of the players
+     * @param playerTypes[] - a string array that contains the types of both players
+     * 
+     */
     private void setPlayerTypes(String[] playerTypes) {
         m_playerOneType = playerTypes[0];
         m_playerTwoType = playerTypes[1];
     }
     
+    /**
+     * Get method that gets the piece colour of player 1
+     * @return m_playerOnePieceColour - the colour of player one's piece
+     * 
+     */
     public Piece.ConnectFourPieceColour getPlayerOnePieceColour(){
         return m_playerOnePieceColour;
     }
     
+    /**
+     * Get method that gets the piece colour of player 2
+     * @return m_playerTwoPieceColour - the colour of player two's piece
+     * 
+     */
     public Piece.ConnectFourPieceColour getPlayerTwoPieceColour(){
         return m_playerTwoPieceColour;
     }
     
+    /**
+     * Set method that sets the game as a new game of connect4
+     * @Param newGame - This will set the game to the new game that is passed in
+     */
     public static void setGame(ConnectFourGame newGame) {
         game = newGame;
     }
@@ -124,11 +161,12 @@ public class ConnectFourGameGUI extends GameGUI {
      * Constructor for ConnectFourGameGUI
      * @param playerOneName - String representation of player one's name
      * @param playerTwoName - String representation of player two's name
-     * @param loaded        - Boolean representing ---------------------
-     * @param loc           - String representing ----------------------
+     * @param loaded        - Boolean will be true if it's loaded from file
+     * @param loc           - String that stores file name of chosen save file
      */
     public ConnectFourGameGUI(String[] playerOneDetails,
-                              String[] playerTwoDetails, boolean loaded, String loc) {
+                              String[] playerTwoDetails,
+                              boolean loaded, String loc) {
         //Call super class constructor
         super(WINDOW_TITLE, WINDOW_WIDTH, WINDOW_HEIGHT);
         
@@ -312,12 +350,14 @@ public class ConnectFourGameGUI extends GameGUI {
     }
     
     /**
-     * A method which creates a GameLoader for Connect Four to load a game
-     * @param loc           - String representing ----------------------
+     * Method that retrieves the connect4 save file from menuGUI
+     * @param loc - string that stores file name of chosen savefile
+     * 
      */
     private void loadgame(String loc) {
         new Connect4GameLoader("saves\\connect4saves\\" + loc);
     }
+    
     /**< private class for handling mouse clicks */
     private class ClickListener implements MouseListener {
         
