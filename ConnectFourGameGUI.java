@@ -475,7 +475,8 @@ public class ConnectFourGameGUI extends GameGUI {
                 ConnectFourGame newGame = new ConnectFourGame(playerOne, playerTwo);
                 
                 setGame(newGame);
-                if(win){
+                
+                if(win && (getGame().getPlayerTurn() % 2 == 0)){
                 	newGame.incrementTurn();
                 }
                 
