@@ -15,7 +15,7 @@
 
 import org.w3c.dom.Element;
 
-public class Connect4GameSaver extends GameSaver{
+public class ConnectFourGameSaver extends GameSaver{
 	
 	/**
 	 * This is the constructor for the Connect4GameSaver class.
@@ -25,7 +25,7 @@ public class Connect4GameSaver extends GameSaver{
 	 * 					already exist a new instance of it will be 
 	 * 					created.
 	 */ 
-	public Connect4GameSaver(String fileName) {
+	public ConnectFourGameSaver(String fileName) {
 		super(fileName);
 	}
 

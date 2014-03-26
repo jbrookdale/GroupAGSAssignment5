@@ -253,7 +253,7 @@ public class ConnectFourGameGUI extends GameGUI {
                 
                 System.out.println("Current Date: " + timeStamp.format(dNow));
                 
-                new Connect4GameSaver("saves\\connect4saves\\" + saveGame
+                new ConnectFourGameSaver("saves\\connect4saves\\" + saveGame
                                       + "  [" + timeStamp.format(dNow) + "]"
                                       + ".xml");
                 
@@ -283,7 +283,7 @@ public class ConnectFourGameGUI extends GameGUI {
                 }
                 if(fileExtension.equals("xml")) { //checks if file selected is an xml file
                     if(saveFile != "") { //checks if the user selected cancel instead
-                        new Connect4GameLoader("saves\\connect4saves\\" + saveFile);
+                        new ConnectFourGameLoader("saves\\connect4saves\\" + saveFile);
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, 
@@ -355,7 +355,7 @@ public class ConnectFourGameGUI extends GameGUI {
      * 
      */
     private void loadgame(String loc) {
-        new Connect4GameLoader("saves\\connect4saves\\" + loc);
+        new ConnectFourGameLoader("saves\\connect4saves\\" + loc);
     }
     
     /**< private class for handling mouse clicks */

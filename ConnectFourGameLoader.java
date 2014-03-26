@@ -12,7 +12,7 @@
 * that are specific to Connect4 such as piece positions and colour.
  */
 
-public class Connect4GameLoader extends GameLoader{
+public class ConnectFourGameLoader extends GameLoader{
 
 	/**
 	 * This is the constructor for the Connect4GameLoader class.
@@ -20,7 +20,7 @@ public class Connect4GameLoader extends GameLoader{
 	 * @param fileName	fileName will be used to locate/refer to the file 
 	 * 					the user wants to load.
 	 */
-	public Connect4GameLoader(String fileName) {
+	public ConnectFourGameLoader(String fileName) {
 		super(fileName);
 	}
 	
