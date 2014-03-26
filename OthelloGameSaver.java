@@ -35,8 +35,9 @@ public class OthelloGameSaver extends GameSaver{
 
 					Element newBlackPiece;
 					
-					if(Game.getPlayer(0).getColour() == Piece.OthelloPieceColour.BLACK){
+					if(Game.getPlayer(0).getColour().equals("Black")){
 						newBlackPiece = getDoc().createElement("piece1");
+						System.out.println("True");
 					}else{
 						newBlackPiece = getDoc().createElement("piece2");
 					}
@@ -49,7 +50,7 @@ public class OthelloGameSaver extends GameSaver{
 					newBlackPiece.appendChild(x);
 					newBlackPiece.appendChild(y);
 
-					if(Game.getPlayer(0).getColour() == Piece.OthelloPieceColour.BLACK){
+					if(Game.getPlayer(0).getColour().equals("Black")){
 						getPlayers(0).appendChild(newBlackPiece);
 					}else{
 						getPlayers(1).appendChild(newBlackPiece);
@@ -58,7 +59,7 @@ public class OthelloGameSaver extends GameSaver{
 
 					Element newWhitePiece;
 					
-					if(Game.getPlayer(1).getColour() == Piece.OthelloPieceColour.BLACK){
+					if(Game.getPlayer(1).getColour().equals("Black")){
 						newWhitePiece = getDoc().createElement("piece1");
 					}else{
 						newWhitePiece = getDoc().createElement("piece2");
@@ -72,7 +73,7 @@ public class OthelloGameSaver extends GameSaver{
 					newWhitePiece.appendChild(x);
 					newWhitePiece.appendChild(y);
 					
-					if(Game.getPlayer(1).getColour() == Piece.OthelloPieceColour.BLACK){
+					if(Game.getPlayer(1).getColour().equals("Black")){
 						getPlayers(0).appendChild(newWhitePiece);
 					}else{
 						getPlayers(1).appendChild(newWhitePiece);
@@ -86,7 +87,7 @@ public class OthelloGameSaver extends GameSaver{
 		Element playerOneColour = getDoc().createElement("colour");
 		Element playerTwoColour = getDoc().createElement("colour");	
 		
-		if(Game.getPlayer(0).getColour() == Piece.OthelloPieceColour.BLACK){
+		if(Game.getPlayer(0).getColour() == "Black"){
 			playerOneColour.appendChild(getDoc().createTextNode("Black"));
 			playerTwoColour.appendChild(getDoc().createTextNode("White"));
 		}else{

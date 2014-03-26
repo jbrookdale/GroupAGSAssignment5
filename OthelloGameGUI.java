@@ -322,7 +322,10 @@ public class OthelloGameGUI extends GameGUI {
             panel.updateUI();
             // Reset for next game if they play again.
             gameCheck.board.resetBoard();
-
+            
+            if(getGame().getPlayerTurn() % 2 == 1){
+            	getGame().incrementTurn();
+            }
         } else {
             dispose();
         }
@@ -389,7 +392,7 @@ public class OthelloGameGUI extends GameGUI {
 	                    }
 	                    if(fileExtension.equals("xml")) { //checks if file selected is an xml file
 	    	                if(saveFile != "") { //checks if the user selected cancel instead
-	    	                	new OthelloGameLoader("saves\\" + saveFile);
+	    	                	new OthelloGameLoader("saves\\othellosaves\\" + saveFile);
 	    	                }
 	                    } else {
 	                    	JOptionPane.showMessageDialog(null, "You have not chosen a game save");
@@ -416,7 +419,6 @@ public class OthelloGameGUI extends GameGUI {
 	 */
 
 		private class GUIHandler implements MouseListener{
-		boolean player = true; //true is player1, false player2
 		
         public void mouseReleased(MouseEvent event) {
             while (!animationThread.isAlive()) {
@@ -434,7 +436,7 @@ public class OthelloGameGUI extends GameGUI {
                     if (playerHuman) {
                         for(int y = 0; y < TOTALWIDTH; y++){ 
                             for(int x = 0; x < TOTALHEIGHT; x++){ 
-                                updateTitle(player);
+                                updateTitle(gameCheck.getPlayerTurn() % TOTAL_PLAYERS == 0);
                                 //player1 moves
                                 if(event.getSource() == gridButtons[x][y]){
                                     performMove(x,y);

@@ -81,7 +81,6 @@ public class OthelloGameLoader extends GameLoader{
 			OthelloGameGUI.setPieces(getP1PiecesX().get(k), getP1PiecesY().get(k), getM_playerOneColour());
 			if(getM_playerOneColour().equals("Black")){
 				OthelloBoard.setLoadedPieces(getP1PiecesX().get(k), getP1PiecesY().get(k), new OthelloPiece(Piece.OthelloPieceColour.BLACK));
-				
 			}else{
 				OthelloBoard.setLoadedPieces(getP1PiecesX().get(k), getP1PiecesY().get(k), new OthelloPiece(Piece.OthelloPieceColour.WHITE));
 			}
