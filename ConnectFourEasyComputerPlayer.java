@@ -31,15 +31,60 @@ class ConnectFourEasyComputerPlayer <C> extends EasyComputerPlayer {
      * Runs various test on the class.
      */
 	public static void main(String[] args) {
-        // Tests go here
+		/**
+		* This is to test that Connect Four game works with Computer Easy implementation
+		* This tests that the name, colour and score for each player can be retrieved 
+		*/
+		final int TEST_PLAYER_SCORE = 2;
+		        
+		    ConnectFourPiece player1Piece;
+		    player1Piece = new ConnectFourPiece(ConnectFourPiece.ConnectFourPieceColour.RED);
+		    ConnectFourEasyComputerPlayer player1 =
+		            new ConnectFourEasyComputerPlayer("Computer",player1Piece.getPieceColour());
+		    System.out.println("Player Expected name " + "Computer");
+		    System.out.println("Player1: " +player1.getName());
+		    System.out.println("Player Expected colour " + "RED");
+		    System.out.println("Colour: " +player1.getColour());
+		    System.out.println("Player Expected Score " + "0");
+		    System.out.println("score: " +player1.getScore());
+		    player1.setScore(TEST_PLAYER_SCORE);
+		    System.out.println("Player Expected Score " + "2");
+		    System.out.println("Change score: " + player1.getScore());
+		    
+		    /**
+			* This is to test that Connect Four game works with Computer Easy implementation
+			* This tests that the name, colour and score for each player can be retrieved 
+			*/
+			
+			        
+			    ConnectFourPiece player2Piece;
+			    player1Piece = new ConnectFourPiece(ConnectFourPiece.ConnectFourPieceColour.YELLOW);
+			    ConnectFourEasyComputerPlayer player2 =
+			            new ConnectFourEasyComputerPlayer("Computer",player1Piece.getPieceColour());
+			    System.out.println("Player Expected name " + "Computer");
+			    System.out.println("Player2: " +player2.getName());
+			    System.out.println("Player Expected colour " + "YELLOW");
+			    System.out.println("Colour: " +player2.getColour());
+			    System.out.println("Player Expected Score " + "0");
+			    System.out.println("score: " +player2.getScore());
+			    player1.setScore(TEST_PLAYER_SCORE);
+			    System.out.println("Player Expected Score " + "2");
+			    System.out.println("Change score: " + player2.getScore());
+		    
+		    //Test to ensure random move works
+		    ConnectFourBoard board = new ConnectFourBoard(10, 7);
+		    System.out.println("Expected Random position corresponding to point x");
+		    makeAIMove(board);
+		   // 
+		    
     	
-    }
+			}
 	/**
-	   * This method makes the computer random valid moves.
-	   * @param board -Connect Four Board
-	   * @return movePosition- Position on the board to drop piece.
-	   */
-    public Point makeAIMove(ConnectFourBoard board){
+	 * This method makes the computer random valid moves.
+	 * @param board -Connect Four Board
+	 * @return movePosition- Position on the board to drop piece.
+	 */
+    public static Point makeAIMove(ConnectFourBoard board){
         Random r = new Random();
         Point movePosition;
         /** Stores a generated value corresponding to the column to drop piece */
@@ -50,6 +95,7 @@ class ConnectFourEasyComputerPlayer <C> extends EasyComputerPlayer {
         }
         System.out.println(m_columnNum);
         movePosition = new Point(m_columnNum,HEIGHT-1);
+        System.out.println("The Random move made " + movePosition);
        return movePosition;
     }
     
