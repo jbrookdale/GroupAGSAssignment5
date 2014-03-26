@@ -774,7 +774,7 @@ public class MenuGUI extends GUI {
 			
 			} else if(event.getSource() == m_LoadButton){ //start of load button code
 				
-				String fn = "";
+				String saveFile = "";
 				
 				JFileChooser chooser = new JFileChooser();
                 chooser.setCurrentDirectory(new File(".\\saves"));
@@ -783,20 +783,22 @@ public class MenuGUI extends GUI {
                 chooser.setFileFilter(filter);
                 int returnVal = chooser.showOpenDialog(MenuGUI.this);
                 if(returnVal == JFileChooser.APPROVE_OPTION) {
-                        fn = chooser.getSelectedFile().getName();
+                        saveFile = chooser.getSelectedFile().getName();
                 }
-				if (getGameType() == CONNECT) {
+                if(saveFile != "") {
+                	if (getGameType() == CONNECT) {
 
-	                    String[] playerTemp = {"X", "Human", "Red"};
+	                    	String[] playerTemp = {"X", "Human", "Red"};
 	                    
-	                    new ConnectFourGameGUI(playerTemp, playerTemp, true, fn);
+	                    	new ConnectFourGameGUI(playerTemp, playerTemp, true, saveFile);
 	                    
-	            } else if(getGameType() == OTHELLO) {
+	            } 	else if(getGameType() == OTHELLO) {
 	            	    String loadGame = JOptionPane.showInputDialog("Enter load name:");
 	                    
 	                    new OthelloGameLoader("saves\\" + loadGame + ".xml");
-	            }
-				}
+	            	}
+                }
+			}
 				
 			}
 		}
