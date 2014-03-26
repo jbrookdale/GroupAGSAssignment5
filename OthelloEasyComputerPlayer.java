@@ -26,17 +26,27 @@ class OthelloEasyComputerPlayer <C> extends EasyComputerPlayer{
 	* 
 	* @param board - Othello board which provided all the information in the OthelloBoard class
 	* @param colour -  The board which contains all the pieces for the current game.
-	* @return m_movePosition -  return a move position point.        
-	* 
+	* @return m_movePosition -  return a move position point.        	* 
 	*/
     
     public Point makeAIMove(OthelloBoard board){
-        Random r = new Random( );
-
+       
+    	Random r = new Random( );
+    	
+    	Piece.OthelloPieceColour playerColour;
+    	
+    	if(getColour().equals("White")){
+    		playerColour = Piece.OthelloPieceColour.WHITE;
+    	}else
+    	{
+    		playerColour = Piece.OthelloPieceColour.BLACK;
+    	}
+    	
         m_columnNum = r.nextInt(WIDTH);
         m_rowNum = r.nextInt(HEIGHT);
         OthelloPiece piece;
-        if (getColour() == Piece.OthelloPieceColour.BLACK) {
+        
+        if (playerColour == Piece.OthelloPieceColour.BLACK) {
             piece = new OthelloPiece(Piece.OthelloPieceColour.BLACK);
         } else {
             piece = new OthelloPiece(Piece.OthelloPieceColour.WHITE);
@@ -46,7 +56,6 @@ class OthelloEasyComputerPlayer <C> extends EasyComputerPlayer{
         	m_columnNum = r.nextInt(WIDTH);
         	m_rowNum = r.nextInt(HEIGHT);
         }
-         System.out.println(m_columnNum);
         Point m_movePosition = new Point(m_columnNum, m_rowNum);
         return m_movePosition;
     }
