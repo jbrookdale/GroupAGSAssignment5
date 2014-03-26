@@ -61,6 +61,8 @@ public class OthelloGameLoader extends GameLoader{
 		OthelloBoard.clearPieces();
 		OthelloBoard.clearPieces2();
 		
+		//testClearing();
+		
 		for(int k = 0; k < getP1PiecesX().size(); k++){
 			OthelloGameGUI.setPieces(getP1PiecesX().get(k), getP1PiecesY().get(k), getM_playerOneColour());
 			if(getM_playerOneColour().equals("Black")){
@@ -80,8 +82,25 @@ public class OthelloGameLoader extends GameLoader{
 			}
 		}	
 		
+		//testPieces();
+		
 		OthelloGame.setPlayer1Score(m_playerOneScore - START_SCORE);
 		OthelloGame.setPlayer2Score(m_playerTwoScore - START_SCORE);
+	}
+	
+	public static void testClearing(){
+		OthelloPiece[][] test = OthelloBoard.getPieces();
 		
+		for(int i = 0; i < 8; i++){
+			for(int j = 0; j < 8; j++){
+				if(test[i][j].getPieceColour().equals(Piece.OthelloPieceColour.NONE)){
+					System.out.println("Right");
+					System.out.println(i + " " + j);
+				}else{
+					System.out.println("Wrong");
+					System.out.println(i + " " + j);
+				}					
+			}
+		}
 	}
 }
