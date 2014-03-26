@@ -349,9 +349,8 @@ public class OthelloGameGUI extends GameGUI {
 	        loadGameButton.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent event) {
 	                    System.out.println("load game clicked");
-	                    //String loadGame = JOptionPane.showInputDialog("Enter load name:");
-	                    
-	                    //new OthelloGameLoader("saves\\" + loadGame + ".xml");
+	                    String saveFile = "";
+	    				String fileExtension = "";
 	                    JFileChooser chooser = new JFileChooser();
 	                    chooser.setCurrentDirectory(new File(".\\saves"));
 	                    FileNameExtensionFilter filter = new FileNameExtensionFilter(
@@ -359,9 +358,16 @@ public class OthelloGameGUI extends GameGUI {
 	                    chooser.setFileFilter(filter);
 	                    int returnVal = chooser.showOpenDialog(OthelloGameGUI.this);
 	                    if(returnVal == JFileChooser.APPROVE_OPTION) {
-	                    	new OthelloGameLoader("saves\\" +chooser.getSelectedFile().getName());
-	                       System.out.println("You chose to open this file: " +
-	                            chooser.getSelectedFile().getName());
+	                    	saveFile = chooser.getSelectedFile().getName();
+	                        fileExtension = saveFile.substring(saveFile.lastIndexOf(".") + 1, saveFile.length());
+	                    	
+	                    }
+	                    if(fileExtension.equals("xml")) { //checks if file selected is an xml file
+	    	                if(saveFile != "") { //checks if the user selected cancel instead
+	    	                	new OthelloGameLoader("saves\\" + saveFile);
+	    	                }
+	                    } else {
+	                    	JOptionPane.showMessageDialog(null, "You have not chosen a game save");
 	                    }
 	            }
 	        });

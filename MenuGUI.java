@@ -788,8 +788,8 @@ public class MenuGUI extends GUI {
                         fileExtension = saveFile.substring(saveFile.lastIndexOf(".") + 1, saveFile.length());
                         System.out.println(fileExtension);
                 }
-                if(fileExtension.equals("xml")) {
-	                if(saveFile != "") {
+                if(fileExtension.equals("xml")) { //checks if file selected is an xml file
+	                if(saveFile != "") { //checks if the user selected cancel instead
 	                	if (getGameType() == CONNECT) {
 	
 		                    	String[] playerTemp = {"X", "Human", "Red"};
