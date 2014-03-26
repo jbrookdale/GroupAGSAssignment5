@@ -15,7 +15,20 @@ import java.util.Random;
 */
 
 class OthelloEasyComputerPlayer <C> extends EasyComputerPlayer{
-    /**
+	
+	/**< constant for the size of the board in x direction */ 
+    private static final int WIDTH = 8; 
+    
+    /**< constant for the size of the board in y direction */ 
+    private static final int HEIGHT = 8; 
+    
+	/**< the column number of the computer move point  */ 
+    private static int m_columnNum;
+    
+    /**< the row number of the computer move point  */ 
+    private static int m_rowNum;
+	
+	/**
      * Constructor calls the player's name and the player piece colour
      * @param newName -The name of the player
      * @param newPlayerColour -The colour of the player
@@ -66,23 +79,21 @@ class OthelloEasyComputerPlayer <C> extends EasyComputerPlayer{
         Point m_movePosition = new Point(m_columnNum, m_rowNum);
         return m_movePosition;
     }
+    
+    
+    
     /**
-     * This is the main method where all the test is done
+     * Testing for OthelloEasyComputerPlayer.
      * @param args -nil
      */
     public static void main(String[] args) {
-        // Tests go here
+
+		/** < set two player   */
+		OthelloHardComputerPlayer compAI = new OthelloHardComputerPlayer("CompAI",Piece.OthelloPieceColour.WHITE);
+        OthelloGame game = new OthelloGame(compAI, new HumanPlayer("Mabelle",Piece.OthelloPieceColour.BLACK));
+              
+        /** < show the move of the hard computer player  */
+        Point x = compAI.makeAIMove(game.board);
+        System.out.println("Othello Easy ComAI move: " + x);
     }
-	
-	/**< constant for the size of the board in x direction */ 
-    private static final int WIDTH = 8; 
-    
-    /**< constant for the size of the board in y direction */ 
-    private static final int HEIGHT = 8; 
-    
-	/**< the column number of the computer move point  */ 
-    private static int m_columnNum;
-    
-    /**< the row number of the computer move point  */ 
-    private static int m_rowNum;
 }
