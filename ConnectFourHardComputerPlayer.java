@@ -71,14 +71,14 @@ class ConnectFourHardComputerPlayer <C> extends HardComputerPlayer {
     	      int maximum = 0;
     	      ArrayList<Point> m_MaxChoice = new ArrayList<Point>();
     	      int arrayPosition;
-    	      /** Set maximum to the maximum piece on board */ 
+    	      /** Set maximum to be the maximum chain length of piece on board */ 
     	      for (int i = 0; i < WIDTH; i++) {
     	           if (MaximumChain(i,board.getLowestEmptySlot(i), board) > maximum) {
                    maximum = MaximumChain(i,board.getLowestEmptySlot(i), board);
   	               }
     	      }
     
-    	      /** If more maximum piece exist store all in an array */
+    	      /** If more maximum chain length exist store all in an array */
     	      for (int i = 0; i < WIDTH; i++) {
     	            	// checking if more than one maximum chain exist
                    if (MaximumChain(i,board.getLowestEmptySlot(i), board) == maximum) {
