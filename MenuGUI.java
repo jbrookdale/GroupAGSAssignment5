@@ -470,26 +470,26 @@ public class MenuGUI extends GUI {
 		input.fill = GridBagConstraints.HORIZONTAL;
 		input.gridx = COLUMN_ONE;							
 		input.gridy = ROW_ONE;
-		input.insets = new Insets(GAP_TWENTY,GAP_TWENTY,NO_GAP,60);
+		input.insets = new Insets(GAP_TWENTY,GAP_TWENTY,NO_GAP,GAP_SIXTY);
 		inputPanel.add(m_InputLabel, input);
 		
 		input.fill = GridBagConstraints.HORIZONTAL;
 		input.gridx = COLUMN_TWO;							
 		input.gridy = ROW_ONE;
-		input.insets = new Insets(GAP_TWENTY,NO_GAP,NO_GAP,120);
+		input.insets = new Insets(GAP_TWENTY,NO_GAP,NO_GAP,GAP_ONE_HUNDRED_TWENTY);
 		inputPanel.add(m_LoadButton, input);
 		
 		
 		input.fill = GridBagConstraints.HORIZONTAL;
 		input.gridx = COLUMN_ONE;							
 		input.gridy = ROW_TWO;
-		input.insets = new Insets(GAP_TWENTY,GAP_TWENTY,NO_GAP,60);  		
+		input.insets = new Insets(GAP_TWENTY,GAP_TWENTY,NO_GAP,GAP_SIXTY);  		
 		inputPanel.add(m_Player1Label, input);
 		
 		input.fill = GridBagConstraints.HORIZONTAL;
 		input.gridx = COLUMN_TWO;							
 		input.gridy = ROW_TWO;
-		input.insets = new Insets(GAP_TWENTY,GAP_TEN,NO_GAP,60);  		
+		input.insets = new Insets(GAP_TWENTY,GAP_TEN,NO_GAP,GAP_SIXTY);  		
 		inputPanel.add(m_Player2Label, input);
 		
 		input.fill = GridBagConstraints.HORIZONTAL;
@@ -775,6 +775,7 @@ public class MenuGUI extends GUI {
 			} else if(event.getSource() == m_LoadButton){ //start of load button code
 				
 				String saveFile = "";
+				String fileExtension = "";
 				
 				JFileChooser chooser = new JFileChooser();
                 chooser.setCurrentDirectory(new File(".\\saves"));
@@ -784,7 +785,9 @@ public class MenuGUI extends GUI {
                 int returnVal = chooser.showOpenDialog(MenuGUI.this);
                 if(returnVal == JFileChooser.APPROVE_OPTION) {
                         saveFile = chooser.getSelectedFile().getName();
+                        fileExtension = saveFile.substring(saveFile.lastIndexOf(".") + 1, saveFile.length());
                 }
+                if(fileExtension == "xml") {
                 if(saveFile != "") {
                 	if (getGameType() == CONNECT) {
 
@@ -798,9 +801,12 @@ public class MenuGUI extends GUI {
 	                    new OthelloGameLoader("saves\\" + loadGame + ".xml");
 	            	}
                 }
+			} else {
+				JOptionPane.showMessageDialog(null, "You have not chosen a game save");
 			}
 				
 			}
+		}
 		}
 
 	/**
@@ -1010,6 +1016,7 @@ public class MenuGUI extends GUI {
 	/**< This is the label for the player 2's colour combobox on the input window */
 	private JLabel m_Player2ColourLabel;
 	
+	/**< This is the button that allows a game to be loaded on the input window */
 	private JButton m_LoadButton;
 	
 	/**< This variable hold the string of the name for player one */
@@ -1089,6 +1096,8 @@ public class MenuGUI extends GUI {
 	screen */
 	private final int SUBHEADING_FONTSIZE = 18;
 	
+	/**< This hold the font sizes for the small heading labels on the select 
+	screen */
 	private final int SMALLHEADING_FONTSIZE = 16;
 	
 	/**< This hold the font size for the heading label on the input screen */
@@ -1132,6 +1141,9 @@ public class MenuGUI extends GUI {
 	
 	/**< Constant for the insets of 50 size gap between components */
 	private final int GAP_FIFTY = 50;
+	
+	/**< Constant for the insets of 60 size gap between components */
+	private final int GAP_SIXTY = 60;
 	
 	/**< Constant for the insets of 100 size gap between components */
 	private final int GAP_ONE_HUNDRED = 100;
