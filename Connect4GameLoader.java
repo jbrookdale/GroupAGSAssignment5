@@ -47,16 +47,22 @@ public class Connect4GameLoader extends GameLoader{
 		
 		 if (getM_playerOneType().equals("Human")) {
 	           playerOne = new HumanPlayer(getM_playerOneName(), p1Colour);
-	     } else {
+	     } else if(getM_playerOneType().equals("Computer: Easy")) {
 	    	 playerOne = new ConnectFourEasyComputerPlayer(
 	            			getM_playerOneName(), p1Colour);
-	        }
+	     }else{
+	    	 playerOne = new ConnectFourHardComputerPlayer(
+         			getM_playerOneName(), p1Colour);
+	     }
 	        
 	        if (getM_playerTwoType().equals("Human")) {
 	            playerTwo = new HumanPlayer(getM_playerTwoName(), p2Colour);
-	        } else {
+	        } else if (getM_playerTwoType().equals("Computer: Easy")){
 	            playerTwo = new ConnectFourEasyComputerPlayer(
 	            			getM_playerTwoName(), p2Colour);
+	        }else{
+	            playerTwo = new ConnectFourHardComputerPlayer(
+            			getM_playerTwoName(), p2Colour);
 	        }
 	        
 		ConnectFourGame loadGame = new ConnectFourGame(playerOne, playerTwo);

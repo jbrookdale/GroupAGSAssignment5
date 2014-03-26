@@ -76,8 +76,21 @@ public class GameSaver extends GameIOHandler {
 		Element playerOneType = m_doc.createElement("type");
 		Element playerTwoType = m_doc.createElement("type");
 		
-		playerOneType.appendChild(m_doc.createTextNode(p1Type));
-		playerTwoType.appendChild(m_doc.createTextNode(p2Type));	
+		if(p1Type.equals("ComputerEasy")){
+			playerOneType.appendChild(m_doc.createTextNode("Computer: Easy"));
+		}else if(p1Type.equals("Human")){
+			playerOneType.appendChild(m_doc.createTextNode(p1Type));
+		}else{
+			playerOneType.appendChild(m_doc.createTextNode("Computer: Hard"));
+		}
+		
+		if(p2Type.equals("ComputerEasy")){
+			playerTwoType.appendChild(m_doc.createTextNode("Computer: Easy"));
+		}else if(p2Type.equals("Human")){
+			playerTwoType.appendChild(m_doc.createTextNode(p2Type));
+		}else{
+			playerTwoType.appendChild(m_doc.createTextNode("Computer: Hard"));
+		}
 		
 		m_playerOne.appendChild(playerOneType);
 		m_playerTwo.appendChild(playerTwoType);

@@ -274,7 +274,6 @@ public class ConnectFourGameGUI extends GameGUI {
                                      }
             if(loaded) {
             	loadgame(loc);
-            	
             }
     }
     private void loadgame(String loc) {
