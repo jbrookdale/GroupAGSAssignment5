@@ -146,27 +146,16 @@ class OthelloHardComputerPlayer <C> extends HardComputerPlayer {
     /**
     * 
     * Testing for OthelloHardComputerPlayer.
-    *
+    * @param args -nil
+    * 
     **/   
 	public static void main(String[] args) {
 
-		/** < set two player  */
+		
+		/** < set two player   */
 		OthelloHardComputerPlayer compAI = new OthelloHardComputerPlayer("CompAI",Piece.OthelloPieceColour.WHITE);
         OthelloGame game = new OthelloGame(compAI, new HumanPlayer("Mabelle",Piece.OthelloPieceColour.BLACK));
               
-        /** < clear the board */
-        for(int j = 0; j < BOARD_HEIGHT; j++){
-        	for(int i = 0; i < BOARD_WIDTH; i++){
-        		game.board.setLoadedPieces(i, j, new OthelloPiece(Piece.OthelloPieceColour.NONE));
-        	}
-        }
-        
-        /** < set the four pieces when game beginning */
-        game.board.setLoadedPieces(3, 4, new OthelloPiece(Piece.OthelloPieceColour.BLACK));
-        game.board.setLoadedPieces(3, 3, new OthelloPiece(Piece.OthelloPieceColour.WHITE));
-        game.board.setLoadedPieces(4, 4, new OthelloPiece(Piece.OthelloPieceColour.WHITE));
-        game.board.setLoadedPieces(4, 3, new OthelloPiece(Piece.OthelloPieceColour.BLACK));
-        
         /** < show whether there is a piece there at every single point */
         for (int i = 0; i < BOARD_HEIGHT; i++) {
             for (int j = 0; j < BOARD_WIDTH; j++) {
@@ -176,6 +165,6 @@ class OthelloHardComputerPlayer <C> extends HardComputerPlayer {
         }
         /** < show the move of the hard computer player  */
         Point x = compAI.makeAIMove(game.board);
-        System.out.println("ComAI move: " + x);
+        System.out.println("Othello Hard ComAI move: " + x);
     }
 }
