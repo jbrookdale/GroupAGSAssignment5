@@ -92,7 +92,7 @@ class OthelloEasyComputerPlayer <C> extends EasyComputerPlayer{
 		OthelloHardComputerPlayer compAI = new OthelloHardComputerPlayer("CompAI",Piece.OthelloPieceColour.WHITE);
         OthelloGame game = new OthelloGame(compAI, new HumanPlayer("Mabelle",Piece.OthelloPieceColour.BLACK));
               
-        /** < show the move of the hard computer player  */
+        /** < show the move of the easy computer player  */
         Point x = compAI.makeAIMove(game.board);
         System.out.println("Othello Easy ComAI move: " + x);
     }
