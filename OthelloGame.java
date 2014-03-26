@@ -1,29 +1,14 @@
-
-
 /**
 * @file OthelloGame.java
-* @author Thomas Vass
+* @author Thomas Vass, Jon Bailey, Ieuan Skinner.
 * @date 05 Feb 2014
-* @see 'Game.java for inherited methods.
-<<<<<<< HEAD
-* @brief This class will display the menu for the game allowing a user to select
-*		 a game type	
-* OthelloGame implements the abstract methods of Game.
-* It inherits all responsibilities of Game, as it is 
-* more specific version of Game. It interacts with the 
-* other classes in the same way as Game except it interacts
-* with the subclasses of those classes.
-=======
 *
-* @brief This class controls the Othello game
+* @brief This class controls the Othello game.
 *		
- * OthelloGame implements the abstract methods of Game.
- * It inherits all responsibilities of Game, as it is 
- * more specific version of Game. It interacts with the 
- * other classes in the same way as Game except it interacts
- * with the subclasses of those classes.
->>>>>>> 109b491d3e25f52c49475d49241ebf909e7facf2
-*
+* OthelloGame implements the abstract methods of Game. It inherits all 
+* responsibilities of Game, as it is more specific version of Game. 
+* It interacts with the other classes in the same way as Game except it 
+* interacts with the subclasses of those classes.
 */
 
 public class OthelloGame extends Game <Piece.OthelloPieceColour>{
@@ -38,50 +23,56 @@ public class OthelloGame extends Game <Piece.OthelloPieceColour>{
     public OthelloBoard board = new OthelloBoard(MAX_LENGTH,MAX_HEIGHT);
 
 	/**
-     * get player one score 
-     * @param -Nothing 
-     * @return int - player one score
+     * This access method will return player ones score.
+     * 
+     * @return int	Player ones current score.
      */
      public static int getPlayer1Score(){
          return m_player[0].getScore();
      }
 
      /**
-     * get player two score 
-     * @param -Nothing
-     * @return int - player two score
+     * This access method will return player twos score.
+     * 
+     * @return int	Player twos score.
      */
      static int getPlayer2Score(){
          return m_player[1].getScore();
      }
 
      /**
-     * set player one score
-     * @param score -the score of player one
-     * @return -Nothing
+     * This access method will set player ones score.
+     * @param score	Player ones score.
      */
      public static void setPlayer1Score(int score){
           m_player[0].setScore(score);
      }
 
      /**
-     * set player two score
-     * @param score -the score of player two
-     * @return -Nothing
-     */
+      * This access method will set player twos score.
+      * @param score	Player twos score.
+      */
      public static void setPlayer2Score(int score){
          m_player[1].setScore(score);
      }
-
+     
+     /**
+      * This access method will return the 2D array of OthelloPieces 
+      * which make up the board.
+      * @return board.getPieces	A 2D array of OthelloPieces.
+      */
+ 	 public OthelloPiece[][] getPieces() {
+ 		 return board.getPieces();
+     }
+     
      /** 
-     *Constructor for OthelloGame. This is used to instantiate 
-     * integers if we want it to.
+     * This is the Constructor for OthelloGame. It is used to instantiate 
+	 * the the board, the players scores and to set the players. 
      * 
-     * @param playerOne  -The player object containing player one
-     * @param playerTwo  -The player object containing player two
+     * @param playerOne	The player object containing player one
+     * @param playerTwo	The player object containing player two
     */ 
     public OthelloGame(Player playerOne, Player playerTwo) {
-        
         super(playerOne, playerTwo);
 
         board.setBoard();
@@ -90,9 +81,9 @@ public class OthelloGame extends Game <Piece.OthelloPieceColour>{
     }
        
     /**
-    *was intended to hold the logic of the game (i.e who's turn it is)
-    *however it ended up being easier to implement this in the GUI
-    *@see OthelloGameGUI
+    * This method was intended to hold the logic of the game (i.e who's turn 
+    * it is) however it ended up being easier to implement this in the GUI.
+    * @see OthelloGameGUI
     */
     public boolean gameLoop() {
         boolean turn = true; //true = player1, false = player2
@@ -107,39 +98,34 @@ public class OthelloGame extends Game <Piece.OthelloPieceColour>{
     }
 
     /**
-     * @param x - x cordinate on board
-     * @param y - y cordinate on board
-     * @param colour - Colour of the piece to move
-     *@return boolean - returns true if a valid move has been made
-    */
+     * @param x			Column coordinate of the piece on the board.
+     * @param y			Row coordinate of the piece on the board.
+     * @param colour	The piece we want to move.
+     * @return boolean 	Returns true if a valid move has been made.
+     */
     public boolean move(int x, int y, OthelloPiece colour) {
         return(board.move(x,y,colour));//ask board if valid move       
     }
 	
 	/**
-    * @param int x - x coord
-    * @param int y - y coord
-    * @param Piece.OthelloPieceColour
-    * @exception UnsupportedOperationException On move error
-    * inherited move function, decided not to use this as board takes in a piece object
-    * and this method only allows the colour itself as a parameter
-    */
-    @Override
+     * @param x			Column coordinate of the piece on the board.
+     * @param y			Row coordinate of the piece on the board.
+     * @param colour	The enum colour type of the piece we want to move.
+     * 
+     * @exception UnsupportedOperationException 
+     * On move error inherited move function, decided not to use this as board 
+     * takes in a piece object and this method only allows the colour itself as
+     * a parameter.
+     */
     public boolean move(int x, int y, Piece.OthelloPieceColour colour) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
     
-    /**
-    * main method for testing purposes only
-    * @param args Unused.
-    * @return Nothing.
-    */
+    /** This is the main method containing the unit tests for this class. */
+    
     public static void main (String[] args){
         OthelloPiece testPiece = new OthelloPiece(OthelloPiece.OthelloPieceColour.WHITE);
-        // Old test
-        //OthelloGame testGame = new OthelloGame("Tom","Human",OthelloPiece.OthelloPieceColour.BLACK,
-                                            //"Harry","Human",OthelloPiece.OthelloPieceColour.WHITE);
-        
+
         OthelloGame testGame = new OthelloGame(
                                new HumanPlayer("Tom", 
                                                OthelloPiece.
@@ -149,45 +135,37 @@ public class OthelloGame extends Game <Piece.OthelloPieceColour>{
                                                OthelloPieceColour.BLACK));
         
         testGame.board.setBoard();
-        System.out.println("testing implemented methods:");
-        System.out.println("testing placing a piece in a valid square (5,3) WHITE");
-        System.out.println("expected output: true");
-        System.out.println(testGame.move(5,3,testPiece));
-        System.out.println();
-        System.out.println("testing placing a piece in an invalid square (0,3) WHITE");
-        System.out.println("expected output: false");
-        System.out.println(testGame.move(0,3,testPiece));
-        System.out.println();
-        System.out.println("testing updating player1 score by 2");
-        System.out.println("expected output: player score 4");
-        testGame.setPlayer1Score(2);
-        System.out.println("player score: "+testGame.getPlayer1Score());
-        System.out.println();
-        System.out.println("testing updating player2 score by 10");
-        System.out.println("expected output: player score 12");
-        testGame.setPlayer2Score(10);
-        System.out.println("player score: "+testGame.getPlayer2Score());
-        System.out.println();
-        System.out.println("testing inherited methods:");
-        String[] s = testGame.getPlayerNames();
-        System.out.println("testing getPlayerNames()");
-        System.out.println("expected output: Tom, Harry");
-        System.out.println(s[0]+" , "+s[1]);
-        System.out.println();
-        System.out.println("testing getPlayerName(0)");
-        System.out.println("expected output: Tom");
-        System.out.println(testGame.getPlayerName(0));
-        System.out.println();
-        System.out.println("testing getPlayerName(100)");
-        System.out.println("expected output: Harry");
-        System.out.println(testGame.getPlayerName(100));
-
+        System.out.println("Testing implemented methods:");
+        System.out.println("Testing placing a piece in a valid square (5,3) WHITE");
+        System.out.println("Expected output: true");
+        System.out.println("Actual output: " + testGame.move(5,3,testPiece));
         
-
+        System.out.println("\nTesting placing a piece in an invalid square (0,3) WHITE");
+        System.out.println("Expected output: false");
+        System.out.println("Actual output: " + testGame.move(0,3,testPiece));
+        
+        System.out.println("\nTesting updating player1 score by 2");
+        System.out.println("Expected output: 4");
+        testGame.setPlayer1Score(2);
+        System.out.println("Actual output: " + testGame.getPlayer1Score());
+        
+        System.out.println("\nTesting updating player2 score by 10");
+        System.out.println("Expected output: 12");
+        testGame.setPlayer2Score(10);
+        System.out.println("Actual output: " + testGame.getPlayer2Score());
+        
+        System.out.println("\nTesting inherited methods:");
+        String[] s = testGame.getPlayerNames();
+        System.out.println("Testing 'getPlayerNames()'");
+        System.out.println("Expected output: Tom, Harry");
+        System.out.println("Actual output: " + s[0] + ", " + s[1]);
+        
+        System.out.println("\nTesting 'getPlayerName(0)'");
+        System.out.println("Expected output: Tom");
+        System.out.println("Actual output: " + testGame.getPlayerName(0));
+        
+        System.out.println("\ntesting getPlayerName(100)");
+        System.out.println("Expected output: Harry");
+        System.out.println("Actual output: " + testGame.getPlayerName(100));
     }
-
-	public OthelloPiece[][] getPieces() {
-		// TODO Auto-generated method stub
-		return board.getPieces();
-	}
 }

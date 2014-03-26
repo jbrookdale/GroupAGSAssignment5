@@ -18,7 +18,6 @@ public class OthelloGameLoader extends GameLoader{
 
 	private int m_playerOneScore;
 	private int m_playerTwoScore;
-	private int START_SCORE = 2;
 	
 	public OthelloGameLoader(String fileName) {
 		super(fileName);
