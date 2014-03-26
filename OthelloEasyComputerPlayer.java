@@ -21,7 +21,6 @@ class OthelloEasyComputerPlayer <C> extends EasyComputerPlayer{
 		
 	}
     
-    
     /**
 	* 
 	* @param board - Othello board which provided all the information in the OthelloBoard class
@@ -33,8 +32,8 @@ class OthelloEasyComputerPlayer <C> extends EasyComputerPlayer{
        
     	Random r = new Random( );
     	
+    	/**< define the player colour  */ 
     	Piece.OthelloPieceColour playerColour;
-    	
     	if(getColour().equals("White")){
     		playerColour = Piece.OthelloPieceColour.WHITE;
     	}else
@@ -42,16 +41,20 @@ class OthelloEasyComputerPlayer <C> extends EasyComputerPlayer{
     		playerColour = Piece.OthelloPieceColour.BLACK;
     	}
     	
+    	/**< get a random computer move point */ 
         m_columnNum = r.nextInt(WIDTH);
         m_rowNum = r.nextInt(HEIGHT);
-        OthelloPiece piece;
         
+        /**< check the colour of the current piece or player  */ 
+        OthelloPiece piece;
         if (playerColour == Piece.OthelloPieceColour.BLACK) {
             piece = new OthelloPiece(Piece.OthelloPieceColour.BLACK);
         } else {
             piece = new OthelloPiece(Piece.OthelloPieceColour.WHITE);
         }
         
+        /**< if there is not a valid move at the current random computer move
+         *   choose another random point for the easy computer player */ 
         while (!board.anyMove(m_columnNum, m_rowNum,piece)) {
         	m_columnNum = r.nextInt(WIDTH);
         	m_rowNum = r.nextInt(HEIGHT);
@@ -70,6 +73,9 @@ class OthelloEasyComputerPlayer <C> extends EasyComputerPlayer{
     /**< constant for the size of the board in y direction */ 
     private static final int HEIGHT = 8; 
     
+	/**< the column number of the computer move point  */ 
     private static int m_columnNum;
+    
+    /**< the row number of the computer move point  */ 
     private static int m_rowNum;
 }
