@@ -20,18 +20,29 @@ import java.util.Random;
 
 class OthelloHardComputerPlayer <C> extends HardComputerPlayer {
     
+	/**< constant for the size of the board in x direction */ 
 	private final static int BOARD_WIDTH = 8;
+	
+	/**< constant for the size of the board in y direction */ 
 	private final static int BOARD_HEIGHT = 8;
+	
+	/** < the negative directions on a graph in the x-axis  */
 	private final static int NEGATIVE_X_AXIS = -1;
+	
+	/** < the positive directions on a graph in the x-axis  */
 	private final static int POSITIVE_X_AXIS = 1;
+	
+	/** < the negative directions on a graph in the y-axis  */
 	private final static int NEGATIVE_Y_AXIS = -1;
+	
+	/** < the positive directions on a graph in the y-axis  */
 	private final static int POSITIVE_Y_AXIS = 1;
+	
+	
 	
 	public OthelloHardComputerPlayer(String newName, Object newPlayerColour) {
 		super(newName, newPlayerColour);
 	}
-
-	
 
     /**
 	* 
@@ -41,9 +52,13 @@ class OthelloHardComputerPlayer <C> extends HardComputerPlayer {
 	*/
 	
     public Point makeAIMove(OthelloBoard board) {
-        int m_MaximumFlips = 0;
+    	/** < store the maximum number of the pieces that are flipped  */
+    	int m_MaximumFlips = 0;
+    	
+    	/** < store all the computer hard move point with the maximum piece flip number  */
         ArrayList<Point> m_BestFlips = new ArrayList<Point>();
         
+        /** < scan the whole board and find the maximum number of the flipped pieces (m_MaximumFlips)  */
         for (int i = 0; i < BOARD_HEIGHT; i++) {
             for (int j = 0; j < BOARD_WIDTH; j++) {
                 if (getFlipsForPosition(i,j, board) > m_MaximumFlips) {
@@ -52,6 +67,8 @@ class OthelloHardComputerPlayer <C> extends HardComputerPlayer {
             }
         }
         
+        /** < scan the whole board store the point with the maximum flipped piece number 
+         *    to the m_BestFlips ArrayList */
         for (int i = 0; i < BOARD_HEIGHT; i++) {
             for (int j = 0; j < BOARD_WIDTH; j++) {
                 if (getFlipsForPosition(i,j, board) == m_MaximumFlips) {
@@ -60,6 +77,7 @@ class OthelloHardComputerPlayer <C> extends HardComputerPlayer {
             }
         }
         
+        /** < choose a point from the m_BestFlips ArrayList randomly */
         Random r = new Random();
         int m_ArrayPosition = r.nextInt(m_BestFlips.size());
         return m_BestFlips.get(m_ArrayPosition);
@@ -87,15 +105,17 @@ class OthelloHardComputerPlayer <C> extends HardComputerPlayer {
     	}
         int m_FlippedPieces = 0;
         Piece m_Pieces[][] = board.getPieces();
-        // If there is not a piece at position (x,y) then work out how many flips it causes
-        // Otherwise it doesn't flip anything.
+        /** < If there is not a piece at position (x,y) then work out how many flips it causes */
+        /** < Otherwise it doesn't flip anything. */
         if (m_Pieces[x][y].getPieceColour() == OthelloPiece.OthelloPieceColour.NONE) {
-            for (int i = NEGATIVE_X_AXIS; i <= POSITIVE_X_AXIS; i++) { // These signify directions on a graph in the x-axis
-                for (int j = NEGATIVE_Y_AXIS; j <= POSITIVE_Y_AXIS; j++) { // These signify directions on a graph in the y-axis
+        	/** <  These signify directions on a graph in the x-axis */
+        	for (int i = NEGATIVE_X_AXIS; i <= POSITIVE_X_AXIS; i++) { 
+        		/** <  These signify directions on a graph in the y-axis */
+                for (int j = NEGATIVE_Y_AXIS; j <= POSITIVE_Y_AXIS; j++) {
                     int counter = 1;
                     
                     if ((x+(i*counter)) >= 0 && (x+(i*counter)) < BOARD_WIDTH && (y+(j*counter)) >= 0 && (y+(j*counter)) < BOARD_HEIGHT) {
-                        // Loop while pieces are the opponents colour. Add 1 to counter for each iteration.
+                        /** <  Loop while pieces are the opponents colour. Add 1 to counter for each iteration. */
                     	while ((x+(i*counter)) >= 0 && (x+(i*counter)) < BOARD_WIDTH && (y+(j*counter)) >= 0 && (y+(j*counter)) < BOARD_HEIGHT
                                 && m_Pieces[x+(i*counter)][y+(j*counter)].getPieceColour() != OthelloPiece.OthelloPieceColour.NONE
                                 && m_Pieces[x+(i*counter)][y+(j*counter)].getPieceColour() != playerColour) {
@@ -104,8 +124,8 @@ class OthelloHardComputerPlayer <C> extends HardComputerPlayer {
                     }
                     
 
-                    // If the piece which stops the loop above is the players own colour, add the counter
-                    // To the total number of flippied pieces, else don't add anything.
+                    /** <  If the piece which stops the loop above is the players own colour, add the counter 
+                     *     To the total number of flippied pieces, else don't add anything.   */
                     if ((x+(i*counter)) >= 0 && (x+(i*counter)) < BOARD_WIDTH && (y+(j*counter)) >= 0 && (y+(j*counter)) < BOARD_HEIGHT) {
                         if (!((x+(i*counter)) == x && (y+(j*counter)) == y)) {
                             if (m_Pieces[x+(i*counter)][y+(j*counter)].getPieceColour() == playerColour) {
@@ -127,28 +147,31 @@ class OthelloHardComputerPlayer <C> extends HardComputerPlayer {
     **/   
 	public static void main(String[] args) {
 
+		/** < set two player  */
 		OthelloHardComputerPlayer compAI = new OthelloHardComputerPlayer("CompAI",Piece.OthelloPieceColour.WHITE);
         OthelloGame game = new OthelloGame(compAI, new HumanPlayer("Mabelle",Piece.OthelloPieceColour.BLACK));
-        
+              
+        /** < clear the board */
         for(int j = 0; j < BOARD_HEIGHT; j++){
         	for(int i = 0; i < BOARD_WIDTH; i++){
         		game.board.setLoadedPieces(i, j, new OthelloPiece(Piece.OthelloPieceColour.NONE));
         	}
         }
         
+        /** < set the four pieces when game beginning */
         game.board.setLoadedPieces(3, 4, new OthelloPiece(Piece.OthelloPieceColour.BLACK));
         game.board.setLoadedPieces(3, 3, new OthelloPiece(Piece.OthelloPieceColour.WHITE));
         game.board.setLoadedPieces(4, 4, new OthelloPiece(Piece.OthelloPieceColour.WHITE));
         game.board.setLoadedPieces(4, 3, new OthelloPiece(Piece.OthelloPieceColour.BLACK));
         
-        
+        /** < show whether there is a piece there at every single point */
         for (int i = 0; i < BOARD_HEIGHT; i++) {
             for (int j = 0; j < BOARD_WIDTH; j++) {
             	int y = compAI.getFlipsForPosition(i,j,game.board);
                 System.out.println("(" + (i) + "," + (j) + "): " + "flips " + y + " pieces");
             }
         }
-        
+        /** < show the move of the hard computer player  */
         Point x = compAI.makeAIMove(game.board);
         System.out.println("ComAI move: " + x);
     }
