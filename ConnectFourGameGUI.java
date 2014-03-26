@@ -51,7 +51,7 @@ public class ConnectFourGameGUI extends GameGUI {
     public static final int BOARD_WIDTH = 10;
     
     /**< This is the panel that of draws the graphics to the screen */
-    private static ConnectFourPanel panel;
+    private static ConnectFourPanel m_panel;
     
     /**< Distance between the edge of the window to the board */
     final static int WINDOW_BORDER_WIDTH = ConnectFourPanel.BOARD_SIDE_SPACING;
@@ -68,10 +68,10 @@ public class ConnectFourGameGUI extends GameGUI {
     private static final String WINDOW_TITLE = "Connect Four";
     
     /**< Stores the mouse's X coordinate inside the window */
-    public int mouseX;
+    private int m_mouseX;
     
     /**< Stores an instance of ConnectFourGame */
-    private static ConnectFourGame game;
+    private static ConnectFourGame m_game;
     
     /**< Stores number of players in game */
     private int TOTAL_PLAYERS = 2;
@@ -94,7 +94,7 @@ public class ConnectFourGameGUI extends GameGUI {
      * 
      */
     public static ConnectFourPanel getPanel(){
-        return panel;
+        return m_panel;
     }
     
     /**
@@ -103,7 +103,7 @@ public class ConnectFourGameGUI extends GameGUI {
      * 
      */
     public static ConnectFourGame getGame(){
-        return game;
+        return m_game;
     }
     
     /**
@@ -154,7 +154,7 @@ public class ConnectFourGameGUI extends GameGUI {
      * @Param newGame - This will set the game to the new game that is passed in
      */
     public static void setGame(ConnectFourGame newGame) {
-        game = newGame;
+        m_game = newGame;
     }
     
     /**
@@ -202,17 +202,17 @@ public class ConnectFourGameGUI extends GameGUI {
         
         setGame(newGame);
         
-        panel = new ConnectFourPanel(getGame().getPieces());
-        panel.updatePieces(getGame().getPieces());
-        panel.setCurrentPiece(new ConnectFourPiece(getPlayerOnePieceColour()));
+        m_panel = new ConnectFourPanel(getGame().getPieces());
+        m_panel.updatePieces(getGame().getPieces());
+        m_panel.setCurrentPiece(new ConnectFourPiece(getPlayerOnePieceColour()));
         
         setTimerLabel();
         setPlayerLabel(playerOneDetails[0],
                        playerOneDetails[2],
                        playerTwoDetails[0],
                        playerTwoDetails[2]);
-        panel.add(getTimerLabel());
-        panel.add(getPlayerLabel());
+        m_panel.add(getTimerLabel());
+        m_panel.add(getPlayerLabel());
         
         //Add menu bar
         JMenu menu = new JMenu("Menu");
@@ -223,7 +223,7 @@ public class ConnectFourGameGUI extends GameGUI {
         menu.add(newGameButton);
         menu.add(saveGameButton);
         menu.add(loadGameButton);
-        menu.add(new JMenuItem("Pause game"));
+        //menu.add(new JMenuItem("Pause game"));
         JMenuBar menuBar = new JMenuBar();
         menuBar.add(menu);
         setJMenuBar(menuBar);
@@ -310,7 +310,7 @@ public class ConnectFourGameGUI extends GameGUI {
         startTimer();
         
         //Initialize and display the the GUI
-        add(panel);
+        add(m_panel);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         setLocationRelativeTo(null);
@@ -363,14 +363,14 @@ public class ConnectFourGameGUI extends GameGUI {
         
         public void mouseReleased(MouseEvent e) {
             //Game Logic
-            if (!panel.animationThread.isAlive()) {
+            if (!m_panel.animationThread.isAlive()) {
                 if (getGame().getPlayer(getGame()
                                             .getPlayerTurn() % TOTAL_PLAYERS)
                                                 .getPlayerType()
                                                     .equals("Human"))
                     if ((!getGame().gameWon() && !getGame().boardIsFull())
-                        && !panel.animationThread.isAlive()) {
-                        int x = Math.round(mouseX / ConnectFourPanel.Y_SPACING);
+                        && !m_panel.animationThread.isAlive()) {
+                        int x = Math.round(m_mouseX / ConnectFourPanel.Y_SPACING);
                         
                         performMove(x);
                         getGame().incrementTurn();
@@ -406,9 +406,9 @@ public class ConnectFourGameGUI extends GameGUI {
         /**< Handle mouse moved event */
         public void mouseMoved(MouseEvent e) {
             //Dont allow the mouse to move when animating a piece dropping
-            if (!panel.animationThread.isAlive()) {
-                mouseX = e.getX();
-                panel.setPieceX(mouseX);
+            if (!m_panel.animationThread.isAlive()) {
+                m_mouseX = e.getX();
+                m_panel.setPieceX(m_mouseX);
             }
         }
     }
@@ -419,7 +419,7 @@ public class ConnectFourGameGUI extends GameGUI {
      for the piece to be placed in.
      */
     public void performMove(int column) {
-        if (!panel.animationThread.isAlive()) {
+        if (!m_panel.animationThread.isAlive()) {
             System.out.println(getGame().getPlayer(getGame()
                                                       .getPlayerTurn()
                                                           % TOTAL_PLAYERS)
@@ -428,7 +428,7 @@ public class ConnectFourGameGUI extends GameGUI {
                 column = BOARD_WIDTH - 1;
             }
             
-            if (getGame().move(column, BOARD_HEIGHT, panel.getCurrentPiece()
+            if (getGame().move(column, BOARD_HEIGHT, m_panel.getCurrentPiece()
                                .getPieceColour())) {
                 //y is the height the piece will be dropped to
                 int y = getGame().getLowestEmptySlot(column) + 1;
@@ -437,31 +437,30 @@ public class ConnectFourGameGUI extends GameGUI {
                     y = BOARD_HEIGHT + 1;
                 }
                 
-                panel.dropPiece(column, BOARD_HEIGHT - y,
-                                        panel.getCurrentPiece()
+                m_panel.dropPiece(column, BOARD_HEIGHT - y,
+                                        m_panel.getCurrentPiece()
                                             .getPieceColour());
                 
                 new Thread(new Runnable() {
                     public void run() {
                         
-                        while(panel.animationThread.isAlive()){
+                        while(m_panel.animationThread.isAlive()){
                         }
                         
-                        panel.updatePieces(getGame().getPieces());
+                        m_panel.updatePieces(getGame().getPieces());
                         if (!getGame().boardIsFull()) {
-                            if (panel.getCurrentPiece().getPieceColour()
+                            if (m_panel.getCurrentPiece().getPieceColour()
                                 == ConnectFourPanel.YELLOW_PIECE) {
-                                panel.setCurrentPiece(
-                                                      new ConnectFourPiece(
+                                m_panel.setCurrentPiece(new ConnectFourPiece(
                                                           ConnectFourPanel
                                                               .RED_PIECE));
                             } else {
-                                panel.setCurrentPiece(new ConnectFourPiece(
+                                m_panel.setCurrentPiece(new ConnectFourPiece(
                                                           ConnectFourPanel
                                                               .YELLOW_PIECE));
                             }
                         }
-                        panel.refreshDisplay();
+                        m_panel.refreshDisplay();
                     }
                 }).start();
             } else {
@@ -474,7 +473,7 @@ public class ConnectFourGameGUI extends GameGUI {
             }
             if (getGame().gameWon()) {
                 getTimer().stop();
-                if (panel.getCurrentPiece().getPieceColour()
+                if (m_panel.getCurrentPiece().getPieceColour()
                     == getPlayerOnePieceColour()) {
                     displayWinner(getGame().getPlayerName(Game.PLAYER_ONE));
                 } else {
@@ -607,10 +606,10 @@ public class ConnectFourGameGUI extends GameGUI {
                 newGame.incrementTurn();
             }
             
-            panel.updatePieces(getGame().getPieces());
-            panel.setCurrentPiece(new ConnectFourPiece(
+            m_panel.updatePieces(getGame().getPieces());
+            m_panel.setCurrentPiece(new ConnectFourPiece(
                                       getPlayerOnePieceColour()));
-            panel.refreshDisplay();
+            m_panel.refreshDisplay();
         }
         return reply == JOptionPane.YES_OPTION;
     }
