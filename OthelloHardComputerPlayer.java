@@ -1,3 +1,19 @@
+/**
+* @file OthelloEasyComputerPlayer.java
+* @author 
+* @date  24th Mar 2014
+* @see
+*
+* @brief This is a OthelloHardComputerPlayer inherited from the HardComputerPlayer
+*        which generate a hard move for the computer player in Othello.
+*		
+* This class provides a hard computer move by choosing the position with the maximum 
+* number of pieces that the move can flipped.
+*
+*/
+
+
+
 import java.util.ArrayList;
 import java.awt.Point;
 import java.util.Random;
@@ -15,6 +31,15 @@ class OthelloHardComputerPlayer <C> extends HardComputerPlayer {
 		super(newName, newPlayerColour);
 	}
 
+	
+
+    /**
+	* 
+	* @param board - Othello board which provided all the information in the OthelloBoard class.
+	* @return m_BestFlips - the best move with the maximum flips.       
+	* 
+	*/
+	
     public Point makeAIMove(OthelloBoard board) {
         int m_MaximumFlips = 0;
         ArrayList<Point> m_BestFlips = new ArrayList<Point>();
@@ -48,10 +73,18 @@ class OthelloHardComputerPlayer <C> extends HardComputerPlayer {
     * @param x - the x co-ordinate of the piece to count the flips for
     * @param y - the y co-ordinate of the piece to count the flips for
     * @param colour -  The board which contains all the pieces for the current game.
+    * @return m_FlippedPieces - the maximum number of pieces that can be filpped
     *
     **/   
     
     private int getFlipsForPosition(int x, int y, OthelloBoard board) {
+    	Piece.OthelloPieceColour playerColour;
+    	if(getColour().equals("White")){
+    		playerColour = Piece.OthelloPieceColour.WHITE;
+    	}else
+    	{
+    		playerColour = Piece.OthelloPieceColour.BLACK;
+    	}
         int m_FlippedPieces = 0;
         Piece m_Pieces[][] = board.getPieces();
         // If there is not a piece at position (x,y) then work out how many flips it causes
@@ -64,7 +97,7 @@ class OthelloHardComputerPlayer <C> extends HardComputerPlayer {
                     if ((x+(i*counter)) >= 0 && (x+(i*counter)) < BOARD_WIDTH && (y+(j*counter)) >= 0 && (y+(j*counter)) < BOARD_HEIGHT) {
                         // Loop while pieces are the opponents colour. Add 1 to counter for each iteration.
                         while (m_Pieces[x+(i*counter)][y+(j*counter)].getPieceColour() != OthelloPiece.OthelloPieceColour.NONE // != NONE
-                            && m_Pieces[x+(i*counter)][y+(j*counter)].getPieceColour() != getColour()) { // != WHITE
+                            && m_Pieces[x+(i*counter)][y+(j*counter)].getPieceColour() != playerColour) { // != WHITE
                             counter++;
                         }
                     }
@@ -74,7 +107,7 @@ class OthelloHardComputerPlayer <C> extends HardComputerPlayer {
                     // To the total number of flippied pieces, else don't add anything.
                     if ((x+(i*counter)) >= 0 && (x+(i*counter)) < BOARD_WIDTH && (y+(j*counter)) >= 0 && (y+(j*counter)) < BOARD_HEIGHT) {
                         if (!((x+(i*counter)) == x && (y+(j*counter)) == y)) {
-                            if (m_Pieces[x+(i*counter)][y+(j*counter)].getPieceColour() == getColour()) {
+                            if (m_Pieces[x+(i*counter)][y+(j*counter)].getPieceColour() == playerColour) {
                             	m_FlippedPieces += (counter - 1);
                             }
                         }
