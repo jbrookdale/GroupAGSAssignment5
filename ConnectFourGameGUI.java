@@ -72,9 +72,17 @@ public class ConnectFourGameGUI extends GameGUI {
     
     /**< Stores an instance of ConnectFourGame */
     private static ConnectFourGame m_game;
-    
+
+    /**< Stores the numbers for where individual players are store in arrays */
+    private int PLAYER_ONE = 0;
+    private int PLAYER_TWO = 1;
+        
     /**< Stores number of players in game */
     private int TOTAL_PLAYERS = 2;
+    
+    /**< Stores the length of time it takes to animate a piece dropping
+     * in milliseconds */
+    private final static int ANIMATION_TIME = 750;
     
     /**< Stores both player's details */
     private Player m_playerOne;
@@ -127,8 +135,8 @@ public class ConnectFourGameGUI extends GameGUI {
      * 
      */
     private void setPlayerTypes(String[] playerTypes) {
-        m_playerOneType = playerTypes[0];
-        m_playerTwoType = playerTypes[1];
+        m_playerOneType = playerTypes[PLAYER_ONE];
+        m_playerTwoType = playerTypes[PLAYER_TWO];
     }
     
     /**
@@ -170,32 +178,43 @@ public class ConnectFourGameGUI extends GameGUI {
         //Call super class constructor
         super(WINDOW_TITLE, WINDOW_WIDTH, WINDOW_HEIGHT);
         
-        setPieceColours(playerOneDetails[2]);
-        setPlayerTypes(new String[] {playerOneDetails[1],playerTwoDetails[1]});
+        final int PLAYER_NAME = 0;
+        final int PLAYER_TYPE = 1;
+        final int PLAYER_COLOUR = 2;
+        
+        setPieceColours(playerOneDetails[PLAYER_COLOUR]);
+        setPlayerTypes(new String[] {playerOneDetails[PLAYER_TYPE],
+                                     playerTwoDetails[PLAYER_TYPE]});
         
         Player playerOne;
         Player playerTwo;
         
         if (m_playerOneType.equals("Computer: Easy")) {
             playerOne = new ConnectFourEasyComputerPlayer(
-                            playerOneDetails[0], getPlayerOnePieceColour());
+                            playerOneDetails[PLAYER_NAME],
+                                getPlayerOnePieceColour());
         } else if (m_playerOneType.equals("Computer: Hard")) {
             playerOne = new ConnectFourHardComputerPlayer(
-                            playerOneDetails[0], getPlayerOnePieceColour());
+                            playerOneDetails[PLAYER_NAME],
+                                getPlayerOnePieceColour());
         } else {
             playerOne = new HumanPlayer(
-                            playerOneDetails[0], getPlayerOnePieceColour());
+                            playerOneDetails[PLAYER_NAME],
+                                getPlayerOnePieceColour());
         }
         
         if (m_playerTwoType.equals("Computer: Easy")) {
             playerTwo = new ConnectFourEasyComputerPlayer(
-                            playerTwoDetails[0], getPlayerTwoPieceColour());
+                            playerTwoDetails[PLAYER_NAME],
+                                getPlayerTwoPieceColour());
         } else if (m_playerTwoType.equals("Computer: Hard")) {
             playerTwo = new ConnectFourHardComputerPlayer(
-                            playerTwoDetails[0], getPlayerTwoPieceColour());
+                            playerTwoDetails[PLAYER_NAME],
+                                getPlayerTwoPieceColour());
         } else {
             playerTwo = new HumanPlayer(
-                            playerTwoDetails[0], getPlayerTwoPieceColour());
+                            playerTwoDetails[PLAYER_NAME],
+                                getPlayerTwoPieceColour());
         }
         
         ConnectFourGame newGame = new ConnectFourGame(playerOne, playerTwo);
@@ -208,10 +227,10 @@ public class ConnectFourGameGUI extends GameGUI {
                                     getPlayerOnePieceColour()));
         
         setTimerLabel();
-        setPlayerLabel(playerOneDetails[0],
-                       playerOneDetails[2],
-                       playerTwoDetails[0],
-                       playerTwoDetails[2]);
+        setPlayerLabel(playerOneDetails[PLAYER_NAME],
+                       playerOneDetails[PLAYER_COLOUR],
+                       playerTwoDetails[PLAYER_NAME],
+                       playerTwoDetails[PLAYER_COLOUR]);
         m_panel.add(getTimerLabel());
         m_panel.add(getPlayerLabel());
         
@@ -329,9 +348,9 @@ public class ConnectFourGameGUI extends GameGUI {
                           .getPlayerType().equals("Human")) {
             int playerTurn = getGame().getPlayerTurn();
             int x;
-            if ((getGame().getPlayerTurn() % TOTAL_PLAYERS == 0
+            if ((getGame().getPlayerTurn() % TOTAL_PLAYERS == PLAYER_ONE
                 && m_playerOneType == "Computer: Easy")
-                || (getGame().getPlayerTurn() % TOTAL_PLAYERS == 1
+                || (getGame().getPlayerTurn() % TOTAL_PLAYERS == PLAYER_TWO
                 && m_playerTwoType == "Computer: Easy")) {
                 ConnectFourEasyComputerPlayer player =
                     (ConnectFourEasyComputerPlayer)getGame()
@@ -423,10 +442,7 @@ public class ConnectFourGameGUI extends GameGUI {
      */
     public void performMove(int column) {
         if (!m_panel.getAnimationThread().isAlive()) {
-            System.out.println(getGame().getPlayer(getGame()
-                                                      .getPlayerTurn()
-                                                          % TOTAL_PLAYERS)
-                                                              .getName());
+
             if (column > BOARD_WIDTH) {
                 column = BOARD_WIDTH - 1;
             }
@@ -480,48 +496,45 @@ public class ConnectFourGameGUI extends GameGUI {
      */
     private void computerNextTurn() {
         if (!getGame().gameWon()) {
-                        final int ANIMATION_TIME = 750;
-                        new Thread(new Runnable() {
-                            public void run() {
-                                try {
-                                    Thread.sleep(ANIMATION_TIME);
-                                } catch (Exception e) {
-                                    
-                                }
-                                if (!getGame().getPlayer(getGame()
-                                                  .getPlayerTurn() % TOTAL_PLAYERS)
-                                                      .getPlayerType()
-                                                          .equals("Human")) {
-                                    int playerTurn = getGame().getPlayerTurn();
-                                    int x;
-                                    if ((getGame()
-                                         .getPlayerTurn() % TOTAL_PLAYERS == 0
-                                         && m_playerOneType == "Computer: Easy")
-                                        || (getGame()
-                                            .getPlayerTurn() % TOTAL_PLAYERS == 1
-                                            && m_playerTwoType == "Computer: Easy")) {
-                                            ConnectFourEasyComputerPlayer player =
-                                            (ConnectFourEasyComputerPlayer)getGame()
-                                            .getPlayer(playerTurn
-                                                       % TOTAL_PLAYERS);
-                                            x = (int)player.makeAIMove(
-                                                     getGame().getBoard()).getX();
-                                        } else {
-                                            ConnectFourHardComputerPlayer player
-                                            = (ConnectFourHardComputerPlayer)getGame()
-                                            .getPlayer(playerTurn % TOTAL_PLAYERS);
-                                            x = (int)player.makeAIMove(getGame()
-                                                                       .getBoard())
-                                                                           .getX();
-                                        }
-                                    
-                                    
-                                    performMove(x);
-                                    getGame().incrementTurn();
-                                }
-                            }
-                        }).start();
+            new Thread(new Runnable() {
+                public void run() {
+                    try {
+                        Thread.sleep(ANIMATION_TIME);
+                    } catch (Exception e) {
+                        
                     }
+                    if (!getGame().getPlayer(getGame()
+                                             .getPlayerTurn() % TOTAL_PLAYERS)
+                        .getPlayerType()
+                        .equals("Human")) {
+                        int playerTurn = getGame().getPlayerTurn();
+                        int x;
+                        if ((getGame()
+                             .getPlayerTurn() % TOTAL_PLAYERS == PLAYER_ONE
+                             && m_playerOneType == "Computer: Easy")
+                            || (getGame()
+                                .getPlayerTurn() % TOTAL_PLAYERS == PLAYER_TWO
+                                && m_playerTwoType == "Computer: Easy")) {
+                                ConnectFourEasyComputerPlayer player =
+                                (ConnectFourEasyComputerPlayer)getGame()
+                                .getPlayer(playerTurn
+                                           % TOTAL_PLAYERS);
+                                x = (int)player.makeAIMove(
+                                                           getGame().getBoard()).getX();
+                            } else {
+                                ConnectFourHardComputerPlayer player
+                                = (ConnectFourHardComputerPlayer)getGame()
+                                .getPlayer(playerTurn % TOTAL_PLAYERS);
+                                x = (int)player.makeAIMove(getGame()
+                                                           .getBoard())
+                                .getX();
+                            }
+                        performMove(x);
+                        getGame().incrementTurn();
+                    }
+                }
+            }).start();
+        }
     }
     
     /**
@@ -530,27 +543,27 @@ public class ConnectFourGameGUI extends GameGUI {
      */
     private void animate() {
         new Thread(new Runnable() {
-                            public void run() {
-                                
-                                while(m_panel.getAnimationThread().isAlive()){
-                                }
-                                
-                                m_panel.updatePieces(getGame().getPieces());
-                                if (!getGame().boardIsFull()) {
-                                    if (m_panel.getCurrentPiece().getPieceColour()
-                                        == ConnectFourPanel.YELLOW_PIECE) {
-                                        m_panel.setCurrentPiece(new ConnectFourPiece(
-                                                                  ConnectFourPanel
-                                                                      .RED_PIECE));
-                                    } else {
-                                        m_panel.setCurrentPiece(new ConnectFourPiece(
-                                                                  ConnectFourPanel
-                                                                      .YELLOW_PIECE));
-                                    }
-                                }
-                                m_panel.refreshDisplay();
-                            }
-                        }).start();
+            public void run() {
+                
+                while(m_panel.getAnimationThread().isAlive()){
+                }
+                
+                m_panel.updatePieces(getGame().getPieces());
+                if (!getGame().boardIsFull()) {
+                    if (m_panel.getCurrentPiece().getPieceColour()
+                        == ConnectFourPanel.YELLOW_PIECE) {
+                        m_panel.setCurrentPiece(new ConnectFourPiece(
+                                                    ConnectFourPanel
+                                                        .RED_PIECE));
+                    } else {
+                        m_panel.setCurrentPiece(new ConnectFourPiece(
+                                                    ConnectFourPanel
+                                                        .YELLOW_PIECE));
+                    }
+                }
+                m_panel.refreshDisplay();
+            }
+        }).start();
     }
     
     /**
@@ -568,7 +581,7 @@ public class ConnectFourGameGUI extends GameGUI {
      * @param message - A string with the message to display
      */
     private boolean displayPlayAgain(String message, boolean win) {
-        int reply = JOptionPane.showConfirmDialog(null, message , message,
+        int reply = JOptionPane.showConfirmDialog(null, message, message,
                                                   JOptionPane.YES_NO_OPTION);
         if (reply == JOptionPane.YES_OPTION) {
             resetTimer();
@@ -620,7 +633,8 @@ public class ConnectFourGameGUI extends GameGUI {
             
             setGame(newGame);
             
-            if(win && (getGame().getPlayerTurn() % 2 == 0)) {
+            if(win && (getGame().getPlayerTurn() % TOTAL_PLAYERS
+                       == PLAYER_ONE)) {
                 newGame.incrementTurn();
             }
             
@@ -633,14 +647,18 @@ public class ConnectFourGameGUI extends GameGUI {
     }
     
     public static void main(String args[]) {
-        String[] s1 = new String[3];
-                    String[] s2 = new String[3];
-                    s1[0] = "Tom";
-                    s1[1] = "Human";
-                    s1[2] = "Red";
-                    s2[0] = "Jon";
-                    s2[1] = "Human";
-                    s2[2] = "Yellow";
+        final int TOTAL_PLAYER_COMPONENTS = 3;
+        final int PLAYER_COMPONENT_ONE = 0;
+        final int PLAYER_COMPONENT_TWO = 1;
+        final int PLAYER_COMPONENT_THREE = 2;
+        String[] s1 = new String[TOTAL_PLAYER_COMPONENTS];
+                    String[] s2 = new String[TOTAL_PLAYER_COMPONENTS];
+                    s1[PLAYER_COMPONENT_ONE] = "Tom";
+                    s1[PLAYER_COMPONENT_TWO] = "Human";
+                    s1[PLAYER_COMPONENT_THREE] = "Red";
+                    s2[PLAYER_COMPONENT_ONE] = "Jon";
+                    s2[PLAYER_COMPONENT_TWO] = "Human";
+                    s2[PLAYER_COMPONENT_THREE] = "Yellow";
         ConnectFourGameGUI g = new ConnectFourGameGUI(s1,s2,false,"");
         
         System.out.println("\nConnectFourGameGUI Tests:\n");
@@ -655,13 +673,16 @@ public class ConnectFourGameGUI extends GameGUI {
                                    + "- End");
         System.out.println("");
         
+        final int COLUMN_THREE = 2;
+        final int COLUMN_SEVEN = 6;
+        
         System.out.println("ConnectFourGameGUI.performMove() "
                                            + "- Begin");
         System.out.println("Expected output: first piece placed in the third "
                                            + "column");
         System.out.println("");
         System.out.println("Actual output: on screen.");
-        g.performMove(2);
+        g.performMove(COLUMN_THREE);
         System.out.println("ConnectFourGameGUI.performMove() "
                                            + "- End");
         System.out.println("");
@@ -672,14 +693,18 @@ public class ConnectFourGameGUI extends GameGUI {
                                    + "the last animation has finished");
         System.out.println("");
         System.out.println("Actual output: on screen.");
-        g.performMove(6);
+        g.performMove(COLUMN_SEVEN);
         System.out.println("ConnectFourGameGUI.performMove() - End");
         System.out.println("");
         
-        System.out.println("Next test in 2 seconds...");
+        System.out.println("Next test in .75 seconds...");
+        
+        System.out.println("");
+        
+        
         
         try {
-            Thread.sleep(2000);
+            Thread.sleep(ANIMATION_TIME);
         } catch (Exception e) {
             
         }
@@ -690,7 +715,7 @@ public class ConnectFourGameGUI extends GameGUI {
                                                    + " the first piece");
         System.out.println("");
         System.out.println("Actual output: on screen.");
-        g.performMove(2);
+        g.performMove(COLUMN_THREE);
         System.out.println("ConnectFourGameGUI.performMove() - End");
         System.out.println("");
     }
