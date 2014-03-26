@@ -804,7 +804,6 @@ public class OthelloGameGUI extends GameGUI {
                 System.out.println("m_player2Name");
                 displayPlayAgain("play again?");
             } else if (winner == DRAW) {
-                
                 displayWinner(m_player1Name + " and " + m_player2Name);
                 System.out.println("Draw");
                 displayPlayAgain("play again?");
@@ -856,8 +855,8 @@ public class OthelloGameGUI extends GameGUI {
 		String[] s = new String[TOTAL_PLAYERS];
 		s[PLAYER_ONE]="Jon";
 		s[PLAYER_TWO]="Tom";
-        Player playerOne = new OthelloEasyComputerPlayer(s[0], "Black");
-        Player playerTwo = new OthelloHardComputerPlayer(s[1], "White");
+        Player playerOne = new OthelloHardComputerPlayer(s[0], "Black");
+        Player playerTwo = new OthelloEasyComputerPlayer(s[1], "White");
 		OthelloGameGUI displayExample = new OthelloGameGUI("Othello",WIDTH,HEIGHT, playerOne, playerTwo);
 		displayExample.setPlayers(s);
 
