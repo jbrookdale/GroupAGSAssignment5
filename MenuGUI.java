@@ -719,10 +719,10 @@ public class MenuGUI extends GUI {
 					//m_MainMenu.dispose();
                     Player playerOne;
                     if (getPlayerOneType().equals("Computer: Easy")) {
-                        playerOne = new ConnectFourEasyComputerPlayer(
+                        playerOne = new OthelloEasyComputerPlayer(
                                         m_PlayInputOne.getText(), getPlayerOneColour());
                     } else if (getPlayerOneType().equals("Computer: Hard")) {
-                        playerOne = new ConnectFourHardComputerPlayer(
+                        playerOne = new OthelloHardComputerPlayer(
                                         m_PlayInputOne.getText(), getPlayerOneColour());
                     } else {
                         playerOne = new HumanPlayer(
@@ -731,10 +731,10 @@ public class MenuGUI extends GUI {
                     
                     Player playerTwo;
                     if (getPlayerTwoType().equals("Computer: Easy")) {
-                        playerTwo = new ConnectFourEasyComputerPlayer(
+                        playerTwo = new OthelloEasyComputerPlayer(
                                         m_PlayInputTwo.getText(), getPlayerTwoColour());
                     } else if (getPlayerTwoType().equals("Computer: Hard")) {
-                           playerTwo = new ConnectFourHardComputerPlayer(
+                           playerTwo = new OthelloHardComputerPlayer(
                                            m_PlayInputTwo.getText(), getPlayerTwoColour());
                     } else {
                            playerTwo = new HumanPlayer(
