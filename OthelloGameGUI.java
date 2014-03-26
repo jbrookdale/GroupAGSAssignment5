@@ -489,11 +489,19 @@ public class OthelloGameGUI extends GameGUI {
                 //player1 made valid move, player2's turn
                 gameCheck.incrementTurn();
             } else {
-                System.out.println("Player 1 made an invalid move!");
+                if (getGame().getPlayer(getGame().getPlayerTurn() % TOTAL_PLAYERS).getPlayerType() == "Human") {
+                            javax.swing.JOptionPane.showMessageDialog(null, 
+                                                            "Invalid move");
+                        }
             }
         } else {
             if(player2Move(x,y)){
                 gameCheck.incrementTurn();
+            } else {
+                if (getGame().getPlayer(getGame().getPlayerTurn() % TOTAL_PLAYERS).getPlayerType() == "Human") {
+                            javax.swing.JOptionPane.showMessageDialog(null, 
+                                                            "Invalid move");
+                        }
             }
         }
         endGame();
