@@ -192,7 +192,8 @@ public class GroupPWGapplication extends GUI{
 		/**< This is constant used to store the Start Screen m_Frame height */
 		final int START_SCREEN_HEIGHT = 500;
 
-		new GroupPWGapplication("Start Screen",START_SCREEN_WIDTH,START_SCREEN_HEIGHT);
+		new GroupPWGapplication("Start Screen",START_SCREEN_WIDTH,
+                                START_SCREEN_HEIGHT);
 	}
 
 }

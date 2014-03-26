@@ -264,6 +264,7 @@ public class ConnectFourPanel extends JPanel {
      * Animates a falling piece at (X,Y) on the board
      * @param X - represents the column piece should be in
      * @param Y - represents the row piece should be in
+     * @param col - represents the colour of the piece
      */
     public void dropPiece(final int X, final int Y,
                           final Piece.ConnectFourPieceColour col) {
