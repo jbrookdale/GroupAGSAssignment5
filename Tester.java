@@ -96,8 +96,9 @@ public class Tester{
 		
 		OthelloPiece testPiece = new OthelloPiece(OthelloPiece.OthelloPieceColour.WHITE);
 
-                OthelloGame testGame = new OthelloGame("Tom","Human",OthelloPiece.OthelloPieceColour.BLACK,
-                                            "Harry","Human",OthelloPiece.OthelloPieceColour.WHITE);
+                OthelloGame testGame = new OthelloGame(
+                                            new HumanPlayer("Tom","Black"),
+                                            new HumanPlayer("Harry","White"));
         testGame.board.setBoard();
         System.out.println("testing implemented methods:");
         System.out.println("testing placing a piece in a valid square (5,3) WHITE");
@@ -228,7 +229,9 @@ public class Tester{
 		String[] s = new String[2];
 		s[0]="Tom";
 		s[1]="Harry";
-		OthelloGameGUI displayExample = new OthelloGameGUI("Othello",WIDTH,HEIGHT);
+		OthelloGameGUI displayExample = new OthelloGameGUI("Othello",WIDTH,HEIGHT,
+                                            new HumanPlayer("Tom","Black"),
+                                            new HumanPlayer("Harry","White"));
 		displayExample.setPlayers(s);
 		displayExample.creatingGui();
 	}
@@ -405,8 +408,16 @@ public class Tester{
 		}
 
 		private static void testConnectFour(){
+            String[] s1 = new String[3];
+            String[] s2 = new String[3];
+            s1[0] = "Tom";
+            s1[1] = "Human";
+            s1[2] = "Red";
+            s2[0] = "Harry";
+            s2[1] = "Human";
+            s2[2] = "Yellow";
 			ConnectFourGameGUI connectFour = 
-					    new ConnectFourGameGUI("tom", "harry");
+					    new ConnectFourGameGUI(s1, s2, false, "");
 		}
 
 
