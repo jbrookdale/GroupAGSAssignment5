@@ -190,6 +190,7 @@ class OthelloHardComputerPlayer <C> extends HardComputerPlayer {
         System.out.println("Expected maximum pieces flipped position:");
         System.out.println("Random piont in {(2,3),(3,2),(4,5),(5,4)}");
         Point x = compAI.makeAIMove(game.m_board);
-        System.out.println("Othello Hard ComAI move: " + x);
+        System.out.println("Othello Hard ComAI move: " +"x="+ x.x + " y=" + x.y);
+        
 	}
 }

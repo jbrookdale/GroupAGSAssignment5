@@ -95,7 +95,7 @@ class OthelloEasyComputerPlayer <C> extends EasyComputerPlayer{
         /** < show the move of the easy computer player  */
         System.out.println("Expected Random position corresponding to point x");
         Point x = compAI.makeAIMove(game.m_board);
-        System.out.println("Othello Hard ComAI move: " +"x="+ x.x + " y=" + x.y);
+        System.out.println("Othello easy ComAI move: " +"x="+ x.x + " y=" + x.y);
         
         
       /**

@@ -633,7 +633,7 @@ final int GREATER_THAN_ZERO = 100;
           /** < show the move of the easy computer player  */
           Point x = compAI.makeAIMove(board);
           System.out.println("Expected position corresponding to column " + x.y + " row " +x.x);
-          System.out.println("ConectFourHard Computer move: " + "y=" +x.y + "  " + "x=" +x.x);;
+          System.out.println("ConectFourEasy Computer move: " + "y=" +x.y + "  " + "x=" +x.x);;
     }
 
     /**
@@ -678,7 +678,7 @@ final int GREATER_THAN_ZERO = 100;
                 System.out.println("Expected easy computer move position:");
                 System.out.println("Random piont in {(2,3),(3,2),(4,5),(5,4)}");
                 Point x = compAI.makeAIMove(game.m_board);
-                System.out.println("Othello Easy ComAI move: " + x);
+                System.out.println("Othello Easy ComAI move: " +"x="+ x.x + " y=" + x.y);
                 
               /**
         	* This is to test that Othello game works with Othello Computer Easy implementation
