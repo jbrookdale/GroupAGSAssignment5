@@ -244,8 +244,16 @@ public class GameSaver extends GameIOHandler {
 	
 	/** This is the main method containing the unit tests for this class. */
 	public static void main(String[] args){
-		Player testPlayer1 = new HumanPlayer("X", "Red");
-		Player testPlayer2 = new HumanPlayer("Y", "Yellow");
+		
+		
+		final String TEST_PLAYER_1_NAME = "X";
+		final String TEST_PLAYER_2_NAME = "Y";
+		
+		final String TEST_PLAYER_1_COLOUR = "Red";
+		final String TEST_PLAYER_2_COLOUR = "Yellow";
+		
+		Player testPlayer1 = new HumanPlayer(TEST_PLAYER_1_NAME, TEST_PLAYER_1_COLOUR);
+		Player testPlayer2 = new HumanPlayer(TEST_PLAYER_2_NAME, TEST_PLAYER_2_COLOUR);
 		
 		Game testGame = new ConnectFourGame(testPlayer1, testPlayer2);
 		
