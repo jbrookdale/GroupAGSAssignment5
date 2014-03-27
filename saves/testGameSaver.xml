@@ -1,1 +1,1 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><game><gametype>Connect4</gametype><time>0</time><turn>Player 1</turn><player id="1"><name>X</name><type>Human</type><colour>Yellow</colour></player><player id="2"><name>Y</name><type>Human</type><colour>Red</colour></player></game>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><game><time>0</time><turn>Player 1</turn><player id="1"><type>Human</type></player><player id="2"><type>Human</type></player></game>

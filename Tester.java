@@ -597,7 +597,24 @@ new ConnectFourGameGUI(s1, s2, false, "");
         }
 
         private static void testConnectFourGameSaver() {
-                            
+    		final String TEST_PLAYER_1_NAME = "X";
+    		final String TEST_PLAYER_2_NAME = "Y";
+    		
+    		final String TEST_PLAYER_1_COLOUR = "Red";
+    		final String TEST_PLAYER_2_COLOUR = "Yellow";
+    		
+    		Player testPlayer1 = new HumanPlayer(TEST_PLAYER_1_NAME, TEST_PLAYER_1_COLOUR);
+    		Player testPlayer2 = new HumanPlayer(TEST_PLAYER_2_NAME, TEST_PLAYER_2_COLOUR);
+    	
+    		ConnectFourGame testGame = new ConnectFourGame(testPlayer1, testPlayer2);
+    	
+    		ConnectFourGameSaver testSaving = new ConnectFourGameSaver("saves//connect4saves//testC4GameSaver.xml");
+    	
+    		if(testSaving.getFile().exists()){
+    			System.out.println("Test passed.");
+    		}else{
+    			System.out.println("Test failed.");
+    		}
         }
 
         private static void testOthelloGameLoader() {
@@ -617,8 +634,27 @@ new ConnectFourGameGUI(s1, s2, false, "");
     		OthelloGameLoader testOthelloLoading = new OthelloGameLoader("saves\\othellosaves\\testOthello.xml");
         }
 
-        private static void testOthelloGameSaver() {
-                            
+        private static void testOthelloGameSaver() {		
+    		final String TEST_PLAYER_1_NAME = "X";
+    		final String TEST_PLAYER_2_NAME = "Y";
+    		
+    		final String TEST_PLAYER_1_COLOUR = "Black";
+    		final String TEST_PLAYER_2_COLOUR = "White";
+    		
+    		Player testPlayer1 = new HumanPlayer(TEST_PLAYER_1_NAME, TEST_PLAYER_1_COLOUR);
+    		Player testPlayer2 = new HumanPlayer(TEST_PLAYER_2_NAME, TEST_PLAYER_2_COLOUR);
+    	
+    		OthelloGame testGame = new OthelloGame(testPlayer1, testPlayer2);
+    		OthelloGameGUI.setPlayerOne(testPlayer1);
+    		OthelloGameGUI.setPlayerTwo(testPlayer2);
+    		
+    		OthelloGameSaver testSaving = new OthelloGameSaver("saves//othellosaves//testOthelloGameSaver.xml");
+    	
+    		if(testSaving.getFile().exists()){
+    			System.out.println("Test passed.");
+    		}else{
+    			System.out.println("Test failed.");
+    		}
         }
 
 
@@ -657,8 +693,10 @@ so any arguments passed in will have no effect on the program or testing.
         testConnectFourGameLoader();
         System.out.println("testing ConnectFourGameLoader");
         testConnectFourGameSaver();
+        System.out.println("testing ConnectFourGameSaver");
         testOthelloGameLoader();
         System.out.println("testing OthelloGameLoader");
         testOthelloGameSaver();
+        System.out.println("testing OthelloGameSaver");
     }
 }

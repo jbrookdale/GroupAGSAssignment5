@@ -157,8 +157,7 @@ public class OthelloGameSaver extends GameSaver{
 	}
 	
 	/** This is the main method containing the unit tests for this class. */
-	public static void main(String[] args){
-		
+	public static void main(String[] args){		
 		final String TEST_PLAYER_1_NAME = "X";
 		final String TEST_PLAYER_2_NAME = "Y";
 		
