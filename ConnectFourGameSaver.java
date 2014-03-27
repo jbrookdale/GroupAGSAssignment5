@@ -1,5 +1,5 @@
 /**
-* @file Connect4GameSaver.java
+* @file ConnectFourGameSaver.java
 * @author Ieuan Skinner
 * @date 26 March 14
 * @see http://www.mkyong.com/java/how-to-create-xml-file-in-java-dom/
