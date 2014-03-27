@@ -214,4 +214,11 @@ public class OthelloGameLoader extends GameLoader{
 		System.out.println("PieceCount2: " + getP2PiecesX().size());
 	}
 	
+	/** This is the main method containing the unit tests for this class. */
+	public static void main(String[] args) {
+		
+		OthelloGameLoader test = new OthelloGameLoader("saves\\othellosaves\\testOthello.xml");
+		
+	}
+	
 }
