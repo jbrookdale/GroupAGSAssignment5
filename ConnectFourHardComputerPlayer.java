@@ -64,9 +64,13 @@ class ConnectFourHardComputerPlayer <C> extends HardComputerPlayer {
 		    ConnectFourHardComputerPlayer<Object> compAI = new ConnectFourHardComputerPlayer("CompAI",Piece.ConnectFourPieceColour.YELLOW);
 	        /** < show the move of the hard computer player  */
 	        Point x = compAI.makeAIMove(board);
-	        System.out.println("Expected position corresponding to point " + x);
-	        System.out.println("ConectFourHard Computer move: " + x);;
-	       
+	        System.out.println("Expected position corresponding to column " + x.y + " row " +x.x);
+	        System.out.println("ConectFourHard Computer move: " + "y=" +x.y + "  " + "x=" +x.x);;
+	        
+	        /** Checks if Maximum chain exist on empty board */
+	        int y =compAI.MaximumChain(WIDTH-1, HEIGHT-1, board);
+	        System.out.println("Expected output 0");
+	        System.out.println(y);
     }
     
     
