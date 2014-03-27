@@ -89,51 +89,69 @@ public class Tester{
      * A method to test the OthelloGame class
      */
 	private static void testOthelloGame(){
-		
-		final int SCORE_TWO = 2;
-		final int SCORE_TEN = 10;
-		final int TEST_PLAYER_NAME_0 = 0;
-		final int TEST_PLAYER_NAME_100 = 100;
-		
-		
-		OthelloPiece testPiece = new OthelloPiece(OthelloPiece.OthelloPieceColour.WHITE);
+		final int GREATER_THAN_ZERO = 100;
+        final int PLAYER_ONE = 0;
+        final int PLAYER_TWO = 1;
+        final int SCORE_OF_TWO = 2;
+        final int SCORE_OF_TEN = 10;
+        final int ROW_ONE = 0;
+        final int ROW_SIX = 5;
+        final int COLUMN_FOUR = 3;
 
-                OthelloGame testGame = new OthelloGame(
-                                            new HumanPlayer("Tom","Black"),
-                                            new HumanPlayer("Harry","White"));
+        OthelloPiece testPiece = new OthelloPiece(OthelloPiece
+                                                      .OthelloPieceColour
+                                                            .WHITE);
+
+        OthelloGame testGame = new OthelloGame(
+                       new HumanPlayer("Tom", 
+                                       OthelloPiece.
+                                       OthelloPieceColour.BLACK),
+                       new HumanPlayer("Harry",
+                                       OthelloPiece.
+                                       OthelloPieceColour.BLACK));
+
         testGame.m_board.setBoard();
-        System.out.println("testing implemented methods:");
-        System.out.println("testing placing a piece in a valid square (5,3) WHITE");
-        System.out.println("expected output: true");
-        System.out.println(testGame.move(COLUMN_SIX,ROW_FOUR,testPiece));
-        System.out.println();
-        System.out.println("testing placing a piece in an invalid square (0,3) WHITE");
-        System.out.println("expected output: false");
-        System.out.println(testGame.move(COLUMN_ONE,ROW_FOUR,testPiece));
-        System.out.println();
-        System.out.println("testing updating player1 score by 2");
-        System.out.println("expected output: player score 4");
-        testGame.setPlayer1Score(SCORE_TWO);
-        System.out.println("player score: "+testGame.getPlayer1Score());
-        System.out.println();
-        System.out.println("testing updating player2 score by 10");
-        System.out.println("expected output: player score 12");
-        testGame.setPlayer2Score(SCORE_TEN);
-        System.out.println("player score: "+testGame.getPlayer2Score());
-        System.out.println();
-        System.out.println("testing inherited methods:");
+        System.out.println("Testing implemented methods:");
+        System.out.println("Testing placing a piece in a valid " 
+                           + "square (5,3) WHITE");
+        System.out.println("Expected output: true");
+        System.out.println("Actual output: " + testGame.move(ROW_SIX,
+                                            COLUMN_FOUR,testPiece));
+
+        System.out.println("\nTesting placing a piece in an invalid "
+                           + "square (0,3) WHITE");
+        System.out.println("Expected output: false");
+        System.out.println("Actual output: " + testGame.move(ROW_ONE,COLUMN_FOUR
+                                                             ,testPiece));
+
+        System.out.println("\nTesting updating player1 score by 2");
+        System.out.println("Expected output: 4");
+        testGame.setPlayer1Score(SCORE_OF_TWO);
+        System.out.println("Actual output: " + testGame
+                                .getPlayer1Score());
+
+        System.out.println("\nTesting updating player2 score by 10");
+        System.out.println("Expected output: 12");
+        testGame.setPlayer2Score(SCORE_OF_TEN);
+        System.out.println("Actual output: " + testGame
+                                .getPlayer2Score());
+
+        System.out.println("\nTesting inherited methods:");
         String[] s = testGame.getPlayerNames();
-        System.out.println("testing getPlayerNames()");
-        System.out.println("expected output: Tom, Harry");
-        System.out.println(s[0]+" , "+s[1]);
-        System.out.println();
-        System.out.println("testing getPlayerName(0)");
-        System.out.println("expected output: Tom");
-        System.out.println(testGame.getPlayerName(TEST_PLAYER_NAME_0));
-        System.out.println();
-        System.out.println("testing getPlayerName(100)");
-        System.out.println("expected output: Harry");
-        System.out.println(testGame.getPlayerName(TEST_PLAYER_NAME_100));
+        System.out.println("Testing 'getPlayerNames()'");
+        System.out.println("Expected output: Tom, Harry");
+        System.out.println("Actual output: " + s[PLAYER_ONE] + ", "
+                            + s[PLAYER_TWO]);
+
+        System.out.println("\nTesting 'getPlayerName(0)'");
+        System.out.println("Expected output: Tom");
+        System.out.println("Actual output: "
+                           + testGame.getPlayerName(PLAYER_ONE));
+
+        System.out.println("\ntesting getPlayerName(100)");
+        System.out.println("Expected output: Harry");
+        System.out.println("Actual output: "
+                           + testGame.getPlayerName(GREATER_THAN_ZERO));
     }
     
     /**
