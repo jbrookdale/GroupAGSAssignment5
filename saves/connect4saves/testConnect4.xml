@@ -11,15 +11,15 @@
 		
 		<piece1>
 			<x>4</x>
-			<y>6</y>
+			<y>0</y>
 		</piece1>
 		<piece1>
 			<x>3</x>
-			<y>6</y>
+			<y>0</y>
 		</piece1>
 		<piece1>
 			<x>4</x>
-			<y>5</y>
+			<y>1</y>
 		</piece1>
 	</player>
 	
@@ -30,15 +30,15 @@
 		
 		<piece2>
 			<x>3</x>
-			<y>5</y>
+			<y>1</y>
 		</piece2>
 		<piece2>
 			<x>4</x>
-			<y>4</y>
+			<y>2</y>
 		</piece2>
 		<piece2>
 			<x>5</x>
-			<y>6</y>
+			<y>0</y>
 		</piece2>
 	</player>
 </game>
