@@ -576,6 +576,8 @@ public class ConnectFourGameGUI extends GameGUI {
     /**
      * Message dialog asks players if they want to play again
      * @param message - A string with the message to display
+     * @param win - If the game has been won
+     * @return The players answer to the question play again?
      */
     private boolean displayPlayAgain(String message, boolean win) {
         int reply = JOptionPane.showConfirmDialog(null, message, message,
