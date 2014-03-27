@@ -14,7 +14,7 @@ import java.util.Random;
 *
 */
 
-class OthelloEasyComputerPlayer <C> extends EasyComputerPlayer{
+public class OthelloEasyComputerPlayer <C> extends EasyComputerPlayer{
 	
 	/**< constant for the size of the board in x direction */ 
     private static final int WIDTH = 8; 
