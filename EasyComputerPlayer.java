@@ -21,13 +21,4 @@ abstract class EasyComputerPlayer <C> extends ComputerPlayer {
 		super(newName, newPlayerColour,"ComputerEasy");
 		
 	}
- /**
-  * This is the main method that runs all the required test
-  * @param args - nil
-  */
- 
- 
-	public static void main(String[] args) {
-        // Tests go here
-    }
 }

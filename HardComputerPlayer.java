@@ -21,11 +21,4 @@ abstract class HardComputerPlayer <C> extends ComputerPlayer {
     	super(newName, newPlayerColour,"ComputerHard");
 		
 	}
-   /*
-    * This is the main method that test this class
-    * @param args -nil
-    */
-	public static void main(String[] args) {
-        // Tests go here
-    }
 }
