@@ -9,7 +9,7 @@
 * 
 */
 
-class HumanPlayer <C> extends Player{
+public class HumanPlayer <C> extends Player{
 	
 /**
 * This is the constructor for HumanPlayer.
