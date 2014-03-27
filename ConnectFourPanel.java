@@ -309,7 +309,7 @@ public class ConnectFourPanel extends JPanel {
     
     /**
      * Updates the piece array
-     * @param 2D array of pieces
+     * @param c 2D array of pieces
      */
     public boolean updatePieces(ConnectFourPiece[][] c) {
         for (int j = 0; j < BOARD_HEIGHT; j++) {
