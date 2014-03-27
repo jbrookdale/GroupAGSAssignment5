@@ -281,7 +281,7 @@ public class OthelloGameGUI extends GameGUI {
                 .getResource("Othello.jpeg")).getImage());
 		
 		
-		if(m_playerOne.getColour().equals(Piece.OthelloPieceColour.BLACK)){
+		if(m_playerOne.getColour().equals("Black")){
 			setPlayerLabel(m_playerOne.getName(), "Black", m_playerTwo.getName(), "White");
 		}else{
 			setPlayerLabel(m_playerOne.getName(), "White", m_playerTwo.getName(), "Black");	
