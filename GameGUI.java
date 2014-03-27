@@ -136,9 +136,7 @@ public abstract class GameGUI extends GUI{
 	* This method will display a message box that shows which player is the 
 	* winner of the game.
 	*
-	* @param true -This returns true if the method is successfully executed.
-	*              It also displays a winning dialog box with the name of the 
-	*              player who has won
+	* @param winner - String containing winner's name
 	*/
 	public boolean displayWinner(String winner) {
 	
