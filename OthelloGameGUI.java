@@ -280,7 +280,12 @@ public class OthelloGameGUI extends GameGUI {
 		m_window.setIconImage(new ImageIcon(this.getClass()
                 .getResource("Othello.jpeg")).getImage());
 		
-		setPlayerLabel(m_playerOne.getName(), "Black", m_playerTwo.getName(), "White");
+		
+		if(m_playerOne.getColour().equals(Piece.OthelloPieceColour.BLACK)){
+			setPlayerLabel(m_playerOne.getName(), "Black", m_playerTwo.getName(), "White");
+		}else{
+			setPlayerLabel(m_playerOne.getName(), "White", m_playerTwo.getName(), "Black");	
+		}
 		
 		m_panel.add(getTimerLabel());
 		m_panel.add(getPlayerLabel());
@@ -391,7 +396,6 @@ public class OthelloGameGUI extends GameGUI {
 	        menu.add(newGameButton);
 	        menu.add(saveGameButton);
 	        menu.add(loadGameButton);
-	        menu.add(new JMenuItem("Pause game"));
 	        JMenuBar menuBar = new JMenuBar();
 	        menuBar.add(menu);
 	        setJMenuBar(menuBar);
