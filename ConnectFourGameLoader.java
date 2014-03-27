@@ -122,6 +122,20 @@ public class ConnectFourGameLoader extends GameLoader{
 
 	/** This is the main method containing the unit tests for this class. */
 	public static void main(String[] args){
-		//Test cases to be implemented.
+        final int TOTAL_PLAYER_COMPONENTS = 3;
+        final int PLAYER_COMPONENT_ONE = 0;
+        final int PLAYER_COMPONENT_TWO = 1;
+        final int PLAYER_COMPONENT_THREE = 2;
+        String[] s1 = new String[TOTAL_PLAYER_COMPONENTS];
+        String[] s2 = new String[TOTAL_PLAYER_COMPONENTS];
+        s1[PLAYER_COMPONENT_ONE] = "X";
+        s1[PLAYER_COMPONENT_TWO] = "Human";
+        s1[PLAYER_COMPONENT_THREE] = "Red";
+        s2[PLAYER_COMPONENT_ONE] = "X";
+        s2[PLAYER_COMPONENT_TWO] = "Computer: Hard";
+        s2[PLAYER_COMPONENT_THREE] = "Yellow";
+        ConnectFourGameGUI testConnect4 = new ConnectFourGameGUI(s1,s2,false,"");
+
+		ConnectFourGameLoader test = new ConnectFourGameLoader("saves\\connect4saves\\testConnect4.xml");
 	}
 }
