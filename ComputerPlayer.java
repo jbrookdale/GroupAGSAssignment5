@@ -11,7 +11,7 @@
 */
 
 
-abstract class ComputerPlayer <C> extends Player{
+public abstract class ComputerPlayer <C> extends Player{
   
     
     /**
