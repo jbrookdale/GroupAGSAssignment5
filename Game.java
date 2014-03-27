@@ -42,9 +42,8 @@ public abstract class Game<C> {
      * This method returns the name of one of the players, either player one or 
      * two depending on the input parameter.
      *
-     * @param x -This variable passed in stores which player, one or two,
-     *           the name needed to be returned.
-     * @return String -The name of the player, either player one or two.
+     *
+     * 
      */
      
      public static void resetTurn() {
