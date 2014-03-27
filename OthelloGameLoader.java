@@ -216,9 +216,12 @@ public class OthelloGameLoader extends GameLoader{
 	
 	/** This is the main method containing the unit tests for this class. */
 	public static void main(String[] args) {
-		
+		Player testPlayer1 = new HumanPlayer("X", "Black");
+    	Player testPlayer2 = new HumanPlayer("Y", "Black");
+    	
+    	OthelloGameGUI testOthello = new OthelloGameGUI("Othello", 8, 8, testPlayer1, testPlayer2);
+		testOthello.creatingGui();
 		OthelloGameLoader test = new OthelloGameLoader("saves\\othellosaves\\testOthello.xml");
-		
 	}
 	
 }
