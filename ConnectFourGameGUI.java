@@ -167,8 +167,8 @@ public class ConnectFourGameGUI extends GameGUI {
     
     /**
      * Constructor for ConnectFourGameGUI
-     * @param playerOneName - String representation of player one's name
-     * @param playerTwoName - String representation of player two's name
+     * @param playerOneDetails - String representation of player one's name
+     * @param playerTwoDetails - String representation of player two's name
      * @param loaded        - Boolean will be true if it's loaded from file
      * @param loc           - String that stores file name of chosen save file
      */
