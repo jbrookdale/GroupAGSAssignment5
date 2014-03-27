@@ -1,3 +1,5 @@
+import java.awt.Point;
+
 public class Tester{
 
 	public static OthelloPiece WHITE_PIECE = new OthelloPiece(Piece.OthelloPieceColour.WHITE);
@@ -467,10 +469,81 @@ public class Tester{
 		}
 
         private static void testEasyConnectFourComputerPlayer() {
+        	/**
+    		* This is to test that Connect Four game works with Computer Easy implementation
+    		* This tests that the name, colour and score for each player can be retrieved 
+    		*/
+    		final int TEST_PLAYER_SCORE = 2;
+    		final int TEST_PLAYER2_SCORE = 4;
+    		        
+    		    ConnectFourPiece player1Piece;
+    		    player1Piece = new ConnectFourPiece(ConnectFourPiece.ConnectFourPieceColour.RED);
+    		    ConnectFourEasyComputerPlayer player1 =
+    		            new ConnectFourEasyComputerPlayer("Computer",player1Piece.getPieceColour());
+    		    System.out.println("Player Expected name " + "Computer");
+    		    System.out.println("Player1: " +player1.getName());
+    		    System.out.println("Player Expected colour " + "RED");
+    		    System.out.println("Colour: " +player1.getColour());
+    		    System.out.println("Player Expected Score " + "0");
+    		    System.out.println("score: " +player1.getScore());
+    		    player1.setScore(TEST_PLAYER_SCORE);
+    		    System.out.println("Player Expected Score " + "2");
+    		    System.out.println("Change score: " + player1.getScore());
+    		    
+    		    /**
+    			* This is to test that Connect Four game works with Computer Easy implementation
+    			* This tests that the name, colour and score for each player can be retrieved 
+    			*/
+    			    ConnectFourPiece player2Piece;
+    			    player1Piece = new ConnectFourPiece(ConnectFourPiece.ConnectFourPieceColour.YELLOW);
+    			    ConnectFourEasyComputerPlayer player2 =
+    			            new ConnectFourEasyComputerPlayer("Computer",player1Piece.getPieceColour());
+    			    System.out.println("Player Expected name " + "Computer");
+    			    System.out.println("Player2: " +player2.getName());
+    			    System.out.println("Player Expected colour " + "YELLOW");
+    			    System.out.println("Colour: " +player2.getColour());
+    			    System.out.println("Player Expected Score " + "0");
+    			    System.out.println("score: " +player2.getScore());
+    			    player2.setScore(TEST_PLAYER2_SCORE);
+    			    System.out.println("Player Expected Score " + "4");
+    			    System.out.println("Change score: " + player2.getScore());
+    		    
+    		    /** Test to ensure random move works */
+    		    ConnectFourBoard board = new ConnectFourBoard(WIDTH, HEIGHT);
+    		    ConnectFourEasyComputerPlayer<Object> compAI = new ConnectFourEasyComputerPlayer("CompAI",Piece.ConnectFourPieceColour.YELLOW);
+    	        /** < show the move of the hard computer player  */
+    	        Point x = compAI.makeAIMove(board);
+    	        System.out.println("Expected position corresponding to column " + x.y + " row " +x.x);
+    	        System.out.println("ConectFourHard Computer move: " + "y=" +x.y + "  " + "x=" +x.x);;
+    	        
+    		    
+        	
             
         }
         
         private static void testHardConnectFourComputerPlayer() {
+        	final int TEST_SCORE = 2;
+    		ConnectFourPiece player1Piece;
+    	        player1Piece = new ConnectFourPiece(ConnectFourPiece.ConnectFourPieceColour.RED);
+    	        ConnectFourHardComputerPlayer player1 = new ConnectFourHardComputerPlayer("Computer",player1Piece.getPieceColour());
+    	        System.out.println("Player1: " +player1.getName());
+    	        System.out.println("Colour: " +player1.getColour());
+    	        System.out.println("score: " +player1.getScore());
+    	        player1.setScore(TEST_SCORE);
+    	        System.out.println("Change score: " +player1.getScore());
+    	        
+    	        /** Test to ensure random move works */
+    		    ConnectFourBoard board = new ConnectFourBoard(WIDTH, HEIGHT);
+    		    ConnectFourHardComputerPlayer<Object> compAI = new ConnectFourHardComputerPlayer("CompAI",Piece.ConnectFourPieceColour.YELLOW);
+    	        /** < show the move of the hard computer player  */
+    	        Point x = compAI.makeAIMove(board);
+    	        System.out.println("Expected position corresponding to column " + x.y + " row " +x.x);
+    	        System.out.println("ConectFourHard Computer move: " + "y=" +x.y + "  " + "x=" +x.x);;
+    	        
+    	        /** Checks if Maximum chain exist on empty board */
+    	        int y =compAI.MaximumChain(WIDTH-1, HEIGHT-1, board);
+    	        System.out.println("Expected output 0");
+    	        System.out.println(y);
                     
         }
         

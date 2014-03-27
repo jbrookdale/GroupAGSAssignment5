@@ -112,7 +112,7 @@ class ConnectFourHardComputerPlayer <C> extends HardComputerPlayer {
      * @param board - ConnectFourBoard
      * @return chainLength - The maximum chain length of piece on the board
      */      
-      private int MaximumChain(int x, int y, ConnectFourBoard board) {
+      public int MaximumChain(int x, int y, ConnectFourBoard board) {
           int m_chainLength = 0;
           Piece m_Pieces[][] = board.getPieces();
           /*If there is not a piece at position (x,y) then work out long a chain it connects to */
