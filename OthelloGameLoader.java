@@ -216,12 +216,21 @@ public class OthelloGameLoader extends GameLoader{
 	
 	/** This is the main method containing the unit tests for this class. */
 	public static void main(String[] args) {
-		Player testPlayer1 = new HumanPlayer("X", "Black");
-    	Player testPlayer2 = new HumanPlayer("Y", "Black");
+		
+		final int BOARD_SIZE = 8;
+		
+		final String TEST_PLAYER_1_NAME = "X";
+		final String TEST_PLAYER_2_NAME = "Y";
+		
+		final String TEST_PLAYER_1_COLOUR = "Black";
+		final String TEST_PLAYER_2_COLOUR = "White";
+		
+		Player testPlayer1 = new HumanPlayer(TEST_PLAYER_1_NAME, TEST_PLAYER_1_COLOUR);
+    	Player testPlayer2 = new HumanPlayer(TEST_PLAYER_2_NAME, TEST_PLAYER_2_COLOUR);
     	
-    	OthelloGameGUI testOthello = new OthelloGameGUI("Othello", 8, 8, testPlayer1, testPlayer2);
+    	OthelloGameGUI testOthello = new OthelloGameGUI("Othello", BOARD_SIZE, BOARD_SIZE, testPlayer1, testPlayer2);
 		testOthello.creatingGui();
-		OthelloGameLoader test = new OthelloGameLoader("saves\\othellosaves\\testOthello.xml");
+		OthelloGameLoader testOthelloLoading = new OthelloGameLoader("saves\\othellosaves\\testOthello.xml");
 	}
 	
 }
