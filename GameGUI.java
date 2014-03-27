@@ -120,9 +120,7 @@ public abstract class GameGUI extends GUI{
 	* This will bring up a message box explaining the users move, for instance
 	* if the move is an incorrect move, then a message box will appear.
 	*
-	* @param true -This returns true if the method is successfully executed.
-	*              It also displays a feed back dialog box with a message for a 
-	*              players move.
+	* @param message -This is the message the message box will display
 	*
 	*/
 	public boolean displayMoveFeedback(String message) {
