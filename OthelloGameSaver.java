@@ -158,6 +158,19 @@ public class OthelloGameSaver extends GameSaver{
 	
 	/** This is the main method containing the unit tests for this class. */
 	public static void main(String[] args){
-		//Test cases to be implemented.
+		Player testPlayer1 = new HumanPlayer("X", "Red");
+		Player testPlayer2 = new HumanPlayer("Y", "Yellow");
+	
+		OthelloGame testGame = new OthelloGame(testPlayer1, testPlayer2);
+		OthelloGameGUI.setPlayerOne(testPlayer1);
+		OthelloGameGUI.setPlayerTwo(testPlayer2);
+		
+		OthelloGameSaver testSaving = new OthelloGameSaver("saves//othellosaves//testOthelloGameSaver.xml");
+	
+		if(getFile().exists()){
+			System.out.println("Test passed.");
+		}else{
+			System.out.println("Test failed.");
+		}
 	}
 }
