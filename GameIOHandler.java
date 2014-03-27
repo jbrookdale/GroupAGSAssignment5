@@ -10,4 +10,4 @@
 * 
  */
 
-public class GameIOHandler {}
+abstract public class GameIOHandler {}

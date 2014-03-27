@@ -552,8 +552,48 @@ new ConnectFourGameGUI(s1, s2, false, "");
               System.out.println("Othello Hard ComAI move: " + x);               
         }
 
+        private static void testGameSaver(){
+        	final String TEST_PLAYER_1_NAME = "X";
+    		final String TEST_PLAYER_2_NAME = "Y";
+    		
+    		final String TEST_PLAYER_1_COLOUR = "Red";
+    		final String TEST_PLAYER_2_COLOUR = "Yellow";
+    		
+    		Player testPlayer1 = new HumanPlayer(TEST_PLAYER_1_NAME, TEST_PLAYER_1_COLOUR);
+    		Player testPlayer2 = new HumanPlayer(TEST_PLAYER_2_NAME, TEST_PLAYER_2_COLOUR);
+    		
+    		Game testGame = new ConnectFourGame(testPlayer1, testPlayer2);
+    		
+    		GameSaver testSaving = new GameSaver("saves//testGameSaver.xml");
+    		
+    		if(testSaving.getFile().exists()){
+    			System.out.println("Test passed.");
+    		}else{
+    			System.out.println("Test failed.");
+    		}
+        }
+        
+        private static void testGameLoader(){
+        	GameLoader testOthelloLoading = new GameLoader("saves\\othellosaves\\testOthello.xml");
+        	GameLoader testConnectFourLoading = new GameLoader("saves\\connect4saves\\testConnect4.xml");
+        }
+        
         private static void testConnectFourGameLoader() {
-                            
+            final int TOTAL_PLAYER_COMPONENTS = 3;
+            final int PLAYER_COMPONENT_ONE = 0;
+            final int PLAYER_COMPONENT_TWO = 1;
+            final int PLAYER_COMPONENT_THREE = 2;
+            String[] s1 = new String[TOTAL_PLAYER_COMPONENTS];
+            String[] s2 = new String[TOTAL_PLAYER_COMPONENTS];
+            s1[PLAYER_COMPONENT_ONE] = "X";
+            s1[PLAYER_COMPONENT_TWO] = "Human";
+            s1[PLAYER_COMPONENT_THREE] = "Red";
+            s2[PLAYER_COMPONENT_ONE] = "X";
+            s2[PLAYER_COMPONENT_TWO] = "Computer: Hard";
+            s2[PLAYER_COMPONENT_THREE] = "Yellow";
+            ConnectFourGameGUI testConnect4 = new ConnectFourGameGUI(s1,s2,false,"");
+
+    		ConnectFourGameLoader test = new ConnectFourGameLoader("saves\\connect4saves\\testConnect4.xml");
         }
 
         private static void testConnectFourGameSaver() {
@@ -561,7 +601,20 @@ new ConnectFourGameGUI(s1, s2, false, "");
         }
 
         private static void testOthelloGameLoader() {
-                            
+    		final int BOARD_SIZE = 8;
+    		
+    		final String TEST_PLAYER_1_NAME = "X";
+    		final String TEST_PLAYER_2_NAME = "Y";
+    		
+    		final String TEST_PLAYER_1_COLOUR = "Black";
+    		final String TEST_PLAYER_2_COLOUR = "White";
+    		
+    		Player testPlayer1 = new HumanPlayer(TEST_PLAYER_1_NAME, TEST_PLAYER_1_COLOUR);
+        	Player testPlayer2 = new HumanPlayer(TEST_PLAYER_2_NAME, TEST_PLAYER_2_COLOUR);
+        	
+        	OthelloGameGUI testOthello = new OthelloGameGUI("Othello", BOARD_SIZE, BOARD_SIZE, testPlayer1, testPlayer2);
+    		testOthello.creatingGui();
+    		OthelloGameLoader testOthelloLoading = new OthelloGameLoader("saves\\othellosaves\\testOthello.xml");
         }
 
         private static void testOthelloGameSaver() {
@@ -592,14 +645,20 @@ so any arguments passed in will have no effect on the program or testing.
         testHumanPlayer();
         System.out.println("testing OthelloBoard");
         testOthelloBoard();
-        System.out.println("testing connectFourGUI");
+        System.out.println("testing ConnectFourGUI");
         testEasyConnectFourComputerPlayer();
         testHardConnectFourComputerPlayer();
         testEasyOthelloComputerPlayer();
         testHardOthelloComputerPlayer();
+        testGameLoader();
+        System.out.println("testing GameLoader");
+        testGameSaver();
+        System.out.println("testing GameSaver");
         testConnectFourGameLoader();
+        System.out.println("testing ConnectFourGameLoader");
         testConnectFourGameSaver();
         testOthelloGameLoader();
+        System.out.println("testing OthelloGameLoader");
         testOthelloGameSaver();
     }
 }
