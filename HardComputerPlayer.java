@@ -9,7 +9,7 @@
 * This class stores the name, piece colour and player type
 *
 */
-abstract class HardComputerPlayer <C> extends ComputerPlayer {
+public abstract class HardComputerPlayer <C> extends ComputerPlayer {
 	 
     /**
      * HardComputerPlayer Constructor
