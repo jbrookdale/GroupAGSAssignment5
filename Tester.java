@@ -159,42 +159,43 @@ public class Tester{
      */
 
     private static void testOthelloPiece(){
-    	OthelloPiece piece = new OthelloPiece(Piece.OthelloPieceColour.BLACK);
-		
-		System.out.println("Valid inputs");
-		System.out.println("OthelloPiece.getPieceColour() - Begin");
-		System.out.println("Expected output: BLACK");
-		System.out.println("");
-		System.out.println("Actual output: " + piece.getPieceColour());
-		System.out.println("OthelloPiece.getPieceColour() - End");
-		System.out.println("");
-		System.out.println("OthelloPiece.setPieceColour() - Begin");
-		System.out.println("Expected output: true");
-		System.out.println("");
-		System.out.println("Actual output: " + 
-		piece.setPieceColour(Piece.OthelloPieceColour.WHITE));
-		System.out.println("OthelloPiece.setPieceColour() - End");
-		System.out.println("");
-		System.out.println("OthelloPiece.getPieceColour() - Begin");
-		System.out.println("Expected output: WHITE");
-		System.out.println("");
-		System.out.println("Actual output: " + piece.getPieceColour());
-		System.out.println("OthelloPiece.getPieceColour() - End");
-		System.out.println("");
-		
-		System.out.println("Invalid inputs");
-		System.out.println("OthelloPiece.setPieceColour() - Begin");
-		System.out.println("Expected output: false");
-		System.out.println("");
-		System.out.println("Actual output: " + 
-			piece.setPieceColour(Piece.OthelloPieceColour.NONE));
-		System.out.println("OthelloPiece.setPieceColour() - End");
-		System.out.println("");
-		System.out.println("OthelloPiece.getPieceColour() - Begin");
-		System.out.println("Expected output: WHITE");
-		System.out.println("");
-		System.out.println("Actual output: " + piece.getPieceColour());
-		System.out.println("OthelloPiece.getPieceColour() - End");
+        OthelloPiece piece = 
+            new OthelloPiece(Piece.OthelloPieceColour.BLACK);
+        
+        System.out.println("Valid inputs");
+        System.out.println("OthelloPiece.getPieceColour() - Begin");
+        System.out.println("Expected output: BLACK");
+        System.out.println("");
+        System.out.println("Actual output: " + piece.getPieceColour());
+        System.out.println("OthelloPiece.getPieceColour() - End");
+        System.out.println("");
+        System.out.println("OthelloPiece.setPieceColour() - Begin");
+        System.out.println("Expected output: true");
+        System.out.println("");
+        System.out.println("Actual output: " + 
+            piece.setPieceColour(Piece.OthelloPieceColour.WHITE));
+        System.out.println("OthelloPiece.setPieceColour() - End");
+        System.out.println("");
+        System.out.println("OthelloPiece.getPieceColour() - Begin");
+        System.out.println("Expected output: WHITE");
+        System.out.println("");
+        System.out.println("Actual output: " + piece.getPieceColour());
+        System.out.println("OthelloPiece.getPieceColour() - End");
+        System.out.println("");
+        
+        System.out.println("Invalid inputs");
+        System.out.println("OthelloPiece.setPieceColour() - Begin");
+        System.out.println("Expected output: false");
+        System.out.println("");
+        System.out.println("Actual output: " + 
+            piece.setPieceColour(Piece.OthelloPieceColour.NONE));
+        System.out.println("OthelloPiece.setPieceColour() - End");
+        System.out.println("");
+        System.out.println("OthelloPiece.getPieceColour() - Begin");
+        System.out.println("Expected output: WHITE");
+        System.out.println("");
+        System.out.println("Actual output: " + piece.getPieceColour());
+        System.out.println("OthelloPiece.getPieceColour() - End");
 	}
 
     /**
@@ -465,35 +466,35 @@ public class Tester{
 					    new ConnectFourGameGUI(s1, s2, false, "");
 		}
 
-        private void testEasyConnectFourComputerPlayer() {
+        private static void testEasyConnectFourComputerPlayer() {
             
         }
         
-        private void testHardConnectFourComputerPlayer() {
+        private static void testHardConnectFourComputerPlayer() {
                     
         }
         
-        private void testEasyOthelloComputerPlayer() {
+        private static void testEasyOthelloComputerPlayer() {
                             
         }
 
-        private void testHardOthelloComputerPlayer() {
+        private static void testHardOthelloComputerPlayer() {
                             
         }
 
-        private void testConnectFourGameLoader() {
+        private static void testConnectFourGameLoader() {
                             
         }
 
-        private void testConnectFourGameSaver() {
+        private static void testConnectFourGameSaver() {
                             
         }
 
-        private void testOthelloGameLoader() {
+        private static void testOthelloGameLoader() {
                             
         }
 
-        private void testOthelloGameSaver() {
+        private static void testOthelloGameSaver() {
                             
         }
 
