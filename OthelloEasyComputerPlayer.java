@@ -41,7 +41,6 @@ public class OthelloEasyComputerPlayer <C> extends EasyComputerPlayer{
     /**
 	* 
 	* @param board - Othello board which provided all the information in the OthelloBoard class
-	* @param colour -  The colour of the player piece.
 	* @return m_movePosition -  return a move position point.
 	*/
     
