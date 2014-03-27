@@ -565,7 +565,7 @@ public class ConnectFourGameGUI extends GameGUI {
     
     /**
      * Message dialog tells players the game is a draw
-     * @param none
+     * @return the players answer to whether they want to play again
      */
     private boolean displayDraw() {
         JOptionPane.showMessageDialog(null, "It's a draw!");
