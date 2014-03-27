@@ -79,9 +79,9 @@ public class GameSaver extends GameIOHandler {
 	 * This method will return the player 1 or 2 element dependent on the value
 	 * of the parameter.
 	 * 
-	 * @param 		int x		Integer value corresponding to which player 
-	 * 							you'd like. 0 = playerOne, Other = playerTwo.
-	 * @return	player element
+	 * @param 		int x - Integer value corresponding to which player 
+	 * you'd like. 0 = playerOne, Other = playerTwo.							
+	 * @return	player - element
 	 */
 	public static Element getPlayers(int x){
 		if(x == 0){
