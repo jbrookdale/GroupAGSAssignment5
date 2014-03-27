@@ -206,9 +206,9 @@ public class OthelloGameGUI extends GameGUI {
      */
 	public static String getPlayerName(int x){
 		if(x == 0){
-			return m_player1Name;
+			return m_playerOne.getName();
 		}else{
-			return m_player2Name;
+			return m_playerTwo.getName();
 		}
 	}
 	
@@ -268,10 +268,10 @@ public class OthelloGameGUI extends GameGUI {
 	  * board and then sends it to the action listener to do the rest.
 	  */
 	void creatingGui(){
-		m_window = new JFrame("Othello                 "+m_player1Name+
-                            " turn      "+m_player1Name+
+		m_window = new JFrame("Othello                 " + m_playerOne.getName()+
+                            " turn      "+m_playerOne.getName()+
                             " Score: " +  getGame().getPlayer1Score()+
-                            "       "  +m_player2Name+
+                            "       "  +m_playerTwo.getName()+
                             " Score: " + getGame().getPlayer2Score());
 		m_window.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		m_window.setLayout(new GridBagLayout());
@@ -280,7 +280,7 @@ public class OthelloGameGUI extends GameGUI {
 		m_window.setIconImage(new ImageIcon(this.getClass()
                 .getResource("Othello.jpeg")).getImage());
 		
-		setPlayerLabel(m_player1Name, "Black", m_player2Name, "White");
+		setPlayerLabel(m_playerOne.getName(), "Black", m_playerTwo.getName(), "White");
 		
 		m_panel.add(getTimerLabel());
 		m_panel.add(getPlayerLabel());
@@ -357,8 +357,8 @@ public class OthelloGameGUI extends GameGUI {
         if (reply == JOptionPane.YES_OPTION) {
         	m_window.dispose();
         	m_panel.removeAll();
-            OthelloGame game = new OthelloGame(new HumanPlayer(m_player1Name, m_p1colour),
-                                        		new HumanPlayer(m_player2Name, m_p2colour));
+            OthelloGame game = new OthelloGame(new HumanPlayer(m_playerOne.getName(), m_p1colour),
+                                        		new HumanPlayer(m_playerTwo.getName(), m_p2colour));
             
             setGame(game);
             
@@ -618,16 +618,16 @@ public class OthelloGameGUI extends GameGUI {
      */
     private void updateTitle(boolean player){
     	if(player){
-    		m_window.setTitle(("Othello                 "+m_player1Name+
-                             "'s turn          "+ m_player1Name+
+    		m_window.setTitle(("Othello                 "+m_playerOne.getName()+
+                             "'s turn          "+ m_playerOne.getName()+
                              " Score: " +  getGame().getPlayer1Score()+
-                             "	    "+m_player2Name+
+                             "	    "+m_playerTwo.getName()+
                              " Score: " + getGame().getPlayer2Score()));
     	}else{
-    		m_window.setTitle(("Othello                 "+m_player2Name+
-                             "'s turn          "+ m_player1Name+
+    		m_window.setTitle(("Othello                 "+m_playerTwo.getName()+
+                             "'s turn          "+ m_playerOne.getName()+
                              " Score: " +  getGame().getPlayer1Score()+
-                             "	    "+m_player2Name+
+                             "	    "+m_playerTwo.getName()+
                              " Score: " + getGame().getPlayer2Score()));
     	}
     }
@@ -864,16 +864,16 @@ public class OthelloGameGUI extends GameGUI {
             }
             if (winner == PLAYER_ONE) {
                 displayWinnerPieces(m_player1Colour);
-                displayWinner(m_player1Name);
-                System.out.println("m_player1Name");
+                displayWinner(m_playerOne.getName());
+                System.out.println("m_playerOne.getName()");
                 displayPlayAgain("play again?");
             } else if (winner == PLAYER_TWO) {
                 displayWinnerPieces(m_player2Colour);
-                displayWinner(m_player2Name);
-                System.out.println("m_player2Name");
+                displayWinner(m_playerTwo.getName());
+                System.out.println("m_playerTwo.getName()");
                 displayPlayAgain("play again?");
             } else if (winner == DRAW) {
-                displayWinner(m_player1Name + " and " + m_player2Name);
+                displayWinner(m_playerOne.getName() + " and " + m_playerTwo.getName());
                 System.out.println("Draw");
                 displayPlayAgain("play again?");
             }
