@@ -15,15 +15,27 @@ public class ConnectFourGame extends Game<Piece.ConnectFourPieceColour> {
 
 	private ConnectFourBoard m_board;
 
-    public int getLowestEmptySlot(int x) {
-        return m_board.getLowestEmptySlot(x);
+    /**
+     * Gets the lowest empty tile on the board when given a column.
+     * @param column - an integer representing the column
+     * @return rowNum - the lowest empty position on the board if successful
+     */
+    public int getLowestEmptySlot(int column) {
+        return m_board.getLowestEmptySlot(column);
     }
 
-
+    /**
+     * Gets a 2D array of pieces representing the board.
+     * @return A 2D array containing the position of pieces on the board.
+     */
 	public ConnectFourPiece[][] getPieces() {
 		return m_board.getPieces();
 	}
 
+    /**
+     * Gets the board object containing all the pieces.
+     * @return The board object containing all the pieces.
+     */
     public ConnectFourBoard getBoard() {
         return m_board;
     }
@@ -67,15 +79,86 @@ public class ConnectFourGame extends Game<Piece.ConnectFourPieceColour> {
 		 return m_board.setPiece(x, y, colour);
 	}
 
+    /**
+    * A method to check if the game has been won.
+    * @return TRUE if the game has been won.
+    */
 	public boolean gameWon() {
 		return m_board.checkWin();
 	}
 
+    /**
+    * A method to check if the Board is filled completed with pieces.
+    * @return TRUE if the board is full.
+    */
 	public boolean boardIsFull() {
 		return m_board.isFull();
 	}
 
 	public static void main (String[] args){
-		//Test here
+        ConnectFourGame g = new ConnectFourGame(
+                                new HumanPlayer("Jon",
+                                    Piece.ConnectFourPieceColour.RED),
+                                new HumanPlayer("Joey",
+                                    Piece.ConnectFourPieceColour.YELLOW));
+                                    
+        final int WIDTH = 10;
+        final int HEIGHT = 7;
+        final int COLUMN_TWO = 1;
+        
+		System.out.println("\nConnectFourGame Tests:\n");
+        System.out.println("ConnectFourGame.boardIsFull() - Begin");
+        System.out.println("Expected output: false");
+        System.out.println("");
+        System.out.println("Actual output: "
+                                   + g.boardIsFull());
+        System.out.println("ConnectFourGameGUI.boardIsFull() - End");
+        System.out.println("");
+        
+        System.out.println("ConnectFourGame.boardIsFull() - Begin");
+        System.out.println("Expected output: false");
+        System.out.println("");
+        System.out.println("Actual output: "
+                                   + g.boardIsFull());
+        System.out.println("ConnectFourGameGUI.boardIsFull() - End");
+        System.out.println("");
+        
+        System.out.println("ConnectFourGame.gameWon() - Begin");
+        System.out.println("Expected output: false");
+        System.out.println("");
+        System.out.println("Actual output: "
+                                   + g.gameWon());
+        System.out.println("ConnectFourGameGUI.gameWon() - End");
+        System.out.println("");
+        
+        System.out.println("ConnectFourGame.getLowestEmptySlot() - Begin");
+        System.out.println("Expected output: 0");
+        System.out.println("");
+        System.out.println("Actual output: "
+                                   + g.getLowestEmptySlot(COLUMN_TWO));
+        System.out.println("ConnectFourGameGUI.gameWon() - End");
+        System.out.println("");
+        
+        for (int i = 0; i < WIDTH; i++) {
+            for (int j = 0; j < HEIGHT; j++) {
+                g.move(i,j,Piece.ConnectFourPieceColour.RED);
+            }
+        }
+        
+        System.out.println("ConnectFourGame.boardIsFull() - Begin");
+        System.out.println("Expected output: true");
+        System.out.println("");
+        System.out.println("Actual output: "
+                                   + g.boardIsFull());
+        System.out.println("ConnectFourGameGUI.boardIsFull() - End");
+        System.out.println("");
+        
+        System.out.println("ConnectFourGame.gameWon() - Begin");
+        System.out.println("Expected output: true");
+        System.out.println("");
+        System.out.println("Actual output: "
+                                   + g.gameWon());
+        System.out.println("ConnectFourGameGUI.gameWon()  - End");
+        System.out.println("");
 	}
 }

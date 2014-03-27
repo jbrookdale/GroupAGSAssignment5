@@ -24,13 +24,4 @@ abstract class ComputerPlayer <C> extends Player{
     	
     	
     }
-	  /*
-     * This is the main method that test this class
-     * @param args -nil
-     */
-    public static void main(String[] args) {
-    	
-    	
-        // Tests go here
-    }
 }

@@ -658,13 +658,13 @@ public class ConnectFourGameGUI extends GameGUI {
         final int PLAYER_COMPONENT_TWO = 1;
         final int PLAYER_COMPONENT_THREE = 2;
         String[] s1 = new String[TOTAL_PLAYER_COMPONENTS];
-                    String[] s2 = new String[TOTAL_PLAYER_COMPONENTS];
-                    s1[PLAYER_COMPONENT_ONE] = "Tom";
-                    s1[PLAYER_COMPONENT_TWO] = "Human";
-                    s1[PLAYER_COMPONENT_THREE] = "Red";
-                    s2[PLAYER_COMPONENT_ONE] = "Jon";
-                    s2[PLAYER_COMPONENT_TWO] = "Human";
-                    s2[PLAYER_COMPONENT_THREE] = "Yellow";
+        String[] s2 = new String[TOTAL_PLAYER_COMPONENTS];
+        s1[PLAYER_COMPONENT_ONE] = "Tom";
+        s1[PLAYER_COMPONENT_TWO] = "Human";
+        s1[PLAYER_COMPONENT_THREE] = "Red";
+        s2[PLAYER_COMPONENT_ONE] = "Jon";
+        s2[PLAYER_COMPONENT_TWO] = "Human";
+        s2[PLAYER_COMPONENT_THREE] = "Yellow";
         ConnectFourGameGUI g = new ConnectFourGameGUI(s1,s2,false,"");
         
         System.out.println("\nConnectFourGameGUI Tests:\n");
