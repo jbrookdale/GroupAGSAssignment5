@@ -58,6 +58,15 @@ class ConnectFourHardComputerPlayer <C> extends HardComputerPlayer {
 	        System.out.println("score: " +player1.getScore());
 	        player1.setScore(TEST_SCORE);
 	        System.out.println("Change score: " +player1.getScore());
+	        
+	        /** Test to ensure random move works */
+		    ConnectFourBoard board = new ConnectFourBoard(WIDTH, HEIGHT);
+		    ConnectFourHardComputerPlayer<Object> compAI = new ConnectFourHardComputerPlayer("CompAI",Piece.ConnectFourPieceColour.YELLOW);
+	        /** < show the move of the hard computer player  */
+	        Point x = compAI.makeAIMove(board);
+	        System.out.println("Expected position corresponding to point " + x);
+	        System.out.println("ConectFourHard Computer move: " + x);;
+	       
     }
     
     
