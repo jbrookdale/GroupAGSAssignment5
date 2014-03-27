@@ -447,6 +447,39 @@ public class Tester{
 					    new ConnectFourGameGUI(s1, s2, false, "");
 		}
 
+        private void testEasyConnectFourComputerPlayer() {
+            
+        }
+        
+        private void testHardConnectFourComputerPlayer() {
+                    
+        }
+        
+        private void testEasyOthelloComputerPlayer() {
+                            
+        }
+
+        private void testHardOthelloComputerPlayer() {
+                            
+        }
+
+        private void testConnectFourGameLoader() {
+                            
+        }
+
+        private void testConnectFourGameSaver() {
+                            
+        }
+
+        private void testOthelloGameLoader() {
+                            
+        }
+
+        private void testOthelloGameSaver() {
+                            
+        }
+
+
     /**
      * This is the main method, which is used for testing
      * @param args[] - This array of Strings contains all the arguments
@@ -471,7 +504,14 @@ public class Tester{
 		System.out.println("testing OthelloBoard");
 		testOthelloBoard();
 		System.out.println("testing connectFourGUI");
-
+        testEasyConnectFourComputerPlayer();
+        testHardConnectFourComputerPlayer();
+        testEasyOthelloComputerPlayer();
+        testHardOthelloComputerPlayer();
+        testConnectFourGameLoader();
+        testConnectFourGameSaver();
+        testOthelloGameLoader();
+        testOthelloGameSaver();
 	}
 	
 }
