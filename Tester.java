@@ -209,88 +209,92 @@ final int GREATER_THAN_ZERO = 100;
 }
 
     /**
-* A method to test the MenuGUI class
-*/
-private static void testMenuGUI(){
-int VALID_WIDTH = 370;
-int VALID_HEIGHT = 300;
-
-MenuGUI menu = new MenuGUI("Main Menu", VALID_WIDTH, VALID_HEIGHT);
-
-}
-
-    /**
-* A method to test the ConnectFourPiece class
-*/
-private static void testConnectFourPiece(){
-ConnectFourPiece piece =
-new ConnectFourPiece(Piece.ConnectFourPieceColour.RED);
-
-System.out.println("Valid inputs");
-System.out.println("OthelloPiece.getPieceColour() - Begin");
-System.out.println("Expected output: RED");
-System.out.println("");
-System.out.println("Actual output: " + piece.getPieceColour());
-System.out.println("OthelloPiece.getPieceColour() - End");
-System.out.println("");
-System.out.println("OthelloPiece.setPieceColour() - Begin");
-System.out.println("Expected output: true");
-System.out.println("");
-System.out.println("Actual output: " +
-piece.setPieceColour(Piece.ConnectFourPieceColour.YELLOW));
-System.out.println("OthelloPiece.setPieceColour() - End");
-System.out.println("");
-System.out.println("OthelloPiece.getPieceColour() - Begin");
-System.out.println("Expected output: YELLOW");
-System.out.println("");
-System.out.println("Actual output: " + piece.getPieceColour());
-System.out.println("OthelloPiece.getPieceColour() - End");
-System.out.println("");
-
-System.out.println("Invalid inputs");
-System.out.println("OthelloPiece.setPieceColour() - Begin");
-System.out.println("Expected output: false");
-System.out.println("");
-System.out.println("Actual output: " +
-piece.setPieceColour(Piece.ConnectFourPieceColour.NONE));
-System.out.println("OthelloPiece.setPieceColour() - End");
-System.out.println("");
-System.out.println("OthelloPiece.getPieceColour() - Begin");
-System.out.println("Expected output: YELLOW");
-System.out.println("");
-System.out.println("Actual output: " + piece.getPieceColour());
-System.out.println("OthelloPiece.getPieceColour() - End");
-}
-
-    /**
-* A method to test the ConnectFourPiece class
-*/
-private static void testOthelloGameGUI(){
-final int WIDTH = 600, HEIGHT = 600;
-String[] s = new String[2];
-s[0]="Tom";
-s[1]="Harry";
-OthelloGameGUI displayExample = new OthelloGameGUI("Othello",WIDTH,HEIGHT,
-                                            new HumanPlayer("Tom","Black"),
-                                            new HumanPlayer("Harry","White"));
-displayExample.setPlayers(s);
-displayExample.creatingGui();
-}
-
-    /**
-* A method to test the ConnectFourBoard class
-*/
-    private static void testConnectFourBoard(){
-        //could not test as everything is private
+     * A method to test the MenuGUI class
+     */
+    private static void testMenuGUI(){
+        
+        int VALID_WIDTH = 370;		
+        int VALID_HEIGHT = 300;
+    
+        MenuGUI menu = new MenuGUI("Main Menu", VALID_WIDTH, VALID_HEIGHT);
     }
 
     /**
-* A method to test the HumanPlayer class
-*/
-private static void testHumanPlayer(){
+     * A method to test the ConnectFourPiece class
+     */
+    private static void testConnectFourPiece(){
+        ConnectFourPiece piece =
+        new ConnectFourPiece(Piece.ConnectFourPieceColour.RED);
 
-final int TEST_SCORE = 2;
-ConnectFourPiece player1Piece;
+        System.out.println("Valid inputs");
+        System.out.println("OthelloPiece.getPieceColour() - Begin");
+        System.out.println("Expected output: RED");
+        System.out.println("");
+        System.out.println("Actual output: " + piece.getPieceColour());
+        System.out.println("OthelloPiece.getPieceColour() - End");
+        System.out.println("");
+        System.out.println("OthelloPiece.setPieceColour() - Begin");
+        System.out.println("Expected output: true");
+        System.out.println("");
+        System.out.println("Actual output: " +
+            piece.setPieceColour(Piece.ConnectFourPieceColour.YELLOW));
+        System.out.println("OthelloPiece.setPieceColour() - End");
+        System.out.println("");
+        System.out.println("OthelloPiece.getPieceColour() - Begin");
+        System.out.println("Expected output: YELLOW");
+        System.out.println("");
+        System.out.println("Actual output: " + piece.getPieceColour());
+        System.out.println("OthelloPiece.getPieceColour() - End");
+        System.out.println("");
+
+        System.out.println("Invalid inputs");
+        System.out.println("OthelloPiece.setPieceColour() - Begin");
+        System.out.println("Expected output: false");
+        System.out.println("");
+        System.out.println("Actual output: " +
+            piece.setPieceColour(Piece.ConnectFourPieceColour.NONE));
+        System.out.println("OthelloPiece.setPieceColour() - End");
+        System.out.println("");
+        System.out.println("OthelloPiece.getPieceColour() - Begin");
+        System.out.println("Expected output: YELLOW");
+        System.out.println("");
+        System.out.println("Actual output: " + piece.getPieceColour());
+        System.out.println("OthelloPiece.getPieceColour() - End");
+    }
+
+    /**
+     * A method to test the ConnectFourPiece class
+     */
+    private static void testOthelloGameGUI(){
+        final int WIDTH = 600, HEIGHT = 600;
+        final int TOTAL_PLAYERS = 2;
+        final int PLAYER_ONE = 0;
+        final int PLAYER_TWO = 1;
+        String[] s = new String[TOTAL_PLAYERS];
+        s[PLAYER_ONE]="Jon";
+        s[PLAYER_TWO]="Tom";
+        Player playerOne = new OthelloHardComputerPlayer(s[0], "Black");
+        Player playerTwo = new HumanPlayer(s[1], "White");
+        OthelloGameGUI displayExample = new OthelloGameGUI("Othello",WIDTH,HEIGHT, playerOne, playerTwo);
+        displayExample.setPlayers(s);
+
+        displayExample.creatingGui();
+}
+
+    /**
+     * A method to test the ConnectFourBoard class
+     */
+    private static void testConnectFourBoard(){
+        //could not test as everything is private
+    }
+    
+    /**
+     * A method to test the HumanPlayer class
+     */
+    private static void testHumanPlayer(){
+
+        final int TEST_SCORE = 2;
+        ConnectFourPiece player1Piece;
         player1Piece = new ConnectFourPiece(ConnectFourPiece.ConnectFourPieceColour.YELLOW);
         HumanPlayer player1 = new HumanPlayer("Tom",player1Piece.getPieceColour());
         System.out.println("Player1: " +player1.getName());
@@ -306,183 +310,362 @@ ConnectFourPiece player1Piece;
         System.out.println("score: " +player2.getScore());
         player1.setScore(TEST_SCORE);
         System.out.println("Change score: " +player2.getScore());
-}
-public static void test2() {
-final int WIDTH = 8, HEIGHT = 8;
-        OthelloBoard Board = new OthelloBoard(WIDTH,HEIGHT);
+    }
+    
+    //symbolic constants for test cases for OthelloBoard.java
+    private static final int BOARD_SIZE = 8; //sets size of board to 8 wide and 8 high
+         
+    private static final int TEST_MOVE_X1 = 2; //sets x and y coorindates of a possible move
+    private static final int TEST_MOVE_Y1 = 3; 
+         
+    private static final int TEST_PIECE_X = 5; //sets x and y coordinates of a piece in othello
+    private static final int TEST_PIECE_Y = 3;
+    
+    private static final int OUTPUT_SETPIECE_TEST_X = 3; //expected x and y coordinates from output in setPiece test
+    private static final int OUTPUT_SETPIECE_TEST_Y = 5;
+   
+    private static final int OUTPUT_MOVE_TEST_X = 1; //expected x and y coordinates from output move test
+    private static final int OUTPUT_MOVE_TEST_Y = 2;
+    
+    private static final int OUTPUT_ANYMOVE_TEST_X = 1; //expected x and y coordinates from output in anymove test
+    private static final int OUTPUT_ANYMOVE_TEST_Y = 2;
+   
+    private static final int OUTPUT_DECPIECE_TEST_X = 0; //expected x and y coordinates from output in decPiece test
+    private static final int OUTPUT_DECPIECE_TEST_Y = 3;
+    
+    /**
+     * This is a test for incPiececount and checkWin
+     */
+
+    public static void incPieceCountTest() {
+        OthelloBoard Board = new OthelloBoard(BOARD_SIZE,BOARD_SIZE);
         Board.setBoard();
         Board.incPieceCount();
         System.out.println(Board.getPieceCount());
-        System.out.println(Board.move(COLUMN_ONE,ROW_FOUR, WHITE_PIECE));
-        Board.m_Pieces[COLUMN_SIX][ROW_FOUR]=WHITE_PIECE;
+        System.out.println(Board.move(
+            OUTPUT_DECPIECE_TEST_X, OUTPUT_DECPIECE_TEST_Y, WHITE_PIECE));
+        Board.m_Pieces[TEST_PIECE_X][TEST_PIECE_Y]=WHITE_PIECE;
         System.out.println("");
         System.out.println("");
-Board.checkWin();
-System.out.println("Valid inputs");
-System.out.println("OthelloBoard.checkWin() - Begin");
-System.out.println("Expected output: false");
-System.out.println("");
-System.out.println("Actual output: " + Board.checkWin());
+        Board.checkWin();
+        System.out.println("Valid inputs");
+        System.out.println("OthelloBoard.checkWin() - Begin");
+        System.out.println("Expected output: false");
         System.out.println("");
-     }
-
-
-    /**
-* This is a test for decPiececount and CheckWin
-*/
-public static void test3() {
-final int WIDTH = 8, HEIGHT = 8;
-OthelloBoard Board = new OthelloBoard(WIDTH,HEIGHT);
-Board.setBoard();
-Board.decPieceCount();
-System.out.println(Board.getPieceCount());
-System.out.println(Board.move(COLUMN_THREE,ROW_FOUR, WHITE_PIECE));
-Board.m_Pieces[COLUMN_SIX][ROW_FOUR]=WHITE_PIECE;
-System.out.println("");
-System.out.println("");
-Board.checkWin();
-System.out.println("Valid inputs");
-System.out.println("OthelloBoard.CheckWin() - Begin");
-System.out.println("Expected output: false");
-System.out.println("");
-System.out.println("Actual output: " + Board.CheckWin());
-System.out.println("");
-}
-
-
-    /**
-* This is a test for setPiece
-*/
-
-public static void test4() {
-final int WIDTH = 8, HEIGHT = 8;
-OthelloBoard Board = new OthelloBoard(WIDTH,HEIGHT);
-Board.setBoard();
-Board.decPieceCount();
-System.out.println(Board.getPieceCount());
-System.out.println(Board.move(COLUMN_THREE,ROW_FOUR, WHITE_PIECE));
-Board.m_Pieces[COLUMN_SIX][ROW_FOUR]=WHITE_PIECE;
-System.out.println("");
-System.out.println("");
-Board.checkWin();
-System.out.println("Valid inputs");
-System.out.println("OthelloBoard.setPiece() - Begin");
-System.out.println("Expected output: true");
-System.out.println("");
-System.out.println("Actual output: " + Board.setPiece(COLUMN_FOUR,ROW_SIX,BLACK_PIECE));
-System.out.println("");
-}
-
-
-    /**
-* This is a test for move
-*/
-
-public static void test5() {
-final int WIDTH = 8, HEIGHT = 8;
-OthelloBoard Board = new OthelloBoard(WIDTH,HEIGHT);
-Board.setBoard();
-Board.decPieceCount();
-System.out.println(Board.getPieceCount());
-System.out.println(Board.move(COLUMN_THREE,ROW_FOUR, WHITE_PIECE));
-Board.m_Pieces[COLUMN_SIX][ROW_FOUR]=WHITE_PIECE;
-System.out.println("");
-System.out.println("");
-Board.checkWin();
-System.out.println("Valid inputs");
-System.out.println("OthelloBoard.move() - Begin");
-System.out.println("Expected output: false");
-System.out.println("");
-System.out.println("Actual output: " + Board.move(COLUMN_TWO,ROW_THREE,BLACK_PIECE));
-System.out.println("");
-}
-
-
-    /**
-* This is a test for getPieces
-*/
-public static void test7() {
-final int WIDTH = 8, HEIGHT = 8;
-OthelloBoard Board = new OthelloBoard(WIDTH,HEIGHT);
-Board.setBoard();
-Board.decPieceCount();
-System.out.println(Board.getPieceCount());
-System.out.println(Board.move(COLUMN_THREE,ROW_FOUR, WHITE_PIECE));
-Board.m_Pieces[COLUMN_SIX][ROW_FOUR]=WHITE_PIECE;
-System.out.println("");
-System.out.println("");
-Board.checkWin();
-System.out.println("Valid inputs");
-System.out.println("OthelloBoard.clearPieces() - Begin");
-System.out.println("Expected output: 0");
-System.out.println("");
-Board.clearPieces();
-System.out.println("Actual output: " + Board.getPieces());
-System.out.println("");
-}
-
-
-    /**
-* This is a test for setPiece
-*/
-public static void test8() {
-final int WIDTH = 8, HEIGHT = 8;
-OthelloBoard Board = new OthelloBoard(WIDTH,HEIGHT);
-Board.setBoard();
-Board.decPieceCount();
-System.out.println(Board.getPieceCount());
-System.out.println(Board.move(COLUMN_THREE,ROW_FOUR, WHITE_PIECE));
-Board.m_Pieces[COLUMN_SIX][ROW_FOUR]=WHITE_PIECE;
-System.out.println("");
-System.out.println("");
-Board.checkWin();
-System.out.println("Valid inputs");
-System.out.println("OthelloBoard.clearPieces() - Begin");
-System.out.println("Expected output: Throws exception");
-System.out.println("");
-try{
-
-}catch(UnsupportedOperationException e){
-
-}
-System.out.println("");
-}
-
-    /**
-* A method to test the OthelloBoard class
-*/
-private static void testOthelloBoard(){
-test2();
-test3();
-test4();
-test5();
-test7();
-test8();
-}
-
-    /**
-* A method to test ConnectFour class
-*/
-private static void testConnectFour(){
-            String[] s1 = new String[3];
-            String[] s2 = new String[3];
-            s1[0] = "Tom";
-            s1[1] = "Human";
-            s1[2] = "Red";
-            s2[0] = "Harry";
-            s2[1] = "Human";
-            s2[2] = "Yellow";
-ConnectFourGameGUI connectFour =
-new ConnectFourGameGUI(s1, s2, false, "");
-}
-
-        private static void testEasyConnectFourComputerPlayer() {
-            
-        }
+        System.out.println("Actual output: " + Board.checkWin());
+        System.out.println("");
+    }
         
-        private static void testHardConnectFourComputerPlayer() {
-                    
+        
+    /**
+     * This is a test for decPiececount and CheckWin
+     */	
+    public static void decPieceCountTest() {
+        OthelloBoard Board = new OthelloBoard(BOARD_SIZE,BOARD_SIZE);
+        Board.setBoard();
+        Board.decPieceCount();
+        System.out.println(Board.getPieceCount());
+        System.out.println(Board.move(
+            TEST_MOVE_X1, TEST_MOVE_Y1, WHITE_PIECE));
+        Board.m_Pieces[TEST_PIECE_X][TEST_PIECE_Y]=WHITE_PIECE;
+        System.out.println("");
+        System.out.println("");
+        Board.checkWin();
+        System.out.println("Valid inputs");
+        System.out.println("OthelloBoard.CheckWin() - Begin");
+        System.out.println("Expected output: false");
+        System.out.println("");
+        System.out.println("Actual output: " + Board.CheckWin());
+        System.out.println("");
+    }
+        
+
+    /**
+    * This is a test for setPiece
+    */	
+
+    public static void setPieceTest() {
+        OthelloBoard Board = new OthelloBoard(BOARD_SIZE,BOARD_SIZE);
+        Board.setBoard();
+        Board.decPieceCount();
+        System.out.println(Board.getPieceCount());
+        System.out.println(Board.move(
+            TEST_MOVE_X1, TEST_MOVE_Y1, WHITE_PIECE));
+        Board.m_Pieces[TEST_PIECE_X][TEST_PIECE_Y]=WHITE_PIECE;
+        System.out.println("");
+        System.out.println("");
+        Board.checkWin();
+        System.out.println("Valid inputs");
+        System.out.println("OthelloBoard.setPiece() - Begin");
+        System.out.println("Expected output: true");
+        System.out.println("");
+        System.out.println("Actual output: " + 
+        Board.setPiece(
+            OUTPUT_SETPIECE_TEST_X,OUTPUT_SETPIECE_TEST_Y,BLACK_PIECE));
+        System.out.println("");
+    }
+        
+        
+    /**	
+    * This is a test for move
+    */
+        
+    public static void moveTest() {
+        OthelloBoard Board = new OthelloBoard(BOARD_SIZE,BOARD_SIZE);
+        Board.setBoard();
+        Board.decPieceCount();
+        System.out.println(Board.getPieceCount());
+        System.out.println(Board.move(
+        TEST_MOVE_X1, TEST_MOVE_Y1, WHITE_PIECE));
+        Board.m_Pieces[TEST_PIECE_X][TEST_PIECE_Y]=WHITE_PIECE;
+        System.out.println("");
+        System.out.println("");
+        Board.checkWin();
+        System.out.println("Valid inputs");
+        System.out.println("OthelloBoard.move() - Begin");
+        System.out.println("Expected output: false");
+        System.out.println("");
+        System.out.println("Actual output: " + 
+        Board.move(OUTPUT_MOVE_TEST_X,OUTPUT_MOVE_TEST_Y,BLACK_PIECE));
+        System.out.println("");
+    }
+        
+        
+
+    /**	
+     * This is a test for anyMove
+     */	
+    public static void anyMoveTest() {
+        OthelloBoard Board = new OthelloBoard(BOARD_SIZE,BOARD_SIZE);
+        Board.setBoard();
+        Board.decPieceCount();
+        System.out.println(Board.getPieceCount());	
+        System.out.println(Board.move(
+        TEST_MOVE_X1, TEST_MOVE_Y1, WHITE_PIECE));
+        Board.m_Pieces[TEST_PIECE_X][TEST_PIECE_Y]=WHITE_PIECE;
+        System.out.println("");
+        System.out.println("");
+        Board.checkWin();
+        System.out.println("Valid inputs");
+        System.out.println("OthelloBoard.anyMove() - Begin");
+        System.out.println("Expected output: false");
+        System.out.println("");
+        System.out.println("Actual output: " 
+            + Board.anyMove(
+            OUTPUT_ANYMOVE_TEST_X,OUTPUT_ANYMOVE_TEST_Y,BLACK_PIECE));
+        System.out.println("");
+    }
+            
+    /**	
+     * This is a test for getPieces
+     */		
+    public static void getPiecesTest() {
+        OthelloBoard Board = new OthelloBoard(BOARD_SIZE,BOARD_SIZE);
+        Board.setBoard();
+        Board.decPieceCount();
+        System.out.println(Board.getPieceCount());	
+        System.out.println(Board.move(
+            TEST_MOVE_X1, TEST_MOVE_Y1, WHITE_PIECE));
+        Board.m_Pieces[TEST_PIECE_X][TEST_PIECE_Y]=WHITE_PIECE;
+        System.out.println("");
+        System.out.println("");
+        Board.checkWin();
+        System.out.println("Valid inputs");
+        System.out.println("OthelloBoard.clearPieces() - Begin");
+        System.out.println("Expected output: 0");
+        System.out.println("");
+        Board.clearPieces();
+        System.out.println("Actual output: " + Board.getPieces());
+        System.out.println("");
+    }
+        
+
+    /**	
+     * This is a test for setPiece
+     */
+    public static void setPieceTest2() {
+        OthelloBoard Board = new OthelloBoard(BOARD_SIZE,BOARD_SIZE);
+        Board.setBoard();
+        Board.decPieceCount();
+        System.out.println(Board.getPieceCount());
+        System.out.println(Board.move(
+            TEST_MOVE_X1, TEST_MOVE_Y1, WHITE_PIECE));
+            Board.m_Pieces[TEST_PIECE_X][TEST_PIECE_Y]=WHITE_PIECE;
+        System.out.println("");
+        System.out.println("");
+        Board.checkWin();
+        System.out.println("Valid inputs");
+        System.out.println("OthelloBoard.clearPieces() - Begin");
+        System.out.println("Expected output: Throws exception");
+        System.out.println("");
+
+        System.out.println("");
+    }
+
+
+
+    /**
+     * A method to test the OthelloBoard class
+     */
+    private static void testOthelloBoard(){
+        incPieceCountTest();
+        decPieceCountTest();
+        setPieceTest();
+        moveTest();
+        anyMoveTest();
+        getPiecesTest();
+        setPieceTest2();
+    }
+
+    /**
+     * A method to test ConnectFour class
+     */
+    private static void testConnectFour(){
+        final int TOTAL_PLAYER_COMPONENTS = 3;
+        final int PLAYER_COMPONENT_ONE = 0;
+        final int PLAYER_COMPONENT_TWO = 1;
+        final int PLAYER_COMPONENT_THREE = 2;
+        String[] s1 = new String[TOTAL_PLAYER_COMPONENTS];
+        String[] s2 = new String[TOTAL_PLAYER_COMPONENTS];
+        s1[PLAYER_COMPONENT_ONE] = "Tom";
+        s1[PLAYER_COMPONENT_TWO] = "Human";
+        s1[PLAYER_COMPONENT_THREE] = "Red";
+        s2[PLAYER_COMPONENT_ONE] = "Jon";
+        s2[PLAYER_COMPONENT_TWO] = "Human";
+        s2[PLAYER_COMPONENT_THREE] = "Yellow";
+        ConnectFourGameGUI g = new ConnectFourGameGUI(s1,s2,false,"");
+        
+        final int ANIMATION_TIME = 750;
+    
+        final int COLUMN_THREE = 2;
+        final int COLUMN_SEVEN = 6;
+    
+        System.out.println("ConnectFourGameGUI.performMove() "
+                                       + "- Begin");
+        System.out.println("Expected output: first piece placed in the third "
+                                       + "column");
+        System.out.println("");
+        System.out.println("Actual output: on screen.");
+        g.performMove(COLUMN_THREE);
+        System.out.println("ConnectFourGameGUI.performMove() "
+                                       + "- End");
+        System.out.println("");
+    
+        System.out.println("ConnectFourGameGUI.performMove() - Begin");
+        System.out.println("Expected output: Nothing as move "
+                               + "shouldn't be performed until"
+                               + "the last animation has finished");
+        System.out.println("");
+        System.out.println("Actual output: on screen.");
+        g.performMove(COLUMN_SEVEN);
+        System.out.println("ConnectFourGameGUI.performMove() - End");
+        System.out.println("");
+    
+        System.out.println("Next test in .75 seconds...");
+    
+        System.out.println("");
+
+        try {
+            Thread.sleep(ANIMATION_TIME);
+        } catch (Exception e) {
+        
         }
+    
+        System.out.println("ConnectFourGameGUI.performMove() - Begin");
+        System.out.println("Expected output: opponent piece placed in the "
+                                               + "third column, ontop of"
+                                               + " the first piece");
+        System.out.println("");
+        System.out.println("Actual output: on screen.");
+        g.performMove(COLUMN_THREE);
+        System.out.println("ConnectFourGameGUI.performMove() - End");
+        System.out.println("");
+    }
+
+    /**
+     * A method to test EasyConnectFourComputerPlayer class
+     */
+    private static void testEasyConnectFourComputerPlayer() {
+        /**
+          * This is to test that Connect Four game works with Computer Easy implementation
+          * This tests that the name, colour and score for each player can be retrieved 
+          */
+          final int TEST_PLAYER_SCORE = 2;
+          final int TEST_PLAYER2_SCORE = 4;
+          final int WIDTH = 10;
+          final int HEIGHT = 7;
+                        
+          ConnectFourPiece player1Piece;
+          player1Piece = new ConnectFourPiece(ConnectFourPiece.ConnectFourPieceColour.RED);
+          ConnectFourEasyComputerPlayer player1 =
+              new ConnectFourEasyComputerPlayer("Computer",player1Piece.getPieceColour());
+          System.out.println("Player Expected name " + "Computer");
+          System.out.println("Player1: " +player1.getName());
+          System.out.println("Player Expected colour " + "RED");
+          System.out.println("Colour: " +player1.getColour());
+          System.out.println("Player Expected Score " + "0");
+          System.out.println("score: " +player1.getScore());
+          player1.setScore(TEST_PLAYER_SCORE);
+          System.out.println("Player Expected Score " + "2");
+          System.out.println("Change score: " + player1.getScore());
+                    
+          /**
+           * This is to test that Connect Four game works with Computer Easy implementation
+           * This tests that the name, colour and score for each player can be retrieved 
+           */
+          ConnectFourPiece player2Piece;
+          player1Piece = new ConnectFourPiece(ConnectFourPiece.ConnectFourPieceColour.YELLOW);
+          ConnectFourEasyComputerPlayer player2 =
+              new ConnectFourEasyComputerPlayer("Computer",player1Piece.getPieceColour());
+          System.out.println("Player Expected name " + "Computer");
+          System.out.println("Player2: " +player2.getName());
+          System.out.println("Player Expected colour " + "YELLOW");
+          System.out.println("Colour: " +player2.getColour());
+          System.out.println("Player Expected Score " + "0");
+          System.out.println("score: " +player2.getScore());
+          player2.setScore(TEST_PLAYER2_SCORE);
+          System.out.println("Player Expected Score " + "4");
+          System.out.println("Change score: " + player2.getScore());
+                    
+          /** Test to ensure random move works */
+          ConnectFourBoard board = new ConnectFourBoard(WIDTH, HEIGHT);
+          ConnectFourEasyComputerPlayer<Object> compAI = new ConnectFourEasyComputerPlayer("CompAI",Piece.ConnectFourPieceColour.YELLOW);
+          /** < show the move of the easy computer player  */
+          Point x = compAI.makeAIMove(board);
+          System.out.println("Expected position corresponding to column " + x.y + " row " +x.x);
+          System.out.println("ConectFourHard Computer move: " + "y=" +x.y + "  " + "x=" +x.x);;
+    }
+
+    /**
+     * A method to test HardConnectFourComputerPlayer class
+     */
+    private static void testHardConnectFourComputerPlayer() {
+        final int TEST_SCORE = 2;
+        final int WIDTH = 10;
+        final int HEIGHT = 7;
+        ConnectFourPiece player1Piece;
+        player1Piece = new ConnectFourPiece(ConnectFourPiece.ConnectFourPieceColour.RED);
+        ConnectFourHardComputerPlayer player1 = new ConnectFourHardComputerPlayer("Computer",player1Piece.getPieceColour());
+        System.out.println("Player1: " +player1.getName());
+        System.out.println("Colour: " +player1.getColour());
+        System.out.println("score: " +player1.getScore());
+        player1.setScore(TEST_SCORE);
+        System.out.println("Change score: " +player1.getScore());
+                   
+        /** Test to ensure random move works */
+        ConnectFourBoard board = new ConnectFourBoard(WIDTH, HEIGHT);
+        ConnectFourHardComputerPlayer<Object> compAI = new ConnectFourHardComputerPlayer("CompAI",Piece.ConnectFourPieceColour.YELLOW);
+        /** < show the move of the hard computer player  */
+        Point x = compAI.makeAIMove(board);
+        System.out.println("Expected position corresponding to column " + x.y + " row " +x.x);
+        System.out.println("ConectFourHard Computer move: " + "y=" +x.y + "  " + "x=" +x.x);;
+                   
+        /** Checks if Maximum chain exist on empty board */
+        int y =compAI.MaximumChain(WIDTH-1, HEIGHT-1, board);
+        System.out.println("Expected output 0");
+        System.out.println(y);
+                    
+    }
         
         private static void testEasyOthelloComputerPlayer() {
             /** Test to ensure random move works */
@@ -681,22 +864,25 @@ so any arguments passed in will have no effect on the program or testing.
         testHumanPlayer();
         System.out.println("testing OthelloBoard");
         testOthelloBoard();
-        System.out.println("testing ConnectFourGUI");
+        System.out.println("testing ConnectFourEasyComputerPlayer");
         testEasyConnectFourComputerPlayer();
+        System.out.println("testing ConnectFourHardComputerPlayer");
         testHardConnectFourComputerPlayer();
+        System.out.println("testing OthelloEasyComputerPlayer");
         testEasyOthelloComputerPlayer();
+        System.out.println("testing OthelloHardComputerPlayer");
         testHardOthelloComputerPlayer();
-        testGameLoader();
         System.out.println("testing GameLoader");
-        testGameSaver();
+        testGameLoader();
         System.out.println("testing GameSaver");
-        testConnectFourGameLoader();
+        testGameSaver();
         System.out.println("testing ConnectFourGameLoader");
-        testConnectFourGameSaver();
+        testConnectFourGameLoader();
         System.out.println("testing ConnectFourGameSaver");
-        testOthelloGameLoader();
+        testConnectFourGameSaver();
         System.out.println("testing OthelloGameLoader");
-        testOthelloGameSaver();
+        testOthelloGameLoader();
         System.out.println("testing OthelloGameSaver");
+        testOthelloGameSaver();
     }
 }

@@ -48,7 +48,6 @@ class ConnectFourHardComputerPlayer <C> extends HardComputerPlayer {
      * Runs various test on the class.
      */
 	public static void main(String[] args) {
-        // Tests go here
 		final int TEST_SCORE = 2;
 		ConnectFourPiece player1Piece;
 	        player1Piece = new ConnectFourPiece(ConnectFourPiece.ConnectFourPieceColour.RED);
