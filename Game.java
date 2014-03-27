@@ -42,8 +42,9 @@ public abstract class Game<C> {
      * This method returns the name of one of the players, either player one or 
      * two depending on the input parameter.
      *
-     *
-     * 
+     * @param x -This variable passed in stores which player, one or two,
+     *           the name needed to be returned.
+     * @return String -The name of the player, either player one or two.
      */
      
      public static void resetTurn() {
@@ -90,30 +91,15 @@ public abstract class Game<C> {
           return playersNames;
       }
 
-    /**
-    * Constructor for Game this is used to create a new game
-    * @param playerOne -This variable passed in stores player one
-    * @param playerTwo -This variable passed in stores player two
-    */
+     /** Constructor for Game this is used to create a new game
+      * @param playerOne -This variable passed in stores player one
+      * @param playerTwo -This variable passed in stores player two
+      */
     public Game(Player playerOne, Player playerTwo) {
-        // Jon's fix idea. Pass in 2 player objects, instead of 6 parameters.
-        // then set humanPlayer[0] and HumanPlayer[1] to those.
-        // Only 2 parameters needed.
-        // Player Objects can be made in MenuGUI, where there player decides what colour
-        // They want and things liek that. - Jon
         m_player = new Player[2];
         
         m_player[PLAYER_ONE] = playerOne;
         m_player[PLAYER_TWO] = playerTwo;
-        /* Old code
-        if (playerOneType.equalsIgnoreCase(HUMAN)) {
-        	m_player[0] = new HumanPlayer(playerOneName, playerOneColour);
-        }
-
-        if (playerTwoType.equalsIgnoreCase(HUMAN)) {
-        	m_player[1] = new HumanPlayer(playerTwoName, playerTwoColour);
-        }
-        */
     }
 
     /**
