@@ -14,7 +14,7 @@ import java.awt.Point;
 * It makes a random valid moves if such move exist.
 */
 
-class ConnectFourEasyComputerPlayer <C> extends EasyComputerPlayer {
+public class ConnectFourEasyComputerPlayer <C> extends EasyComputerPlayer {
 
 	 /**
      * This is the Constructor for the ConnectFourHardComputerPlayer class.
