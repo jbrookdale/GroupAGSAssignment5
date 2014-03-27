@@ -86,7 +86,7 @@ class ConnectFourEasyComputerPlayer <C> extends EasyComputerPlayer {
 	 * @param board -Connect Four Board
 	 * @return movePosition- Position on the board to drop piece.
 	 */
-    private Point makeAIMove(ConnectFourBoard board){
+    public Point makeAIMove(ConnectFourBoard board){
         Random r = new Random();
         Point movePosition;
         /** Stores a generated value corresponding to the column to drop piece */
