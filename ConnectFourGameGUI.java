@@ -394,7 +394,36 @@ public class ConnectFourGameGUI extends GameGUI {
                         getGame().incrementTurn();
                         
                     }
-            }
+                    if (!getGame().getPlayer(getGame().getPlayerTurn()
+                                                           % TOTAL_PLAYERS)
+                                              .getPlayerType()
+                                                  .equals("Human")) {
+                        int playerTurn = getGame().getPlayerTurn();
+                        int x;
+                        if ((getGame().getPlayerTurn() % TOTAL_PLAYERS
+                                == PLAYER_ONE
+                            && m_playerOneType == "Computer: Easy")
+                            || (getGame().getPlayerTurn() % TOTAL_PLAYERS
+                                == PLAYER_TWO
+                            && m_playerTwoType == "Computer: Easy")) {
+                                ConnectFourEasyComputerPlayer player =
+                                    (ConnectFourEasyComputerPlayer)getGame()
+                                        .getPlayer(playerTurn % TOTAL_PLAYERS);
+                                        x = (int)player.makeAIMove(getGame()
+                                                .getBoard())
+                                                    .getX();
+                                    } else {
+                                        ConnectFourHardComputerPlayer player =
+                                        (ConnectFourHardComputerPlayer)getGame()
+                                                .getPlayer(
+                                                    playerTurn % TOTAL_PLAYERS);
+                                        x = (int)player.makeAIMove(getGame()
+                                                .getBoard()).getX();
+                                    }
+                                getGame().incrementTurn();
+                                performMove(x);
+                            }
+                }
         }
         
         //Currently unused, but must be declared
