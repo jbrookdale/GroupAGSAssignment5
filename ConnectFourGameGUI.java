@@ -645,7 +645,13 @@ public class ConnectFourGameGUI extends GameGUI {
         }
         return reply == JOptionPane.YES_OPTION;
     }
-    
+
+    /**
+     * This is the main method, which is used for testing
+     * @param args[] - This array of Strings contains all the arguments
+     that are passed in when the program is run. These are not used though,
+     so any arguments passed in will have no effect on the program or testing.
+     */
     public static void main(String args[]) {
         final int TOTAL_PLAYER_COMPONENTS = 3;
         final int PLAYER_COMPONENT_ONE = 0;
