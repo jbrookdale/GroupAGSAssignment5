@@ -85,7 +85,9 @@ public class Tester{
 
 
 
-
+    /**
+     * A method to test the OthelloGame class
+     */
 	private static void testOthelloGame(){
 		
 		final int SCORE_TWO = 2;
@@ -133,6 +135,10 @@ public class Tester{
         System.out.println("expected output: Harry");
         System.out.println(testGame.getPlayerName(TEST_PLAYER_NAME_100));
     }
+    
+    /**
+     * A method to test the OthelloPiece class
+     */
 
     private static void testOthelloPiece(){
     	OthelloPiece piece = new OthelloPiece(Piece.OthelloPieceColour.BLACK);
@@ -173,6 +179,9 @@ public class Tester{
 		System.out.println("OthelloPiece.getPieceColour() - End");
 	}
 
+    /**
+     * A method to test the MenuGUI class
+     */
 	private static void testMenuGUI(){
 		int VALID_WIDTH = 370;		
 		int VALID_HEIGHT = 300;
@@ -180,6 +189,10 @@ public class Tester{
 		MenuGUI menu = new MenuGUI("Main Menu", VALID_WIDTH, VALID_HEIGHT);
 		
 	}
+
+    /**
+     * A method to test the ConnectFourPiece class
+     */
 	private static void testConnectFourPiece(){
 		ConnectFourPiece piece = 
 			new ConnectFourPiece(Piece.ConnectFourPieceColour.RED);
@@ -220,10 +233,9 @@ public class Tester{
 		System.out.println("OthelloPiece.getPieceColour() - End");
 	}
 
-	private static void testConnectFourBoard(){
-		//could not test as everything is private
-	}
-
+    /**
+     * A method to test the ConnectFourPiece class
+     */
 	private static void testOthelloGameGUI(){
 		final int WIDTH = 600, HEIGHT = 600;
 		String[] s = new String[2];
@@ -236,6 +248,16 @@ public class Tester{
 		displayExample.creatingGui();
 	}
 
+    /**
+     * A method to test the ConnectFourBoard class
+     */
+    private static void testConnectFourBoard(){
+        //could not test as everything is private
+    }
+
+    /**
+     * A method to test the HumanPlayer class
+     */
 	private static void testHumanPlayer(){
 		
 	final int TEST_SCORE = 2;
@@ -276,9 +298,9 @@ public class Tester{
     	}
 	
 	
- /**
-* This is a test for decPiececount and CheckWin
-*/	
+    /**
+     * This is a test for decPiececount and CheckWin
+     */	
 	public static void test3() {
 	       final int WIDTH = 8, HEIGHT = 8;
 	       OthelloBoard Board = new OthelloBoard(WIDTH,HEIGHT);
@@ -299,9 +321,9 @@ public class Tester{
 	    }
 	
 
-/**
-* This is a test for setPiece
-*/	
+    /**
+     * This is a test for setPiece
+     */	
 
 	public static void test4() {
 		final int WIDTH = 8, HEIGHT = 8;
@@ -323,9 +345,9 @@ public class Tester{
 	}
 	
 	
-/**	
-* This is a test for move
-*/
+    /**	
+     * This is a test for move
+     */
 	
 	public static void test5() {
 	       final int WIDTH = 8, HEIGHT = 8;
@@ -347,9 +369,9 @@ public class Tester{
 	}
 	
 		
-/**	
-* This is a test for getPieces
-*/		
+    /**	
+     * This is a test for getPieces
+     */		
 	public static void test7() {
 			final int WIDTH = 8, HEIGHT = 8;
 	                OthelloBoard Board = new OthelloBoard(WIDTH,HEIGHT);
@@ -371,10 +393,9 @@ public class Tester{
 	}
 	
 
-/**	
-* This is a test for setPiece
-*/
-	
+    /**	
+     * This is a test for setPiece
+     */
 	public static void test8() {
 				final int WIDTH = 8, HEIGHT = 8;
 	                	OthelloBoard Board = new OthelloBoard(WIDTH,HEIGHT);
@@ -398,15 +419,21 @@ public class Tester{
 				System.out.println("");
 		}
 
+    /**
+     * A method to test the OthelloBoard class
+     */
 		private static void testOthelloBoard(){
 			test2();
 	     	test3();
 	     	test4();
 	     	test5();
-		test7();
-		test8();
+		    test7();
+		    test8();
 		}
 
+    /**
+     * A method to test ConnectFour class
+     */
 		private static void testConnectFour(){
             String[] s1 = new String[3];
             String[] s2 = new String[3];
@@ -420,7 +447,12 @@ public class Tester{
 					    new ConnectFourGameGUI(s1, s2, false, "");
 		}
 
-
+    /**
+     * This is the main method, which is used for testing
+     * @param args[] - This array of Strings contains all the arguments
+     that are passed in when the program is run. These are not used though,
+     so any arguments passed in will have no effect on the program or testing.
+     */
 	public static void main (String[] args){
 		System.out.println("testing OthelloGame");
 		testOthelloGame();
@@ -430,8 +462,8 @@ public class Tester{
 		testConnectFourPiece();
 		System.out.println("testing menuGUI");
 		testMenuGUI();
-		System.out.println("testing ConnectFourBoard");
-		testConnectFourBoard();
+		System.out.println("testing connectFourBoard");
+        testConnectFourBoard();
 		System.out.println("testing OthelloGameGUI");
 		testOthelloGameGUI();
 		System.out.println("testing HumanPlayer");
