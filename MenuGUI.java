@@ -141,7 +141,7 @@ public class MenuGUI extends GUI {
 	
 	/**
 	* This method returns the current game type of the game.
-	* @param -nil
+	* 
 	* @return m_Game -This will return 1 or 2, 1 being Connect 4
 	*				  or 2 being Othello.
 	*/
@@ -220,7 +220,7 @@ public class MenuGUI extends GUI {
  	/**
 	* This method will return Player one name.
 	* 
-	* @param nil
+	* 
 	* @return m_PlayerOneName -This variable is the first players name.
 	*/   
 	private String getPlayerOneName() {
@@ -232,7 +232,7 @@ public class MenuGUI extends GUI {
  	/**
 	* This method will return Players Two name.
 	* 
-	* @param nil
+	* 
 	* @return m_PlayerTwoName -This variable is the second players name.
 	*/  
 	private String getPlayerTwoName() {
@@ -244,7 +244,7 @@ public class MenuGUI extends GUI {
 	/**
 	* This method will return Players Two colour.
 	* 
-	* @param nil
+	* 
 	* @return m_PlayerTwoColour -This variable is the second players colour.
 	*/
 	public static String getPlayerTwoColour() {
@@ -254,7 +254,7 @@ public class MenuGUI extends GUI {
 	/**
 	* This method will return Players One colour.
 	* 
-	* @param nil
+	* 
 	* @return m_PlayerOneColour -This variable is the first players colour.
 	*/
 	public static String getPlayerOneColour() {
@@ -264,7 +264,7 @@ public class MenuGUI extends GUI {
 	/**
 	* This method will return Players One type.
 	* 
-	* @param nil
+	* 
 	* @return m_PlayerOneType -This variable is the first players type.
 	*/
 	public static String getPlayerOneType() {
@@ -274,7 +274,7 @@ public class MenuGUI extends GUI {
 	/**
 	* This method will return Players Two type.
 	* 
-	* @param nil
+	* 
 	* @return m_PlayerTwoType -This variable is the second players type.
 	*/
 	public static String getPlayerTwoType() {
@@ -312,7 +312,7 @@ public class MenuGUI extends GUI {
     * This method sets the position of the connect four and othello buttons 
     * and adds them to the frame to be displayed.
     * 
-    * @param nil
+    * 
     * @return true -This returns true if the method is successfully executed.
     */
 	private boolean ButtonPanelSetUp() {
@@ -380,7 +380,7 @@ public class MenuGUI extends GUI {
     * This method changes the current screen to allow user to input the two 
     * player names after they have selected a game to play.
     * 
-    * @param nil
+    * 
     * @return true -This method returns true if the method is successfully 
     *				executed.
 	*/
@@ -592,7 +592,7 @@ public class MenuGUI extends GUI {
 	* a name, the name they input is either not empty or has a maximum length 
 	* of 20 characters or has two identical names, or if name is whitespace
 	* 
-	* @param nil
+	* 
 	* @return true -This returns true if the name suits the requirements or 
 	*				false otherwise.
 	*/
