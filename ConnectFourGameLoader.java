@@ -1,5 +1,5 @@
 /**
-* @file Connect4GameLoader.java
+* @file ConnectFourGameLoader.java
 * @author Ieuan Skinner
 * @date 26 March 14
 * @see http://www.mkyong.com/java/how-to-read-xml-file-in-java-dom-parser/
