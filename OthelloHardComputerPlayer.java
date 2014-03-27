@@ -166,7 +166,7 @@ class OthelloHardComputerPlayer <C> extends HardComputerPlayer {
         
         /** < show the move of the hard computer player  */
         System.out.println("");
-        System.out.println("Expected Random position corresponding to point x");
+        System.out.println("Expected maximum pieces flipped position corresponding to point x");
         Point x = compAI.makeAIMove(game.m_board);
         System.out.println("Othello Hard ComAI move: " + x);
 
