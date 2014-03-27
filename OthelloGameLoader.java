@@ -19,10 +19,22 @@ public class OthelloGameLoader extends GameLoader{
 	private int m_playerOneScore;
 	private int m_playerTwoScore;
 	
+	/** Symbolic constant that stores the width of the othello board */
+	private final int BOARD_WIDTH = 8;
+	
+	/**
+	 * Constructor that passes in the filename of the xml file 
+	 * @param fileName - String that stores filepath of othello game save
+	 */
+	
 	public OthelloGameLoader(String fileName) {
 		super(fileName);
 	}
 	
+	/**
+	 * Get method that returns whether game is othello or connect 4
+	 * @return true/false - true is othello is chosen
+	 */
 	public boolean getGameType(){
 		if(getM_gametype().equals("Othello")){
 			return true;
@@ -31,6 +43,10 @@ public class OthelloGameLoader extends GameLoader{
 		}
 	}
 	
+	/**
+	 * Set method that reads the xml file's details about the player
+	 * @param Element - passes in elements from xml file
+	 */
 	public void setPlayerData(Element element){
 		if(element.getAttribute("id").equals("1")){
 			setM_playerOneType(element.getElementsByTagName("type").item(0).getTextContent());
@@ -47,23 +63,25 @@ public class OthelloGameLoader extends GameLoader{
 		}
 	}
 	
+	/**
+	 * Set method that sets player 2's score
+	 * @param score - string storing player 2's score
+	 */
 	private void setM_playerTwoScore(String score) {
 		m_playerTwoScore = Integer.parseInt(score);
 	}
-
+	
+	/**
+	 * Set method that sets player 1's score
+	 * @param score - string storing player 1's score
+	 */
 	private void setM_playerOneScore(String score) {
 		m_playerOneScore = Integer.parseInt(score);
 	}
-
-	/**
-	 * Things still needed:
-	 * 		-- Score updating and saving even.
-	 * 		-- Player colour and type identification. (?)
-	 * 		-- Player turn saving and loading.
-	 * 
-	 * 		The way I'm setting pieces is basically bullshit.
-	 */
 	
+	/**
+	 * Method that sets the board according to the data stored in the xml file
+	 */
 	public void setupBoard(){
 		Player player1;
 		Player player2;
@@ -87,8 +105,8 @@ public class OthelloGameLoader extends GameLoader{
 		
 		OthelloGame loadGame = new OthelloGame(player1, player2);
 
-		for (int i = 0; i < 8; i++){
-			for (int j = 0; j < 8; j++){
+		for (int i = 0; i < BOARD_WIDTH; i++){
+			for (int j = 0; j < BOARD_WIDTH; j++){
 				OthelloGameGUI.setPieces(i, j, "Blank");
 			}
 		}
@@ -136,11 +154,12 @@ public class OthelloGameLoader extends GameLoader{
 		OthelloGameGUI.setPlayerTwo(player2);
 	}
 	
+	
 	public void testClearing(){
 		OthelloPiece[][] test = OthelloBoard.getPieces();
 		
-		for(int i = 0; i < 8; i++){
-			for(int j = 0; j < 8; j++){
+		for(int i = 0; i < BOARD_WIDTH; i++){
+			for(int j = 0; j < BOARD_WIDTH; j++){
 				if(test[i][j].getPieceColour().equals(Piece.OthelloPieceColour.NONE)){
 					System.out.println("Right");
 					System.out.println(i + " " + j);
