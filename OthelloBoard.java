@@ -209,8 +209,7 @@ public static boolean setPiece (int x, int y, OthelloPiece colour) {
 /**
 * This method checks if there is a valid move anywhere on the board.
 *
-* @param boolean- anyValid returns true if there is a valid move anywhere on the board
-* and false if there is no valid move.
+* @param colour - Othello piece object that stores the colour
 *
 */
 
