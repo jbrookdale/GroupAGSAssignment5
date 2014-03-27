@@ -93,16 +93,8 @@ public abstract class Game<C> {
 
     /**
     * Constructor for Game this is used to create a new game
-    * @param playerOneName -This variable passed in stores the player one's name
-    * @param playerOneType -This variable passed in stores the type of the 
-    *                       player either a human or computer player
-    * @param playerOneColour -This variable passed in stores the player one's 
-    *                         piece colour
-    * @param playerTwoName -This variable passed in stores the player two's name
-    * @param playerTwoType -This variable passed in stores the type of the 
-    *                       player either a human or computer player
-    * @param playerTwoColour -This variable passed in stores the player two's 
-    *                         piece colour
+    * @param playerOne -This variable passed in stores player one
+    * @param playerTwo -This variable passed in stores player two
     */
     public Game(Player playerOne, Player playerTwo) {
         // Jon's fix idea. Pass in 2 player objects, instead of 6 parameters.
