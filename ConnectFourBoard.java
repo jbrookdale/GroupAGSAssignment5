@@ -152,6 +152,7 @@ public class ConnectFourBoard extends Board<Piece.ConnectFourPieceColour,
 	* This is the method for setting a piece on the board from the users input.
 	*
 	* @param x -the variable storing the x-coordinate of the pieces position.
+	* @param y -the variable storing the y-coordinate of the pieces position.
 	* @param colour -the variable storing the colour of the piece, enum type.
 	* @return piecesSet -a boolean variable returned as true if the piece
 	*					 was set or false if it was not.
