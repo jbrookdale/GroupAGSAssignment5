@@ -19,7 +19,7 @@ import java.util.Random;
 * It randomly picks one if many of such chain exist.
 */
 
-class ConnectFourHardComputerPlayer <C> extends HardComputerPlayer {
+public class ConnectFourHardComputerPlayer <C> extends HardComputerPlayer {
 
 	/** Height of the Connect Four Board */
     private static int HEIGHT = 7;
