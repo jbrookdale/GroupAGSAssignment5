@@ -544,15 +544,6 @@ new ConnectFourGameGUI(s1, s2, false, "");
       	OthelloHardComputerPlayer compAI = new OthelloHardComputerPlayer("CompAI",Piece.OthelloPieceColour.WHITE);
               OthelloGame game = new OthelloGame(compAI, new HumanPlayer("Mabelle",Piece.OthelloPieceColour.BLACK));
                     
-              /** < show how many pieces every single point can flip */
-              for (int i = 0; i < OTHELLO_HEIGHT; i++) {
-                  for (int j = 0; j < OTHELLO_WIDTH; j++) {
-                  	int y = compAI.getFlipsForPosition(i,j,game.m_board);
-                  	System.out.println("");
-                      System.out.println("point:(" + (i) + "," + (j) + "): " + "flips " + y + " pieces");
-                  }
-              }
-              
               /** < show the move of the hard computer player  */
               System.out.println("");
               System.out.println("Expected maximum pieces flipped position:");
@@ -585,22 +576,30 @@ that are passed in when the program is run. These are not used though,
 so any arguments passed in will have no effect on the program or testing.
 */
 	public static void main (String[] args){
-	System.out.println("testing OthelloGame");
-	testOthelloGame();
-	System.out.println("testing OthelloPiece");
-	testOthelloPiece();
-	System.out.println("testing ConnectFourPiece");
-	testConnectFourPiece();
-	System.out.println("testing menuGUI");
-	testMenuGUI();
-	System.out.println("testing connectFourBoard");
+        System.out.println("testing OthelloGame");
+        testOthelloGame();
+        System.out.println("testing OthelloPiece");
+        testOthelloPiece();
+        System.out.println("testing ConnectFourPiece");
+        testConnectFourPiece();
+        System.out.println("testing menuGUI");
+        testMenuGUI();
+        System.out.println("testing connectFourBoard");
         testConnectFourBoard();
-	System.out.println("testing OthelloGameGUI");
-	testOthelloGameGUI();
-System.out.println("testing HumanPlayer");
-tt     etdConnectFourComputerPlayer();t          etdConnectFourComputerPlayer();t         etdConnectFourComputerPlayer();t        etdConnectFourComputerPlayer();t       etdConnectFourComputerPlayer();t      etdConnectFourComputerPlayer();testHumanPlayer();
-	System.out.println("testing OthelloBoard");
-	testOthelloBoard();
-	System.out.println("testing connectFourGUI");
-         
-tt     etdConnectFourComputerPlayer();     etdConnectFourComputerPlayer();
+        System.out.println("testing OthelloGameGUI");
+        testOthelloGameGUI();
+        System.out.println("testing HumanPlayer");
+        testHumanPlayer();
+        System.out.println("testing OthelloBoard");
+        testOthelloBoard();
+        System.out.println("testing connectFourGUI");
+        testEasyConnectFourComputerPlayer();
+        testHardConnectFourComputerPlayer();
+        testEasyOthelloComputerPlayer();
+        testHardOthelloComputerPlayer();
+        testConnectFourGameLoader();
+        testConnectFourGameSaver();
+        testOthelloGameLoader();
+        testOthelloGameSaver();
+    }
+}
