@@ -339,10 +339,6 @@ public class ConnectFourGameGUI extends GameGUI {
         setResizable(false);
         setIconImage(new ImageIcon(this.getClass()
                                .getResource("ConnectFour.jpeg")).getImage());
-        setTitle("Connect Four   Player One: \""
-                 + getGame().getPlayerName(Game.PLAYER_ONE)
-                 + "\"    Player Two: \""
-                 + getGame().getPlayerName(Game.PLAYER_TWO) +"\"");
         
         if (!getGame().getPlayer(getGame().getPlayerTurn() % TOTAL_PLAYERS)
                           .getPlayerType().equals("Human")) {
