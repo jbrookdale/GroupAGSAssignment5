@@ -142,7 +142,17 @@ public class ConnectFourGameSaver extends GameSaver{
 	}
 
 	/** This is the main method containing the unit tests for this class. */
-	public static void main(String[] args){
-		//Test cases to be implemented.
+	public static void main(String[] args){Player testPlayer1 = new HumanPlayer("X", "Red");
+	Player testPlayer2 = new HumanPlayer("Y", "Yellow");
+	
+	Game testGame = new ConnectFourGame(testPlayer1, testPlayer2);
+	
+	GameSaver testSaving = new GameSaver("saves//testGameSaver.xml");
+	
+	if(getFile().exists()){
+		System.out.println("Test passed.");
+	}else{
+		System.out.println("Test failed.");
+	}
 	}
 }

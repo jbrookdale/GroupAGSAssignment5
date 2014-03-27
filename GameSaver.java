@@ -33,7 +33,7 @@ public class GameSaver extends GameIOHandler {
 	private DOMSource m_source;
 	
 	private static Document m_doc;
-	private File m_file;
+	private static File m_file;
 	private StreamResult m_result; 
 	
 	private static Element m_rootElement;
@@ -197,6 +197,15 @@ public class GameSaver extends GameIOHandler {
 	}
 	
 	/**
+	 * This access method returns the file being saved to.
+	 * 
+	 * @return m_file	The file being saved to.
+	 */
+	public static File getFile(){
+		return m_file;
+	}
+	
+	/**
 	 * This method will initialise the player elements, set the "id" attribute
 	 * and append the these to the root element.
 	 */
@@ -235,6 +244,17 @@ public class GameSaver extends GameIOHandler {
 	
 	/** This is the main method containing the unit tests for this class. */
 	public static void main(String[] args){
-		//Test cases to be implemented.
+		Player testPlayer1 = new HumanPlayer("X", "Red");
+		Player testPlayer2 = new HumanPlayer("Y", "Yellow");
+		
+		Game testGame = new ConnectFourGame(testPlayer1, testPlayer2);
+		
+		GameSaver testSaving = new GameSaver("saves//testGameSaver.xml");
+		
+		if(getFile().exists()){
+			System.out.println("Test passed.");
+		}else{
+			System.out.println("Test failed.");
+		}
 	}
 }
