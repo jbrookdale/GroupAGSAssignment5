@@ -159,7 +159,7 @@ public class ConnectFourGameGUI extends GameGUI {
     
     /**
      * Set method that sets the game as a new game of connect4
-     * @Param newGame - This will set the game to the new game that is passed in
+     * @param newGame - This will set the game to the new game that is passed in
      */
     public static void setGame(ConnectFourGame newGame) {
         m_game = newGame;
