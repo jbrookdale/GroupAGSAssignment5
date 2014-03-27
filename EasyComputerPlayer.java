@@ -11,7 +11,7 @@ import java.awt.Point;
 *
 */
 
-abstract class EasyComputerPlayer <C> extends ComputerPlayer {
+public abstract class EasyComputerPlayer <C> extends ComputerPlayer {
     /**
      * EasyComputerPlayer Constructor
      * @param newName -The name of the player
