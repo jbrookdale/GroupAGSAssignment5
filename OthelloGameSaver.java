@@ -162,8 +162,8 @@ public class OthelloGameSaver extends GameSaver{
 		final String TEST_PLAYER_1_NAME = "X";
 		final String TEST_PLAYER_2_NAME = "Y";
 		
-		final String TEST_PLAYER_1_COLOUR = "Red";
-		final String TEST_PLAYER_2_COLOUR = "Yellow";
+		final String TEST_PLAYER_1_COLOUR = "Black";
+		final String TEST_PLAYER_2_COLOUR = "White";
 		
 		Player testPlayer1 = new HumanPlayer(TEST_PLAYER_1_NAME, TEST_PLAYER_1_COLOUR);
 		Player testPlayer2 = new HumanPlayer(TEST_PLAYER_2_NAME, TEST_PLAYER_2_COLOUR);
