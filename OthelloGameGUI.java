@@ -89,12 +89,16 @@ public class OthelloGameGUI extends GameGUI {
 	/**
 	 * This is the constructor for the OthelloGameGui class.
 	 * 
-	 * @param title
-	 *            -the variable storing the title of the window.
-	 * @param width
-	 *            -the variable storing width of the .
-	 * @param height
-	 *            -the variable storing height of the .
+	 * @param title -the variable storing the title of the window.
+	 *            
+	 * @param width -the variable storing width of the window.
+	 *            
+	 * @param height -the variable storing height of the window.
+	 * 
+	 * @param playerOne - Player object for player one
+	 * 
+	 * @param playerTwo - Player object for player two
+	 *            
 	 */
 	public OthelloGameGUI(String title, int width, int height,
 			Player playerOne, Player playerTwo) {
