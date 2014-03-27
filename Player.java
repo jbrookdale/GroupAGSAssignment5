@@ -21,7 +21,7 @@ import java.awt.Point;
  
 
 
-abstract class Player <C> {
+public abstract class Player <C> {
 	/** Variable for the Player name */
     private String m_Name;
     /** Variable for the Player colour */
