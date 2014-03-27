@@ -418,7 +418,8 @@ public class GameLoader extends GameIOHandler{
 
 	/** This is the main method containing the unit tests for this class. */
     public static void main(String[] args){
-    	//Test cases to be implemented.
+    	GameLoader testOthelloLoading = new OthelloGameLoader("saves\\othellosaves\\testOthello.xml");
+    	GameLoader testConnectFourLoading = new ConnectFourGameLoader("saves\\connect4saves\\testConnect4.xml");
     }
     
 }
