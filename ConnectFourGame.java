@@ -41,10 +41,10 @@ public class ConnectFourGame extends Game<Piece.ConnectFourPieceColour> {
     }
 	
 	/**
-	* Constructor for ConnectFourGame. This is used to instantiate 
-	* integers if we want it to.
-	* @param n1 -an integer
-	* @return TRUE if successful
+	* Constructor for ConnectFourGame. This is used to instantiate ConnectFourGame class 
+	* And ConnectFour Board object.
+	* @param playerOne -pass in player One
+	* @param playerTwo -pass in player two
 	*/
 	public ConnectFourGame(Player playerOne, Player playerTwo) {
 	
