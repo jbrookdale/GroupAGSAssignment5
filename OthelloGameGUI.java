@@ -131,18 +131,50 @@ public class OthelloGameGUI extends GameGUI {
 		m_panel = new JPanel();	
 	}
 
+	/**
+	 * This access method sets the member variable m_gameCheck.
+	 * 
+	 * @param game	The OthelloGame object to be set.
+	 */
 	public static void setGame(OthelloGame game){
 		m_gameCheck = game;
 	}
 	
+	/**
+	 * This access method returns the member variable m_gameCheck.
+	 *
+	 * @return m_gameCheck	The OthelloGame object being used.
+	 */
+    public static OthelloGame getGame(){
+    	return m_gameCheck;
+    }
+	
+	
+	/**
+	 * This access methods sets player one member variable.
+	 * 
+	 * @param playerOne	The Player object to be set.
+	 */
 	public static void setPlayerOne(Player playerOne){
 		 m_playerOne = playerOne;
 	}
 	
+	/**
+	 *This access methods sets player two member variable.
+	 *
+	 * @param playerTwo	The Player object to be set.
+	 */
 	public static void setPlayerTwo(Player playerTwo){
         m_playerTwo = playerTwo;
 	}
 	
+	/**
+	 * This access methods will set a piece on the board.
+	 * 
+	 * @param i			The column position of the piece to be set.
+	 * @param j			The row position of the piece to be set.
+	 * @param colour	The colour of the piece to be set.
+	 */
 	public static void setPieces(int i, int j, String colour){
 		if(colour.equals("Black")){
 			m_gridButtons[i][j].setIcon(m_blackPiece);
@@ -154,9 +186,11 @@ public class OthelloGameGUI extends GameGUI {
 	}
 	
     /**
-    *@param String[] players - takes in a string of players
-    * first two values become player 1 and player 2
-    */
+     * This method will set initialise players one and two. 
+     * 
+     * @param String[] players - takes in a string of players
+     * first two values become player 1 and player 2
+     */
     public void setPlayers(String[] players){
         final int PLAYER_ONE = 0;
         final int PLAYER_TWO = 1;
@@ -164,6 +198,12 @@ public class OthelloGameGUI extends GameGUI {
         m_player2Name = players[PLAYER_TWO];
     }
     
+    /**
+     * This access method will return player one or two.
+     * 
+     * @param x			If 0 return player one else player two.
+     * @return	Player	The desired player object.
+     */
 	public static String getPlayerName(int x){
 		if(x == 0){
 			return m_player1Name;
@@ -240,12 +280,10 @@ public class OthelloGameGUI extends GameGUI {
 		m_window.setIconImage(new ImageIcon(this.getClass()
                 .getResource("Othello.jpeg")).getImage());
 		
-		
 		setPlayerLabel(m_player1Name, "Black", m_player2Name, "White");
 		
 		m_panel.add(getTimerLabel());
 		m_panel.add(getPlayerLabel());
-		
 		c.gridx = 0;
 		c.gridy = 0;
 		c.gridwidth = 8;
@@ -276,17 +314,13 @@ public class OthelloGameGUI extends GameGUI {
                 
 		m_window.setJMenuBar(creatingMenu());
         m_window.addWindowListener(new WindowAdapter() {
-                    
-            public void windowClosing(WindowEvent e) {
+        	public void windowClosing(WindowEvent e) {
                 int confirmed = JOptionPane.showConfirmDialog(null, 
                 "Are you sure you want to exit the program?", 
                 "Exit Program Message Box",
                 JOptionPane.YES_NO_OPTION);
-                
-                //if yes is pressed close m_Frame else keep open
                 if (confirmed == JOptionPane.YES_OPTION) {
                    	m_window.dispose();
-                   
                 } 
             }
         });
@@ -323,9 +357,6 @@ public class OthelloGameGUI extends GameGUI {
         if (reply == JOptionPane.YES_OPTION) {
         	m_window.dispose();
         	m_panel.removeAll();
-            // Old constructor call
-        	//m_gameCheck = new OthelloGame(m_player1Name,m_player1Type,m_player1Colour.getPieceColour(),
-			//	m_player2Name,m_player2Type,m_player2Colour.getPieceColour());
             OthelloGame game = new OthelloGame(new HumanPlayer(m_player1Name, m_p1colour),
                                         		new HumanPlayer(m_player2Name, m_p2colour));
             
@@ -414,10 +445,7 @@ public class OthelloGameGUI extends GameGUI {
 	        });
 		return menuBar;
 	}
-    public static OthelloGame getGame(){
-    	return m_gameCheck;
-    }
-	
+
 	/**
 	 * This is a separate class inside of OthelloGameGui that receives
 	 * any action done on the board.  If a button is pushed, it is sent
@@ -497,7 +525,13 @@ public class OthelloGameGUI extends GameGUI {
         /* Inherited from MouseListener */
         public void mouseEntered(MouseEvent e) {}
     }
-
+		
+	/**
+	 * This method is used by the players to perform a move according to mouse input.
+	 * 
+	 * @param x	The column position where a move is to be performed.
+	 * @param y The row position where a move is to be performed.
+	 */
     public void performMove(int x, int y) {
         if (getGame().getPlayerTurn() % TOTAL_PLAYERS == 0) {
             if(player1Move(x,y)){
@@ -569,19 +603,19 @@ public class OthelloGameGUI extends GameGUI {
                         }
             }
         });
-        m_animationThread.start();
-        
-        
+        m_animationThread.start();   
     }
     
     
 
 
     /**
-    * @param boolean player - used to define who's turn it is
-   	* if true then displays the score and that it is player one's turn
-   	* if false then displays the score and that it is player two's turn
-    */
+     * This method updates the title bar.
+     * 
+     * @param boolean player - used to define who's turn it is
+   	 * if true then displays the score and that it is player one's turn
+   	 * if false then displays the score and that it is player two's turn
+     */
     private void updateTitle(boolean player){
     	if(player){
     		m_window.setTitle(("Othello                 "+m_player1Name+
@@ -601,13 +635,14 @@ public class OthelloGameGUI extends GameGUI {
 
 
     	/**
-    	* @param int x - x coord of point on board
-    	* @param int y - y coord of point on board
-    	* this method validates player one's moves and
-    	* then calls player1SwapPieces to swap the valid peices
-    	* @return boolean - returns false if move could not be validated or
-    	* 					that they have no valid move to make.
-    	*/
+    	 * This method validates player one's moves and
+    	 * then calls player1SwapPieces to swap the valid pieces
+    	 * 
+    	 * @param int x - x coordinate of point on board
+    	 * @param int y - y coordinate of point on board
+    	 * @return boolean - returns false if move could not be validated or
+    	 * 					that they have no valid move to make.
+    	 */
         static boolean player1Move(int x, int y){
             if(getGame().m_board.anyValid(m_player1Colour)){
                 if(getGame().move(x,y,m_player1Colour)){
@@ -636,9 +671,10 @@ public class OthelloGameGUI extends GameGUI {
         }
         
         /**
+        * This method will flip all pieces that need to be flipped.
+        * 
         * @param OthelloPiece[][] piecesToSwap - array containing the 
-        * pieces that need swapping
-        * This method will flip all pieces that need to be flipped
+        * pieces that need swapping.
         */
         private static void player1DoSwapPieces(OthelloPiece piecesToSwap[][]) {
             for(int i=0;i<TOTALWIDTH;i++){
@@ -654,11 +690,11 @@ public class OthelloGameGUI extends GameGUI {
 
 
     	/**
-    	* @param int i - x coord of point on board
-    	* @param int j - y coord of point on board
-		*
-		* used to swap player one's pieces
-    	*/
+    	 * Used to swap player one's pieces
+    	 * 
+    	 * @param int i - x coord of point on board
+    	 * @param int j - y coord of point on board
+    	 */
         private static void player1SwapPieces(int i, int j){
         	
         	ImageIcon p1Icon;
@@ -687,13 +723,14 @@ public class OthelloGameGUI extends GameGUI {
         }
 
         /**
-    	* @param int x - x coord of point on board
-    	* @param int y - y coord of point on board
-    	* this method validates player two's moves and
-    	* then calls player2SwapPieces to swap the valid peices
-    	* @return boolean - returns false if move could not be validated or
-    	* 					that they have no valid move to make.
-    	*/
+    	 * This method validates player two's moves and
+    	 * then calls player2SwapPieces to swap the valid pieces
+         * 
+    	 * @param int x - x coordinate of point on board
+    	 * @param int y - y coordinate of point on board
+    	 * @return boolean - returns false if move could not be validated or
+    	 * 					that they have no valid move to make.
+    	 */
         static boolean player2Move(int x, int y){
             if(getGame().m_board.anyValid(m_player2Colour)){
                 if(getGame().move(x,y,m_player2Colour)){
@@ -724,10 +761,11 @@ public class OthelloGameGUI extends GameGUI {
         }
         
         /**
-        * @param OthelloPiece[][] piecesToSwap - array containing the 
-        * pieces that need swapping
-        * This method will flip all pieces that need to be flipped
-        */
+         * This method will flip all pieces that need to be flipped.
+         * 
+         * @param OthelloPiece[][] piecesToSwap - array containing the 
+         * pieces that need swapping
+         */
         private static void player2DoSwapPieces(OthelloPiece piecesToSwap[][]) {
             for(int i=0;i<TOTALWIDTH;i++){
                 for(int j=0;j<TOTALHEIGHT;j++){
@@ -741,11 +779,11 @@ public class OthelloGameGUI extends GameGUI {
         }
 
         /**
-    	* @param int i - x coord of point on board
-    	* @param int j - y coord of point on board
-		*
-		* used to swap player two's pieces
-    	*/
+         * This method is used to swap player two's pieces
+         * 
+    	 * @param int i - x coord of point on board
+    	 * @param int j - y coord of point on board
+    	 */
         private static void player2SwapPieces(int i, int j){
             
         	ImageIcon p2Icon;
@@ -878,6 +916,7 @@ public class OthelloGameGUI extends GameGUI {
             }).start();
         }
 
+	/** This is the main method containing the unit tests for this class. */
 	public static void main(String[] args){
 		final int WIDTH = 600, HEIGHT = 600;
         final int TOTAL_PLAYERS = 2;
