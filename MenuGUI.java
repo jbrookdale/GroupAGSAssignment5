@@ -285,7 +285,7 @@ public class MenuGUI extends GUI {
 	* This method initializes the buttons and sets the icon of each button to be 
 	* the relevant image.
 	* 
-	* @param nil
+	* 
 	* @return true -This will return true if the method is successfully executed.
 	*/
 	private boolean ButtonIconSetUp() {
