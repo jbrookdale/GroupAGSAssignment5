@@ -511,7 +511,7 @@ public class Tester{
     		    /** Test to ensure random move works */
     		    ConnectFourBoard board = new ConnectFourBoard(WIDTH, HEIGHT);
     		    ConnectFourEasyComputerPlayer<Object> compAI = new ConnectFourEasyComputerPlayer("CompAI",Piece.ConnectFourPieceColour.YELLOW);
-    	        /** < show the move of the hard computer player  */
+    	        /** < show the move of the easy computer player  */
     	        Point x = compAI.makeAIMove(board);
     	        System.out.println("Expected position corresponding to column " + x.y + " row " +x.x);
     	        System.out.println("ConectFourHard Computer move: " + "y=" +x.y + "  " + "x=" +x.x);;
