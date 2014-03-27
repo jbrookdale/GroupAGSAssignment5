@@ -20,7 +20,7 @@ public class OthelloGameLoader extends GameLoader{
 	private int m_playerTwoScore;
 	
 	/** Symbolic constant that stores the width of the othello board */
-	private final int BOARD_WIDTH = 8;
+	private final int BOARD_SIZE = 8;
 	
 	/**
 	 * Constructor that passes in the filename of the xml file 
@@ -105,8 +105,8 @@ public class OthelloGameLoader extends GameLoader{
 		
 		OthelloGame loadGame = new OthelloGame(player1, player2);
 
-		for (int i = 0; i < BOARD_WIDTH; i++){
-			for (int j = 0; j < BOARD_WIDTH; j++){
+		for (int i = 0; i < BOARD_SIZE; i++){
+			for (int j = 0; j < BOARD_SIZE; j++){
 				OthelloGameGUI.setPieces(i, j, "Blank");
 			}
 		}
@@ -154,12 +154,16 @@ public class OthelloGameLoader extends GameLoader{
 		OthelloGameGUI.setPlayerTwo(player2);
 	}
 	
-	
+	/**
+	 * Test method that loops through othello board to check whether
+	 * all pieces have been cleared. will print "right" if all spaces
+	 * are empty
+	 */
 	public void testClearing(){
 		OthelloPiece[][] test = OthelloBoard.getPieces();
 		
-		for(int i = 0; i < BOARD_WIDTH; i++){
-			for(int j = 0; j < BOARD_WIDTH; j++){
+		for(int i = 0; i < BOARD_SIZE; i++){
+			for(int j = 0; j < BOARD_SIZE; j++){
 				if(test[i][j].getPieceColour().equals(Piece.OthelloPieceColour.NONE)){
 					System.out.println("Right");
 					System.out.println(i + " " + j);
@@ -171,6 +175,11 @@ public class OthelloGameLoader extends GameLoader{
 		}
 	}
 	
+	/**
+	 * Test method that checks whether all the pieces that have been set
+	 * are in their correct places. Will print "right" if the piece count is
+	 * equal to actual number of pieces.
+	 */
 	public void testPieceSetup(){
 		OthelloPiece[][] test = OthelloBoard.getPieces();
 	
@@ -203,5 +212,6 @@ public class OthelloGameLoader extends GameLoader{
 			}
 		}
 		System.out.println("PieceCount2: " + getP2PiecesX().size());
-	}	
+	}
+	
 }

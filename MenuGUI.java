@@ -669,6 +669,7 @@ public class MenuGUI extends GUI {
 			    ComboBoxes();
                 m_ButtonPanel.setVisible(false);
                 m_SelectPanel.setVisible(false);
+                m_LoadButton.setVisible(true);
                 m_InputScreen.setVisible(true);
                 m_MainMenu.setTitle("Connect Four Setup");
                 
@@ -680,6 +681,7 @@ public class MenuGUI extends GUI {
 			    setGameType(OTHELLO);
 			    ComboBoxes();
                 m_ButtonPanel.setVisible(false);
+                m_LoadButton.setVisible(false);
                 m_SelectPanel.setVisible(false);
                 m_InputScreen.setVisible(true);
                 m_MainMenu.setTitle("Othello Setup");
